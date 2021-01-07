@@ -1,4 +1,30 @@
-# Passliss
+![GitHub contributors](https://img.shields.io/github/contributors/Leo-Corporation/Passliss)
+![GitHub issues](https://img.shields.io/github/issues/Leo-Corporation/Passliss)
+![GitHub](https://img.shields.io/github/license/Leo-Corporation/Passliss)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Leo-Corporation/Passliss/.NET%20Desktop)
+![Using LeoCorpLibrary](https://img.shields.io/badge/using-LeoCorpLibrary-blue)
+<br />
+<p align="center">
+  <a href="https://github.com/Leo-Corporation/LABS-Experiences">
+    <img src=".github/images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Passliss</h3>
+
+  <p align="center">
+    A modern password generator for Windows.
+    <br />
+    <a href="https://github.com/Leo-Corporation/Passliss/releases"><strong>Download »</strong></a>
+    <br />
+    <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBug%5D+">Report Bug</a>
+    ·
+    <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=suggestion+enhancement&template=feature_request.md&title=%5BEnhancement%5D+">Request Feature</a>
+    ·
+    <a href="https://github.com/Leo-Corporation/Passliss/issues?q=is%3Aopen+is%3Aissue+label%3Abug">Known Issues</a>
+
+  </p>
+</p>
+
 ## What is it?
 Passliss is a modern password generation Windows application that allows you to generate passwords within a click. It is the sucessor of [Password Generator 3](https://github.com/Leo-Corporation/Generateur-de-mots-de-passe/) (also known as "Générateur de mots de passe 3")
 
