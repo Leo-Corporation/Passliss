@@ -48,5 +48,15 @@ namespace Passliss
         {
             InitializeComponent();
         }
+
+        private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized; // Minimize
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0); // Close
+        }
     }
 }
