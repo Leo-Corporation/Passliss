@@ -5,7 +5,7 @@
 ![Using LeoCorpLibrary](https://img.shields.io/badge/using-LeoCorpLibrary-blue)
 <br />
 <p align="center">
-  <a href="https://github.com/Leo-Corporation/LABS-Experiences">
+  <a href="https://github.com/Leo-Corporation/Passliss">
     <img src=".github/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
