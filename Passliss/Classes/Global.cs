@@ -42,5 +42,35 @@ namespace Passliss.Classes
         {
             //TODO
         }
+
+        /// <summary>
+        /// Gets the "Hi" sentence message.
+        /// </summary>
+        public static string GetHiSentence
+        { 
+            get
+            {
+                if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour <= 7) // If between 9PM & 7AM
+                {
+                    return Properties.Resources.GoodNight + ", " + Environment.UserName + "."; // Return the correct value
+                }
+                else if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 12) // If between 7AM - 12PM
+                {
+                    return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
+                }
+                else if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 17) // If between 12PM - 5PM
+                {
+                    return Properties.Resources.GoodAfternoon + ", " + Environment.UserName + "."; // Return the correct value
+                }
+                else if (DateTime.Now.Hour >= 17 && DateTime.Now.Hour <= 21) // If between 5PM - 9PM
+                {
+                    return Properties.Resources.GoodEvening + ", " + Environment.UserName + "."; // Return the correct value
+                }
+                else
+                {
+                    return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
+                }
+            } 
+        }
     }
 }
