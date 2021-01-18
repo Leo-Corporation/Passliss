@@ -100,4 +100,16 @@
   <data name="Passliss" xml:space="preserve">
     <value>Passliss</value>
   </data>
+  <data name="Hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="GoodAfternoon" xml:space="preserve">
+    <value>Good afternoon</value>
+  </data>
+  <data name="GoodNight" xml:space="preserve">
+    <value>Good night</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>Good evening</value>
+  </data>
 </root>
