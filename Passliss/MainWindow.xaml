@@ -121,23 +121,40 @@
             </Border>
 
             <Border Grid.Row="1" Style="{StaticResource WindowMainPanelStyle}">
-                <Grid x:Name="Header">
-
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    
+                    <Grid x:Name="Header">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel HorizontalAlignment="Left">
-                        <TextBlock Grid.Row="0" FontWeight="Bold"  Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="48" Text="{x:Static lang:Resources.Passliss}" Margin="20,0,0,0"/>
-                        <TextBlock x:Name="HelloTxt" Grid.Row="0" FontWeight="Regular"  Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16" d:Text="[HelloMessage]" Margin="20,0,0,0"/>
-                    </StackPanel>
-                    <Image Margin="5,0,5,5" Grid.Column="1" Height="80" Source="{Binding Source={StaticResource MainWindowBackground}}" Stretch="UniformToFill" HorizontalAlignment="Right"/>
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Grid.Row="0" FontWeight="Bold"  Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="48" Text="{x:Static lang:Resources.Passliss}" Margin="20,0,0,0"/>
+                            <TextBlock x:Name="HelloTxt" Grid.Row="0" FontWeight="Regular"  Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16" d:Text="[HelloMessage]" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <Image Margin="5,0,5,5" Grid.Column="1" Height="80" Source="{Binding Source={StaticResource MainWindowBackground}}" Stretch="UniformToFill" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid x:Name="Content" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <Button Content="Test"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>
