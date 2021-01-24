@@ -132,4 +132,19 @@
   <data name="GoodEvening" xml:space="preserve">
     <value>Bonne soirée</value>
   </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Générer</value>
+  </data>
+  <data name="Strenght" xml:space="preserve">
+    <value>Force</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>A propos</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
 </root>
