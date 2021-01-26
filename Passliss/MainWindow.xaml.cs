@@ -65,5 +65,19 @@ namespace Passliss
         {
             Environment.Exit(0); // Close
         }
+
+        private void TabEnter(object sender, MouseEventArgs e)
+        {
+            Button button = (Button)sender; // Create button
+
+            button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+        }
+
+        private void TabLeave(object sender, MouseEventArgs e)
+        {
+            Button button = (Button)sender; // Create button
+
+            button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+        }
     }
 }

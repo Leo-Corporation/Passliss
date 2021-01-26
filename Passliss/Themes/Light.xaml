@@ -8,5 +8,6 @@
     <sys:String x:Key="WindowButtonsHover1">#E5E5E5</sys:String>
     <sys:String x:Key="WindowButtonsPressed1">#DBDBDB</sys:String>
     <sys:String x:Key="MainWindowBackground">/Images/BackgroundWhite.png</sys:String>
+    <sys:String x:Key="WindowButtonsHoverForeground1">#ffffff</sys:String>
     
 </ResourceDictionary>
