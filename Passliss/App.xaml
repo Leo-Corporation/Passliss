@@ -34,6 +34,7 @@
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Padding" Value="1"/>
                 <Setter Property="Template">
                     <Setter.Value>
