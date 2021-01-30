@@ -48,11 +48,14 @@ namespace Passliss.Pages
         public GeneratePage()
         {
             InitializeComponent();
+
+            //TODO: Generate a password on startup depending on checkboxes
+            PasswordTxt.Text = Password.Generate(20, Global.LowerCaseLetters + Global.UpperCaseLetters + Global.Numbers, ",");
         }
 
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
-            PasswordTxt.Text = Password.Generate(20, Global.LowerCaseLetters + Global.UpperCaseLetters + Global.Numbers, ",");
+            PasswordTxt.Text = Password.Generate(20, Global.LowerCaseLetters + Global.UpperCaseLetters + Global.Numbers, ","); // Generate
         }
     }
 }
