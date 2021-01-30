@@ -79,6 +79,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Generate a password.
+        /// </summary>
+        public static string GeneratePassword {
+            get {
+                return ResourceManager.GetString("GeneratePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Good afternoon.
         /// </summary>
         public static string GoodAfternoon {
@@ -115,6 +124,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lowercases.
+        /// </summary>
+        public static string LowerCase {
+            get {
+                return ResourceManager.GetString("LowerCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Passliss.
         /// </summary>
         public static string Passliss {
@@ -142,11 +160,29 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Special caracters.
+        /// </summary>
+        public static string SpecialCaracters {
+            get {
+                return ResourceManager.GetString("SpecialCaracters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Strenght.
         /// </summary>
         public static string Strenght {
             get {
                 return ResourceManager.GetString("Strenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Uppercases.
+        /// </summary>
+        public static string UpperCase {
+            get {
+                return ResourceManager.GetString("UpperCase", resourceCulture);
             }
         }
     }

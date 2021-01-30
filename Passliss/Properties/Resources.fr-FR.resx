@@ -147,4 +147,16 @@
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
+  <data name="GeneratePassword" xml:space="preserve">
+    <value>Générer un mot de passe</value>
+  </data>
+  <data name="UpperCase" xml:space="preserve">
+    <value>Majuscules</value>
+  </data>
+  <data name="LowerCase" xml:space="preserve">
+    <value>Minuscules</value>
+  </data>
+  <data name="SpecialCaracters" xml:space="preserve">
+    <value>Caractères spéciaux</value>
+  </data>
 </root>
