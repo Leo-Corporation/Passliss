@@ -145,7 +145,7 @@
                         <Image Margin="5,0,5,5" Grid.Column="1" Height="80" Source="{Binding Source={StaticResource MainWindowBackground}}" Stretch="UniformToFill" HorizontalAlignment="Right"/>
                     </Grid>
 
-                    <Grid x:Name="Content" Grid.Row="1">
+                    <Grid x:Name="WindowContent" Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
@@ -171,6 +171,8 @@
                                 </StackPanel>
                             </Button>
                         </StackPanel>
+
+                        <Frame Name="PageContent" Grid.Column="1" NavigationUIVisibility="Hidden"/>
                     </Grid>
                 </Grid>
             </Border>
