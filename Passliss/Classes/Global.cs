@@ -36,6 +36,26 @@ namespace Passliss.Classes
     public static class Global
     {
         /// <summary>
+        /// The <see cref="Pages.GeneratePage"/>.
+        /// </summary>
+        public static Pages.GeneratePage GeneratePage { get; set; }
+
+        /// <summary>
+        /// Lower case letters.
+        /// </summary>
+        public static string LowerCaseLetters { get => "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"; }
+
+        /// <summary>
+        /// Upper case letters.
+        /// </summary>
+        public static string UpperCaseLetters { get => "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"; }
+
+        /// <summary>
+        /// Numbers
+        /// </summary>
+        public static string Numbers { get => "0,1,2,3,4,5,6,7,8,8,9"; }
+
+        /// <summary>
         /// Changes the application's theme.
         /// </summary>
         public static void ChangeTheme()

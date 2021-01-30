@@ -54,6 +54,7 @@ namespace Passliss
         private void InitUI()
         {
             HelloTxt.Text = Global.GetHiSentence; // Set the "Hi" message
+            PageContent.Content = Global.GeneratePage;
         }
 
         private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
