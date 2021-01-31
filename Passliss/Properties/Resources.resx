@@ -142,4 +142,7 @@
   <data name="Numbers" xml:space="preserve">
     <value>Numbers</value>
   </data>
+  <data name="PleaseSelectChkMsg" xml:space="preserve">
+    <value>Please select a checkbox to generate a password.</value>
+  </data>
 </root>

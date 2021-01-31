@@ -51,9 +51,14 @@ namespace Passliss.Classes
         public static string UpperCaseLetters { get => "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"; }
 
         /// <summary>
-        /// Numbers
+        /// Numbers.
         /// </summary>
         public static string Numbers { get => "0,1,2,3,4,5,6,7,8,8,9"; }
+
+        /// <summary>
+        /// Special caracters.
+        /// </summary>
+        public static string SpecialCaracters { get => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç"; }
 
         /// <summary>
         /// Changes the application's theme.
@@ -91,6 +96,41 @@ namespace Passliss.Classes
                     return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
                 }
             } 
+        }
+
+        /// <summary>
+        /// Gets the final caracters that will be present in the password.
+        /// </summary>
+        /// <param name="lC">Include lower cases.</param>
+        /// <param name="uC">Include upper cases.</param>
+        /// <param name="n">Include numbers.</param>
+        /// <param name="sC">Include special caracters.</param>
+        /// <returns>A <see cref="string"/> value.</returns>
+        public static string GetFinalCaracters(bool lC, bool uC, bool n, bool sC)
+        {
+            string finalCaracters = "";
+
+            if (lC) // If include lower cases
+            {
+                finalCaracters += LowerCaseLetters + ","; // Add lower cases
+            }
+
+            if (uC) // If include upper cases
+            {
+                finalCaracters += UpperCaseLetters + ","; // Add upper cases
+            }
+
+            if (n) // If include numbers
+            {
+                finalCaracters += Numbers + ","; // Add numbers
+            }
+
+            if (sC) // If include special caracters
+            {
+                finalCaracters += SpecialCaracters + ","; // Add special caracters
+            }
+
+            return finalCaracters; // Return result
         }
     }
 }

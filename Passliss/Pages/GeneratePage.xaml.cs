@@ -49,13 +49,33 @@ namespace Passliss.Pages
         {
             InitializeComponent();
 
-            //TODO: Generate a password on startup depending on checkboxes
-            PasswordTxt.Text = Password.Generate(20, Global.LowerCaseLetters + Global.UpperCaseLetters + Global.Numbers, ",");
+            LowerCaseChk.IsChecked = true; // Check the checkbox
+            UpperCaseChk.IsChecked = true; // Check the checkbox
+            NumbersChk.IsChecked = true; // Check the checkbox
+
+            PasswordTxt.Text = Password.Generate(20, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
+
         }
 
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
-            PasswordTxt.Text = Password.Generate(20, Global.LowerCaseLetters + Global.UpperCaseLetters + Global.Numbers, ","); // Generate
+            if (!IsNoCheckboxesChecked())
+            {
+                PasswordTxt.Text = Password.Generate(20, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.PleaseSelectChkMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        /// <summary>
+        /// True if all unchecked.
+        /// </summary>
+        /// <returns>A <see cref="bool"/> value.</returns>
+        private bool IsNoCheckboxesChecked()
+        {
+            return (!LowerCaseChk.IsChecked.Value && !UpperCaseChk.IsChecked.Value && !NumbersChk.IsChecked.Value && !SpecialCaractersChk.IsChecked.Value);
         }
     }
 }
