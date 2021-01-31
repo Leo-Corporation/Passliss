@@ -159,4 +159,7 @@
   <data name="SpecialCaracters" xml:space="preserve">
     <value>Caractères spéciaux</value>
   </data>
+  <data name="Numbers" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
 </root>

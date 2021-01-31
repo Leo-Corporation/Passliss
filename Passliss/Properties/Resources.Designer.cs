@@ -133,6 +133,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Numbers.
+        /// </summary>
+        public static string Numbers {
+            get {
+                return ResourceManager.GetString("Numbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Passliss.
         /// </summary>
         public static string Passliss {

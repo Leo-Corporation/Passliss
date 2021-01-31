@@ -11,10 +11,22 @@
       Title="GeneratePage">
 
     <Grid>
-        <StackPanel Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Margin="10,40,10,10" Grid.Row="0">
             <TextBlock Text="{x:Static lang:Resources.Password}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
-            <TextBlock x:Name="PasswordTxt" d:Text="PasswordGoHere" HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+            <TextBlock x:Name="PasswordTxt" d:Text="PasswordGoHere" HorizontalAlignment="Center" FontWeight="Bold" FontSize="24" Margin="0 10 0 0"/>
             <Button x:Name="GenerateBtn" Click="GenerateBtn_Click" Content="{x:Static lang:Resources.Generate}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <StackPanel Margin="10" Grid.Row="1">
+            <CheckBox Margin="0 2 0 2"  x:Name="UpperCaseChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.UpperCase}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Center"/>
+            <CheckBox Margin="0 2 0 2" x:Name="LowerCaseChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.LowerCase}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Center"/>
+            <CheckBox Margin="0 2 0 2" x:Name="SpecialCaractersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SpecialCaracters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Center"/>
+            <CheckBox Margin="0 2 0 2" x:Name="NumbersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.Numbers}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Page>
