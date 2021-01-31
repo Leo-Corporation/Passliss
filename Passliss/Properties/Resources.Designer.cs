@@ -160,6 +160,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please select a checkbox to generate a password..
+        /// </summary>
+        public static string PleaseSelectChkMsg {
+            get {
+                return ResourceManager.GetString("PleaseSelectChkMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Settings.
         /// </summary>
         public static string Settings {

@@ -162,4 +162,7 @@
   <data name="Numbers" xml:space="preserve">
     <value>Nombres</value>
   </data>
+  <data name="PleaseSelectChkMsg" xml:space="preserve">
+    <value>Veuillez cocher une case pour pouvoir générer un mot de passe.</value>
+  </data>
 </root>
