@@ -113,18 +113,24 @@ namespace Passliss
         {
             ResetAllCheckStatus(); // Reset the background and foreground of all buttons
             CheckButton(GenerateTabBtn); // Check the "Generate" button
+
+            PageContent.Navigate(Global.GeneratePage); // Navigate
         }
 
         private void StrenghtTabBtn_Click(object sender, RoutedEventArgs e)
         {
             ResetAllCheckStatus(); // Reset the background and foreground of all buttons
             CheckButton(StrenghtTabBtn); // Check the "Strenght" button
+
+            PageContent.Navigate(Global.StrenghtPage); // Navigate
         }
 
         private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
         {
             ResetAllCheckStatus(); // Reset the background and foreground of all buttons
             CheckButton(SettingsTabBtn); // Check the "Settings" button
+
+            PageContent.Navigate(Global.SettingsPage); // Navigate
         }
     }
 }

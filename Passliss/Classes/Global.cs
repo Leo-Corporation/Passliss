@@ -41,6 +41,16 @@ namespace Passliss.Classes
         public static Pages.GeneratePage GeneratePage { get; set; }
 
         /// <summary>
+        /// The <see cref="Pages.SettingsPage"/>.
+        /// </summary>
+        public static Pages.SettingsPage SettingsPage { get; set; }
+
+        /// <summary>
+        /// The <see cref="Pages.StrenghtPage"/>.
+        /// </summary>
+        public static Pages.StrenghtPage StrenghtPage { get; set; }
+
+        /// <summary>
         /// Lower case letters.
         /// </summary>
         public static string LowerCaseLetters { get => "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"; }
