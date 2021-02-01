@@ -4,12 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Passliss.Pages"
+      xmlns:lang="clr-namespace:Passliss.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       FontFamily="../Fonts/#Montserrat"
       Title="StrenghtPage">
 
     <Grid>
-        
+        <StackPanel Margin="10,40,10,10" Grid.Row="0">
+            <TextBlock Text="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
+        </StackPanel>
     </Grid>
 </Page>
