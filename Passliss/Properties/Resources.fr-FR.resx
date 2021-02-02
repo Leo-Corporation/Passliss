@@ -165,4 +165,7 @@
   <data name="PleaseSelectChkMsg" xml:space="preserve">
     <value>Veuillez cocher une case pour pouvoir générer un mot de passe.</value>
   </data>
+  <data name="Lenght" xml:space="preserve">
+    <value>Longueur</value>
+  </data>
 </root>

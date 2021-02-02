@@ -124,6 +124,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lenght.
+        /// </summary>
+        public static string Lenght {
+            get {
+                return ResourceManager.GetString("Lenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Lowercases.
         /// </summary>
         public static string LowerCase {

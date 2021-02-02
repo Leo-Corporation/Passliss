@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,15 +54,17 @@ namespace Passliss.Pages
             UpperCaseChk.IsChecked = true; // Check the checkbox
             NumbersChk.IsChecked = true; // Check the checkbox
 
-            PasswordTxt.Text = Password.Generate(20, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
+            LenghtTxt.Text = "20"; // Set text
+
+            PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text), Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
 
         }
 
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!IsNoCheckboxesChecked())
+            if (!IsNoCheckboxesChecked() && int.Parse(LenghtTxt.Text) > 0)
             {
-                PasswordTxt.Text = Password.Generate(20, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+                PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text), Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
             }
             else
             {
@@ -76,6 +79,12 @@ namespace Passliss.Pages
         private bool IsNoCheckboxesChecked()
         {
             return (!LowerCaseChk.IsChecked.Value && !UpperCaseChk.IsChecked.Value && !NumbersChk.IsChecked.Value && !SpecialCaractersChk.IsChecked.Value);
+        }
+
+        private void LenghtTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
