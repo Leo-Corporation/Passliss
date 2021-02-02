@@ -71,11 +71,27 @@ namespace Passliss.Classes
         public static string SpecialCaracters { get => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç"; }
 
         /// <summary>
+        /// Settings of Passliss.
+        /// </summary>
+        public static Settings Settings { get; set; }
+
+        /// <summary>
         /// Changes the application's theme.
         /// </summary>
         public static void ChangeTheme()
         {
-            //TODO
+            ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
+
+            if (Settings.IsDarkTheme) // If the dark theme is on
+            {
+                resourceDictionary.Source = new Uri("..\\Themes\\Dark.xaml", UriKind.Relative); // Add source
+            }
+            else
+            {
+                resourceDictionary.Source = new Uri("..\\Themes\\Light.xaml", UriKind.Relative); // Add source
+            }
+
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
         }
 
         /// <summary>
