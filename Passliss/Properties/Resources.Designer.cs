@@ -70,6 +70,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enter a password.
+        /// </summary>
+        public static string EnterPassword {
+            get {
+                return ResourceManager.GetString("EnterPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Generate.
         /// </summary>
         public static string Generate {
@@ -201,6 +210,42 @@ namespace Passliss.Properties {
         public static string Strenght {
             get {
                 return ResourceManager.GetString("Strenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The strenght of the password is good.
+        /// </summary>
+        public static string StrenghtGood {
+            get {
+                return ResourceManager.GetString("StrenghtGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The strenght of the password is low.
+        /// </summary>
+        public static string StrenghtLow {
+            get {
+                return ResourceManager.GetString("StrenghtLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The strenght of the password is medium.
+        /// </summary>
+        public static string StrenghtMedium {
+            get {
+                return ResourceManager.GetString("StrenghtMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The strenght of the password is excellent.
+        /// </summary>
+        public static string StrenghtVeryGood {
+            get {
+                return ResourceManager.GetString("StrenghtVeryGood", resourceCulture);
             }
         }
         

@@ -168,4 +168,19 @@
   <data name="Lenght" xml:space="preserve">
     <value>Lenght</value>
   </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Enter a password</value>
+  </data>
+  <data name="StrenghtVeryGood" xml:space="preserve">
+    <value>The strenght of the password is excellent</value>
+  </data>
+  <data name="StrenghtGood" xml:space="preserve">
+    <value>The strenght of the password is good</value>
+  </data>
+  <data name="StrenghtMedium" xml:space="preserve">
+    <value>The strenght of the password is medium</value>
+  </data>
+  <data name="StrenghtLow" xml:space="preserve">
+    <value>The strenght of the password is low</value>
+  </data>
 </root>
