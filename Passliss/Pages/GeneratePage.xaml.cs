@@ -56,7 +56,7 @@ namespace Passliss.Pages
 
             LenghtTxt.Text = "20"; // Set text
 
-            PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text), Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
+            PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
 
         }
 
@@ -64,7 +64,7 @@ namespace Passliss.Pages
         {
             if (!IsNoCheckboxesChecked() && int.Parse(LenghtTxt.Text) > 0)
             {
-                PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text), Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+                PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
             }
             else
             {
