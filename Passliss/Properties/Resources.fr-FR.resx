@@ -183,4 +183,7 @@
   <data name="StrenghtLow" xml:space="preserve">
     <value>La force du mot de passe est faible</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
 </root>

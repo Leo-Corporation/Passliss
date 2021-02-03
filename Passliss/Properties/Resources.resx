@@ -163,4 +163,7 @@
   <data name="StrenghtLow" xml:space="preserve">
     <value>The strenght of the password is low</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
 </root>

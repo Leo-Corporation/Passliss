@@ -86,5 +86,10 @@ namespace Passliss.Pages
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void CopyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(PasswordTxt.Text); // Copy the password
+        }
     }
 }

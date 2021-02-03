@@ -67,10 +67,10 @@ namespace Passliss.Pages
             return passwordStrenght switch
             {
                 PasswordStrenght.VeryGood => Properties.Resources.StrenghtVeryGood, // If the password strenght is very good
-                PasswordStrenght.Good => Properties.Resources.StrenghtGood, // If the password strenght is good
-                PasswordStrenght.Medium => Properties.Resources.StrenghtMedium, // If the password strenght is medium
-                PasswordStrenght.Low => Properties.Resources.StrenghtLow, // If the password strenght is low
-                _ => Properties.Resources.EnterPassword // If the password strenght is unknown
+                PasswordStrenght.Good     => Properties.Resources.StrenghtGood, // If the password strenght is good
+                PasswordStrenght.Medium   => Properties.Resources.StrenghtMedium, // If the password strenght is medium
+                PasswordStrenght.Low      => Properties.Resources.StrenghtLow, // If the password strenght is low
+                _                         => Properties.Resources.EnterPassword // If the password strenght is unknown
             };
         }
 
