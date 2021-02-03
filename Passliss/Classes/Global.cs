@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Passliss.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +69,7 @@ namespace Passliss.Classes
         /// <summary>
         /// Special caracters.
         /// </summary>
-        public static string SpecialCaracters { get => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç"; }
+        public static string SpecialCaracters { get => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨"; }
 
         /// <summary>
         /// Settings of Passliss.
@@ -157,6 +158,37 @@ namespace Passliss.Classes
             }
 
             return finalCaracters; // Return result
+        }
+
+        /// <summary>
+        /// Gets the password strenght of a password.
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <returns>A <see cref="PasswordStrenght"/> enum.</returns>
+        public static PasswordStrenght GetPasswordStrenght(string password)
+        {
+            int lenght = password.Length; // Lenght
+            int pswrScore = lenght / 4; // Score
+
+            for (int i = 0; i < Numbers.Length; i++)
+            {
+                for (int j = 0; j < lenght; j++)
+                {
+                    pswrScore += password[j].ToString().Contains(Numbers[i]) ? 1 : 0;
+                }
+            }
+
+            for (int i = 0; i < SpecialCaracters.Length; i++)
+            {
+                for (int j = 0; j < lenght; j++)
+                {
+                    pswrScore += password[j].ToString().Contains(SpecialCaracters[i]) ? 2 : 0;
+                }
+            }
+
+            MessageBox.Show(pswrScore.ToString());
+
+            return PasswordStrenght.Good; // TODO
         }
     }
 }

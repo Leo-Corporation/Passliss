@@ -21,6 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Passliss.Classes;
+using Passliss.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +48,38 @@ namespace Passliss.Pages
         public StrenghtPage()
         {
             InitializeComponent();
+        }
+
+        private string GetStrenghtCaracter(PasswordStrenght passwordStrenght)
+        {
+            return passwordStrenght switch
+            {
+                PasswordStrenght.VeryGood => "", // If the password strenght is very good
+                PasswordStrenght.Good     => "", // If the password strenght is good
+                PasswordStrenght.Medium   => "", // If the password strenght is medium
+                PasswordStrenght.Low      => "", // If the password strenght is low
+                _                         => "" // If the password strenght is unknown
+            };
+        }
+
+        private string GetStrenghtText(PasswordStrenght passwordStrenght)
+        {
+            return passwordStrenght switch
+            {
+                PasswordStrenght.VeryGood => Properties.Resources.StrenghtVeryGood, // If the password strenght is very good
+                PasswordStrenght.Good => Properties.Resources.StrenghtGood, // If the password strenght is good
+                PasswordStrenght.Medium => Properties.Resources.StrenghtMedium, // If the password strenght is medium
+                PasswordStrenght.Low => Properties.Resources.StrenghtLow, // If the password strenght is low
+                _ => Properties.Resources.EnterPassword // If the password strenght is unknown
+            };
+        }
+
+        private void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
+
+            IconTxt.Text = GetStrenghtCaracter(password); // Get text
+            CommentTxt.Text = GetStrenghtText(password); // Get text
         }
     }
 }
