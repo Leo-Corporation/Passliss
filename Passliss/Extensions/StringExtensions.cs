@@ -80,5 +80,15 @@ namespace Passliss.Extensions
 
             return false; // Return
         }
+
+        /// <summary>
+        /// Checks if a letter is being repeated in a <see cref="string"/>.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns>A <see cref="bool"/> value.</returns>
+        public static bool HasRepeatedCaracters(this string s)
+        {
+            return !s.Where((c, i) => i >= 2 && s[i - 1] == c && s[i - 2] == c).Any();
+        }
     }
 }

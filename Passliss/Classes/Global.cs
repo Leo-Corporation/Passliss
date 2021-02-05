@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Passliss.Classes
 {
@@ -213,14 +214,17 @@ namespace Passliss.Classes
 
             if (password.ContainsLowerCases() && password.ContainsUpperCases()) // If there is upper and lower cases
             {
-                pswrScore += 2; // Add 2
+                pswrScore += 5; // Add 2
             }
             else
             {
                 pswrScore -= 5; // Sub 5
             }
 
-            MessageBox.Show(pswrScore.ToString());
+            if (password.HasRepeatedCaracters())
+            {
+                pswrScore -= 5; // Sub 5
+            }
 
             if (pswrScore < 2)
             {
@@ -242,6 +246,23 @@ namespace Passliss.Classes
             {
                 return PasswordStrenght.Good; // Return
             }
+        }
+
+        /// <summary>
+        /// Gets the color depending of a <see cref="PasswordStrenght"/>.
+        /// </summary>
+        /// <param name="passwordStrenght">The strenght of a password.</param>
+        /// <returns>A <see cref="SolidColorBrush"/> value.</returns>
+        public static SolidColorBrush GetStrenghtColorBrush(PasswordStrenght passwordStrenght)
+        {
+            return passwordStrenght switch
+            {
+                PasswordStrenght.VeryGood => new SolidColorBrush { Color = Color.FromRgb(0, 191, 7) }, // Return
+                PasswordStrenght.Good     => new SolidColorBrush { Color = Color.FromRgb(104, 234, 0) }, // Return
+                PasswordStrenght.Medium   => new SolidColorBrush { Color = Color.FromRgb(255, 123, 0) }, // Return
+                PasswordStrenght.Low      => new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) }, // Return
+                _                         => new SolidColorBrush { Color = Colors.Gray }, // Return
+            };
         }
     }
 }

@@ -80,6 +80,8 @@ namespace Passliss.Pages
 
             IconTxt.Text = GetStrenghtCaracter(password); // Get text
             CommentTxt.Text = GetStrenghtText(password); // Get text
+
+            IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
         }
     }
 }
