@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Passliss.Classes
 {
@@ -40,6 +41,11 @@ namespace Passliss.Classes
         /// True if the theme of Passliss is set to dark.
         /// </summary>
         public bool IsDarkTheme { get; set; }
+
+        /// <summary>
+        /// The language of the app (country code). Can be _default, en-US, fr-FR...
+        /// </summary>
+        public string Language { get; set; }
     }
 
     /// <summary>
@@ -56,13 +62,18 @@ namespace Passliss.Classes
 
             if (File.Exists(path)) // If the file exist
             {
-                //TODO
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // XML Serializer
+                StreamReader streamReader = new StreamReader(path); // Where the file is going to be read
+
+                Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
+
+                streamReader.Dispose();
             }
             else
             {
-                Global.Settings = new Settings { IsDarkTheme = false }; // Create a new settings file
+                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default" }; // Create a new settings file
 
-                //TODO
+                Save(); // Save the changes
             }
         }
 
@@ -71,7 +82,19 @@ namespace Passliss.Classes
         /// </summary>
         public static void Save()
         {
-            //TODO
+            string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // Create XML Serializer
+
+            if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+            {
+                Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+            }
+
+            StreamWriter streamWriter = new StreamWriter(path); // The place where the file is going to be written
+            xmlSerializer.Serialize(streamWriter, Global.Settings);
+
+            streamWriter.Dispose();
         }
     }
 }
