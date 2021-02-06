@@ -184,6 +184,11 @@ namespace Passliss.Classes
             int lenght = password.Length; // Lenght
             int pswrScore = 0; // Score
 
+            if (lenght == 0)
+            {
+                return PasswordStrenght.Unknown;
+            }
+
             if (lenght >= 0 && lenght <= 5) // If the lenght of the password is between 0 & 5
             {
                 pswrScore += 1; // Add 1
@@ -271,7 +276,7 @@ namespace Passliss.Classes
                 PasswordStrenght.Good     => new SolidColorBrush { Color = Color.FromRgb(104, 234, 0) }, // Return
                 PasswordStrenght.Medium   => new SolidColorBrush { Color = Color.FromRgb(255, 123, 0) }, // Return
                 PasswordStrenght.Low      => new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) }, // Return
-                _                         => new SolidColorBrush { Color = Colors.Gray }, // Return
+                _                         => new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Gray"].ToString()) }, // Return
             };
         }
     }

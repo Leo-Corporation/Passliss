@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Passliss.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,30 @@ namespace Passliss.Pages
         public SettingsPage()
         {
             InitializeComponent();
+            InitUI(); // Init the UI
+        }
+
+        private void InitUI()
+        {
+            // Load ThemeComboBox
+            string[] themes = { Properties.Resources.Dark, Properties.Resources.Light }; // themes
+
+            for (int i = 0; i < themes.Length; i++)
+            {
+                ThemeComboBox.Items.Add(themes[i]);
+            }
+
+            ThemeComboBox.SelectedIndex = Global.Settings.IsDarkTheme ? 0 : 1; // Set the selected index
+
+            // Load LangComboBox
+            LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
+
+            for (int i = 0; i < Global.LanguageList.Count; i++)
+            {
+                LangComboBox.Items.Add(Global.LanguageList[i]);
+            }
+
+            LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1; 
         }
     }
 }
