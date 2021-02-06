@@ -70,11 +70,74 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Apply.
+        /// </summary>
+        public static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Updates are available..
+        /// </summary>
+        public static string AvailableUpdates {
+            get {
+                return ResourceManager.GetString("AvailableUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Change Passliss language..
+        /// </summary>
+        public static string ChangeLanguage {
+            get {
+                return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Change Passliss theme..
+        /// </summary>
+        public static string ChangeTheme {
+            get {
+                return ResourceManager.GetString("ChangeTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Check updates.
+        /// </summary>
+        public static string CheckUpdate {
+            get {
+                return ResourceManager.GetString("CheckUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Copy.
         /// </summary>
         public static string Copy {
             get {
                 return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dark.
+        /// </summary>
+        public static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Default.
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
             }
         }
         
@@ -142,11 +205,38 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Install.
+        /// </summary>
+        public static string Install {
+            get {
+                return ResourceManager.GetString("Install", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Lenght.
         /// </summary>
         public static string Lenght {
             get {
                 return ResourceManager.GetString("Lenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Light.
+        /// </summary>
+        public static string Light {
+            get {
+                return ResourceManager.GetString("Light", resourceCulture);
             }
         }
         
@@ -255,6 +345,24 @@ namespace Passliss.Properties {
         public static string StrenghtVeryGood {
             get {
                 return ResourceManager.GetString("StrenghtVeryGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Theme.
+        /// </summary>
+        public static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Updates.
+        /// </summary>
+        public static string Updates {
+            get {
+                return ResourceManager.GetString("Updates", resourceCulture);
             }
         }
         
