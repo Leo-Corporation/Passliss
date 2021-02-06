@@ -73,12 +73,22 @@ namespace Passliss.Classes
         /// </summary>
         public static string SpecialCaracters { get => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨"; }
 
-        public static string[] ForbidenCaracters => new string[] { "123", "456", "789", "password", "mdp", "pswr", "000", "admin" };
+        public static string[] ForbidenCaracters => new string[] { "123", "456", "789", "password", "mdp", "pswr", "000", "admin", "111", "222", "333", "444", "555", "666", "777", "888", "999" };
 
         /// <summary>
         /// Settings of Passliss.
         /// </summary>
         public static Settings Settings { get; set; }
+
+        /// <summary>
+        /// List of the available languages.
+        /// </summary>
+        public static List<string> LanguageList => new List<string> { "English (United States)", "Français (France)" };
+        
+        /// <summary>
+        /// List of the available languages codes.
+        /// </summary>
+        public static new List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
 
         /// <summary>
         /// Changes the application's theme.
