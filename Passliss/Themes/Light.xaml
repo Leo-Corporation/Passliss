@@ -11,5 +11,6 @@
     <sys:String x:Key="MainWindowBackground">/Images/BackgroundWhite.png</sys:String>
     <sys:String x:Key="WindowButtonsHoverForeground1">#ffffff</sys:String>
     <sys:String x:Key="AccentColor">#007FFF</sys:String>
+    <sys:String x:Key="Gray">#DEDEDE</sys:String>
 
 </ResourceDictionary>
