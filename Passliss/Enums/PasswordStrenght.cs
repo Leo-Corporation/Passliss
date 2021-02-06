@@ -52,6 +52,11 @@ namespace Passliss.Enums
         /// <summary>
         /// Low password strenght.
         /// </summary>
-        Low
+        Low,
+
+        /// <summary>
+        /// Unknown password strenght.
+        /// </summary>
+        Unknown
     }
 }
