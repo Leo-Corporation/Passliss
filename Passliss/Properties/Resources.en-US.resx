@@ -225,4 +225,7 @@
   <data name="UpToDate" xml:space="preserve">
     <value>Passliss is up to date.</value>
   </data>
+  <data name="PleaseSpecifyLenghtMsg" xml:space="preserve">
+    <value>Please specify a lenght to generate a password.</value>
+  </data>
 </root>

@@ -286,6 +286,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please specify a lenght to generate a password..
+        /// </summary>
+        public static string PleaseSpecifyLenghtMsg {
+            get {
+                return ResourceManager.GetString("PleaseSpecifyLenghtMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Settings.
         /// </summary>
         public static string Settings {
