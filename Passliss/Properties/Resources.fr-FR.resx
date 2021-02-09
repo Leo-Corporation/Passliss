@@ -222,4 +222,7 @@
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Changer la langue de Passliss.</value>
   </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Passliss est à jour.</value>
+  </data>
 </root>

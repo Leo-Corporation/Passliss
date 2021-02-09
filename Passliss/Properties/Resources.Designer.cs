@@ -374,5 +374,14 @@ namespace Passliss.Properties {
                 return ResourceManager.GetString("UpperCase", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Passliss is up to date..
+        /// </summary>
+        public static string UpToDate {
+            get {
+                return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
     }
 }
