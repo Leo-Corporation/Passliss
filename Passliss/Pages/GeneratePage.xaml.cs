@@ -62,7 +62,13 @@ namespace Passliss.Pages
 
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!IsNoCheckboxesChecked() && int.Parse(LenghtTxt.Text) > 0)
+            if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
+            {
+                MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
+                return;
+            }
+
+            if (!IsNoCheckboxesChecked())
             {
                 PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
             }
