@@ -91,6 +91,16 @@ namespace Passliss.Classes
         public static new List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
 
         /// <summary>
+        /// The current version of Passliss.
+        /// </summary>
+        public static string Version { get => "1.0.0.2102-pre1"; }
+
+        /// <summary>
+        /// GitHub link for the last version (<see cref="string"/>).
+        /// </summary>
+        public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Passliss/Version.txt"; }
+
+        /// <summary>
         /// Changes the application's theme.
         /// </summary>
         public static void ChangeTheme()

@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using LeoCorpLibrary;
 using Passliss.Classes;
 using System;
 using System.Collections.Generic;
@@ -44,13 +45,14 @@ namespace Passliss.Pages
     /// </summary>
     public partial class SettingsPage : Page
     {
+        bool isAvailable;
         public SettingsPage()
         {
             InitializeComponent();
             InitUI(); // Init the UI
         }
 
-        private void InitUI()
+        private async void InitUI()
         {
             // Load ThemeComboBox
             string[] themes = { Properties.Resources.Dark, Properties.Resources.Light }; // themes
@@ -70,7 +72,14 @@ namespace Passliss.Pages
                 LangComboBox.Items.Add(Global.LanguageList[i]);
             }
 
-            LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1; 
+            LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
+
+            // Update the UpdateStatusTxt
+            isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+            UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+            InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+            InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
         }
     }
 }
