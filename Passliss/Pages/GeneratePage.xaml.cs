@@ -62,6 +62,7 @@ namespace Passliss.Pages
 
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
+            LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
             if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
             {
                 MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
