@@ -18,7 +18,7 @@
         
         <StackPanel Margin="10,40,10,10" Grid.Row="0">
             <TextBlock Text="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
-            <TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,0,10,0"/>
+            <TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1">
