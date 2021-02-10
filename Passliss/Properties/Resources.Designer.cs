@@ -313,7 +313,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Strenght.
+        ///   Recherche une chaîne localisée semblable à Strength.
         /// </summary>
         public static string Strenght {
             get {
@@ -322,7 +322,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à The strenght of the password is good.
+        ///   Recherche une chaîne localisée semblable à The strength of the password is good.
         /// </summary>
         public static string StrenghtGood {
             get {
@@ -331,7 +331,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à The strenght of the password is low.
+        ///   Recherche une chaîne localisée semblable à The strength of the password is low.
         /// </summary>
         public static string StrenghtLow {
             get {
@@ -340,7 +340,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à The strenght of the password is medium.
+        ///   Recherche une chaîne localisée semblable à The strength of the password is medium.
         /// </summary>
         public static string StrenghtMedium {
             get {
@@ -349,11 +349,20 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à The strenght of the password is excellent.
+        ///   Recherche une chaîne localisée semblable à The strength of the password is excellent.
         /// </summary>
         public static string StrenghtVeryGood {
             get {
                 return ResourceManager.GetString("StrenghtVeryGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The strength indicator is here to give you an idea of the strength of your password, not here to confirm it&apos;s real strength..
+        /// </summary>
+        public static string StrenghtWarning {
+            get {
+                return ResourceManager.GetString("StrenghtWarning", resourceCulture);
             }
         }
         

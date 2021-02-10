@@ -228,4 +228,7 @@
   <data name="PleaseSpecifyLenghtMsg" xml:space="preserve">
     <value>Veuillez spécifier une longueur pour générer un mot de passe.</value>
   </data>
+  <data name="StrenghtWarning" xml:space="preserve">
+    <value>L'indicateur de force est là pour vous donner une idée de la force de votre mot de passe, pas pour confirmer sa force réelle.</value>
+  </data>
 </root>
