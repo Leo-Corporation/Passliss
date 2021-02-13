@@ -231,4 +231,7 @@
   <data name="StrenghtWarning" xml:space="preserve">
     <value>The strength indicator is here to give you an idea of the strength of your password, not here to confirm it's real strength.</value>
   </data>
+  <data name="NeedRestartToApplyChanges" xml:space="preserve">
+    <value>Passliss needs to restart to apply the changes. Do you want to restart now?</value>
+  </data>
 </root>

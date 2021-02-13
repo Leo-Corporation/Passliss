@@ -231,4 +231,7 @@
   <data name="StrenghtWarning" xml:space="preserve">
     <value>L'indicateur de force est là pour vous donner une idée de la force de votre mot de passe, pas pour confirmer sa force réelle.</value>
   </data>
+  <data name="NeedRestartToApplyChanges" xml:space="preserve">
+    <value>Passliss doit redémarrer pour appliquer les changements. Voulez-vous redémarrer maintenant ?</value>
+  </data>
 </root>

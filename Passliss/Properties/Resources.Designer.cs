@@ -250,6 +250,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Passliss needs to restart to apply the changes. Do you want to restart now?.
+        /// </summary>
+        public static string NeedRestartToApplyChanges {
+            get {
+                return ResourceManager.GetString("NeedRestartToApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Numbers.
         /// </summary>
         public static string Numbers {
