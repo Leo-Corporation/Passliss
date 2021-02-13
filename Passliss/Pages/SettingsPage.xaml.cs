@@ -25,6 +25,8 @@ using LeoCorpLibrary;
 using Passliss.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +82,52 @@ namespace Passliss.Pages
             UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
             InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
             InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+
+            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+        }
+
+        private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Global.Settings.IsDarkTheme = ThemeComboBox.Text == Properties.Resources.Dark; // Set the settings
+            SettingsManager.Save(); // Save the changes
+            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+            DisplayRestartMessage();
+        }
+
+        private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Global.Settings.Language = LangComboBox.Text switch
+            {
+                "English (United States)" => Global.LanguageCodeList[0], // Set the settings value
+                "Français (France)"       => Global.LanguageCodeList[1], // Set the settings value
+                _                         => "_default" // Set the settings value
+            };
+            SettingsManager.Save(); // Save the changes
+            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+            DisplayRestartMessage();
+        }
+
+        private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ThemeApplyBtn.Visibility = Visibility.Visible; // Visible
+        }
+
+        private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LangApplyBtn.Visibility = Visibility.Visible; // Visible
+        }
+
+        /// <summary>
+        /// Restarts Passliss.
+        /// </summary>
+        private void DisplayRestartMessage()
+        {
+            if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe"); // Start
+                Environment.Exit(0); // Close
+            }
         }
     }
 }
