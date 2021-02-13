@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -288,6 +289,24 @@ namespace Passliss.Classes
                 PasswordStrenght.Low      => new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) }, // Return
                 _                         => new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Gray"].ToString()) }, // Return
             };
+        }
+
+        public static void ChangeLanguage()
+        {
+            switch (Global.Settings.Language) // For each case
+            {
+                case "_default": // No language
+                    break;
+                case "en-US": // English (US)
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US"); // Change
+                    break;
+
+                case "fr-FR": // French (FR)
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); // Change
+                    break;
+                default: // No language
+                    break;
+            }
         }
     }
 }

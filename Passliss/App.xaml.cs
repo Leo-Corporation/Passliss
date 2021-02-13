@@ -42,6 +42,7 @@ namespace Passliss
             SettingsManager.Load(); // Load settings
 
             Global.ChangeTheme(); // Update the theme
+            Global.ChangeLanguage(); // Change the language
 
             Global.GeneratePage = new(); // Create a new generate page
             Global.StrenghtPage = new(); // Create a new strenght page
