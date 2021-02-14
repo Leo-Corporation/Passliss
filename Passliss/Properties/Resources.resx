@@ -214,4 +214,13 @@
   <data name="NeedRestartToApplyChanges" xml:space="preserve">
     <value>Passliss needs to restart to apply the changes. Do you want to restart now?</value>
   </data>
+  <data name="InstallConfirmMsg" xml:space="preserve">
+    <value>To install updates, Passliss needs to restarts. Do you want to continue?</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="InstallVersion" xml:space="preserve">
+    <value>Install version</value>
+  </data>
 </root>
