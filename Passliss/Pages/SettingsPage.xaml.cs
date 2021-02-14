@@ -76,15 +76,15 @@ namespace Passliss.Pages
 
             LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
+            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+
             // Update the UpdateStatusTxt
             isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
             UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
             InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
             InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
-
-            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
-            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
         }
 
         private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -127,6 +127,28 @@ namespace Passliss.Pages
             {
                 Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe"); // Start
                 Environment.Exit(0); // Close
+            }
+        }
+
+        private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (isAvailable) // If there is updates
+            {
+                string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+                if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                {
+                    Process.Start(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start
+                    Environment.Exit(0); // Close
+                }
+            }
+            else
+            {
+                // Update the UpdateStatusTxt
+                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+                InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
             }
         }
     }
