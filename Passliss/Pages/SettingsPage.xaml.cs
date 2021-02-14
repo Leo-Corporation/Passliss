@@ -137,7 +137,7 @@ namespace Passliss.Pages
                 string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
                 if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                 {
-                    Process.Start(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start
+                    Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
                     Environment.Exit(0); // Close
                 }
             }

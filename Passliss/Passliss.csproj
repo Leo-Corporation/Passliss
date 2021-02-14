@@ -6,6 +6,12 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>1.0.0.2102-pre1</Version>
+    <Authors>Léo Corporation</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/Leo-Corporation/Passliss</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Leo-Corporation/Passliss</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
