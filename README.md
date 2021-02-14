@@ -36,6 +36,7 @@ To contribute to the project, you'll need:
   - .NET Desktop Developpement
   - Git
 - .NET 5
+- (*optionnal*) Inno Setup v6.1 or higher
 
 [Click here](https://github.com/Leo-Corporation/Passliss/blob/main/CONTRIBUTING.md) to see the full guidelines.
 ## License
