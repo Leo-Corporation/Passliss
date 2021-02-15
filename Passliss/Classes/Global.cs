@@ -102,6 +102,11 @@ namespace Passliss.Classes
         public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Passliss/Version.txt"; }
 
         /// <summary>
+        /// Password configurations.
+        /// </summary>
+        public static List<PasswordConfiguration> PasswordConfigurations { get; set; }
+
+        /// <summary>
         /// Changes the application's theme.
         /// </summary>
         public static void ChangeTheme()
