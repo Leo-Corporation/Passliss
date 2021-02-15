@@ -23,6 +23,7 @@ SOFTWARE.
 */
 using LeoCorpLibrary;
 using Passliss.Classes;
+using Passliss.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,9 +105,16 @@ namespace Passliss.Pages
 
         }
 
+        NewPasswordConfigurationWindow NewPasswordConfigurationWindow = new(); // Create a NewPasswordConfigurationWindow
         private void NewPwrConfig_Click(object sender, RoutedEventArgs e)
         {
+            double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
 
+            NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
+            NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
+            NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
+            NewPasswordConfigurationWindow.Show(); // Show
+            NewPasswordConfigurationWindow.Focus();
         }
     }
 }
