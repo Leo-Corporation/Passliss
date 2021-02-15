@@ -50,5 +50,15 @@ namespace Passliss.Classes
         /// <see cref="true"/> to use special caracters.
         /// </summary>
         public bool UseSpecialCaracters { get; set; }
+
+        /// <summary>
+        /// The length of the password.
+        /// </summary>
+        public string Length { get; set; }
+
+        /// <summary>
+        /// The name of the <see cref="PasswordConfiguration"/>.
+        /// </summary>
+        public string Name { get; set; }
     }
 }

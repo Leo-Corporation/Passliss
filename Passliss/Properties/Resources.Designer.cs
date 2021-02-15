@@ -304,6 +304,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Open....
+        /// </summary>
+        public static string OpenD {
+            get {
+                return ResourceManager.GetString("OpenD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Passliss.
         /// </summary>
         public static string Passliss {

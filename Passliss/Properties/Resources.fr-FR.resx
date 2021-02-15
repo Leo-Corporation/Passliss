@@ -255,4 +255,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="OpenD" xml:space="preserve">
+    <value>Ouvrir...</value>
+  </data>
 </root>
