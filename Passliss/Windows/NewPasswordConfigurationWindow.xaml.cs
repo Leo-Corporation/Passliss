@@ -46,11 +46,50 @@ namespace Passliss.Windows
         public NewPasswordConfigurationWindow()
         {
             InitializeComponent();
+            InitUI();
+        }
+
+        /// <summary>
+        /// True if all unchecked.
+        /// </summary>
+        /// <returns>A <see cref="bool"/> value.</returns>
+        private bool IsNoCheckboxesChecked()
+        {
+            return (!LowerCaseChk.IsChecked.Value && !UpperCaseChk.IsChecked.Value && !NumbersChk.IsChecked.Value && !SpecialCaractersChk.IsChecked.Value);
+        }
+
+        /// <summary>
+        /// Load the UI.
+        /// </summary>
+        private void InitUI()
+        {
+            NameTxt.Text = Properties.Resources.PasswordConfigurations + $"{1}"; // Set the name
+            LowerCaseChk.IsChecked = true; // Check the checkbox
+            UpperCaseChk.IsChecked = true; // Check the checkbox
+            NumbersChk.IsChecked = true; // Check the checkbox
+
+            LenghtTxt.Text = "20";
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            Hide(); // Hide the window
+            LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
+            if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
+            {
+                MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
+                return;
+            }
+
+            if (!IsNoCheckboxesChecked())
+            {
+                //TODO: Create save system
+
+                Hide(); // Hide the window
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.PleaseSelectChkMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
