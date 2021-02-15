@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Passliss.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,7 @@ namespace Passliss.Windows
         /// </summary>
         private void InitUI()
         {
-            NameTxt.Text = Properties.Resources.PasswordConfigurations + $"{1}"; // Set the name
+            NameTxt.Text = Properties.Resources.PasswordConfigurations + $"{Global.PasswordConfigurations.Count + 1}"; // Set the name
             LowerCaseChk.IsChecked = true; // Check the checkbox
             UpperCaseChk.IsChecked = true; // Check the checkbox
             NumbersChk.IsChecked = true; // Check the checkbox
@@ -73,7 +74,7 @@ namespace Passliss.Windows
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
+            LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces to avoid errors
             if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
             {
                 MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
@@ -82,8 +83,19 @@ namespace Passliss.Windows
 
             if (!IsNoCheckboxesChecked())
             {
-                //TODO: Create save system
+                Global.PasswordConfigurations.Add(new PasswordConfiguration
+                {
+                    UseLowerCase = LowerCaseChk.IsChecked.Value, // Set value
+                    UseNumbers = NumbersChk.IsChecked.Value, // Set value
+                    UseSpecialCaracters = SpecialCaractersChk.IsChecked.Value, // Set value
+                    UseUpperCase = UpperCaseChk.IsChecked.Value, // Set value
+                    Length = LenghtTxt.Text, // Set value
+                    Name = NameTxt.Text // Set value
+                });
 
+                PasswordConfigurationManager.Save(); // Save the changes
+
+                InitUI(); // Reload the UI
                 Hide(); // Hide the window
             }
             else
