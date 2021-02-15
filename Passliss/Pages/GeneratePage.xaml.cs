@@ -98,5 +98,15 @@ namespace Passliss.Pages
         {
             Clipboard.SetText(PasswordTxt.Text); // Copy the password
         }
+
+        private void LoadPwrConfig_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NewPwrConfig_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
