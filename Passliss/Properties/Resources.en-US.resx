@@ -166,7 +166,7 @@
     <value>Please select a checkbox to generate a password.</value>
   </data>
   <data name="Lenght" xml:space="preserve">
-    <value>Lenght</value>
+    <value>Length</value>
   </data>
   <data name="EnterPassword" xml:space="preserve">
     <value>Enter a password</value>
@@ -242,5 +242,17 @@
   </data>
   <data name="InstallVersion" xml:space="preserve">
     <value>Install version</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PasswordConfigurations" xml:space="preserve">
+    <value>Password Configurations</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>

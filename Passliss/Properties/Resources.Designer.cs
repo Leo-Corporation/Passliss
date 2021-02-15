@@ -88,6 +88,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Change Passliss language..
         /// </summary>
         public static string ChangeLanguage {
@@ -241,7 +250,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Lenght.
+        ///   Recherche une chaîne localisée semblable à Length.
         /// </summary>
         public static string Lenght {
             get {
@@ -264,6 +273,15 @@ namespace Passliss.Properties {
         public static string LowerCase {
             get {
                 return ResourceManager.GetString("LowerCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -304,6 +322,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Password Configurations.
+        /// </summary>
+        public static string PasswordConfigurations {
+            get {
+                return ResourceManager.GetString("PasswordConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Please select a checkbox to generate a password..
         /// </summary>
         public static string PleaseSelectChkMsg {
@@ -318,6 +345,15 @@ namespace Passliss.Properties {
         public static string PleaseSpecifyLenghtMsg {
             get {
                 return ResourceManager.GetString("PleaseSpecifyLenghtMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         

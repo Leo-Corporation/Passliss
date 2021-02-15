@@ -243,4 +243,16 @@
   <data name="InstallVersion" xml:space="preserve">
     <value>Installer la version</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="PasswordConfigurations" xml:space="preserve">
+    <value>Configuration de mot de passe</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
 </root>
