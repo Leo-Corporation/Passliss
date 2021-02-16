@@ -67,17 +67,45 @@ namespace Passliss.UserControls
             Button button = (Button)sender; // Create button
 
             button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground 
+            DeleteBtn.Foreground = button.Foreground;
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            Global.PasswordConfigurations.Remove(PasswordConfiguration); // Remove the item
+            Global.LoadPasswordConfigurationWindow.InitUI(); // Refresh the list
+            PasswordConfigurationManager.Save(); // Save the changes
+            return;
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
             Button button = (Button)sender; // Create button
+
             button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+            DeleteBtn.Foreground = button.Foreground;
+        }
+
+        private void ItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Global.GeneratePage.LenghtTxt.Text = PasswordConfiguration.Length; // Set value
+            Global.GeneratePage.LowerCaseChk.IsChecked = PasswordConfiguration.UseLowerCase; // Check
+            Global.GeneratePage.UpperCaseChk.IsChecked = PasswordConfiguration.UseUpperCase; // Check
+            Global.GeneratePage.NumbersChk.IsChecked = PasswordConfiguration.UseNumbers; // Check
+            Global.GeneratePage.SpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Check
+        }
+
+        private void NameTxt_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Global.GeneratePage.LenghtTxt.Text = PasswordConfiguration.Length; // Set value
+                Global.GeneratePage.LowerCaseChk.IsChecked = PasswordConfiguration.UseLowerCase; // Check
+                Global.GeneratePage.UpperCaseChk.IsChecked = PasswordConfiguration.UseUpperCase; // Check
+                Global.GeneratePage.NumbersChk.IsChecked = PasswordConfiguration.UseNumbers; // Check
+                Global.GeneratePage.SpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Check
+                Global.LoadPasswordConfigurationWindow.Hide(); // Hide the parent window
+            }
         }
     }
 }

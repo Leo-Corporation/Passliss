@@ -23,6 +23,8 @@ SOFTWARE.
 */
 using Passliss.Enums;
 using Passliss.Extensions;
+using Passliss.Pages;
+using Passliss.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,17 +44,17 @@ namespace Passliss.Classes
         /// <summary>
         /// The <see cref="Pages.GeneratePage"/>.
         /// </summary>
-        public static Pages.GeneratePage GeneratePage { get; set; }
+        public static GeneratePage GeneratePage { get; set; }
 
         /// <summary>
         /// The <see cref="Pages.SettingsPage"/>.
         /// </summary>
-        public static Pages.SettingsPage SettingsPage { get; set; }
+        public static SettingsPage SettingsPage { get; set; }
 
         /// <summary>
         /// The <see cref="Pages.StrenghtPage"/>.
         /// </summary>
-        public static Pages.StrenghtPage StrenghtPage { get; set; }
+        public static StrenghtPage StrenghtPage { get; set; }
 
         /// <summary>
         /// Lower case letters.
@@ -80,6 +82,11 @@ namespace Passliss.Classes
         /// Settings of Passliss.
         /// </summary>
         public static Settings Settings { get; set; }
+
+        /// <summary>
+        /// <see cref="LoadPasswordConfigurationWindow"/>.
+        /// </summary>
+        public static LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow { get; set; }
 
         /// <summary>
         /// List of the available languages.

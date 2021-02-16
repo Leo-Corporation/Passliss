@@ -47,14 +47,17 @@ namespace Passliss.Windows
         public LoadPasswordConfigurationWindow()
         {
             InitializeComponent();
-            InitUI();
+            InitUI(); // Load UI
+            Global.LoadPasswordConfigurationWindow = this; // Define
         }
 
         /// <summary>
         /// Loads the UI.
         /// </summary>
-        private void InitUI()
+        internal void InitUI()
         {
+            ItemDisplayer.Children.Clear(); // Clear items
+
             for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
             {
                 ItemDisplayer.Children.Add(new PasswordConfigurationItem(Global.PasswordConfigurations[i])); // Add item

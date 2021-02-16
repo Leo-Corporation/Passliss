@@ -110,6 +110,7 @@ namespace Passliss.Pages
             LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
             LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
             LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
+            LoadPasswordConfigurationWindow.InitUI(); // Refresh
             LoadPasswordConfigurationWindow.Show(); // Show
             LoadPasswordConfigurationWindow.Focus();
         }
