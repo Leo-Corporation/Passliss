@@ -295,6 +295,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à There is no Password Configurations created. Create one to get started..
+        /// </summary>
+        public static string NoPasswordConfigurations {
+            get {
+                return ResourceManager.GetString("NoPasswordConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Numbers.
         /// </summary>
         public static string Numbers {

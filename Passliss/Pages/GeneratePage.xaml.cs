@@ -105,14 +105,21 @@ namespace Passliss.Pages
         {
             double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
 
-            NewPasswordConfigurationWindow.Hide(); // Hide the NewPasswordConfigurationWindow
+            if (Global.PasswordConfigurations.Count > 0) // If there is Password Configurations (at least one)
+            {
+                NewPasswordConfigurationWindow.Hide(); // Hide the NewPasswordConfigurationWindow
 
-            LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
-            LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
-            LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
-            LoadPasswordConfigurationWindow.InitUI(); // Refresh
-            LoadPasswordConfigurationWindow.Show(); // Show
-            LoadPasswordConfigurationWindow.Focus();
+                LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
+                LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
+                LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
+                LoadPasswordConfigurationWindow.InitUI(); // Refresh
+                LoadPasswordConfigurationWindow.Show(); // Show
+                LoadPasswordConfigurationWindow.Focus(); 
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.NoPasswordConfigurations, Properties.Resources.PasswordConfigurations, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         NewPasswordConfigurationWindow NewPasswordConfigurationWindow = new(); // Create a NewPasswordConfigurationWindow

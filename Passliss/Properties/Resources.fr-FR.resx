@@ -258,4 +258,7 @@
   <data name="OpenD" xml:space="preserve">
     <value>Ouvrir...</value>
   </data>
+  <data name="NoPasswordConfigurations" xml:space="preserve">
+    <value>Il n'y a pas de Configuration de mot de passe créées. Créez en-une pour commencer.</value>
+  </data>
 </root>
