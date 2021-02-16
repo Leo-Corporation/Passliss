@@ -105,6 +105,8 @@ namespace Passliss.Pages
         {
             double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
 
+            NewPasswordConfigurationWindow.Hide(); // Hide the NewPasswordConfigurationWindow
+
             LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
             LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
             LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
@@ -116,6 +118,8 @@ namespace Passliss.Pages
         private void NewPwrConfig_Click(object sender, RoutedEventArgs e)
         {
             double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
+
+            LoadPasswordConfigurationWindow.Hide(); // Hide the LoadPasswordConfigurationWindow
 
             NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
             NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
