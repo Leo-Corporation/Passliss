@@ -3,6 +3,8 @@
 ![GitHub](https://img.shields.io/github/license/Leo-Corporation/Passliss)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Leo-Corporation/Passliss/.NET%20Desktop)
 ![Using LeoCorpLibrary](https://img.shields.io/badge/using-LeoCorpLibrary-blue)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Leo-Corporation/Passliss)
+
 <br />
 <p align="center">
   <a href="https://github.com/Leo-Corporation/Passliss">
@@ -29,6 +31,10 @@
 Passliss is a modern password generation Windows application that allows you to generate passwords within a click. It is the sucessor of [Password Generator 3](https://github.com/Leo-Corporation/Generateur-de-mots-de-passe/) (also known as "Générateur de mots de passe 3")
 
 Passliss is written in C# .NET 5 using WPF.
+
+## Download
+- [Download](https://bit.ly/DownloadPassliss)
+- [Latest Release](https://github.com/Leo-Corporation/Passliss/releases)
 
 ## Contribute
 To contribute to the project, you'll need:
