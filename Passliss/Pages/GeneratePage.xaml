@@ -46,7 +46,7 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,10">
-            <Button x:Name="LoadPwrConfig" Padding="10"  Click="LoadPwrConfig_Click" Content="&#xE931;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0"/>
+            <Button x:Name="LoadPwrConfig" Padding="10"  Click="LoadPwrConfig_Click" Content="&#xE931;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" Width="34"/>
             <Button x:Name="NewPwrConfig" Padding="10" Click="NewPwrConfig_Click" Content="&#xEAD5;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}"/>
         </StackPanel>
     </Grid>
