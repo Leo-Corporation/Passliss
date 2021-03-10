@@ -241,4 +241,10 @@
   <data name="NoPasswordConfigurations" xml:space="preserve">
     <value>There is no Password Configurations created. Create one to get started.</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="SeeLicenses" xml:space="preserve">
+    <value>See licenses</value>
+  </data>
 </root>
