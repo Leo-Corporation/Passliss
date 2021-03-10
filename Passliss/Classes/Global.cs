@@ -27,10 +27,7 @@ using Passliss.Pages;
 using Passliss.Windows;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -96,12 +93,12 @@ namespace Passliss.Classes
         /// <summary>
         /// List of the available languages codes.
         /// </summary>
-        public static new List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
+        public static List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
 
         /// <summary>
         /// The current version of Passliss.
         /// </summary>
-        public static string Version { get => "1.0.0.2102"; }
+        public static string Version { get => "1.1.0.2103-pre1"; }
 
         /// <summary>
         /// GitHub link for the last version (<see cref="string"/>).
