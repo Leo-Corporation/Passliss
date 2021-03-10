@@ -156,5 +156,13 @@ namespace Passliss.Pages
         {
             ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
         }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
+                "Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
+                "LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
+                "Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
