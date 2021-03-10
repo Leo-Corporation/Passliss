@@ -56,15 +56,10 @@ namespace Passliss.Pages
 
         private async void InitUI()
         {
-            // Load ThemeComboBox
-            string[] themes = { Properties.Resources.Dark, Properties.Resources.Light }; // themes
+            // Load RadioButtons
+            DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
+            LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
 
-            for (int i = 0; i < themes.Length; i++)
-            {
-                ThemeComboBox.Items.Add(themes[i]);
-            }
-
-            ThemeComboBox.SelectedIndex = Global.Settings.IsDarkTheme ? 0 : 1; // Set the selected index
 
             // Load LangComboBox
             LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
@@ -89,7 +84,7 @@ namespace Passliss.Pages
 
         private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Global.Settings.IsDarkTheme = ThemeComboBox.Text == Properties.Resources.Dark; // Set the settings
+            Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
             SettingsManager.Save(); // Save the changes
             ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
             DisplayRestartMessage();
@@ -150,6 +145,16 @@ namespace Passliss.Pages
                 InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
                 InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
             }
+        }
+
+        private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+        }
+
+        private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
         }
     }
 }
