@@ -118,6 +118,7 @@ namespace Passliss.Classes
         /// </summary>
         public static void ChangeTheme()
         {
+            App.Current.Resources.MergedDictionaries.Clear(); // Clear all ressources
             ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
 
             if (Settings.IsDarkTheme) // If the dark theme is on
