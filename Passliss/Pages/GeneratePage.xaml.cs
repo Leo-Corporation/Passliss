@@ -135,5 +135,11 @@ namespace Passliss.Pages
             NewPasswordConfigurationWindow.Show(); // Show
             NewPasswordConfigurationWindow.Focus();
         }
+
+        private void RandomizeLength_Click(object sender, RoutedEventArgs e)
+        {
+            Random random = new();
+            LenghtTxt.Text = random.Next(10, 30).ToString();
+        }
     }
 }
