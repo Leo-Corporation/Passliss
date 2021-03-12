@@ -19,7 +19,14 @@
 
         <StackPanel Margin="10,40,10,10" Grid.Row="0">
             <TextBlock Text="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
-            <TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Grid HorizontalAlignment="Center" Width="496.8">
+                    <TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0" Height="25"/>
+                    <PasswordBox Visibility="Hidden" Style="{DynamicResource PasswordBoxStyle1}" x:Name="PasswordPwrBox" Margin="10,15,10,0" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" BorderThickness="3" PasswordChanged="PasswordPwrBox_PasswordChanged"/>
+                </Grid>
+
+                <Button x:Name="HideShowPassword" Click="HideShowPassword_Click" Content="&#xe9fa;" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="15" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,0,0" Padding="7,5,7,5" VerticalAlignment="Bottom" Height="25"/>
+            </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="1">

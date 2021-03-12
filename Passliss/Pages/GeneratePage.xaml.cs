@@ -91,7 +91,7 @@ namespace Passliss.Pages
 
         private void LenghtTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -134,6 +134,12 @@ namespace Passliss.Pages
             NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
             NewPasswordConfigurationWindow.Show(); // Show
             NewPasswordConfigurationWindow.Focus();
+        }
+
+        private void RandomizeLength_Click(object sender, RoutedEventArgs e)
+        {
+            Random random = new();
+            LenghtTxt.Text = random.Next(10, 30).ToString();
         }
     }
 }
