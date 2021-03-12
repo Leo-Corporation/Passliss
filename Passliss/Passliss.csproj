@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LeoCorpLibrary" Version="3.2.0.2101" />
+    <PackageReference Include="LeoCorpLibrary" Version="3.4.0.2103" />
   </ItemGroup>
 
   <ItemGroup>
