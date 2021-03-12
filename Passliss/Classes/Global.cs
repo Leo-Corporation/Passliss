@@ -56,22 +56,22 @@ namespace Passliss.Classes
         /// <summary>
         /// Lower case letters.
         /// </summary>
-        public static string LowerCaseLetters { get => "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"; }
+        public static string LowerCaseLetters => "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
 
         /// <summary>
         /// Upper case letters.
         /// </summary>
-        public static string UpperCaseLetters { get => "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"; }
+        public static string UpperCaseLetters => "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
 
         /// <summary>
         /// Numbers.
         /// </summary>
-        public static string Numbers { get => "0,1,2,3,4,5,6,7,8,8,9"; }
+        public static string Numbers => "0,1,2,3,4,5,6,7,8,8,9";
 
         /// <summary>
         /// Special caracters.
         /// </summary>
-        public static string SpecialCaracters { get => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨"; }
+        public static string SpecialCaracters => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
 
         public static string[] ForbidenCaracters => new string[] { "123", "456", "789", "password", "mdp", "pswr", "000", "admin", "111", "222", "333", "444", "555", "666", "777", "888", "999" };
 
@@ -88,22 +88,22 @@ namespace Passliss.Classes
         /// <summary>
         /// List of the available languages.
         /// </summary>
-        public static List<string> LanguageList => new List<string> { "English (United States)", "Français (France)" };
+        public static List<string> LanguageList => new() { "English (United States)", "Français (France)" };
         
         /// <summary>
         /// List of the available languages codes.
         /// </summary>
-        public static List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
+        public static List<string> LanguageCodeList => new() { "en-US", "fr-FR" };
 
         /// <summary>
         /// The current version of Passliss.
         /// </summary>
-        public static string Version { get => "1.1.0.2103-pre1"; }
+        public static string Version => "1.1.0.2103-rc1";
 
         /// <summary>
         /// GitHub link for the last version (<see cref="string"/>).
         /// </summary>
-        public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Passliss/Version.txt"; }
+        public static string LastVersionLink => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Passliss/Version.txt";
 
         /// <summary>
         /// Password configurations.
