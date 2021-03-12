@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using LeoCorpLibrary;
 using Passliss.Classes;
 using Passliss.Enums;
 using System;
@@ -77,6 +78,36 @@ namespace Passliss.Pages
         private void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
             PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
+
+            IconTxt.Text = GetStrenghtCaracter(password); // Get text
+            CommentTxt.Text = GetStrenghtText(password); // Get text
+
+            IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+        }
+
+        private void HideShowPassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (PasswordPwrBox.Visibility == Visibility.Hidden) // If the password is visible
+            {
+                PasswordPwrBox.Visibility = Visibility.Visible; // Change the visibility
+                PasswordTxt.Visibility = Visibility.Hidden; // Change the visibility
+                PasswordPwrBox.Password = PasswordTxt.Text; // Set text
+                HideShowPassword.Content = "\ue9fb"; // Change text
+                HideShowPassword.FontSize = 9; // Change font size
+            }
+            else // If the password is hidden
+            {
+                PasswordPwrBox.Visibility = Visibility.Hidden; // Change the visibility
+                PasswordTxt.Visibility = Visibility.Visible; // Change the visibility
+                PasswordTxt.Text = PasswordPwrBox.Password; // Set text
+                HideShowPassword.Content = "\ue9fa"; // Change text
+                HideShowPassword.FontSize = 15; // Change font size
+            }
+        }
+
+        private void PasswordPwrBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordStrenght password = Global.GetPasswordStrenght(PasswordPwrBox.Password); // Get strenght
 
             IconTxt.Text = GetStrenghtCaracter(password); // Get text
             CommentTxt.Text = GetStrenghtText(password); // Get text
