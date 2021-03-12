@@ -62,8 +62,8 @@ namespace Passliss.Classes
 
             if (File.Exists(path)) // If the file exist
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // XML Serializer
-                StreamReader streamReader = new StreamReader(path); // Where the file is going to be read
+                XmlSerializer xmlSerializer = new(typeof(Settings)); // XML Serializer
+                StreamReader streamReader = new(path); // Where the file is going to be read
 
                 Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
 
@@ -84,14 +84,14 @@ namespace Passliss.Classes
         {
             string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // Create XML Serializer
+            XmlSerializer xmlSerializer = new(typeof(Settings)); // Create XML Serializer
 
             if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
             {
                 Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
             }
 
-            StreamWriter streamWriter = new StreamWriter(path); // The place where the file is going to be written
+            StreamWriter streamWriter = new(path); // The place where the file is going to be written
             xmlSerializer.Serialize(streamWriter, Global.Settings);
 
             streamWriter.Dispose();
