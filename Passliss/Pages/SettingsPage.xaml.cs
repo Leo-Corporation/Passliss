@@ -74,12 +74,21 @@ namespace Passliss.Pages
             LangApplyBtn.Visibility = Visibility.Hidden; // Hide
             ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
-            // Update the UpdateStatusTxt
-            isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+			// Update the UpdateStatusTxt
+			if (await NetworkConnection.IsAvailableAsync())
+			{
+				isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-            UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-            InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
-            InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+				UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+				InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+				InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
+			}
+			else
+			{
+                UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+                InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+                InstallIconTxt.Text = "\uE92A"; // Set text 
+            }
         }
 
         private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -138,12 +147,21 @@ namespace Passliss.Pages
             }
             else
             {
-                // Update the UpdateStatusTxt
-                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+				if (await NetworkConnection.IsAvailableAsync())
+				{
+					// Update the UpdateStatusTxt
+					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-                InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
-                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+					InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
+				}
+                else
+                {
+                    UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+                    InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+                    InstallIconTxt.Text = "\uE92A"; // Set text 
+                }
             }
         }
 
