@@ -65,4 +65,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Passliss.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
