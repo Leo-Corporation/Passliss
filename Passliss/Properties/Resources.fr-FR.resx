@@ -267,4 +267,7 @@
   <data name="SeeLicenses" xml:space="preserve">
     <value>Voir les licences</value>
   </data>
+  <data name="UnableToCheckUpdates" xml:space="preserve">
+    <value>Impossible de rechercher des mises à jour</value>
+  </data>
 </root>

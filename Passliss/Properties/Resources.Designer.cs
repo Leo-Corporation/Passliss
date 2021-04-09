@@ -475,6 +475,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to check updates.
+        /// </summary>
+        public static string UnableToCheckUpdates {
+            get {
+                return ResourceManager.GetString("UnableToCheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updates.
         /// </summary>
         public static string Updates {
