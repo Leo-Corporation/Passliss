@@ -16,6 +16,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppFullVersion}
 VersionInfoVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
+UninstallDisplayIcon={app}\{#MyAppExeName}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
