@@ -71,6 +71,10 @@ namespace Passliss.Pages
             DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
             LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
 
+            // Load checkboxes
+            CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
+            NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
+
 
             // Load LangComboBox
             LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
@@ -86,24 +90,33 @@ namespace Passliss.Pages
             ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 			// Update the UpdateStatusTxt
-			if (await NetworkConnection.IsAvailableAsync())
+			if (Global.Settings.CheckUpdatesOnStart.Value)
 			{
-				isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+				if (await NetworkConnection.IsAvailableAsync())
+				{
+					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-				UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-				InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
-				InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
+					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+					InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
 
-                if (isAvailable)
-                {
-                    notifyIcon.Visible = true; // Show
-                    notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
-                    notifyIcon.Visible = false; // Hide
-                }
-            }
+					if (isAvailable && Global.Settings.NotifyUpdates.Value)
+					{
+						notifyIcon.Visible = true; // Show
+						notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+						notifyIcon.Visible = false; // Hide
+					}
+				}
+				else
+				{
+					UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+					InstallIconTxt.Text = "\uE92A"; // Set text 
+				} 
+			}
 			else
 			{
-                UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+                UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
                 InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
                 InstallIconTxt.Text = "\uE92A"; // Set text 
             }
@@ -174,7 +187,7 @@ namespace Passliss.Pages
 					InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
 					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
 
-                    if (isAvailable)
+                    if (isAvailable && Global.Settings.NotifyUpdates.Value)
 					{
                         notifyIcon.Visible = true; // Show
                         notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
@@ -207,5 +220,17 @@ namespace Passliss.Pages
                 "LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
                 "Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-    }
+
+		private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+            Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
+            SettingsManager.Save(); // Save changes
+		}
+
+		private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
+		{
+            Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
+            SettingsManager.Save(); // Save changes
+        }
+	}
 }

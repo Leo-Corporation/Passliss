@@ -46,6 +46,16 @@ namespace Passliss.Classes
         /// The language of the app (country code). Can be _default, en-US, fr-FR...
         /// </summary>
         public string Language { get; set; }
+
+        /// <summary>
+        /// True if Passliss should check for updates on start.
+        /// </summary>
+        public bool? CheckUpdatesOnStart { get; set; }
+
+        /// <summary>
+        /// True if Passliss should notify the user when updates are available.
+        /// </summary>
+        public bool? NotifyUpdates { get; set; }
     }
 
     /// <summary>
@@ -71,7 +81,7 @@ namespace Passliss.Classes
             }
             else
             {
-                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default" }; // Create a new settings file
+                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
 
                 Save(); // Save the changes
             }

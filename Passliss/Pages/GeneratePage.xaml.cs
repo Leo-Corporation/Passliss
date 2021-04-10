@@ -141,5 +141,5 @@ namespace Passliss.Pages
             Random random = new();
             LenghtTxt.Text = random.Next(10, 30).ToString();
         }
-    }
+	}
 }
