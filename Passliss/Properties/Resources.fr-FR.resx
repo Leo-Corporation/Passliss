@@ -270,4 +270,13 @@
   <data name="UnableToCheckUpdates" xml:space="preserve">
     <value>Impossible de rechercher des mises à jour</value>
   </data>
+  <data name="CheckUpdatesOnStart" xml:space="preserve">
+    <value>Rechercher des mises à jour lors du démarrage</value>
+  </data>
+  <data name="NotifyUpdates" xml:space="preserve">
+    <value>Montrer une notification quand des mises à jour sont disponibles</value>
+  </data>
+  <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
+    <value>La recherche de mises à jour lors du démarrage est désactivée.</value>
+  </data>
 </root>

@@ -270,4 +270,13 @@
   <data name="UnableToCheckUpdates" xml:space="preserve">
     <value>Unable to check updates</value>
   </data>
+  <data name="CheckUpdatesOnStart" xml:space="preserve">
+    <value>Check updates on start</value>
+  </data>
+  <data name="NotifyUpdates" xml:space="preserve">
+    <value>Show a notification when updates are available</value>
+  </data>
+  <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
+    <value>Checking updates on start is disabled.</value>
+  </data>
 </root>

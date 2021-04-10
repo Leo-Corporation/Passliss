@@ -124,6 +124,24 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking updates on start is disabled..
+        /// </summary>
+        public static string CheckUpdatesDisabledOnStart {
+            get {
+                return ResourceManager.GetString("CheckUpdatesDisabledOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check updates on start.
+        /// </summary>
+        public static string CheckUpdatesOnStart {
+            get {
+                return ResourceManager.GetString("CheckUpdatesOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
@@ -309,6 +327,15 @@ namespace Passliss.Properties {
         public static string NoPasswordConfigurations {
             get {
                 return ResourceManager.GetString("NoPasswordConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show a notification when updates are available.
+        /// </summary>
+        public static string NotifyUpdates {
+            get {
+                return ResourceManager.GetString("NotifyUpdates", resourceCulture);
             }
         }
         
