@@ -32,53 +32,53 @@ using System.Xml.Serialization;
 
 namespace Passliss.Classes
 {
-    /// <summary>
-    /// Methods for loading and saving <see cref="PasswordConfiguration"/>.
-    /// </summary>
-    public static class PasswordConfigurationManager
-    {
-        /// <summary>
-        /// Loads <see cref="PasswordConfiguration"/>.
-        /// </summary>
-        public static void Load()
-        {
-            string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
+	/// <summary>
+	/// Methods for loading and saving <see cref="PasswordConfiguration"/>.
+	/// </summary>
+	public static class PasswordConfigurationManager
+	{
+		/// <summary>
+		/// Loads <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public static void Load()
+		{
+			string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
 
-            if (File.Exists(path)) // If the file exist
-            {
-                XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // XML Serializer
-                StreamReader streamReader = new(path); // Where the file is going to be read
+			if (File.Exists(path)) // If the file exist
+			{
+				XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // XML Serializer
+				StreamReader streamReader = new(path); // Where the file is going to be read
 
-                Global.PasswordConfigurations = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Read
+				Global.PasswordConfigurations = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Read
 
-                streamReader.Dispose();
-            }
-            else
-            {
-                Global.PasswordConfigurations = new(); // Create a new List<PasswordConfiguration> file
+				streamReader.Dispose();
+			}
+			else
+			{
+				Global.PasswordConfigurations = new(); // Create a new List<PasswordConfiguration> file
 
-                Save(); // Save the changes
-            }
-        }
+				Save(); // Save the changes
+			}
+		}
 
-        /// <summary>
-        /// Saves <see cref="PasswordConfiguration"/>.
-        /// </summary>
-        public static void Save()
-        {
-            string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
+		/// <summary>
+		/// Saves <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public static void Save()
+		{
+			string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
 
-            XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // Create XML Serializer
+			XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // Create XML Serializer
 
-            if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
-            {
-                Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
-            }
+			if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+			{
+				Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+			}
 
-            StreamWriter streamWriter = new(path); // The place where the file is going to be written
-            xmlSerializer.Serialize(streamWriter, Global.PasswordConfigurations);
+			StreamWriter streamWriter = new(path); // The place where the file is going to be written
+			xmlSerializer.Serialize(streamWriter, Global.PasswordConfigurations);
 
-            streamWriter.Dispose();
-        }
-    }
+			streamWriter.Dispose();
+		}
+	}
 }

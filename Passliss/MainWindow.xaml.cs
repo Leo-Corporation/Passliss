@@ -40,97 +40,97 @@ using System.Windows.Shapes;
 
 namespace Passliss
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        private Button CheckedButton { get; set; }
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		private Button CheckedButton { get; set; }
 
-        public MainWindow()
-        {
-            InitializeComponent();
-            InitUI(); // Init the UI elements
-        }
+		public MainWindow()
+		{
+			InitializeComponent();
+			InitUI(); // Init the UI elements
+		}
 
-        private void InitUI()
-        {
-            HelloTxt.Text = Global.GetHiSentence; // Set the "Hi" message
-            PageContent.Content = Global.GeneratePage;
+		private void InitUI()
+		{
+			HelloTxt.Text = Global.GetHiSentence; // Set the "Hi" message
+			PageContent.Content = Global.GeneratePage;
 
-            CheckButton(GenerateTabBtn); // Check the "Generate" button
-        }
+			CheckButton(GenerateTabBtn); // Check the "Generate" button
+		}
 
-        private void ResetAllCheckStatus()
-        {
-            GenerateTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-            GenerateTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		private void ResetAllCheckStatus()
+		{
+			GenerateTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+			GenerateTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
 
-            StrenghtTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-            StrenghtTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+			StrenghtTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+			StrenghtTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
 
-            SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-            SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
-        }
+			SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+			SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		}
 
-        private void CheckButton(Button button)
-        {
-            button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-            button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+		private void CheckButton(Button button)
+		{
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+			button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
 
-            CheckedButton = button; // Set the "checked" button
-        }
+			CheckedButton = button; // Set the "checked" button
+		}
 
-        private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized; // Minimize
-        }
+		private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+		{
+			WindowState = WindowState.Minimized; // Minimize
+		}
 
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0); // Close
-        }
+		private void CloseBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Environment.Exit(0); // Close
+		}
 
-        private void TabEnter(object sender, MouseEventArgs e)
-        {
-            Button button = (Button)sender; // Create button
+		private void TabEnter(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
 
-            button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-        }
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		}
 
-        private void TabLeave(object sender, MouseEventArgs e)
-        {
-            Button button = (Button)sender; // Create button
+		private void TabLeave(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
 
-            if (button != CheckedButton)
-            {
-                button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
-            }
-            
-        }
+			if (button != CheckedButton)
+			{
+				button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+			}
 
-        private void GenerateTabBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ResetAllCheckStatus(); // Reset the background and foreground of all buttons
-            CheckButton(GenerateTabBtn); // Check the "Generate" button
+		}
 
-            PageContent.Navigate(Global.GeneratePage); // Navigate
-        }
+		private void GenerateTabBtn_Click(object sender, RoutedEventArgs e)
+		{
+			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+			CheckButton(GenerateTabBtn); // Check the "Generate" button
 
-        private void StrenghtTabBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ResetAllCheckStatus(); // Reset the background and foreground of all buttons
-            CheckButton(StrenghtTabBtn); // Check the "Strenght" button
+			PageContent.Navigate(Global.GeneratePage); // Navigate
+		}
 
-            PageContent.Navigate(Global.StrenghtPage); // Navigate
-        }
+		private void StrenghtTabBtn_Click(object sender, RoutedEventArgs e)
+		{
+			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+			CheckButton(StrenghtTabBtn); // Check the "Strenght" button
 
-        private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ResetAllCheckStatus(); // Reset the background and foreground of all buttons
-            CheckButton(SettingsTabBtn); // Check the "Settings" button
+			PageContent.Navigate(Global.StrenghtPage); // Navigate
+		}
 
-            PageContent.Navigate(Global.SettingsPage); // Navigate
-        }
-    }
+		private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
+		{
+			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+			CheckButton(SettingsTabBtn); // Check the "Settings" button
+
+			PageContent.Navigate(Global.SettingsPage); // Navigate
+		}
+	}
 }
