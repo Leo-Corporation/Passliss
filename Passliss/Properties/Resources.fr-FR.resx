@@ -279,4 +279,16 @@
   <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
     <value>La recherche de mises à jour lors du démarrage est désactivée.</value>
   </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Une erreur s'est produite</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Les Configurations de Mots de passe ont étés exportées avec succès.</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
 </root>

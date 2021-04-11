@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
+using Microsoft.Win32;
 using Passliss.Classes;
 using Passliss.Windows;
 using System;
@@ -140,6 +141,21 @@ namespace Passliss.Pages
 		{
 			Random random = new();
 			LenghtTxt.Text = random.Next(10, 30).ToString();
+		}
+
+		private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+				Title = Properties.Resources.Export,
+				Filter = "XML Files|*.xml"
+			}; // Create a SaveFileDialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				PasswordConfigurationManager.Export(Global.PasswordConfigurations, saveFileDialog.FileName); // Export
+			}
 		}
 	}
 }

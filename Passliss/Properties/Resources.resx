@@ -259,4 +259,16 @@
   <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
     <value>Checking updates on start is disabled.</value>
   </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>An error has occured</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Password Configurations have been successfuly exported.</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
 </root>

@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace Passliss.Classes
@@ -79,6 +80,23 @@ namespace Passliss.Classes
 			xmlSerializer.Serialize(streamWriter, Global.PasswordConfigurations);
 
 			streamWriter.Dispose();
+		}
+
+		public static void Export(List<PasswordConfiguration> passwordConfigurations, string path)
+		{
+			try
+			{
+				List<PasswordConfiguration> passwordConfigurations1 = passwordConfigurations;
+				XmlSerializer xmlSerializer = new(passwordConfigurations1.GetType()); // XML Serializer
+				StreamWriter streamWriter = new(path); // The place where the file is going to be exported
+				xmlSerializer.Serialize(streamWriter, passwordConfigurations1); // Create the file
+				streamWriter.Dispose();
+				MessageBox.Show(Properties.Resources.ExportSuccess, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Success
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"{Properties.Resources.ErrorOccured}:\n{ex.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Error
+			}
 		}
 	}
 }
