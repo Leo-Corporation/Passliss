@@ -267,4 +267,55 @@
   <data name="SeeLicenses" xml:space="preserve">
     <value>Voir les licences</value>
   </data>
+  <data name="UnableToCheckUpdates" xml:space="preserve">
+    <value>Impossible de rechercher des mises à jour</value>
+  </data>
+  <data name="CheckUpdatesOnStart" xml:space="preserve">
+    <value>Rechercher des mises à jour lors du démarrage</value>
+  </data>
+  <data name="NotifyUpdates" xml:space="preserve">
+    <value>Montrer une notification quand des mises à jour sont disponibles</value>
+  </data>
+  <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
+    <value>La recherche de mises à jour lors du démarrage est désactivée.</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Une erreur s'est produite</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Les Configurations de Mots de passe ont étés exportées avec succès.</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Configurations de Mots de passe importées avec succès.</value>
+  </data>
+  <data name="ImportConserve" xml:space="preserve">
+    <value>Voulez-vous conserver les Configurations de Mots de passe actuelles ?</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="LoadPasswordConfigurations" xml:space="preserve">
+    <value>Charger des Configurations de Mots de passe</value>
+  </data>
+  <data name="CreatePasswordConfigurations" xml:space="preserve">
+    <value>Créer une configuration de Mot de passe</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Données</value>
+  </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>Réinitialiser les paramètres</value>
+  </data>
+  <data name="ResetSettingsConfirmMsg" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir réinitialiser tous les paramètres ?</value>
+  </data>
+  <data name="SettingsReset" xml:space="preserve">
+    <value>Tous les paramètres ont été réinitialisés, Passliss va maintenant redémarrer.</value>
+  </data>
 </root>

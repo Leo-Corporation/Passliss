@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
+using Microsoft.Win32;
 using Passliss.Classes;
 using Passliss.Windows;
 using System;
@@ -42,104 +43,134 @@ using System.Windows.Shapes;
 
 namespace Passliss.Pages
 {
-    /// <summary>
-    /// Logique d'interaction pour GeneratePage.xaml
-    /// </summary>
-    public partial class GeneratePage : Page
-    {
-        public GeneratePage()
-        {
-            InitializeComponent();
+	/// <summary>
+	/// Logique d'interaction pour GeneratePage.xaml
+	/// </summary>
+	public partial class GeneratePage : Page
+	{
+		public GeneratePage()
+		{
+			InitializeComponent();
 
-            LowerCaseChk.IsChecked = true; // Check the checkbox
-            UpperCaseChk.IsChecked = true; // Check the checkbox
-            NumbersChk.IsChecked = true; // Check the checkbox
+			LowerCaseChk.IsChecked = true; // Check the checkbox
+			UpperCaseChk.IsChecked = true; // Check the checkbox
+			NumbersChk.IsChecked = true; // Check the checkbox
 
-            LenghtTxt.Text = "20"; // Set text
+			LenghtTxt.Text = "20"; // Set text
 
-            PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
+			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
 
-        }
+		}
 
-        private void GenerateBtn_Click(object sender, RoutedEventArgs e)
-        {
-            LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
-            if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
-            {
-                MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
-                return;
-            }
+		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+		{
+			LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
+			if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
+			{
+				MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
+				return;
+			}
 
-            if (!IsNoCheckboxesChecked())
-            {
-                PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
-            }
-            else
-            {
-                MessageBox.Show(Properties.Resources.PleaseSelectChkMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
+			if (!IsNoCheckboxesChecked())
+			{
+				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+			}
+			else
+			{
+				MessageBox.Show(Properties.Resources.PleaseSelectChkMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+		}
 
-        /// <summary>
-        /// True if all unchecked.
-        /// </summary>
-        /// <returns>A <see cref="bool"/> value.</returns>
-        private bool IsNoCheckboxesChecked()
-        {
-            return (!LowerCaseChk.IsChecked.Value && !UpperCaseChk.IsChecked.Value && !NumbersChk.IsChecked.Value && !SpecialCaractersChk.IsChecked.Value);
-        }
+		/// <summary>
+		/// True if all unchecked.
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		private bool IsNoCheckboxesChecked()
+		{
+			return (!LowerCaseChk.IsChecked.Value && !UpperCaseChk.IsChecked.Value && !NumbersChk.IsChecked.Value && !SpecialCaractersChk.IsChecked.Value);
+		}
 
-        private void LenghtTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
+		private void LenghtTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			Regex regex = new("[^0-9]+");
+			e.Handled = regex.IsMatch(e.Text);
+		}
 
-        private void CopyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetText(PasswordTxt.Text); // Copy the password
-        }
+		private void CopyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(PasswordTxt.Text); // Copy the password
+		}
 
-        LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow = new(); // Create a LoadPasswordConfigurationWindow
-        private void LoadPwrConfig_Click(object sender, RoutedEventArgs e)
-        {
-            double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
+		LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow = new(); // Create a LoadPasswordConfigurationWindow
+		private void LoadPwrConfig_Click(object sender, RoutedEventArgs e)
+		{
+			double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
 
-            if (Global.PasswordConfigurations.Count > 0) // If there is Password Configurations (at least one)
-            {
-                NewPasswordConfigurationWindow.Hide(); // Hide the NewPasswordConfigurationWindow
+			if (Global.PasswordConfigurations.Count > 0) // If there is Password Configurations (at least one)
+			{
+				NewPasswordConfigurationWindow.Hide(); // Hide the NewPasswordConfigurationWindow
 
-                LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
-                LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
-                LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
-                LoadPasswordConfigurationWindow.InitUI(); // Refresh
-                LoadPasswordConfigurationWindow.Show(); // Show
-                LoadPasswordConfigurationWindow.Focus(); 
-            }
-            else
-            {
-                MessageBox.Show(Properties.Resources.NoPasswordConfigurations, Properties.Resources.PasswordConfigurations, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
+				LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
+				LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
+				LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
+				LoadPasswordConfigurationWindow.InitUI(); // Refresh
+				LoadPasswordConfigurationWindow.Show(); // Show
+				LoadPasswordConfigurationWindow.Focus();
+			}
+			else
+			{
+				MessageBox.Show(Properties.Resources.NoPasswordConfigurations, Properties.Resources.PasswordConfigurations, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+		}
 
-        NewPasswordConfigurationWindow NewPasswordConfigurationWindow = new(); // Create a NewPasswordConfigurationWindow
-        private void NewPwrConfig_Click(object sender, RoutedEventArgs e)
-        {
-            double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
+		NewPasswordConfigurationWindow NewPasswordConfigurationWindow = new(); // Create a NewPasswordConfigurationWindow
+		private void NewPwrConfig_Click(object sender, RoutedEventArgs e)
+		{
+			double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
 
-            LoadPasswordConfigurationWindow.Hide(); // Hide the LoadPasswordConfigurationWindow
+			LoadPasswordConfigurationWindow.Hide(); // Hide the LoadPasswordConfigurationWindow
 
-            NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
-            NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
-            NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
-            NewPasswordConfigurationWindow.Show(); // Show
-            NewPasswordConfigurationWindow.Focus();
-        }
+			NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
+			NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
+			NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
+			NewPasswordConfigurationWindow.Show(); // Show
+			NewPasswordConfigurationWindow.Focus();
+		}
 
-        private void RandomizeLength_Click(object sender, RoutedEventArgs e)
-        {
-            Random random = new();
-            LenghtTxt.Text = random.Next(10, 30).ToString();
-        }
-    }
+		private void RandomizeLength_Click(object sender, RoutedEventArgs e)
+		{
+			Random random = new();
+			LenghtTxt.Text = random.Next(10, 30).ToString();
+		}
+
+		private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+				Title = Properties.Resources.Export,
+				Filter = "XML Files|*.xml"
+			}; // Create a SaveFileDialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				PasswordConfigurationManager.Export(Global.PasswordConfigurations, saveFileDialog.FileName); // Export
+			}
+		}
+
+		private void ImportPwrConfig_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new()
+			{
+				FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+				Title = Properties.Resources.Import,
+				Filter = "XML Files|*.xml"
+			}; // Create a OpenFileDialog
+
+			if (openFileDialog.ShowDialog() ?? true)
+			{
+				PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
+			}
+		}
+	}
 }

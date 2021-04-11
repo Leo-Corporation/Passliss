@@ -29,36 +29,36 @@ using System.Threading.Tasks;
 
 namespace Passliss.Classes
 {
-    public class PasswordConfiguration
-    {
-        /// <summary>
-        /// <see cref="true"/> to use upper cases.
-        /// </summary>
-        public bool UseUpperCase { get; set; }
+	public class PasswordConfiguration
+	{
+		/// <summary>
+		/// <see cref="true"/> to use upper cases.
+		/// </summary>
+		public bool UseUpperCase { get; set; }
 
-        /// <summary>
-        /// <see cref="true"/> to use lower cases.
-        /// </summary>
-        public bool UseLowerCase { get; set; }
-        
-        /// <summary>
-        /// <see cref="true"/> to use numbers.
-        /// </summary>
-        public bool UseNumbers { get; set; }
-        
-        /// <summary>
-        /// <see cref="true"/> to use special caracters.
-        /// </summary>
-        public bool UseSpecialCaracters { get; set; }
+		/// <summary>
+		/// <see cref="true"/> to use lower cases.
+		/// </summary>
+		public bool UseLowerCase { get; set; }
 
-        /// <summary>
-        /// The length of the password.
-        /// </summary>
-        public string Length { get; set; }
+		/// <summary>
+		/// <see cref="true"/> to use numbers.
+		/// </summary>
+		public bool UseNumbers { get; set; }
 
-        /// <summary>
-        /// The name of the <see cref="PasswordConfiguration"/>.
-        /// </summary>
-        public string Name { get; set; }
-    }
+		/// <summary>
+		/// <see cref="true"/> to use special caracters.
+		/// </summary>
+		public bool UseSpecialCaracters { get; set; }
+
+		/// <summary>
+		/// The length of the password.
+		/// </summary>
+		public string Length { get; set; }
+
+		/// <summary>
+		/// The name of the <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public string Name { get; set; }
+	}
 }

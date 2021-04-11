@@ -29,34 +29,34 @@ using System.Threading.Tasks;
 
 namespace Passliss.Enums
 {
-    /// <summary>
-    /// The password strenght enum.
-    /// </summary>
-    public enum PasswordStrenght
-    {
-        /// <summary>
-        /// Very good password strenght.
-        /// </summary>
-        VeryGood,
+	/// <summary>
+	/// The password strenght enum.
+	/// </summary>
+	public enum PasswordStrenght
+	{
+		/// <summary>
+		/// Very good password strenght.
+		/// </summary>
+		VeryGood,
 
-        /// <summary>
-        /// Good password strenght.
-        /// </summary>
-        Good,
+		/// <summary>
+		/// Good password strenght.
+		/// </summary>
+		Good,
 
-        /// <summary>
-        /// Medium password strenght.
-        /// </summary>
-        Medium,
+		/// <summary>
+		/// Medium password strenght.
+		/// </summary>
+		Medium,
 
-        /// <summary>
-        /// Low password strenght.
-        /// </summary>
-        Low,
+		/// <summary>
+		/// Low password strenght.
+		/// </summary>
+		Low,
 
-        /// <summary>
-        /// Unknown password strenght.
-        /// </summary>
-        Unknown
-    }
+		/// <summary>
+		/// Unknown password strenght.
+		/// </summary>
+		Unknown
+	}
 }

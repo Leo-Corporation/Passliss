@@ -28,57 +28,115 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace Passliss.Classes
 {
-    /// <summary>
-    /// Methods for loading and saving <see cref="PasswordConfiguration"/>.
-    /// </summary>
-    public static class PasswordConfigurationManager
-    {
-        /// <summary>
-        /// Loads <see cref="PasswordConfiguration"/>.
-        /// </summary>
-        public static void Load()
-        {
-            string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
+	/// <summary>
+	/// Methods for loading and saving <see cref="PasswordConfiguration"/>.
+	/// </summary>
+	public static class PasswordConfigurationManager
+	{
+		/// <summary>
+		/// Loads <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public static void Load()
+		{
+			string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
 
-            if (File.Exists(path)) // If the file exist
-            {
-                XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // XML Serializer
-                StreamReader streamReader = new(path); // Where the file is going to be read
+			if (File.Exists(path)) // If the file exist
+			{
+				XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // XML Serializer
+				StreamReader streamReader = new(path); // Where the file is going to be read
 
-                Global.PasswordConfigurations = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Read
+				Global.PasswordConfigurations = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Read
 
-                streamReader.Dispose();
-            }
-            else
-            {
-                Global.PasswordConfigurations = new(); // Create a new List<PasswordConfiguration> file
+				streamReader.Dispose();
+			}
+			else
+			{
+				Global.PasswordConfigurations = new(); // Create a new List<PasswordConfiguration> file
 
-                Save(); // Save the changes
-            }
-        }
+				Save(); // Save the changes
+			}
+		}
 
-        /// <summary>
-        /// Saves <see cref="PasswordConfiguration"/>.
-        /// </summary>
-        public static void Save()
-        {
-            string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
+		/// <summary>
+		/// Saves <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public static void Save()
+		{
+			string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
 
-            XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // Create XML Serializer
+			XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // Create XML Serializer
 
-            if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
-            {
-                Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
-            }
+			if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+			{
+				Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+			}
 
-            StreamWriter streamWriter = new(path); // The place where the file is going to be written
-            xmlSerializer.Serialize(streamWriter, Global.PasswordConfigurations);
+			StreamWriter streamWriter = new(path); // The place where the file is going to be written
+			xmlSerializer.Serialize(streamWriter, Global.PasswordConfigurations);
 
-            streamWriter.Dispose();
-        }
-    }
+			streamWriter.Dispose();
+		}
+
+		/// <summary>
+		/// Export a <see cref="List{T}"/> of <see cref="PasswordConfiguration"/> to file.
+		/// </summary>
+		/// <param name="passwordConfigurations">The List of <see cref="PasswordConfiguration"/>.</param>
+		/// <param name="path">Where to write the file.</param>
+		public static void Export(List<PasswordConfiguration> passwordConfigurations, string path)
+		{
+			try
+			{
+				List<PasswordConfiguration> passwordConfigurations1 = passwordConfigurations;
+				XmlSerializer xmlSerializer = new(passwordConfigurations1.GetType()); // XML Serializer
+				StreamWriter streamWriter = new(path); // The place where the file is going to be exported
+				xmlSerializer.Serialize(streamWriter, passwordConfigurations1); // Create the file
+				streamWriter.Dispose();
+				MessageBox.Show(Properties.Resources.ExportSuccess, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Success
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"{Properties.Resources.ErrorOccured}:\n{ex.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Error
+			}
+		}
+
+		/// <summary>
+		/// Imports a <see cref="List{T}"/> of <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		/// <param name="path">The file to import.</param>
+		public static void Import(string path)
+		{
+			try
+			{
+				if (File.Exists(path))
+				{
+					XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // XML Serializer
+					StreamReader streamReader = new(path); // The path of the file
+
+					if (Global.PasswordConfigurations.Count > 0 && MessageBox.Show(Properties.Resources.ImportConserve, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+					{
+						var passwordConfigs = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Re-create each Password Configuration 
+						passwordConfigs.ForEach((PasswordConfiguration p) => { Global.PasswordConfigurations.Add(p); }); // Add items
+					}
+					else
+					{
+						Global.PasswordConfigurations = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Re-create each Password Configuration 
+					}
+					streamReader.Dispose();
+
+					Save(); // Save the changes
+
+					MessageBox.Show(Properties.Resources.ImportSuccess, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Success
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"{Properties.Resources.ErrorOccured}:\n{ex.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Error
+			}
+		}
+	}
 }

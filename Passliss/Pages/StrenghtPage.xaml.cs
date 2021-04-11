@@ -41,78 +41,78 @@ using System.Windows.Shapes;
 
 namespace Passliss.Pages
 {
-    /// <summary>
-    /// Logique d'interaction pour StrenghtPage.xaml
-    /// </summary>
-    public partial class StrenghtPage : Page
-    {
-        public StrenghtPage()
-        {
-            InitializeComponent();
-        }
+	/// <summary>
+	/// Logique d'interaction pour StrenghtPage.xaml
+	/// </summary>
+	public partial class StrenghtPage : Page
+	{
+		public StrenghtPage()
+		{
+			InitializeComponent();
+		}
 
-        private string GetStrenghtCaracter(PasswordStrenght passwordStrenght)
-        {
-            return passwordStrenght switch
-            {
-                PasswordStrenght.VeryGood => "", // If the password strenght is very good
-                PasswordStrenght.Good     => "", // If the password strenght is good
-                PasswordStrenght.Medium   => "", // If the password strenght is medium
-                PasswordStrenght.Low      => "", // If the password strenght is low
-                _                         => "" // If the password strenght is unknown
-            };
-        }
+		private string GetStrenghtCaracter(PasswordStrenght passwordStrenght)
+		{
+			return passwordStrenght switch
+			{
+				PasswordStrenght.VeryGood => "", // If the password strenght is very good
+				PasswordStrenght.Good => "", // If the password strenght is good
+				PasswordStrenght.Medium => "", // If the password strenght is medium
+				PasswordStrenght.Low => "", // If the password strenght is low
+				_ => "" // If the password strenght is unknown
+			};
+		}
 
-        private string GetStrenghtText(PasswordStrenght passwordStrenght)
-        {
-            return passwordStrenght switch
-            {
-                PasswordStrenght.VeryGood => Properties.Resources.StrenghtVeryGood, // If the password strenght is very good
-                PasswordStrenght.Good     => Properties.Resources.StrenghtGood, // If the password strenght is good
-                PasswordStrenght.Medium   => Properties.Resources.StrenghtMedium, // If the password strenght is medium
-                PasswordStrenght.Low      => Properties.Resources.StrenghtLow, // If the password strenght is low
-                _                         => Properties.Resources.EnterPassword // If the password strenght is unknown
-            };
-        }
+		private string GetStrenghtText(PasswordStrenght passwordStrenght)
+		{
+			return passwordStrenght switch
+			{
+				PasswordStrenght.VeryGood => Properties.Resources.StrenghtVeryGood, // If the password strenght is very good
+				PasswordStrenght.Good => Properties.Resources.StrenghtGood, // If the password strenght is good
+				PasswordStrenght.Medium => Properties.Resources.StrenghtMedium, // If the password strenght is medium
+				PasswordStrenght.Low => Properties.Resources.StrenghtLow, // If the password strenght is low
+				_ => Properties.Resources.EnterPassword // If the password strenght is unknown
+			};
+		}
 
-        private void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
+		private void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
 
-            IconTxt.Text = GetStrenghtCaracter(password); // Get text
-            CommentTxt.Text = GetStrenghtText(password); // Get text
+			IconTxt.Text = GetStrenghtCaracter(password); // Get text
+			CommentTxt.Text = GetStrenghtText(password); // Get text
 
-            IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
-        }
+			IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+		}
 
-        private void HideShowPassword_Click(object sender, RoutedEventArgs e)
-        {
-            if (PasswordPwrBox.Visibility == Visibility.Hidden) // If the password is visible
-            {
-                PasswordPwrBox.Visibility = Visibility.Visible; // Change the visibility
-                PasswordTxt.Visibility = Visibility.Hidden; // Change the visibility
-                PasswordPwrBox.Password = PasswordTxt.Text; // Set text
-                HideShowPassword.Content = "\ue9fb"; // Change text
-                HideShowPassword.FontSize = 9; // Change font size
-            }
-            else // If the password is hidden
-            {
-                PasswordPwrBox.Visibility = Visibility.Hidden; // Change the visibility
-                PasswordTxt.Visibility = Visibility.Visible; // Change the visibility
-                PasswordTxt.Text = PasswordPwrBox.Password; // Set text
-                HideShowPassword.Content = "\ue9fa"; // Change text
-                HideShowPassword.FontSize = 15; // Change font size
-            }
-        }
+		private void HideShowPassword_Click(object sender, RoutedEventArgs e)
+		{
+			if (PasswordPwrBox.Visibility == Visibility.Hidden) // If the password is visible
+			{
+				PasswordPwrBox.Visibility = Visibility.Visible; // Change the visibility
+				PasswordTxt.Visibility = Visibility.Hidden; // Change the visibility
+				PasswordPwrBox.Password = PasswordTxt.Text; // Set text
+				HideShowPassword.Content = "\ue9fb"; // Change text
+				HideShowPassword.FontSize = 9; // Change font size
+			}
+			else // If the password is hidden
+			{
+				PasswordPwrBox.Visibility = Visibility.Hidden; // Change the visibility
+				PasswordTxt.Visibility = Visibility.Visible; // Change the visibility
+				PasswordTxt.Text = PasswordPwrBox.Password; // Set text
+				HideShowPassword.Content = "\ue9fa"; // Change text
+				HideShowPassword.FontSize = 15; // Change font size
+			}
+		}
 
-        private void PasswordPwrBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            PasswordStrenght password = Global.GetPasswordStrenght(PasswordPwrBox.Password); // Get strenght
+		private void PasswordPwrBox_PasswordChanged(object sender, RoutedEventArgs e)
+		{
+			PasswordStrenght password = Global.GetPasswordStrenght(PasswordPwrBox.Password); // Get strenght
 
-            IconTxt.Text = GetStrenghtCaracter(password); // Get text
-            CommentTxt.Text = GetStrenghtText(password); // Get text
+			IconTxt.Text = GetStrenghtCaracter(password); // Get text
+			CommentTxt.Text = GetStrenghtText(password); // Get text
 
-            IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
-        }
-    }
+			IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+		}
+	}
 }

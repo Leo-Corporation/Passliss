@@ -39,34 +39,39 @@ using System.Windows.Shapes;
 
 namespace Passliss.Windows
 {
-    /// <summary>
-    /// Logique d'interaction pour LoadPasswordConfigurationWindow.xaml
-    /// </summary>
-    public partial class LoadPasswordConfigurationWindow : Window
-    {
-        public LoadPasswordConfigurationWindow()
-        {
-            InitializeComponent();
-            InitUI(); // Load UI
-            Global.LoadPasswordConfigurationWindow = this; // Define
-        }
+	/// <summary>
+	/// Logique d'interaction pour LoadPasswordConfigurationWindow.xaml
+	/// </summary>
+	public partial class LoadPasswordConfigurationWindow : Window
+	{
+		public LoadPasswordConfigurationWindow()
+		{
+			InitializeComponent();
+			InitUI(); // Load UI
+			Global.LoadPasswordConfigurationWindow = this; // Define
+		}
 
-        /// <summary>
-        /// Loads the UI.
-        /// </summary>
-        internal void InitUI()
-        {
-            ItemDisplayer.Children.Clear(); // Clear items
+		/// <summary>
+		/// Loads the UI.
+		/// </summary>
+		internal void InitUI()
+		{
+			ItemDisplayer.Children.Clear(); // Clear items
 
-            for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
-            {
-                ItemDisplayer.Children.Add(new PasswordConfigurationItem(Global.PasswordConfigurations[i])); // Add item
-            }
-        }
+			for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
+			{
+				ItemDisplayer.Children.Add(new PasswordConfigurationItem(Global.PasswordConfigurations[i])); // Add item
+			}
+		}
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Hide(); // Hide the window
-        }
-    }
+		private void CancelBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Hide(); // Hide the window
+		}
+
+		private void Window_Deactivated(object sender, EventArgs e)
+		{
+			Hide(); // Hide the window when focus is lost
+		}
+	}
 }

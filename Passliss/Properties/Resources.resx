@@ -247,4 +247,55 @@
   <data name="SeeLicenses" xml:space="preserve">
     <value>See licenses</value>
   </data>
+  <data name="UnableToCheckUpdates" xml:space="preserve">
+    <value>Unable to check updates</value>
+  </data>
+  <data name="CheckUpdatesOnStart" xml:space="preserve">
+    <value>Check updates on start</value>
+  </data>
+  <data name="NotifyUpdates" xml:space="preserve">
+    <value>Show a notification when updates are available</value>
+  </data>
+  <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
+    <value>Checking updates on start is disabled.</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>An error has occured</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Password Configurations have been successfully exported.</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Password Configurations imported successfully.</value>
+  </data>
+  <data name="ImportConserve" xml:space="preserve">
+    <value>Do you want to conserve current Password Configurations?</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="LoadPasswordConfigurations" xml:space="preserve">
+    <value>Load Password Configurations</value>
+  </data>
+  <data name="CreatePasswordConfigurations" xml:space="preserve">
+    <value>Create a Password Configuration</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>Reset settings</value>
+  </data>
+  <data name="ResetSettingsConfirmMsg" xml:space="preserve">
+    <value>Are you sure you want to reset all settings?</value>
+  </data>
+  <data name="SettingsReset" xml:space="preserve">
+    <value>All settings have been reset, Passliss will now restart.</value>
+  </data>
 </root>

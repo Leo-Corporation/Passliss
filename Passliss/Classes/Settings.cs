@@ -32,69 +32,79 @@ using System.Xml.Serialization;
 
 namespace Passliss.Classes
 {
-    /// <summary>
-    /// Settings of Passliss
-    /// </summary>
-    public class Settings
-    {
-        /// <summary>
-        /// True if the theme of Passliss is set to dark.
-        /// </summary>
-        public bool IsDarkTheme { get; set; }
+	/// <summary>
+	/// Settings of Passliss
+	/// </summary>
+	public class Settings
+	{
+		/// <summary>
+		/// True if the theme of Passliss is set to dark.
+		/// </summary>
+		public bool IsDarkTheme { get; set; }
 
-        /// <summary>
-        /// The language of the app (country code). Can be _default, en-US, fr-FR...
-        /// </summary>
-        public string Language { get; set; }
-    }
+		/// <summary>
+		/// The language of the app (country code). Can be _default, en-US, fr-FR...
+		/// </summary>
+		public string Language { get; set; }
 
-    /// <summary>
-    /// Class that contains methods that can manage Passliss' settings.
-    /// </summary>
-    public static class SettingsManager
-    {
-        /// <summary>
-        /// Loads Passliss settings.
-        /// </summary>
-        public static void Load()
-        {
-            string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+		/// <summary>
+		/// True if Passliss should check for updates on start.
+		/// </summary>
+		public bool? CheckUpdatesOnStart { get; set; }
 
-            if (File.Exists(path)) // If the file exist
-            {
-                XmlSerializer xmlSerializer = new(typeof(Settings)); // XML Serializer
-                StreamReader streamReader = new(path); // Where the file is going to be read
+		/// <summary>
+		/// True if Passliss should notify the user when updates are available.
+		/// </summary>
+		public bool? NotifyUpdates { get; set; }
+	}
 
-                Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
+	/// <summary>
+	/// Class that contains methods that can manage Passliss' settings.
+	/// </summary>
+	public static class SettingsManager
+	{
+		/// <summary>
+		/// Loads Passliss settings.
+		/// </summary>
+		public static void Load()
+		{
+			string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
-                streamReader.Dispose();
-            }
-            else
-            {
-                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default" }; // Create a new settings file
+			if (File.Exists(path)) // If the file exist
+			{
+				XmlSerializer xmlSerializer = new(typeof(Settings)); // XML Serializer
+				StreamReader streamReader = new(path); // Where the file is going to be read
 
-                Save(); // Save the changes
-            }
-        }
+				Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
 
-        /// <summary>
-        /// Saves Passliss settings.
-        /// </summary>
-        public static void Save()
-        {
-            string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+				streamReader.Dispose();
+			}
+			else
+			{
+				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
 
-            XmlSerializer xmlSerializer = new(typeof(Settings)); // Create XML Serializer
+				Save(); // Save the changes
+			}
+		}
 
-            if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
-            {
-                Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
-            }
+		/// <summary>
+		/// Saves Passliss settings.
+		/// </summary>
+		public static void Save()
+		{
+			string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
-            StreamWriter streamWriter = new(path); // The place where the file is going to be written
-            xmlSerializer.Serialize(streamWriter, Global.Settings);
+			XmlSerializer xmlSerializer = new(typeof(Settings)); // Create XML Serializer
 
-            streamWriter.Dispose();
-        }
-    }
+			if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+			{
+				Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+			}
+
+			StreamWriter streamWriter = new(path); // The place where the file is going to be written
+			xmlSerializer.Serialize(streamWriter, Global.Settings);
+
+			streamWriter.Dispose();
+		}
+	}
 }
