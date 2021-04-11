@@ -300,4 +300,10 @@
   <data name="Import" xml:space="preserve">
     <value>Importer</value>
   </data>
+  <data name="LoadPasswordConfigurations" xml:space="preserve">
+    <value>Charger des Configurations de Mots de passe</value>
+  </data>
+  <data name="CreatePasswordConfigurations" xml:space="preserve">
+    <value>Créer une configuration de Mot de passe</value>
+  </data>
 </root>

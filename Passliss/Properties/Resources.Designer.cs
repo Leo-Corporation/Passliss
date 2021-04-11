@@ -151,6 +151,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a Password Configuration.
+        /// </summary>
+        public static string CreatePasswordConfigurations {
+            get {
+                return ResourceManager.GetString("CreatePasswordConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
         public static string Dark {
@@ -354,6 +363,15 @@ namespace Passliss.Properties {
         public static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Password Configurations.
+        /// </summary>
+        public static string LoadPasswordConfigurations {
+            get {
+                return ResourceManager.GetString("LoadPasswordConfigurations", resourceCulture);
             }
         }
         
