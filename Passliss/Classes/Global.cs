@@ -98,7 +98,7 @@ namespace Passliss.Classes
 		/// <summary>
 		/// The current version of Passliss.
 		/// </summary>
-		public static string Version => "1.2.0.2104-pre1";
+		public static string Version => "1.2.0.2104-rc1";
 
 		/// <summary>
 		/// GitHub link for the last version (<see cref="string"/>).
@@ -115,7 +115,7 @@ namespace Passliss.Classes
 		/// </summary>
 		public static void ChangeTheme()
 		{
-			App.Current.Resources.MergedDictionaries.Clear(); // Clear all ressources
+			App.Current.Resources.MergedDictionaries.Clear(); // Clear all resources
 			ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
 
 			if (Settings.IsDarkTheme) // If the dark theme is on
