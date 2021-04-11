@@ -169,6 +169,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string Data {
+            get {
+                return ResourceManager.GetString("Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string Default {
@@ -484,6 +493,24 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset settings.
+        /// </summary>
+        public static string ResetSettings {
+            get {
+                return ResourceManager.GetString("ResetSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to reset all settings?.
+        /// </summary>
+        public static string ResetSettingsConfirmMsg {
+            get {
+                return ResourceManager.GetString("ResetSettingsConfirmMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -507,6 +534,15 @@ namespace Passliss.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All settings have been reset, Passliss will now restart..
+        /// </summary>
+        public static string SettingsReset {
+            get {
+                return ResourceManager.GetString("SettingsReset", resourceCulture);
             }
         }
         
