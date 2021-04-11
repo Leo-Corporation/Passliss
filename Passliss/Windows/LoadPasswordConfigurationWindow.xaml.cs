@@ -68,5 +68,10 @@ namespace Passliss.Windows
 		{
 			Hide(); // Hide the window
 		}
+
+		private void Window_Deactivated(object sender, EventArgs e)
+		{
+			Hide(); // Hide the window when focus is lost
+		}
 	}
 }
