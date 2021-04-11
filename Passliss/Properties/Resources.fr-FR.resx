@@ -291,4 +291,13 @@
   <data name="Export" xml:space="preserve">
     <value>Exporter</value>
   </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Configurations de Mots de passe importées avec succès.</value>
+  </data>
+  <data name="ImportConserve" xml:space="preserve">
+    <value>Voulez-vous conserver les Configurations de Mots de passe actuelles ?</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
 </root>

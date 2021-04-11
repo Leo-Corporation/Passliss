@@ -82,6 +82,11 @@ namespace Passliss.Classes
 			streamWriter.Dispose();
 		}
 
+		/// <summary>
+		/// Export a <see cref="List{T}"/> of <see cref="PasswordConfiguration"/> to file.
+		/// </summary>
+		/// <param name="passwordConfigurations">The List of <see cref="PasswordConfiguration"/>.</param>
+		/// <param name="path">Where to write the file.</param>
 		public static void Export(List<PasswordConfiguration> passwordConfigurations, string path)
 		{
 			try
@@ -92,6 +97,41 @@ namespace Passliss.Classes
 				xmlSerializer.Serialize(streamWriter, passwordConfigurations1); // Create the file
 				streamWriter.Dispose();
 				MessageBox.Show(Properties.Resources.ExportSuccess, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Success
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"{Properties.Resources.ErrorOccured}:\n{ex.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Error
+			}
+		}
+
+		/// <summary>
+		/// Imports a <see cref="List{T}"/> of <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		/// <param name="path">The file to import.</param>
+		public static void Import(string path)
+		{
+			try
+			{
+				if (File.Exists(path))
+				{
+					XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // XML Serializer
+					StreamReader streamReader = new(path); // The path of the file
+
+					if (Global.PasswordConfigurations.Count > 0 && MessageBox.Show(Properties.Resources.ImportConserve, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+					{
+						var passwordConfigs = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Re-create each Password Configuration 
+						passwordConfigs.ForEach((PasswordConfiguration p) => { Global.PasswordConfigurations.Add(p); }); // Add items
+					}
+					else
+					{
+						Global.PasswordConfigurations = (List<PasswordConfiguration>)xmlSerializer.Deserialize(streamReader); // Re-create each Password Configuration 
+					}
+					streamReader.Dispose();
+
+					Save(); // Save the changes
+
+					MessageBox.Show(Properties.Resources.ImportSuccess, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Success
+				}
 			}
 			catch (Exception ex)
 			{

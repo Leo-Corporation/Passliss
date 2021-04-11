@@ -205,7 +205,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password Configurations have been successfuly exported..
+        ///   Looks up a localized string similar to Password Configurations have been successfully exported..
         /// </summary>
         public static string ExportSuccess {
             get {
@@ -264,6 +264,33 @@ namespace Passliss.Properties {
         public static string Hi {
             get {
                 return ResourceManager.GetString("Hi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to conserve current Password Configurations?.
+        /// </summary>
+        public static string ImportConserve {
+            get {
+                return ResourceManager.GetString("ImportConserve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Configurations imported successfully..
+        /// </summary>
+        public static string ImportSuccess {
+            get {
+                return ResourceManager.GetString("ImportSuccess", resourceCulture);
             }
         }
         

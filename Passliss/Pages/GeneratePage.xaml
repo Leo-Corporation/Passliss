@@ -49,7 +49,9 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,10">
             <Button x:Name="LoadPwrConfig" Padding="10"  Click="LoadPwrConfig_Click" Content="&#xE931;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" Width="34" Cursor="Hand"/>
 			<Button x:Name="NewPwrConfig" Padding="10" Click="NewPwrConfig_Click" Content="&#xEAD5;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0"/>
+			<Button x:Name="ImportPwrConfig" Padding="10" Click="ImportPwrConfig_Click" Content="&#xE931;" FontSize="8.7" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Gray}}" Margin="0,0,5,0" Width="34"/>
 			<Button x:Name="ExportPwrConfig" Padding="10" Click="ExportPwrConfig_Click" Content="&#xE918;" FontSize="8.7" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Gray}}" Width="34"/>
+			
         </StackPanel>
     </Grid>
 </Page>

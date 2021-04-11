@@ -266,9 +266,18 @@
     <value>Error</value>
   </data>
   <data name="ExportSuccess" xml:space="preserve">
-    <value>Password Configurations have been successfuly exported.</value>
+    <value>Password Configurations have been successfully exported.</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>Export</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Password Configurations imported successfully.</value>
+  </data>
+  <data name="ImportConserve" xml:space="preserve">
+    <value>Do you want to conserve current Password Configurations?</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
 </root>

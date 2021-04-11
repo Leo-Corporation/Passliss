@@ -157,5 +157,20 @@ namespace Passliss.Pages
 				PasswordConfigurationManager.Export(Global.PasswordConfigurations, saveFileDialog.FileName); // Export
 			}
 		}
+
+		private void ImportPwrConfig_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new()
+			{
+				FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+				Title = Properties.Resources.Import,
+				Filter = "XML Files|*.xml"
+			}; // Create a OpenFileDialog
+
+			if (openFileDialog.ShowDialog() ?? true)
+			{
+				PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
+			}
+		}
 	}
 }
