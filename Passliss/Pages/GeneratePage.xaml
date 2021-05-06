@@ -57,12 +57,12 @@
 					<ToolTip Content="{x:Static lang:Resources.CreatePasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 				</Button.ToolTip>
 			</Button>
-			<Button x:Name="ImportPwrConfig" Padding="10" Click="ImportPwrConfig_Click" Content="&#xE931;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Gray}}" Margin="0,0,5,0" Width="34">
+			<Button x:Name="ImportPwrConfig" Padding="10" Click="ImportPwrConfig_Click" Content="&#xE931;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" Margin="0,0,5,0" Width="34">
 				<Button.ToolTip>
 					<ToolTip Content="{x:Static lang:Resources.Import}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 				</Button.ToolTip>
 			</Button>
-			<Button x:Name="ExportPwrConfig" Padding="10" Click="ExportPwrConfig_Click" Content="&#xE918;" FontSize="8.7" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Gray}}" Width="34">
+			<Button x:Name="ExportPwrConfig" Padding="10" Click="ExportPwrConfig_Click" Content="&#xE918;" FontSize="8.7" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" Width="34">
 				<Button.ToolTip>
 					<ToolTip Content="{x:Static lang:Resources.Export}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 				</Button.ToolTip>
