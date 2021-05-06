@@ -318,4 +318,13 @@
   <data name="SettingsReset" xml:space="preserve">
     <value>All settings have been reset, Passliss will now restart.</value>
   </data>
+  <data name="DefaultPreset" xml:space="preserve">
+    <value>Default preset</value>
+  </data>
+  <data name="Simple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="Complex" xml:space="preserve">
+    <value>Complex</value>
+  </data>
 </root>

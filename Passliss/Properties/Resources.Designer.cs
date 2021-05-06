@@ -142,6 +142,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex.
+        /// </summary>
+        public static string Complex {
+            get {
+                return ResourceManager.GetString("Complex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
@@ -183,6 +192,15 @@ namespace Passliss.Properties {
         public static string Default {
             get {
                 return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default preset.
+        /// </summary>
+        public static string DefaultPreset {
+            get {
+                return ResourceManager.GetString("DefaultPreset", resourceCulture);
             }
         }
         
@@ -543,6 +561,15 @@ namespace Passliss.Properties {
         public static string SettingsReset {
             get {
                 return ResourceManager.GetString("SettingsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple.
+        /// </summary>
+        public static string Simple {
+            get {
+                return ResourceManager.GetString("Simple", resourceCulture);
             }
         }
         
