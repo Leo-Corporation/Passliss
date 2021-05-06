@@ -86,8 +86,21 @@ namespace Passliss.Pages
 
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
+			// Load PresetComboBox
+			PresetComboBox.Items.Add(Properties.Resources.Simple); // Add item
+			PresetComboBox.Items.Add(Properties.Resources.Complex); // Add item
+
+			PresetComboBox.SelectedItem = Global.Settings.PasswordPreset.HasValue ? Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => 0,
+				PasswordPresets.Complex => 1,
+				_ => 0
+			} : PasswordPresets.Simple;
+
+			// Apply buttons
 			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 			// Update the UpdateStatusTxt
 			if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -252,6 +265,16 @@ namespace Passliss.Pages
 				Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe");
 				Environment.Exit(0); // Quit
 			}
+		}
+
+		private void PresetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+		private void PresetApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

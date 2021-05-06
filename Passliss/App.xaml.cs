@@ -46,9 +46,9 @@ namespace Passliss
 
 			PasswordConfigurationManager.Load(); // Load configurations
 
+			Global.SettingsPage = new(); // Create a new settings page
 			Global.GeneratePage = new(); // Create a new generate page
 			Global.StrenghtPage = new(); // Create a new strenght page
-			Global.SettingsPage = new(); // Create a new settings page
 
 			base.OnStartup(e);
 		}

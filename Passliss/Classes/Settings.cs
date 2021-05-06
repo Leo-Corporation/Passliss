@@ -56,6 +56,11 @@ namespace Passliss.Classes
 		/// True if Passliss should notify the user when updates are available.
 		/// </summary>
 		public bool? NotifyUpdates { get; set; }
+
+		/// <summary>
+		/// Default Password preset.
+		/// </summary>
+		public PasswordPresets? PasswordPreset { get; set; }
 	}
 
 	/// <summary>
@@ -81,7 +86,14 @@ namespace Passliss.Classes
 			}
 			else
 			{
-				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
+				Global.Settings = new Settings
+				{
+					IsDarkTheme = false,
+					Language = "_default",
+					CheckUpdatesOnStart = true,
+					NotifyUpdates = true,
+					PasswordPreset = PasswordPresets.Simple
+				}; // Create a new settings file
 
 				Save(); // Save the changes
 			}

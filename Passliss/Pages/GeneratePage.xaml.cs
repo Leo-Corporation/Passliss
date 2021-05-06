@@ -52,11 +52,38 @@ namespace Passliss.Pages
 		{
 			InitializeComponent();
 
-			LowerCaseChk.IsChecked = true; // Check the checkbox
-			UpperCaseChk.IsChecked = true; // Check the checkbox
-			NumbersChk.IsChecked = true; // Check the checkbox
+			LowerCaseChk.IsChecked = Global.Settings.PasswordPreset switch 
+			{
+				PasswordPresets.Simple => true,
+				PasswordPresets.Complex => true,
+				_ => true
+			}; // Check the checkbox
 
-			LenghtTxt.Text = "20"; // Set text
+			UpperCaseChk.IsChecked = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => true,
+				PasswordPresets.Complex => true,
+				_ => true
+			}; // Check the checkbox
+			NumbersChk.IsChecked = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => false,
+				PasswordPresets.Complex => true,
+				_ => true
+			}; // Check the checkbox
+
+			SpecialCaractersChk.IsChecked = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => false,
+				PasswordPresets.Complex => true,
+				_ => true
+			}; // Check the checkbox
+			LenghtTxt.Text = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => "15",
+				PasswordPresets.Complex => "25",
+				_ => "20"
+			}; // Set text
 
 			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
 
