@@ -90,12 +90,12 @@ namespace Passliss.Pages
 			PresetComboBox.Items.Add(Properties.Resources.Simple); // Add item
 			PresetComboBox.Items.Add(Properties.Resources.Complex); // Add item
 
-			PresetComboBox.SelectedItem = Global.Settings.PasswordPreset.HasValue ? Global.Settings.PasswordPreset switch
+			PresetComboBox.SelectedIndex = Global.Settings.PasswordPreset.HasValue ? Global.Settings.PasswordPreset switch
 			{
 				PasswordPresets.Simple => 0,
 				PasswordPresets.Complex => 1,
 				_ => 0
-			} : PasswordPresets.Simple;
+			} : 0;
 
 			// Apply buttons
 			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
@@ -255,7 +255,8 @@ namespace Passliss.Pages
 					CheckUpdatesOnStart = true,
 					IsDarkTheme = false,
 					Language = "_default",
-					NotifyUpdates = true
+					NotifyUpdates = true,
+					PasswordPreset = PasswordPresets.Simple
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -269,12 +270,19 @@ namespace Passliss.Pages
 
 		private void PresetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-
+			PresetApplyBtn.Visibility = Visibility.Visible; // Show
 		}
 
 		private void PresetApplyBtn_Click(object sender, RoutedEventArgs e)
 		{
-
+			Global.Settings.PasswordPreset = PresetComboBox.SelectedIndex switch
+			{
+				0 => PasswordPresets.Simple,
+				1 => PasswordPresets.Complex,
+				_ => PasswordPresets.Simple
+			}; // Set
+			SettingsManager.Save(); // Save the changes
+			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
 		}
 	}
 }

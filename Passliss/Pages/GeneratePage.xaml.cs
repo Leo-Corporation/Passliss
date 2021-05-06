@@ -69,14 +69,14 @@ namespace Passliss.Pages
 			{
 				PasswordPresets.Simple => false,
 				PasswordPresets.Complex => true,
-				_ => true
+				_ => false
 			}; // Check the checkbox
 
 			SpecialCaractersChk.IsChecked = Global.Settings.PasswordPreset switch
 			{
 				PasswordPresets.Simple => false,
 				PasswordPresets.Complex => true,
-				_ => true
+				_ => false
 			}; // Check the checkbox
 			LenghtTxt.Text = Global.Settings.PasswordPreset switch
 			{
