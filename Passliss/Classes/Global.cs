@@ -98,7 +98,7 @@ namespace Passliss.Classes
 		/// <summary>
 		/// The current version of Passliss.
 		/// </summary>
-		public static string Version => "1.3.0.2105-pre1";
+		public static string Version => "1.3.0.2105-rc1";
 
 		/// <summary>
 		/// GitHub link for the last version (<see cref="string"/>).
