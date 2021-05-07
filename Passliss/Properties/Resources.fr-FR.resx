@@ -327,4 +327,13 @@
   <data name="Complex" xml:space="preserve">
     <value>Complexe</value>
   </data>
+  <data name="RandomPasswordLength" xml:space="preserve">
+    <value>Longueur de mot de passe aléatoire</value>
+  </data>
+  <data name="RandomPasswordLengthDesc" xml:space="preserve">
+    <value>Deux valeurs qui définissent la longueur minimum et maximum.</value>
+  </data>
+  <data name="RandomPasswordLengthOnStart" xml:space="preserve">
+    <value>Utiliser une longueur aléatoire de mot de passe lors du démarrage</value>
+  </data>
 </root>

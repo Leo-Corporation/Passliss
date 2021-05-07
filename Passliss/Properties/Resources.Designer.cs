@@ -511,6 +511,33 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Random password length.
+        /// </summary>
+        public static string RandomPasswordLength {
+            get {
+                return ResourceManager.GetString("RandomPasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two values that set the minimum and maximum length..
+        /// </summary>
+        public static string RandomPasswordLengthDesc {
+            get {
+                return ResourceManager.GetString("RandomPasswordLengthDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a random password length on start.
+        /// </summary>
+        public static string RandomPasswordLengthOnStart {
+            get {
+                return ResourceManager.GetString("RandomPasswordLengthOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset settings.
         /// </summary>
         public static string ResetSettings {

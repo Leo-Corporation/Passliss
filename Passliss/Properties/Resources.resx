@@ -307,4 +307,13 @@
   <data name="Complex" xml:space="preserve">
     <value>Complex</value>
   </data>
+  <data name="RandomPasswordLength" xml:space="preserve">
+    <value>Random password length</value>
+  </data>
+  <data name="RandomPasswordLengthDesc" xml:space="preserve">
+    <value>Two values that set the minimum and maximum length.</value>
+  </data>
+  <data name="RandomPasswordLengthOnStart" xml:space="preserve">
+    <value>Use a random password length on start</value>
+  </data>
 </root>
