@@ -167,7 +167,7 @@ namespace Passliss.Pages
 		private void RandomizeLength_Click(object sender, RoutedEventArgs e)
 		{
 			Random random = new();
-			LenghtTxt.Text = random.Next(10, 30).ToString();
+			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 
 		private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)

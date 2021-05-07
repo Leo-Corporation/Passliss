@@ -97,10 +97,16 @@ namespace Passliss.Pages
 				_ => 0
 			} : 0;
 
+			// Random TextBoxes
+			MinLengthTxt.Text = Global.Settings.MinRandomLength.HasValue ? Global.Settings.MinRandomLength.Value.ToString() : "10"; // Set
+			MaxLengthTxt.Text = Global.Settings.MaxRandomLength.HasValue ? Global.Settings.MaxRandomLength.Value.ToString() : "30"; // Set
+			SettingsManager.Save();
+
 			// Apply buttons
 			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
+			RandomLengthApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 			// Update the UpdateStatusTxt
 			if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -256,7 +262,9 @@ namespace Passliss.Pages
 					IsDarkTheme = false,
 					Language = "_default",
 					NotifyUpdates = true,
-					PasswordPreset = PasswordPresets.Simple
+					PasswordPreset = PasswordPresets.Simple,
+					MinRandomLength = 10,
+					MaxRandomLength = 30
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -283,6 +291,40 @@ namespace Passliss.Pages
 			}; // Set
 			SettingsManager.Save(); // Save the changes
 			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
+		}
+
+		private void RandomLengthApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (!string.IsNullOrEmpty(MinLengthTxt.Text) && !string.IsNullOrWhiteSpace(MinLengthTxt.Text) && !string.IsNullOrEmpty(MaxLengthTxt.Text) && !string.IsNullOrWhiteSpace(MaxLengthTxt.Text))
+			{
+				if (int.Parse(MinLengthTxt.Text) < int.Parse(MaxLengthTxt.Text))
+				{
+					Global.Settings.MinRandomLength = int.Parse(MinLengthTxt.Text); // Set
+					Global.Settings.MaxRandomLength = int.Parse(MaxLengthTxt.Text); // Set
+
+					SettingsManager.Save(); // Save changes 
+
+					RandomLengthApplyBtn.Visibility = Visibility.Hidden; // Hide
+				}
+				else
+				{
+					MessageBox.Show(Properties.Resources.ValuesIncorrect, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+				}
+			}
+			else
+			{
+				MessageBox.Show(Properties.Resources.ValuesIncorrect, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+		}
+
+		private void MinLengthTxt_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			RandomLengthApplyBtn.Visibility = Visibility.Visible; // Show
+		}
+
+		private void MaxLengthTxt_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			RandomLengthApplyBtn.Visibility = Visibility.Visible; // Show
 		}
 	}
 }

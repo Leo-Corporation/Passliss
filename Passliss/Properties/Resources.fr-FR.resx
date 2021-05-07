@@ -336,4 +336,13 @@
   <data name="RandomPasswordLengthOnStart" xml:space="preserve">
     <value>Utiliser une longueur aléatoire de mot de passe lors du démarrage</value>
   </data>
+  <data name="Between" xml:space="preserve">
+    <value>Entre</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>Et</value>
+  </data>
+  <data name="ValuesIncorrect" xml:space="preserve">
+    <value>Les valeurs spécifiées sont incorrectes.</value>
+  </data>
 </root>

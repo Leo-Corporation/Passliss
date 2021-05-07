@@ -61,6 +61,16 @@ namespace Passliss.Classes
 		/// Default Password preset.
 		/// </summary>
 		public PasswordPresets? PasswordPreset { get; set; }
+
+		/// <summary>
+		/// The minimum random password length.
+		/// </summary>
+		public int? MinRandomLength { get; set; }
+
+		/// <summary>
+		/// The maximum random password length.
+		/// </summary>
+		public int? MaxRandomLength { get; set; }
 	}
 
 	/// <summary>
@@ -92,7 +102,9 @@ namespace Passliss.Classes
 					Language = "_default",
 					CheckUpdatesOnStart = true,
 					NotifyUpdates = true,
-					PasswordPreset = PasswordPresets.Simple
+					PasswordPreset = PasswordPresets.Simple,
+					MinRandomLength = 10,
+					MaxRandomLength = 30
 				}; // Create a new settings file
 
 				Save(); // Save the changes

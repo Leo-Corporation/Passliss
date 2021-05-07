@@ -336,4 +336,13 @@
   <data name="RandomPasswordLengthOnStart" xml:space="preserve">
     <value>Use a random password length on start</value>
   </data>
+  <data name="Between" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>And</value>
+  </data>
+  <data name="ValuesIncorrect" xml:space="preserve">
+    <value>Specified values are incorrect.</value>
+  </data>
 </root>

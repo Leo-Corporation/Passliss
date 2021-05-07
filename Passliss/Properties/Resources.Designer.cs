@@ -70,6 +70,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to And.
+        /// </summary>
+        public static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Apply {
@@ -84,6 +93,15 @@ namespace Passliss.Properties {
         public static string AvailableUpdates {
             get {
                 return ResourceManager.GetString("AvailableUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Between.
+        /// </summary>
+        public static string Between {
+            get {
+                return ResourceManager.GetString("Between", resourceCulture);
             }
         }
         
@@ -705,6 +723,15 @@ namespace Passliss.Properties {
         public static string UpToDate {
             get {
                 return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified values are incorrect..
+        /// </summary>
+        public static string ValuesIncorrect {
+            get {
+                return ResourceManager.GetString("ValuesIncorrect", resourceCulture);
             }
         }
         
