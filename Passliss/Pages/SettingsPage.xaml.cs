@@ -74,7 +74,7 @@ namespace Passliss.Pages
 			// Load checkboxes
 			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
 			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
-
+			RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart.HasValue ? Global.Settings.UseRandomPasswordLengthOnStart.Value : true; // Set
 
 			// Load LangComboBox
 			LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
@@ -97,9 +97,31 @@ namespace Passliss.Pages
 				_ => 0
 			} : 0;
 
+			if (!Global.Settings.PasswordPreset.HasValue)
+			{
+				Global.Settings.PasswordPreset = PresetComboBox.SelectedIndex switch
+				{
+					0 => PasswordPresets.Simple,
+					1 => PasswordPresets.Complex,
+					_ => PasswordPresets.Simple
+				}; // Set
+				SettingsManager.Save(); // Save the changes
+			}
+
 			// Random TextBoxes
 			MinLengthTxt.Text = Global.Settings.MinRandomLength.HasValue ? Global.Settings.MinRandomLength.Value.ToString() : "10"; // Set
 			MaxLengthTxt.Text = Global.Settings.MaxRandomLength.HasValue ? Global.Settings.MaxRandomLength.Value.ToString() : "30"; // Set
+
+			if (!Global.Settings.MinRandomLength.HasValue)
+			{
+				Global.Settings.MinRandomLength = int.Parse(MinLengthTxt.Text); // Set
+			}
+
+			if (!Global.Settings.MaxRandomLength.HasValue)
+			{
+				Global.Settings.MaxRandomLength = int.Parse(MaxLengthTxt.Text); // Set
+			}
+
 			SettingsManager.Save();
 
 			// Apply buttons
@@ -264,7 +286,8 @@ namespace Passliss.Pages
 					NotifyUpdates = true,
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
-					MaxRandomLength = 30
+					MaxRandomLength = 30,
+					UseRandomPasswordLengthOnStart = true
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -325,6 +348,13 @@ namespace Passliss.Pages
 		private void MaxLengthTxt_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			RandomLengthApplyBtn.Visibility = Visibility.Visible; // Show
+		}
+
+		private void RandomLengthOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.UseRandomPasswordLengthOnStart = RandomLengthOnStartChk.IsChecked; // Set value
+
+			SettingsManager.Save(); // Save
 		}
 	}
 }

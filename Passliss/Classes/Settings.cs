@@ -71,6 +71,11 @@ namespace Passliss.Classes
 		/// The maximum random password length.
 		/// </summary>
 		public int? MaxRandomLength { get; set; }
+
+		/// <summary>
+		/// True if Passliss should use a random length for the generated password.
+		/// </summary>
+		public bool? UseRandomPasswordLengthOnStart { get; set; }
 	}
 
 	/// <summary>
@@ -104,7 +109,8 @@ namespace Passliss.Classes
 					NotifyUpdates = true,
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
-					MaxRandomLength = 30
+					MaxRandomLength = 30,
+					UseRandomPasswordLengthOnStart = true
 				}; // Create a new settings file
 
 				Save(); // Save the changes

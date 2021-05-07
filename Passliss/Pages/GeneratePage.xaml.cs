@@ -85,6 +85,12 @@ namespace Passliss.Pages
 				_ => "20"
 			}; // Set text
 
+			if (Global.Settings.UseRandomPasswordLengthOnStart.Value)
+			{
+				Random random = new();
+				LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
+			}
+
 			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
 
 		}
