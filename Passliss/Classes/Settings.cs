@@ -56,6 +56,26 @@ namespace Passliss.Classes
 		/// True if Passliss should notify the user when updates are available.
 		/// </summary>
 		public bool? NotifyUpdates { get; set; }
+
+		/// <summary>
+		/// Default Password preset.
+		/// </summary>
+		public PasswordPresets? PasswordPreset { get; set; }
+
+		/// <summary>
+		/// The minimum random password length.
+		/// </summary>
+		public int? MinRandomLength { get; set; }
+
+		/// <summary>
+		/// The maximum random password length.
+		/// </summary>
+		public int? MaxRandomLength { get; set; }
+
+		/// <summary>
+		/// True if Passliss should use a random length for the generated password.
+		/// </summary>
+		public bool? UseRandomPasswordLengthOnStart { get; set; }
 	}
 
 	/// <summary>
@@ -81,7 +101,17 @@ namespace Passliss.Classes
 			}
 			else
 			{
-				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
+				Global.Settings = new Settings
+				{
+					IsDarkTheme = false,
+					Language = "_default",
+					CheckUpdatesOnStart = true,
+					NotifyUpdates = true,
+					PasswordPreset = PasswordPresets.Simple,
+					MinRandomLength = 10,
+					MaxRandomLength = 30,
+					UseRandomPasswordLengthOnStart = true
+				}; // Create a new settings file
 
 				Save(); // Save the changes
 			}

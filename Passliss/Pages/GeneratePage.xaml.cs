@@ -52,11 +52,44 @@ namespace Passliss.Pages
 		{
 			InitializeComponent();
 
-			LowerCaseChk.IsChecked = true; // Check the checkbox
-			UpperCaseChk.IsChecked = true; // Check the checkbox
-			NumbersChk.IsChecked = true; // Check the checkbox
+			LowerCaseChk.IsChecked = Global.Settings.PasswordPreset switch 
+			{
+				PasswordPresets.Simple => true,
+				PasswordPresets.Complex => true,
+				_ => true
+			}; // Check the checkbox
 
-			LenghtTxt.Text = "20"; // Set text
+			UpperCaseChk.IsChecked = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => true,
+				PasswordPresets.Complex => true,
+				_ => true
+			}; // Check the checkbox
+			NumbersChk.IsChecked = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => false,
+				PasswordPresets.Complex => true,
+				_ => false
+			}; // Check the checkbox
+
+			SpecialCaractersChk.IsChecked = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => false,
+				PasswordPresets.Complex => true,
+				_ => false
+			}; // Check the checkbox
+			LenghtTxt.Text = Global.Settings.PasswordPreset switch
+			{
+				PasswordPresets.Simple => "15",
+				PasswordPresets.Complex => "25",
+				_ => "20"
+			}; // Set text
+
+			if (Global.Settings.UseRandomPasswordLengthOnStart.Value)
+			{
+				Random random = new();
+				LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
+			}
 
 			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
 
@@ -140,7 +173,7 @@ namespace Passliss.Pages
 		private void RandomizeLength_Click(object sender, RoutedEventArgs e)
 		{
 			Random random = new();
-			LenghtTxt.Text = random.Next(10, 30).ToString();
+			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 
 		private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)

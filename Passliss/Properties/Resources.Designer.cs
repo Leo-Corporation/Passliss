@@ -70,6 +70,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to And.
+        /// </summary>
+        public static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Apply {
@@ -84,6 +93,15 @@ namespace Passliss.Properties {
         public static string AvailableUpdates {
             get {
                 return ResourceManager.GetString("AvailableUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Between.
+        /// </summary>
+        public static string Between {
+            get {
+                return ResourceManager.GetString("Between", resourceCulture);
             }
         }
         
@@ -142,6 +160,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex.
+        /// </summary>
+        public static string Complex {
+            get {
+                return ResourceManager.GetString("Complex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
@@ -183,6 +210,15 @@ namespace Passliss.Properties {
         public static string Default {
             get {
                 return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default preset.
+        /// </summary>
+        public static string DefaultPreset {
+            get {
+                return ResourceManager.GetString("DefaultPreset", resourceCulture);
             }
         }
         
@@ -493,6 +529,33 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Random password length.
+        /// </summary>
+        public static string RandomPasswordLength {
+            get {
+                return ResourceManager.GetString("RandomPasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two values that set the minimum and maximum length..
+        /// </summary>
+        public static string RandomPasswordLengthDesc {
+            get {
+                return ResourceManager.GetString("RandomPasswordLengthDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a random password length on start.
+        /// </summary>
+        public static string RandomPasswordLengthOnStart {
+            get {
+                return ResourceManager.GetString("RandomPasswordLengthOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset settings.
         /// </summary>
         public static string ResetSettings {
@@ -543,6 +606,15 @@ namespace Passliss.Properties {
         public static string SettingsReset {
             get {
                 return ResourceManager.GetString("SettingsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple.
+        /// </summary>
+        public static string Simple {
+            get {
+                return ResourceManager.GetString("Simple", resourceCulture);
             }
         }
         
@@ -651,6 +723,15 @@ namespace Passliss.Properties {
         public static string UpToDate {
             get {
                 return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified values are incorrect..
+        /// </summary>
+        public static string ValuesIncorrect {
+            get {
+                return ResourceManager.GetString("ValuesIncorrect", resourceCulture);
             }
         }
         

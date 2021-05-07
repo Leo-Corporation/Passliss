@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Passliss"
-#define MyAppVersion "1.2.0.2104"
-#define MyAppFullVersion "1.2.0.2104"
+#define MyAppVersion "1.3.0.2105"
+#define MyAppFullVersion "1.3.0.2105"
 #define MyAppPublisher "Léo Corporation"
 #define MyAppURL "https://leocorp.fr/"
 #define MyAppExeName "Passliss.exe"

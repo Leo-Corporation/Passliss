@@ -318,4 +318,31 @@
   <data name="SettingsReset" xml:space="preserve">
     <value>Tous les paramètres ont été réinitialisés, Passliss va maintenant redémarrer.</value>
   </data>
+  <data name="DefaultPreset" xml:space="preserve">
+    <value>Préréglage par défaut</value>
+  </data>
+  <data name="Simple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="Complex" xml:space="preserve">
+    <value>Complexe</value>
+  </data>
+  <data name="RandomPasswordLength" xml:space="preserve">
+    <value>Longueur de mot de passe aléatoire</value>
+  </data>
+  <data name="RandomPasswordLengthDesc" xml:space="preserve">
+    <value>Deux valeurs qui définissent la longueur minimum et maximum.</value>
+  </data>
+  <data name="RandomPasswordLengthOnStart" xml:space="preserve">
+    <value>Utiliser une longueur aléatoire de mot de passe lors du démarrage</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Entre</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>Et</value>
+  </data>
+  <data name="ValuesIncorrect" xml:space="preserve">
+    <value>Les valeurs spécifiées sont incorrectes.</value>
+  </data>
 </root>

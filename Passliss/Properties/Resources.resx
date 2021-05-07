@@ -298,4 +298,31 @@
   <data name="SettingsReset" xml:space="preserve">
     <value>All settings have been reset, Passliss will now restart.</value>
   </data>
+  <data name="DefaultPreset" xml:space="preserve">
+    <value>Default preset</value>
+  </data>
+  <data name="Simple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="Complex" xml:space="preserve">
+    <value>Complex</value>
+  </data>
+  <data name="RandomPasswordLength" xml:space="preserve">
+    <value>Random password length</value>
+  </data>
+  <data name="RandomPasswordLengthDesc" xml:space="preserve">
+    <value>Two values that set the minimum and maximum length.</value>
+  </data>
+  <data name="RandomPasswordLengthOnStart" xml:space="preserve">
+    <value>Use a random password length on start</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>And</value>
+  </data>
+  <data name="ValuesIncorrect" xml:space="preserve">
+    <value>Specified values are incorrect.</value>
+  </data>
 </root>
