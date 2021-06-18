@@ -161,6 +161,8 @@ namespace Passliss.Pages
 				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
 				InstallIconTxt.Text = "\uE92A"; // Set text 
 			}
+
+			VersionTxt.Text = Global.Version; // Set text
 		}
 
 		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
