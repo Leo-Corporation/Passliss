@@ -259,6 +259,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export settings.
+        /// </summary>
+        public static string ExportSettings {
+            get {
+                return ResourceManager.GetString("ExportSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password Configurations have been successfully exported..
         /// </summary>
         public static string ExportSuccess {
@@ -336,6 +345,15 @@ namespace Passliss.Properties {
         public static string ImportConserve {
             get {
                 return ResourceManager.GetString("ImportConserve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import settings.
+        /// </summary>
+        public static string ImportSettings {
+            get {
+                return ResourceManager.GetString("ImportSettings", resourceCulture);
             }
         }
         
@@ -597,6 +615,24 @@ namespace Passliss.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings exported sucessfully..
+        /// </summary>
+        public static string SettingsExportedSucessMsg {
+            get {
+                return ResourceManager.GetString("SettingsExportedSucessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings have been imported sucessfully. To finish the process, Passliss will now restart..
+        /// </summary>
+        public static string SettingsImportedMsg {
+            get {
+                return ResourceManager.GetString("SettingsImportedMsg", resourceCulture);
             }
         }
         

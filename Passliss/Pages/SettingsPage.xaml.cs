@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
+using Microsoft.Win32;
 using Passliss.Classes;
 using System;
 using System.Collections.Generic;
@@ -357,6 +358,38 @@ namespace Passliss.Pages
 			Global.Settings.UseRandomPasswordLengthOnStart = RandomLengthOnStartChk.IsChecked; // Set value
 
 			SettingsManager.Save(); // Save
+		}
+
+		private void ImportBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void ExportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				FileName = "PasslissSettings.xml",
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.Export
+			}; // Create file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Export(saveFileDialog.FileName); // Export games
+			}
+		}
+
+		private void BtnEnter(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		}
+
+		private void BtnLeave(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 		}
 	}
 }
