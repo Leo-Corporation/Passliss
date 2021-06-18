@@ -362,7 +362,16 @@ namespace Passliss.Pages
 
 		private void ImportBtn_Click(object sender, RoutedEventArgs e)
 		{
+			OpenFileDialog openFileDialog = new()
+			{
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.ImportSettings
+			}; // Create file dialog
 
+			if (openFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Import(openFileDialog.FileName); // Import games
+			}
 		}
 
 		private void ExportBtn_Click(object sender, RoutedEventArgs e)
@@ -371,7 +380,7 @@ namespace Passliss.Pages
 			{
 				FileName = "PasslissSettings.xml",
 				Filter = "XML|*.xml",
-				Title = Properties.Resources.Export
+				Title = Properties.Resources.ExportSettings
 			}; // Create file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)
