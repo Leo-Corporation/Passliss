@@ -53,7 +53,7 @@ namespace Passliss.Pages
 		{
 			InitializeComponent();
 
-			LowerCaseChk.IsChecked = Global.Settings.PasswordPreset switch 
+			LowerCaseChk.IsChecked = Global.Settings.PasswordPreset switch
 			{
 				PasswordPresets.Simple => true,
 				PasswordPresets.Complex => true,
@@ -235,7 +235,7 @@ namespace Passliss.Pages
 						HistoryScroll.Visibility = Visibility.Collapsed; // Hide
 
 						HistoryBtn.Content = "\uF47F"; // Set text
-					} 
+					}
 				}
 			}
 			else
