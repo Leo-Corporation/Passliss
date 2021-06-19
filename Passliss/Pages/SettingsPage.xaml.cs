@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
+using Microsoft.Win32;
 using Passliss.Classes;
 using System;
 using System.Collections.Generic;
@@ -161,6 +162,8 @@ namespace Passliss.Pages
 				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
 				InstallIconTxt.Text = "\uE92A"; // Set text 
 			}
+
+			VersionTxt.Text = Global.Version; // Set text
 		}
 
 		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -355,6 +358,47 @@ namespace Passliss.Pages
 			Global.Settings.UseRandomPasswordLengthOnStart = RandomLengthOnStartChk.IsChecked; // Set value
 
 			SettingsManager.Save(); // Save
+		}
+
+		private void ImportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new()
+			{
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.ImportSettings
+			}; // Create file dialog
+
+			if (openFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Import(openFileDialog.FileName); // Import games
+			}
+		}
+
+		private void ExportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				FileName = "PasslissSettings.xml",
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.ExportSettings
+			}; // Create file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Export(saveFileDialog.FileName); // Export games
+			}
+		}
+
+		private void BtnEnter(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		}
+
+		private void BtnLeave(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 		}
 	}
 }

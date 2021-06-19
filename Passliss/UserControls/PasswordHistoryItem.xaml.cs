@@ -21,35 +21,54 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Passliss.Classes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Xalyus_Updater
+namespace Passliss.UserControls
 {
 	/// <summary>
-	/// A class that contains informations about the update status.
+	/// Interaction logic for PasswordHistoryItem.xaml
 	/// </summary>
-	public static class Global
+	public partial class PasswordHistoryItem : UserControl
 	{
-		/// <summary>
-		/// The progress of the update installation.
-		/// </summary>
-		public static int UpdateProgress { get; set; }
+		string Password { get; init; }
+		StackPanel StackPanel { get; init; }
+		public PasswordHistoryItem(string password, StackPanel stackPanel)
+		{
+			InitializeComponent();
+			Password = password; // Set
+			StackPanel = stackPanel; // Set
 
-		/// <summary>
-		/// The link of the file to be updated.
-		/// </summary>
-		public static string ZIPLink { get; set; }
+			InitUI();
+		}
 
-		/// <summary>
-		/// The directory where the file is downloaded.
-		/// </summary>
-		public static string Directory => AppDomain.CurrentDomain.BaseDirectory + @"\UpdatedGavilyaFiles.zip";
+		private void InitUI()
+		{
+			PasswordTxt.Text = Password; // Set text
+		}
 
-		/// <summary>
-		/// The displayed message when the update is installed.
-		/// </summary>
-		public static string InstallMessage { get; set; }
+		private void CopyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(Password); // Copy
+		}
+
+		private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+		{
+			StackPanel.Children.Remove(this); // Remove
+			Global.GeneratePage.HistoryBtn_Click(this, null);
+		}
 	}
 }
