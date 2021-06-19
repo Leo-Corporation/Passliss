@@ -331,6 +331,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History is empty..
+        /// </summary>
+        public static string HistoryEmpty {
+            get {
+                return ResourceManager.GetString("HistoryEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string Import {

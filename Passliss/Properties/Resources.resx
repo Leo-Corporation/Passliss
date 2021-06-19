@@ -337,4 +337,7 @@
   <data name="SettingsImportedMsg" xml:space="preserve">
     <value>Settings have been imported sucessfully. To finish the process, Passliss will now restart.</value>
   </data>
+  <data name="HistoryEmpty" xml:space="preserve">
+    <value>History is empty.</value>
+  </data>
 </root>
