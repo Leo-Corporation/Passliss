@@ -24,6 +24,7 @@ SOFTWARE.
 using LeoCorpLibrary;
 using Microsoft.Win32;
 using Passliss.Classes;
+using Passliss.UserControls;
 using Passliss.Windows;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace Passliss.Pages
 			}
 
 			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
-
+			PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history
 		}
 
 		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
@@ -107,6 +108,7 @@ namespace Passliss.Pages
 			if (!IsNoCheckboxesChecked())
 			{
 				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history
 			}
 			else
 			{
@@ -203,6 +205,54 @@ namespace Passliss.Pages
 			if (openFileDialog.ShowDialog() ?? true)
 			{
 				PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
+			}
+		}
+
+		internal void HistoryBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (PasswordHistory.Children.Count > 0)
+			{
+				if (sender is not PasswordHistoryItem)
+				{
+					if (Header.Visibility == Visibility.Visible)
+					{
+						Header.Visibility = Visibility.Collapsed; // Hide
+						Content.Visibility = Visibility.Collapsed; // Hide
+						ExportBar.Visibility = Visibility.Collapsed; // Hide
+
+						PasswordHistory.Visibility = Visibility.Visible; // Show
+						HistoryScroll.Visibility = Visibility.Visible; // Show
+
+						HistoryBtn.Content = "\uF36A"; // Set text
+					}
+					else
+					{
+						Header.Visibility = Visibility.Visible; // Show
+						Content.Visibility = Visibility.Visible; // Show
+						ExportBar.Visibility = Visibility.Visible; // Show
+
+						PasswordHistory.Visibility = Visibility.Collapsed; // Hide
+						HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+
+						HistoryBtn.Content = "\uF47F"; // Set text
+					} 
+				}
+			}
+			else
+			{
+				Header.Visibility = Visibility.Visible; // Show
+				Content.Visibility = Visibility.Visible; // Show
+				ExportBar.Visibility = Visibility.Visible; // Show
+
+				PasswordHistory.Visibility = Visibility.Collapsed; // Hide
+				HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+
+				HistoryBtn.Content = "\uF47F"; // Set text
+
+				if (sender is not PasswordHistoryItem)
+				{
+					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show
+				}
 			}
 		}
 	}
