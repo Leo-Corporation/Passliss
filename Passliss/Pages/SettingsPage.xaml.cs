@@ -68,9 +68,15 @@ namespace Passliss.Pages
 
 		private async void InitUI()
 		{
+			if (!Global.Settings.IsThemeSystem.HasValue)
+			{
+				Global.Settings.IsThemeSystem = false; // Set
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
+			SystemRadioBtn.IsChecked = Global.Settings.IsThemeSystem; // Change IsChecked property
 
 			// Load checkboxes
 			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
@@ -169,6 +175,7 @@ namespace Passliss.Pages
 		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
 		{
 			Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+			Global.Settings.IsThemeSystem = SystemRadioBtn.IsChecked.Value; // Set the settings
 			SettingsManager.Save(); // Save the changes
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			DisplayRestartMessage();
@@ -290,7 +297,8 @@ namespace Passliss.Pages
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
 					MaxRandomLength = 30,
-					UseRandomPasswordLengthOnStart = true
+					UseRandomPasswordLengthOnStart = true,
+					IsThemeSystem = false
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -399,6 +407,11 @@ namespace Passliss.Pages
 		{
 			Button button = (Button)sender; // Create button
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		}
+
+		private void SystemRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
 		}
 	}
 }

@@ -78,6 +78,11 @@ namespace Passliss.Classes
 		/// True if Passliss should use a random length for the generated password.
 		/// </summary>
 		public bool? UseRandomPasswordLengthOnStart { get; set; }
+
+		/// <summary>
+		/// True if Passliss should use the system's theme.
+		/// </summary>
+		public bool? IsThemeSystem { get; set; }
 	}
 
 	/// <summary>
@@ -112,7 +117,8 @@ namespace Passliss.Classes
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
 					MaxRandomLength = 30,
-					UseRandomPasswordLengthOnStart = true
+					UseRandomPasswordLengthOnStart = true,
+					IsThemeSystem = false
 				}; // Create a new settings file
 
 				Save(); // Save the changes
