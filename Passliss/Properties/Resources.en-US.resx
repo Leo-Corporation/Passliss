@@ -360,4 +360,7 @@
   <data name="HistoryEmpty" xml:space="preserve">
     <value>History is empty.</value>
   </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
 </root>
