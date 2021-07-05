@@ -363,4 +363,10 @@
   <data name="System" xml:space="preserve">
     <value>Système</value>
   </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Démarrage</value>
+  </data>
+  <data name="StartupPage" xml:space="preserve">
+    <value>Sélectionnez la page de démarrage par défaut.</value>
+  </data>
 </root>

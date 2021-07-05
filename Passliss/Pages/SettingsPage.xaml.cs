@@ -24,6 +24,7 @@ SOFTWARE.
 using LeoCorpLibrary;
 using Microsoft.Win32;
 using Passliss.Classes;
+using Passliss.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -106,6 +107,17 @@ namespace Passliss.Pages
 				LangComboBox.Items.Add(Global.LanguageList[i]);
 			}
 
+			// Load PageComboBox
+			if (Global.Settings.StartupPage is null) // If the value is null
+			{
+				Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
+			}
+
+			PageComboBox.Items.Add(Properties.Resources.Generate); // Add item
+			PageComboBox.Items.Add(Properties.Resources.Strenght); // Add item
+
+			PageComboBox.SelectedIndex = (int)Global.Settings.StartupPage; // Set index
+
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
 			// Load PresetComboBox
@@ -151,6 +163,7 @@ namespace Passliss.Pages
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
 			RandomLengthApplyBtn.Visibility = Visibility.Hidden; // Hide
+			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 			// Update the UpdateStatusTxt
 			if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -313,7 +326,8 @@ namespace Passliss.Pages
 					MinRandomLength = 10,
 					MaxRandomLength = 30,
 					UseRandomPasswordLengthOnStart = true,
-					IsThemeSystem = false
+					IsThemeSystem = false,
+					StartupPage = DefaultPage.Generate
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -474,6 +488,19 @@ namespace Passliss.Pages
 			SystemBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 
 			CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+
+		private void PageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			PageApplyBtn.Visibility = Visibility.Visible; // Show
+		}
+
+		private void PageApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.StartupPage = (DefaultPage)PageComboBox.SelectedIndex;
+			SettingsManager.Save(); // Save
+
+			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
 		}
 	}
 }

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Passliss.Classes;
+using Passliss.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,14 +52,25 @@ namespace Passliss
 		{
 			InitializeComponent();
 			InitUI(); // Init the UI elements
+			Focus();
 		}
 
 		private void InitUI()
 		{
 			HelloTxt.Text = Global.GetHiSentence; // Set the "Hi" message
-			PageContent.Content = Global.GeneratePage;
+			PageContent.Content = Global.Settings.StartupPage switch 
+			{ 
+				DefaultPage.Generate => Global.GeneratePage,
+				DefaultPage.Strength => Global.StrenghtPage,
+				_ => Global.GeneratePage
+			}; // Set startup page
 
-			CheckButton(GenerateTabBtn); // Check the "Generate" button
+			CheckButton(Global.Settings.StartupPage switch 
+			{ 
+				DefaultPage.Generate => GenerateTabBtn,
+				DefaultPage.Strength => StrenghtTabBtn,
+				_ => GenerateTabBtn
+			}); // Check the selected page's button
 		}
 
 		private void ResetAllCheckStatus()
