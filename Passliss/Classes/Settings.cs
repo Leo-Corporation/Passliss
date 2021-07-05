@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using LeoCorpLibrary;
+using Passliss.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -78,6 +79,16 @@ namespace Passliss.Classes
 		/// True if Passliss should use a random length for the generated password.
 		/// </summary>
 		public bool? UseRandomPasswordLengthOnStart { get; set; }
+
+		/// <summary>
+		/// True if Passliss should use the system's theme.
+		/// </summary>
+		public bool? IsThemeSystem { get; set; }
+
+		/// <summary>
+		/// The startup page of Passliss.
+		/// </summary>
+		public DefaultPage? StartupPage { get; set; }
 	}
 
 	/// <summary>
@@ -112,7 +123,9 @@ namespace Passliss.Classes
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
 					MaxRandomLength = 30,
-					UseRandomPasswordLengthOnStart = true
+					UseRandomPasswordLengthOnStart = true,
+					IsThemeSystem = false,
+					StartupPage = DefaultPage.Generate
 				}; // Create a new settings file
 
 				Save(); // Save the changes

@@ -360,4 +360,13 @@
   <data name="HistoryEmpty" xml:space="preserve">
     <value>History is empty.</value>
   </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="StartupPage" xml:space="preserve">
+    <value>Select the default startup page.</value>
+  </data>
 </root>

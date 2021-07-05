@@ -114,5 +114,11 @@ namespace Passliss.Windows
 			Regex regex = new("[^0-9]+");
 			e.Handled = regex.IsMatch(e.Text);
 		}
+
+		private void RandomizeLength_Click(object sender, RoutedEventArgs e)
+		{
+			Random random = new();
+			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString(); 
+		}
 	}
 }

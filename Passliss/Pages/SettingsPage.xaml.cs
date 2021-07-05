@@ -24,6 +24,7 @@ SOFTWARE.
 using LeoCorpLibrary;
 using Microsoft.Win32;
 using Passliss.Classes;
+using Passliss.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -68,9 +69,30 @@ namespace Passliss.Pages
 
 		private async void InitUI()
 		{
+			if (!Global.Settings.IsThemeSystem.HasValue)
+			{
+				Global.Settings.IsThemeSystem = false; // Set
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
+			SystemRadioBtn.IsChecked = Global.Settings.IsThemeSystem; // Change IsChecked property
+
+			// Borders
+			if (DarkRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder = DarkBorder; // Set
+			}
+			else if (LightRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder = LightBorder; // Set
+			}
+			else if (SystemRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder = SystemBorder; // Set
+			}
+			RefreshBorders();
 
 			// Load checkboxes
 			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
@@ -84,6 +106,17 @@ namespace Passliss.Pages
 			{
 				LangComboBox.Items.Add(Global.LanguageList[i]);
 			}
+
+			// Load PageComboBox
+			if (Global.Settings.StartupPage is null) // If the value is null
+			{
+				Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
+			}
+
+			PageComboBox.Items.Add(Properties.Resources.Generate); // Add item
+			PageComboBox.Items.Add(Properties.Resources.Strenght); // Add item
+
+			PageComboBox.SelectedIndex = (int)Global.Settings.StartupPage; // Set index
 
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
@@ -130,6 +163,7 @@ namespace Passliss.Pages
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
 			RandomLengthApplyBtn.Visibility = Visibility.Hidden; // Hide
+			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 			// Update the UpdateStatusTxt
 			if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -169,6 +203,7 @@ namespace Passliss.Pages
 		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
 		{
 			Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+			Global.Settings.IsThemeSystem = SystemRadioBtn.IsChecked.Value; // Set the settings
 			SettingsManager.Save(); // Save the changes
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			DisplayRestartMessage();
@@ -290,7 +325,9 @@ namespace Passliss.Pages
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
 					MaxRandomLength = 30,
-					UseRandomPasswordLengthOnStart = true
+					UseRandomPasswordLengthOnStart = true,
+					IsThemeSystem = false,
+					StartupPage = DefaultPage.Generate
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -399,6 +436,71 @@ namespace Passliss.Pages
 		{
 			Button button = (Button)sender; // Create button
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		}
+
+		private void SystemRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+		}
+
+		Border CheckedBorder { get; set; }
+		private void Border_MouseEnter(object sender, MouseEventArgs e)
+		{
+			Border border = (Border)sender;
+			border.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+
+		private void Border_MouseLeave(object sender, MouseEventArgs e)
+		{
+			Border border = (Border)sender;
+			if (border != CheckedBorder)
+			{
+				border.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			}
+
+		}
+
+		private void LightBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			LightRadioBtn.IsChecked = true; // Set IsChecked
+			CheckedBorder = LightBorder; // Set
+			RefreshBorders();
+		}
+
+		private void DarkBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			DarkRadioBtn.IsChecked = true; // Set IsChecked
+			CheckedBorder = DarkBorder; // Set
+			RefreshBorders();
+		}
+
+		private void SystemBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			SystemRadioBtn.IsChecked = true; // Set IsChecked
+			CheckedBorder = SystemBorder; // Set
+			RefreshBorders();
+		}
+
+		private void RefreshBorders()
+		{
+			LightBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			DarkBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			SystemBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+
+			CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+
+		private void PageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			PageApplyBtn.Visibility = Visibility.Visible; // Show
+		}
+
+		private void PageApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.StartupPage = (DefaultPage)PageComboBox.SelectedIndex;
+			SettingsManager.Save(); // Save
+
+			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
 		}
 	}
 }
