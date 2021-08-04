@@ -375,4 +375,7 @@
   <data name="UnsetPwrConfigMsg" xml:space="preserve">
     <value>Voulez-vous réinitialiser la Configuration de mot de passe par défaut ?</value>
   </data>
+  <data name="ResetDefaultPwrConfig" xml:space="preserve">
+    <value>Réinitialiser la Configuration de mot de passe par défaut</value>
+  </data>
 </root>

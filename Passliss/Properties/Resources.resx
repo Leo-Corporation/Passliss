@@ -355,4 +355,7 @@
   <data name="UnsetPwrConfigMsg" xml:space="preserve">
     <value>Do you want to reset the default Password Configuration?</value>
   </data>
+  <data name="ResetDefaultPwrConfig" xml:space="preserve">
+    <value>Reset default Password Configuration</value>
+  </data>
 </root>

@@ -466,7 +466,11 @@ namespace Passliss.Pages
 
 		private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
 		{
-
+			if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+			{
+				Global.Settings.DefaultPasswordConfiguration = null; // Reset
+				SettingsManager.Save(); // Save changes
+			}
 		}
 	}
 }

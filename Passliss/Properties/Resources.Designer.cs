@@ -583,6 +583,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset default Password Configuration.
+        /// </summary>
+        public static string ResetDefaultPwrConfig {
+            get {
+                return ResourceManager.GetString("ResetDefaultPwrConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset settings.
         /// </summary>
         public static string ResetSettings {
