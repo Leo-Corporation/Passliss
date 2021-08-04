@@ -369,4 +369,10 @@
   <data name="StartupPage" xml:space="preserve">
     <value>Sélectionnez la page de démarrage par défaut.</value>
   </data>
+  <data name="SetDefaultPwrConfigMsg" xml:space="preserve">
+    <value>Voulez-vous définir cette Configuration de mot de passe par défaut. L’actuelle va être remplacé par celle-ci.</value>
+  </data>
+  <data name="UnsetPwrConfigMsg" xml:space="preserve">
+    <value>Voulez-vous réinitialiser la Configuration de mot de passe par défaut ?</value>
+  </data>
 </root>
