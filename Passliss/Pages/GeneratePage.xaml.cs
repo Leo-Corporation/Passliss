@@ -53,38 +53,21 @@ namespace Passliss.Pages
 		{
 			InitializeComponent();
 
-			LowerCaseChk.IsChecked = Global.Settings.PasswordPreset switch
+			if (Global.Settings.DefaultPasswordConfiguration is not null)
 			{
-				PasswordPresets.Simple => true,
-				PasswordPresets.Complex => true,
-				_ => true
-			}; // Check the checkbox
-
-			UpperCaseChk.IsChecked = Global.Settings.PasswordPreset switch
+				LowerCaseChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseLowerCase; // Set value
+				UpperCaseChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseUpperCase; // Set value
+				NumbersChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseNumbers; // Set value
+				SpecialCaractersChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseSpecialCaracters; // Set value
+				LenghtTxt.Text = Global.Settings.DefaultPasswordConfiguration.Length; // Set text 
+			}
+			else
 			{
-				PasswordPresets.Simple => true,
-				PasswordPresets.Complex => true,
-				_ => true
-			}; // Check the checkbox
-			NumbersChk.IsChecked = Global.Settings.PasswordPreset switch
-			{
-				PasswordPresets.Simple => false,
-				PasswordPresets.Complex => true,
-				_ => false
-			}; // Check the checkbox
-
-			SpecialCaractersChk.IsChecked = Global.Settings.PasswordPreset switch
-			{
-				PasswordPresets.Simple => false,
-				PasswordPresets.Complex => true,
-				_ => false
-			}; // Check the checkbox
-			LenghtTxt.Text = Global.Settings.PasswordPreset switch
-			{
-				PasswordPresets.Simple => "15",
-				PasswordPresets.Complex => "25",
-				_ => "20"
-			}; // Set text
+				LowerCaseChk.IsChecked = true; // Set value
+				UpperCaseChk.IsChecked = true; // Set value
+				NumbersChk.IsChecked = true; // Set value
+				SpecialCaractersChk.IsChecked = false; // Set value
+			}
 
 			if (Global.Settings.UseRandomPasswordLengthOnStart.Value)
 			{

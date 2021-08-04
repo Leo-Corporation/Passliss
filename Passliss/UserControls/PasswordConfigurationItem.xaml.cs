@@ -60,6 +60,15 @@ namespace Passliss.UserControls
 		private void InitUI()
 		{
 			NameTxt.Text = PasswordConfiguration.Name; // Display the name
+
+			if (Global.Settings.DefaultPasswordConfiguration == PasswordConfiguration)
+			{
+				FavBtn.Content = "\uF71B"; // Set text icon
+			}
+			else
+			{
+				FavBtn.Content = "\uF710"; // Set text icon
+			}
 		}
 
 		private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -106,6 +115,35 @@ namespace Passliss.UserControls
 				Global.GeneratePage.SpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Check
 				Global.LoadPasswordConfigurationWindow.Hide(); // Hide the parent window
 			}
+		}
+
+		private void FavBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (Global.Settings.DefaultPasswordConfiguration is not null)
+			{
+				if (Global.Settings.DefaultPasswordConfiguration == PasswordConfiguration) // If is default
+				{
+					if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+					{
+						Global.Settings.DefaultPasswordConfiguration = null; // Reset
+						FavBtn.Content = "\uF710"; // Set text icon
+					}
+				}
+				else
+				{
+					if (MessageBox.Show(Properties.Resources.SetDefaultPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+					{
+						Global.Settings.DefaultPasswordConfiguration = PasswordConfiguration; // Reset
+						FavBtn.Content = "\uF71B"; // Set text icon
+					}
+				}
+			}
+			else
+			{
+				Global.Settings.DefaultPasswordConfiguration = PasswordConfiguration; // Reset
+				FavBtn.Content = "\uF71B"; // Set text icon
+			}
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }

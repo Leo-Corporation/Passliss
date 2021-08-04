@@ -327,7 +327,8 @@ namespace Passliss.Pages
 					MaxRandomLength = 30,
 					UseRandomPasswordLengthOnStart = true,
 					IsThemeSystem = false,
-					StartupPage = DefaultPage.Generate
+					StartupPage = DefaultPage.Generate,
+					DefaultPasswordConfiguration = null
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
