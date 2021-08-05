@@ -6,13 +6,17 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>1.5.0.2107</Version>
+    <Version>1.6.0.2108</Version>
     <Authors>Léo Corporation</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Leo-Corporation/Passliss</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Leo-Corporation/Passliss</RepositoryUrl>
     <Copyright>© 2021</Copyright>
+    <AssemblyVersion>1.6.0.2108</AssemblyVersion>
+    <FileVersion>1.6.0.2108</FileVersion>
+    <Company>Léo Corporation</Company>
+    <Product>Passliss</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LeoCorpLibrary" Version="3.8.0.2107" />
+    <PackageReference Include="LeoCorpLibrary" Version="3.9.0.2108" />
   </ItemGroup>
 
   <ItemGroup>

@@ -120,28 +120,6 @@ namespace Passliss.Pages
 
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
-			// Load PresetComboBox
-			PresetComboBox.Items.Add(Properties.Resources.Simple); // Add item
-			PresetComboBox.Items.Add(Properties.Resources.Complex); // Add item
-
-			PresetComboBox.SelectedIndex = Global.Settings.PasswordPreset.HasValue ? Global.Settings.PasswordPreset switch
-			{
-				PasswordPresets.Simple => 0,
-				PasswordPresets.Complex => 1,
-				_ => 0
-			} : 0;
-
-			if (!Global.Settings.PasswordPreset.HasValue)
-			{
-				Global.Settings.PasswordPreset = PresetComboBox.SelectedIndex switch
-				{
-					0 => PasswordPresets.Simple,
-					1 => PasswordPresets.Complex,
-					_ => PasswordPresets.Simple
-				}; // Set
-				SettingsManager.Save(); // Save the changes
-			}
-
 			// Random TextBoxes
 			MinLengthTxt.Text = Global.Settings.MinRandomLength.HasValue ? Global.Settings.MinRandomLength.Value.ToString() : "10"; // Set
 			MaxLengthTxt.Text = Global.Settings.MaxRandomLength.HasValue ? Global.Settings.MaxRandomLength.Value.ToString() : "30"; // Set
@@ -161,7 +139,6 @@ namespace Passliss.Pages
 			// Apply buttons
 			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
-			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
 			RandomLengthApplyBtn.Visibility = Visibility.Hidden; // Hide
 			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
 
@@ -327,7 +304,8 @@ namespace Passliss.Pages
 					MaxRandomLength = 30,
 					UseRandomPasswordLengthOnStart = true,
 					IsThemeSystem = false,
-					StartupPage = DefaultPage.Generate
+					StartupPage = DefaultPage.Generate,
+					DefaultPasswordConfiguration = null
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -337,23 +315,6 @@ namespace Passliss.Pages
 				Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe");
 				Environment.Exit(0); // Quit
 			}
-		}
-
-		private void PresetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			PresetApplyBtn.Visibility = Visibility.Visible; // Show
-		}
-
-		private void PresetApplyBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Global.Settings.PasswordPreset = PresetComboBox.SelectedIndex switch
-			{
-				0 => PasswordPresets.Simple,
-				1 => PasswordPresets.Complex,
-				_ => PasswordPresets.Simple
-			}; // Set
-			SettingsManager.Save(); // Save the changes
-			PresetApplyBtn.Visibility = Visibility.Hidden; // Hide
 		}
 
 		private void RandomLengthApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -501,6 +462,15 @@ namespace Passliss.Pages
 			SettingsManager.Save(); // Save
 
 			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
+		}
+
+		private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+		{
+			if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+			{
+				Global.Settings.DefaultPasswordConfiguration = null; // Reset
+				SettingsManager.Save(); // Save changes
+			}
 		}
 	}
 }

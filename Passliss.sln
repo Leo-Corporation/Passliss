@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passliss", "Passliss\Passliss.csproj", "{97D00781-8989-4E70-B53D-29F507F8F69B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xalyus Updater", "Xalyus Updater\Xalyus Updater.csproj", "{AFE68D1B-C643-4922-BBCF-CFDC9EE9BAD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xalyus Updater", "Xalyus Updater\Xalyus Updater.csproj", "{AFE68D1B-C643-4922-BBCF-CFDC9EE9BAD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,6 +35,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -47,6 +48,12 @@ namespace Passliss
 	public partial class MainWindow : Window
 	{
 		private Button CheckedButton { get; set; }
+		ColorAnimation colorAnimation = new()
+		{
+			From = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()),
+			To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
+			Duration = new(TimeSpan.FromSeconds(0.2d))
+		};
 
 		public MainWindow()
 		{
@@ -117,6 +124,7 @@ namespace Passliss
 			if (button != CheckedButton)
 			{
 				button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+				button.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation); // Play animation
 			}
 
 		}

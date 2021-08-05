@@ -18,9 +18,9 @@
     <br />
     <a href="https://github.com/Leo-Corporation/Passliss/releases"><strong>Download »</strong></a>
     <br />
-    <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBug%5D+">Report Bug</a>
+    <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=bug&template=bug-report.yml&title=%5BBug%5D+">Report Bug</a>
     ·
-    <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=suggestion+enhancement&template=feature_request.md&title=%5BEnhancement%5D+">Request Feature</a>
+    <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=%5BEnhancement%5D+">Request Feature</a>
     ·
     <a href="https://github.com/Leo-Corporation/Passliss/issues?q=is%3Aopen+is%3Aissue+label%3Abug">Known Issues</a>
 

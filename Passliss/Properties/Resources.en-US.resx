@@ -369,4 +369,13 @@
   <data name="StartupPage" xml:space="preserve">
     <value>Select the default startup page.</value>
   </data>
+  <data name="SetDefaultPwrConfigMsg" xml:space="preserve">
+    <value>Do you want to set this Password Configuration as default. The current one is going to be replaced by this one.</value>
+  </data>
+  <data name="UnsetPwrConfigMsg" xml:space="preserve">
+    <value>Do you want to reset the default Password Configuration?</value>
+  </data>
+  <data name="ResetDefaultPwrConfig" xml:space="preserve">
+    <value>Reset default Password Configuration</value>
+  </data>
 </root>

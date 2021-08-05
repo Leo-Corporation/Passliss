@@ -583,6 +583,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset default Password Configuration.
+        /// </summary>
+        public static string ResetDefaultPwrConfig {
+            get {
+                return ResourceManager.GetString("ResetDefaultPwrConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset settings.
         /// </summary>
         public static string ResetSettings {
@@ -615,6 +624,15 @@ namespace Passliss.Properties {
         public static string SeeLicenses {
             get {
                 return ResourceManager.GetString("SeeLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to set this Password Configuration as default. The current one is going to be replaced by this one..
+        /// </summary>
+        public static string SetDefaultPwrConfigMsg {
+            get {
+                return ResourceManager.GetString("SetDefaultPwrConfigMsg", resourceCulture);
             }
         }
         
@@ -768,6 +786,15 @@ namespace Passliss.Properties {
         public static string UnableToCheckUpdates {
             get {
                 return ResourceManager.GetString("UnableToCheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to reset the default Password Configuration?.
+        /// </summary>
+        public static string UnsetPwrConfigMsg {
+            get {
+                return ResourceManager.GetString("UnsetPwrConfigMsg", resourceCulture);
             }
         }
         
