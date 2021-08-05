@@ -238,5 +238,15 @@ namespace Passliss.Pages
 				}
 			}
 		}
+
+		private void RandomizeBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Random random = new();
+			LowerCaseChk.IsChecked = random.Next(0, 2) == 0; // Randomize
+			UpperCaseChk.IsChecked = random.Next(0, 2) == 0; // Randomize
+			NumbersChk.IsChecked = random.Next(0, 2) == 0; // Randomize
+			SpecialCaractersChk.IsChecked = random.Next(0, 2) == 0; // Randomize
+			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
+		}
 	}
 }
