@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>1.6.0.2108-rc1</Version>
+    <Version>1.6.0.2108</Version>
     <Authors>Léo Corporation</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
