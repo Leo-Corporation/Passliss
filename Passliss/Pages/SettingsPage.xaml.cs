@@ -305,7 +305,6 @@ namespace Passliss.Pages
 					UseRandomPasswordLengthOnStart = true,
 					IsThemeSystem = false,
 					StartupPage = DefaultPage.Generate,
-					DefaultPasswordConfiguration = null
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -468,7 +467,10 @@ namespace Passliss.Pages
 		{
 			if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 			{
-				Global.Settings.DefaultPasswordConfiguration = null; // Reset
+				for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
+				{
+					Global.PasswordConfigurations[i].IsDefault = false; // Reset to default
+				}
 				SettingsManager.Save(); // Save changes
 			}
 		}

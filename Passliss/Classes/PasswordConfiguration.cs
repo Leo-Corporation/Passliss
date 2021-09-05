@@ -60,5 +60,10 @@ namespace Passliss.Classes
 		/// The name of the <see cref="PasswordConfiguration"/>.
 		/// </summary>
 		public string Name { get; set; }
+
+		/// <summary>
+		/// True if the password configuration is set by default
+		/// </summary>
+		public bool? IsDefault { get; set; }
 	}
 }

@@ -61,7 +61,14 @@ namespace Passliss.UserControls
 		{
 			NameTxt.Text = PasswordConfiguration.Name; // Display the name
 
-			if (Global.Settings.DefaultPasswordConfiguration == PasswordConfiguration)
+			if (PasswordConfiguration.IsDefault is null) // If there is no value
+			{
+				PasswordConfiguration.IsDefault = false; // Set to default
+				Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)] = PasswordConfiguration; // Update
+				PasswordConfigurationManager.Save();
+			}
+
+			if (Global.DefaultPasswordConfiguration is not null && Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)].IsDefault.Value)
 			{
 				FavBtn.Content = "\uF71B"; // Set text icon
 			}
@@ -121,13 +128,14 @@ namespace Passliss.UserControls
 
 		private void FavBtn_Click(object sender, RoutedEventArgs e)
 		{
-			if (Global.Settings.DefaultPasswordConfiguration is not null)
+			if (Global.DefaultPasswordConfiguration is not null)
 			{
-				if (Global.Settings.DefaultPasswordConfiguration == PasswordConfiguration) // If is default
+				if (Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)].IsDefault.Value) // If is default
 				{
 					if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 					{
-						Global.Settings.DefaultPasswordConfiguration = null; // Reset
+						Global.DefaultPasswordConfiguration = null; // Reset
+						Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)].IsDefault = false;
 						FavBtn.Content = "\uF710"; // Set text icon
 					}
 				}
@@ -135,17 +143,20 @@ namespace Passliss.UserControls
 				{
 					if (MessageBox.Show(Properties.Resources.SetDefaultPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 					{
-						Global.Settings.DefaultPasswordConfiguration = PasswordConfiguration; // Reset
+						Global.DefaultPasswordConfiguration = PasswordConfiguration; // Reset
+						Global.PasswordConfigurations.ForEach((PasswordConfiguration passwordConfiguration) => { passwordConfiguration.IsDefault = false; }); // Reset all
+						Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)].IsDefault = true;
 						FavBtn.Content = "\uF71B"; // Set text icon
 					}
 				}
 			}
 			else
 			{
-				Global.Settings.DefaultPasswordConfiguration = PasswordConfiguration; // Reset
+				Global.DefaultPasswordConfiguration = PasswordConfiguration; // Reset
+				Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)].IsDefault = true;
 				FavBtn.Content = "\uF71B"; // Set text icon
 			}
-			SettingsManager.Save(); // Save changes
+			PasswordConfigurationManager.Save(); // Save changes
 		}
 	}
 }

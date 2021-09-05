@@ -89,11 +89,6 @@ namespace Passliss.Classes
 		/// The startup page of Passliss.
 		/// </summary>
 		public DefaultPage? StartupPage { get; set; }
-
-		/// <summary>
-		/// The default <see cref="PasswordConfiguration"/>.
-		/// </summary>
-		public PasswordConfiguration DefaultPasswordConfiguration { get; set; }
 	}
 
 	/// <summary>
@@ -131,7 +126,6 @@ namespace Passliss.Classes
 					UseRandomPasswordLengthOnStart = true,
 					IsThemeSystem = false,
 					StartupPage = DefaultPage.Generate,
-					DefaultPasswordConfiguration = null
 				}; // Create a new settings file
 
 				Save(); // Save the changes

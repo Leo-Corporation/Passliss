@@ -113,6 +113,11 @@ namespace Passliss.Classes
 		public static List<PasswordConfiguration> PasswordConfigurations { get; set; }
 
 		/// <summary>
+		/// The default <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public static PasswordConfiguration DefaultPasswordConfiguration { get; set; }
+
+		/// <summary>
 		/// Changes the application's theme.
 		/// </summary>
 		public static void ChangeTheme()
