@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Passliss.Classes;
+using Passliss.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,7 @@ namespace Passliss.UserControls
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground 
 			DeleteBtn.Foreground = button.Foreground;
 			FavBtn.Foreground = button.Foreground;
+			EditBtn.Foreground = button.Foreground;
 		}
 
 		private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -102,6 +104,7 @@ namespace Passliss.UserControls
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 			DeleteBtn.Foreground = button.Foreground;
 			FavBtn.Foreground = button.Foreground;
+			EditBtn.Foreground = button.Foreground;
 		}
 
 		private void ItemBtn_Click(object sender, RoutedEventArgs e)
@@ -157,6 +160,19 @@ namespace Passliss.UserControls
 				FavBtn.Content = "\uF71B"; // Set text icon
 			}
 			PasswordConfigurationManager.Save(); // Save changes
+		}
+
+		NewPasswordConfigurationWindow NewPasswordConfigurationWindow;
+		private void EditBtn_Click(object sender, RoutedEventArgs e)
+		{
+			NewPasswordConfigurationWindow = new(PasswordConfiguration); // Create
+			double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
+
+			NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
+			NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
+			NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
+			NewPasswordConfigurationWindow.Show(); // Show
+			NewPasswordConfigurationWindow.Focus();
 		}
 	}
 }
