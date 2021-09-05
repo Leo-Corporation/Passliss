@@ -77,6 +77,7 @@ namespace Passliss.UserControls
 
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground 
 			DeleteBtn.Foreground = button.Foreground;
+			FavBtn.Foreground = button.Foreground;
 		}
 
 		private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -93,6 +94,7 @@ namespace Passliss.UserControls
 
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 			DeleteBtn.Foreground = button.Foreground;
+			FavBtn.Foreground = button.Foreground;
 		}
 
 		private void ItemBtn_Click(object sender, RoutedEventArgs e)
