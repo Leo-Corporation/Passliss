@@ -124,7 +124,7 @@ namespace Passliss.Classes
 					MinRandomLength = 10,
 					MaxRandomLength = 30,
 					UseRandomPasswordLengthOnStart = true,
-					IsThemeSystem = false,
+					IsThemeSystem = true,
 					StartupPage = DefaultPage.Generate,
 				}; // Create a new settings file
 
