@@ -378,4 +378,10 @@
   <data name="ResetDefaultPwrConfig" xml:space="preserve">
     <value>Réinitialiser la Configuration de mot de passe par défaut</value>
   </data>
+  <data name="SeeFullPassword" xml:space="preserve">
+    <value>Afficher le mot de passe en entier</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
 </root>

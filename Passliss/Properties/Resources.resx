@@ -358,4 +358,10 @@
   <data name="ResetDefaultPwrConfig" xml:space="preserve">
     <value>Reset default Password Configuration</value>
   </data>
+  <data name="SeeFullPassword" xml:space="preserve">
+    <value>See full password</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>
