@@ -261,5 +261,10 @@ namespace Passliss.Pages
 			SpecialCaractersChk.IsChecked = random.Next(0, 2) == 0; // Randomize
 			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
+
+		private void ShowFullPasswordBtn_Click(object sender, RoutedEventArgs e)
+		{
+			new SeeFullPassword(PasswordTxt.Text).Show(); // Show the window
+		}
 	}
 }
