@@ -53,13 +53,26 @@ namespace Passliss.Pages
 		{
 			InitializeComponent();
 
-			if (Global.Settings.DefaultPasswordConfiguration is not null)
+			for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
 			{
-				LowerCaseChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseLowerCase; // Set value
-				UpperCaseChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseUpperCase; // Set value
-				NumbersChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseNumbers; // Set value
-				SpecialCaractersChk.IsChecked = Global.Settings.DefaultPasswordConfiguration.UseSpecialCaracters; // Set value
-				LenghtTxt.Text = Global.Settings.DefaultPasswordConfiguration.Length; // Set text 
+				if (Global.PasswordConfigurations[i].IsDefault.Value)
+				{
+					Global.DefaultPasswordConfiguration = Global.PasswordConfigurations[i];
+					break;
+				}
+				else
+				{
+					Global.DefaultPasswordConfiguration = null; // Set to null
+				}
+			}
+
+			if (Global.DefaultPasswordConfiguration is not null)
+			{
+				LowerCaseChk.IsChecked = Global.DefaultPasswordConfiguration.UseLowerCase; // Set value
+				UpperCaseChk.IsChecked = Global.DefaultPasswordConfiguration.UseUpperCase; // Set value
+				NumbersChk.IsChecked = Global.DefaultPasswordConfiguration.UseNumbers; // Set value
+				SpecialCaractersChk.IsChecked = Global.DefaultPasswordConfiguration.UseSpecialCaracters; // Set value
+				LenghtTxt.Text = Global.DefaultPasswordConfiguration.Length; // Set text 
 			}
 			else
 			{
@@ -247,6 +260,11 @@ namespace Passliss.Pages
 			NumbersChk.IsChecked = random.Next(0, 2) == 0; // Randomize
 			SpecialCaractersChk.IsChecked = random.Next(0, 2) == 0; // Randomize
 			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
+		}
+
+		private void ShowFullPasswordBtn_Click(object sender, RoutedEventArgs e)
+		{
+			new SeeFullPassword(PasswordTxt.Text).Show(); // Show the window
 		}
 	}
 }

@@ -44,9 +44,14 @@ namespace Passliss.Windows
 	/// </summary>
 	public partial class NewPasswordConfigurationWindow : Window
 	{
-		public NewPasswordConfigurationWindow()
+		bool IsEditMode { get; init; }
+		PasswordConfiguration PasswordConfiguration { get; set; }
+		public NewPasswordConfigurationWindow(PasswordConfiguration passwordConfiguration = null)
 		{
 			InitializeComponent();
+			IsEditMode = passwordConfiguration is not null; // Set
+			PasswordConfiguration = passwordConfiguration;
+
 			InitUI();
 		}
 
@@ -64,16 +69,30 @@ namespace Passliss.Windows
 		/// </summary>
 		private void InitUI()
 		{
-			NameTxt.Text = Properties.Resources.PasswordConfigurations + $"{Global.PasswordConfigurations.Count + 1}"; // Set the name
-			LowerCaseChk.IsChecked = true; // Check the checkbox
-			UpperCaseChk.IsChecked = true; // Check the checkbox
-			NumbersChk.IsChecked = true; // Check the checkbox
+			if (!IsEditMode)
+			{
+				NameTxt.Text = Properties.Resources.PasswordConfigurations + $"{Global.PasswordConfigurations.Count + 1}"; // Set the name
+				LowerCaseChk.IsChecked = true; // Check the checkbox
+				UpperCaseChk.IsChecked = true; // Check the checkbox
+				NumbersChk.IsChecked = true; // Check the checkbox
 
-			LenghtTxt.Text = "20";
+				LenghtTxt.Text = "20";
+			}
+			else
+			{
+				NameTxt.Text = PasswordConfiguration.Name; // Set text
+				LowerCaseChk.IsChecked = PasswordConfiguration.UseLowerCase; // Set
+				UpperCaseChk.IsChecked = PasswordConfiguration.UseUpperCase; // Set
+				NumbersChk.IsChecked = PasswordConfiguration.UseNumbers; // Set
+				SpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Set
+
+				LenghtTxt.Text = PasswordConfiguration.Length; // Set
+			}
 		}
 
 		private void SaveBtn_Click(object sender, RoutedEventArgs e)
 		{
+			// Check if the provided length is correct
 			LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces to avoid errors
 			if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
 			{
@@ -83,15 +102,31 @@ namespace Passliss.Windows
 
 			if (!IsNoCheckboxesChecked())
 			{
-				Global.PasswordConfigurations.Add(new PasswordConfiguration
+				if (!IsEditMode)
 				{
-					UseLowerCase = LowerCaseChk.IsChecked.Value, // Set value
-					UseNumbers = NumbersChk.IsChecked.Value, // Set value
-					UseSpecialCaracters = SpecialCaractersChk.IsChecked.Value, // Set value
-					UseUpperCase = UpperCaseChk.IsChecked.Value, // Set value
-					Length = LenghtTxt.Text, // Set value
-					Name = NameTxt.Text // Set value
-				});
+					Global.PasswordConfigurations.Add(new PasswordConfiguration
+					{
+						UseLowerCase = LowerCaseChk.IsChecked.Value, // Set value
+						UseNumbers = NumbersChk.IsChecked.Value, // Set value
+						UseSpecialCaracters = SpecialCaractersChk.IsChecked.Value, // Set value
+						UseUpperCase = UpperCaseChk.IsChecked.Value, // Set value
+						Length = LenghtTxt.Text, // Set value
+						Name = NameTxt.Text // Set value
+					}); 
+				}
+				else
+				{
+					Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)] = new()
+					{
+						UseLowerCase = LowerCaseChk.IsChecked.Value, // Set value
+						UseNumbers = NumbersChk.IsChecked.Value, // Set value
+						UseSpecialCaracters = SpecialCaractersChk.IsChecked.Value, // Set value
+						UseUpperCase = UpperCaseChk.IsChecked.Value, // Set value
+						Length = LenghtTxt.Text, // Set value
+						Name = NameTxt.Text, // Set value
+						IsDefault = PasswordConfiguration.IsDefault
+					};
+				}
 
 				PasswordConfigurationManager.Save(); // Save the changes
 

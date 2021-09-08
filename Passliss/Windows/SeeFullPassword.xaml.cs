@@ -26,44 +26,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-namespace Passliss.Classes
+namespace Passliss.Windows
 {
-	public class PasswordConfiguration
+	/// <summary>
+	/// Interaction logic for SeeFullPassword.xaml
+	/// </summary>
+	public partial class SeeFullPassword : Window
 	{
-		/// <summary>
-		/// <see cref="true"/> to use upper cases.
-		/// </summary>
-		public bool UseUpperCase { get; set; }
+		string Password { get; set; }
+		public SeeFullPassword(string password)
+		{
+			InitializeComponent();
+			Password = password; // Set value to specified password
 
-		/// <summary>
-		/// <see cref="true"/> to use lower cases.
-		/// </summary>
-		public bool UseLowerCase { get; set; }
+			InitUI(); // Load the UI
+		}
 
-		/// <summary>
-		/// <see cref="true"/> to use numbers.
-		/// </summary>
-		public bool UseNumbers { get; set; }
+		private void InitUI()
+		{
+			PasswordTxt.Text = Password; // Set text
+		}
 
-		/// <summary>
-		/// <see cref="true"/> to use special caracters.
-		/// </summary>
-		public bool UseSpecialCaracters { get; set; }
+		private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+		{
+			WindowState = WindowState.Minimized; // Minimize
+		}
 
-		/// <summary>
-		/// The length of the password.
-		/// </summary>
-		public string Length { get; set; }
+		private void CloseBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Close(); // Close              
+		}
 
-		/// <summary>
-		/// The name of the <see cref="PasswordConfiguration"/>.
-		/// </summary>
-		public string Name { get; set; }
+		private void CopyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(Password); // Copy to clipboard
+		}
 
-		/// <summary>
-		/// True if the password configuration is set by default
-		/// </summary>
-		public bool? IsDefault { get; set; }
+		private void CloseWindowBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Close(); // Close
+		}
 	}
 }

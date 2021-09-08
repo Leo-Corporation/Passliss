@@ -160,6 +160,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complex.
         /// </summary>
         public static string Complex {
@@ -615,6 +624,15 @@ namespace Passliss.Properties {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See full password.
+        /// </summary>
+        public static string SeeFullPassword {
+            get {
+                return ResourceManager.GetString("SeeFullPassword", resourceCulture);
             }
         }
         

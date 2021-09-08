@@ -100,7 +100,7 @@ namespace Passliss.Classes
 		/// <summary>
 		/// The current version of Passliss.
 		/// </summary>
-		public static string Version => "1.6.0.2108";
+		public static string Version => "1.7.0.2109";
 
 		/// <summary>
 		/// GitHub link for the last version (<see cref="string"/>).
@@ -111,6 +111,11 @@ namespace Passliss.Classes
 		/// Password configurations.
 		/// </summary>
 		public static List<PasswordConfiguration> PasswordConfigurations { get; set; }
+
+		/// <summary>
+		/// The default <see cref="PasswordConfiguration"/>.
+		/// </summary>
+		public static PasswordConfiguration DefaultPasswordConfiguration { get; set; }
 
 		/// <summary>
 		/// Changes the application's theme.
