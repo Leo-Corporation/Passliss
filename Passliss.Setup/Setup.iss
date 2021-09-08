@@ -3,7 +3,7 @@
 
 #define MyAppName "Passliss"
 #define MyAppVersion "1.7.0.2109"
-#define MyAppFullVersion "1.7.0.2109-rc1"
+#define MyAppFullVersion "1.7.0.2109"
 #define MyAppPublisher "Léo Corporation"
 #define MyAppURL "https://leocorporation.dev/"
 #define MyAppExeName "Passliss.exe"
