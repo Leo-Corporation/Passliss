@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <None Remove="Fonts\FluentlyIcons.ttf" />
+    <None Remove="Fonts\FluentSystemIcons-Filled.ttf" />
     <None Remove="Fonts\FluentSystemIcons-Regular.ttf" />
     <None Remove="Fonts\Montserrat-Bold.ttf" />
     <None Remove="Fonts\Montserrat-Regular.ttf" />
@@ -58,6 +59,9 @@
 
   <ItemGroup>
     <Resource Include="Fonts\FluentlyIcons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\FluentSystemIcons-Filled.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\FluentSystemIcons-Regular.ttf">

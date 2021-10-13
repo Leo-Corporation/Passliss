@@ -30,7 +30,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1">
-            <TextBlock x:Name="IconTxt" Margin="10" Text="&#xEA38;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentlyIcons" FontSize="72" HorizontalAlignment="Center"/>
+			<TextBlock x:Name="IconTxt" Margin="10" Text="&#xEA38;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="72" HorizontalAlignment="Center"/>
             <TextBlock x:Name="CommentTxt" Text="{x:Static lang:Resources.EnterPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,0,15"/>
         </StackPanel>
 
