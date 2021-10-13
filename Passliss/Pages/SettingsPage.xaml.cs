@@ -74,10 +74,26 @@ namespace Passliss.Pages
 				Global.Settings.IsThemeSystem = false; // Set
 			}
 
+			// Load
+			if (Global.Settings.StartupPage is null) // If the value is null
+			{
+				Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
 			SystemRadioBtn.IsChecked = Global.Settings.IsThemeSystem; // Change IsChecked property
+
+			switch (Global.Settings.StartupPage)
+			{
+				case DefaultPage.Generate:
+					GeneratePageRadioBtn.IsChecked = true;
+					break;
+				case DefaultPage.Strength:
+					StrengthPageRadioBtn.IsChecked = true;
+					break;
+			}
 
 			// Borders
 			if (DarkRadioBtn.IsChecked.Value)
@@ -94,6 +110,16 @@ namespace Passliss.Pages
 			}
 			RefreshBorders();
 
+			if (GeneratePageRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder2 = GeneratePageBorder; // Set
+			}
+			else if (StrengthPageRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder2 = StrengthPageBorder; // Set
+			}
+			RefreshBordersPage(); // Refresh
+
 			// Load checkboxes
 			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
 			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
@@ -106,17 +132,6 @@ namespace Passliss.Pages
 			{
 				LangComboBox.Items.Add(Global.LanguageList[i]);
 			}
-
-			// Load PageComboBox
-			if (Global.Settings.StartupPage is null) // If the value is null
-			{
-				Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
-			}
-
-			PageComboBox.Items.Add(Properties.Resources.Generate); // Add item
-			PageComboBox.Items.Add(Properties.Resources.Strenght); // Add item
-
-			PageComboBox.SelectedIndex = (int)Global.Settings.StartupPage; // Set index
 
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
@@ -140,7 +155,6 @@ namespace Passliss.Pages
 			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			RandomLengthApplyBtn.Visibility = Visibility.Hidden; // Hide
-			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 			// Update the UpdateStatusTxt
 			if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -450,19 +464,6 @@ namespace Passliss.Pages
 			CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
 		}
 
-		private void PageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			PageApplyBtn.Visibility = Visibility.Visible; // Show
-		}
-
-		private void PageApplyBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Global.Settings.StartupPage = (DefaultPage)PageComboBox.SelectedIndex;
-			SettingsManager.Save(); // Save
-
-			PageApplyBtn.Visibility = Visibility.Hidden; // Hide
-		}
-
 		private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
 		{
 			if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
@@ -473,6 +474,70 @@ namespace Passliss.Pages
 				}
 				SettingsManager.Save(); // Save changes
 			}
+		}
+
+		Border CheckedBorder2 { get; set; }
+
+		private void RefreshBordersPage()
+		{
+			GeneratePageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			StrengthPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
+
+			CheckedBorder2.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+		private void GeneratePageRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			CheckedBorder2 = GeneratePageBorder; // Set
+			GeneratePageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Generate; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void StrengthPageRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			CheckedBorder2 = StrengthPageBorder; // Set
+			StrengthPageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Strength; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void Border_MouseEnter_1(object sender, MouseEventArgs e)
+		{
+			Border border = (Border)sender;
+			border.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+
+		private void Border_MouseLeave_1(object sender, MouseEventArgs e)
+		{
+			Border border = (Border)sender;
+			if (border != CheckedBorder2)
+			{
+				border.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			}
+		}
+
+		private void GeneratePageBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			CheckedBorder2 = GeneratePageBorder; // Set
+			GeneratePageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Generate; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void StrengthPageBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			CheckedBorder2 = StrengthPageBorder; // Set
+			StrengthPageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Strength; // Update
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }
