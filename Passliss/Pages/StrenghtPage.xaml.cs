@@ -55,7 +55,7 @@ namespace Passliss.Pages
 		{
 			return passwordStrenght switch
 			{
-				PasswordStrenght.VeryGood => "\uF29D", // If the password strenght is very good
+				PasswordStrenght.VeryGood => "\uF6EA", // If the password strenght is very good
 				PasswordStrenght.Good => "\uF299", // If the password strenght is good
 				PasswordStrenght.Medium => "\uF882", // If the password strenght is medium
 				PasswordStrenght.Low => "\uF36E", // If the password strenght is low
