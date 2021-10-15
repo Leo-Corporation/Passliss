@@ -25,7 +25,11 @@
                     <PasswordBox Visibility="Hidden" Style="{DynamicResource PasswordBoxStyle1}" x:Name="PasswordPwrBox" Margin="10,15,10,0" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" BorderThickness="3" PasswordChanged="PasswordPwrBox_PasswordChanged"/>
                 </Grid>
 
-                <Button x:Name="HideShowPassword" Click="HideShowPassword_Click" Content="&#xe9fa;" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="15" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,0,0" Padding="7,5,7,5" VerticalAlignment="Bottom" Height="25"/>
+				<Button x:Name="HideShowPassword" Click="HideShowPassword_Click" Content="&#xe9fa;" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="15" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,0,0" Padding="7,5,7,5" VerticalAlignment="Bottom" Height="25">
+					<Button.ToolTip>
+						<ToolTip Content="{x:Static lang:Resources.HideShowPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+					</Button.ToolTip>
+				</Button>
             </StackPanel>
         </StackPanel>
 
