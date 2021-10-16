@@ -100,7 +100,7 @@ namespace Passliss.Classes
 		/// <summary>
 		/// The current version of Passliss.
 		/// </summary>
-		public static string Version => "1.8.0.2110-rc1";
+		public static string Version => "1.8.0.2110";
 
 		/// <summary>
 		/// GitHub link for the last version (<see cref="string"/>).
@@ -146,7 +146,7 @@ namespace Passliss.Classes
 
 			App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
 		}
-		
+
 		public static bool IsSystemThemeDark()
 		{
 			if (Env.WindowsVersion != WindowsVersion.Windows10)
