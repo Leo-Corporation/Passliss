@@ -24,21 +24,11 @@ SOFTWARE.
 using Passliss.Classes;
 using Passliss.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Passliss
 {
@@ -65,15 +55,15 @@ namespace Passliss
 		private void InitUI()
 		{
 			HelloTxt.Text = Global.GetHiSentence; // Set the "Hi" message
-			PageContent.Content = Global.Settings.StartupPage switch 
-			{ 
+			PageContent.Content = Global.Settings.StartupPage switch
+			{
 				DefaultPage.Generate => Global.GeneratePage,
 				DefaultPage.Strength => Global.StrenghtPage,
 				_ => Global.GeneratePage
 			}; // Set startup page
 
-			CheckButton(Global.Settings.StartupPage switch 
-			{ 
+			CheckButton(Global.Settings.StartupPage switch
+			{
 				DefaultPage.Generate => GenerateTabBtn,
 				DefaultPage.Strength => StrenghtTabBtn,
 				_ => GenerateTabBtn

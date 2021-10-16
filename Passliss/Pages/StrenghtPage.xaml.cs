@@ -21,23 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
 using Passliss.Classes;
 using Passliss.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Passliss.Pages
 {
@@ -55,11 +42,11 @@ namespace Passliss.Pages
 		{
 			return passwordStrenght switch
 			{
-				PasswordStrenght.VeryGood => "", // If the password strenght is very good
-				PasswordStrenght.Good => "", // If the password strenght is good
-				PasswordStrenght.Medium => "", // If the password strenght is medium
-				PasswordStrenght.Low => "", // If the password strenght is low
-				_ => "" // If the password strenght is unknown
+				PasswordStrenght.VeryGood => "\uF6EA", // If the password strenght is very good
+				PasswordStrenght.Good => "\uF299", // If the password strenght is good
+				PasswordStrenght.Medium => "\uF882", // If the password strenght is medium
+				PasswordStrenght.Low => "\uF36E", // If the password strenght is low
+				_ => "\uF4AB" // If the password strenght is unknown
 			};
 		}
 

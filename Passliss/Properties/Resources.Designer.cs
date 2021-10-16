@@ -304,6 +304,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate random password length.
+        /// </summary>
+        public static string GenerateRandomLength {
+            get {
+                return ResourceManager.GetString("GenerateRandomLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Good afternoon.
         /// </summary>
         public static string GoodAfternoon {
@@ -336,6 +345,24 @@ namespace Passliss.Properties {
         public static string Hi {
             get {
                 return ResourceManager.GetString("Hi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide/Show password as plain text.
+        /// </summary>
+        public static string HideShowPassword {
+            get {
+                return ResourceManager.GetString("HideShowPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
             }
         }
         
@@ -565,6 +592,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Randomize password configuration.
+        /// </summary>
+        public static string RandomizePasswordConfiguration {
+            get {
+                return ResourceManager.GetString("RandomizePasswordConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Random password length.
         /// </summary>
         public static string RandomPasswordLength {
@@ -687,6 +723,15 @@ namespace Passliss.Properties {
         public static string SettingsReset {
             get {
                 return ResourceManager.GetString("SettingsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show full password.
+        /// </summary>
+        public static string ShowFullPassword {
+            get {
+                return ResourceManager.GetString("ShowFullPassword", resourceCulture);
             }
         }
         

@@ -384,4 +384,19 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="RandomizePasswordConfiguration" xml:space="preserve">
+    <value>Randomize password configuration</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="HideShowPassword" xml:space="preserve">
+    <value>Hide/Show password as plain text</value>
+  </data>
+  <data name="GenerateRandomLength" xml:space="preserve">
+    <value>Generate random password length</value>
+  </data>
+  <data name="ShowFullPassword" xml:space="preserve">
+    <value>Show full password</value>
+  </data>
 </root>

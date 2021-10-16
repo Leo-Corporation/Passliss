@@ -23,19 +23,9 @@ SOFTWARE.
 */
 using Passliss.Classes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Passliss.Windows
 {
@@ -112,7 +102,7 @@ namespace Passliss.Windows
 						UseUpperCase = UpperCaseChk.IsChecked.Value, // Set value
 						Length = LenghtTxt.Text, // Set value
 						Name = NameTxt.Text // Set value
-					}); 
+					});
 				}
 				else
 				{
@@ -153,7 +143,7 @@ namespace Passliss.Windows
 		private void RandomizeLength_Click(object sender, RoutedEventArgs e)
 		{
 			Random random = new();
-			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString(); 
+			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 	}
 }

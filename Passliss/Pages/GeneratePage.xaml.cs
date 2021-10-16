@@ -27,20 +27,10 @@ using Passliss.Classes;
 using Passliss.UserControls;
 using Passliss.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Passliss.Pages
 {
@@ -95,6 +85,7 @@ namespace Passliss.Pages
 		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
 		{
 			LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
+			HistoryBtn.Visibility = Visibility.Visible; // Set visibility
 			if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
 			{
 				MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
@@ -208,6 +199,7 @@ namespace Passliss.Pages
 		{
 			if (PasswordHistory.Children.Count > 0)
 			{
+				HistoryBtn.Visibility = Visibility.Visible; // Set visibility
 				if (sender is not PasswordHistoryItem)
 				{
 					if (Header.Visibility == Visibility.Visible)
@@ -244,7 +236,7 @@ namespace Passliss.Pages
 				HistoryScroll.Visibility = Visibility.Collapsed; // Hide
 
 				HistoryBtn.Content = "\uF47F"; // Set text
-
+				HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
 				if (sender is not PasswordHistoryItem)
 				{
 					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show
