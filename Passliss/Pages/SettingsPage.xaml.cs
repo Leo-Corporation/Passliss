@@ -91,6 +91,8 @@ namespace Passliss.Pages
 					break;
 			}
 
+			HidePasswordInStrengthChk.IsChecked = Global.Settings.HidePasswordInStrengthPage; // Set
+
 			// Borders
 			if (DarkRadioBtn.IsChecked.Value)
 			{
@@ -536,5 +538,11 @@ namespace Passliss.Pages
 			Global.Settings.StartupPage = DefaultPage.Strength; // Update
 			SettingsManager.Save(); // Save changes
 		}
-	}
+
+        private void HidePasswordInStrengthChk_Checked(object sender, RoutedEventArgs e)
+        {
+			Global.Settings.HidePasswordInStrengthPage = HidePasswordInStrengthChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+        }
+    }
 }

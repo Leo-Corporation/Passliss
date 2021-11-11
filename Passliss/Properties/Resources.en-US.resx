@@ -399,4 +399,7 @@
   <data name="ShowFullPassword" xml:space="preserve">
     <value>Show full password</value>
   </data>
+  <data name="AlwaysHidePasswordInStrengthPage" xml:space="preserve">
+    <value>Hide the password in "Strength" page by default.</value>
+  </data>
 </root>
