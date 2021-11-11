@@ -72,9 +72,9 @@ namespace Passliss.Pages
 			}
 
 			if (!Global.Settings.HidePasswordInStrengthPage.HasValue)
-            {
+			{
 				Global.Settings.HidePasswordInStrengthPage = false; // Set to default value
-            }
+			}
 
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -539,10 +539,10 @@ namespace Passliss.Pages
 			SettingsManager.Save(); // Save changes
 		}
 
-        private void HidePasswordInStrengthChk_Checked(object sender, RoutedEventArgs e)
-        {
+		private void HidePasswordInStrengthChk_Checked(object sender, RoutedEventArgs e)
+		{
 			Global.Settings.HidePasswordInStrengthPage = HidePasswordInStrengthChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
-        }
-    }
+		}
+	}
 }

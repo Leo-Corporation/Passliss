@@ -40,22 +40,22 @@ namespace Passliss.Pages
 		}
 
 		private void InitUI()
-        {
+		{
 			if (Global.Settings.HidePasswordInStrengthPage.Value)
-            {
+			{
 				PasswordPwrBox.Visibility = Visibility.Visible; // Change the visibility
 				PasswordTxt.Visibility = Visibility.Hidden; // Change the visibility
 				HideShowPassword.Content = "\ue9fb"; // Change text
 				HideShowPassword.FontSize = 9; // Change font size
 			}
-            else
-            {
+			else
+			{
 				PasswordPwrBox.Visibility = Visibility.Hidden; // Change the visibility
 				PasswordTxt.Visibility = Visibility.Visible; // Change the visibility
 				HideShowPassword.Content = "\ue9fa"; // Change text
 				HideShowPassword.FontSize = 15; // Change font size
 			}
-        }
+		}
 
 		private string GetStrenghtCaracter(PasswordStrenght passwordStrenght)
 		{

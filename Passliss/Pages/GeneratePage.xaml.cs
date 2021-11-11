@@ -276,12 +276,12 @@ namespace Passliss.Pages
 			HidePasswordBtn.Content = showPassword ? "\uF3F8" : "\uF3FC"; // Set icon text
 
 			for (int i = 0; i < PasswordHistory.Children.Count; i++)
-            {
+			{
 				if (PasswordHistory.Children[i] is PasswordHistoryItem passwordHistoryItem)
-                {
+				{
 					passwordHistoryItem.HideOrShowPasswordInPlainText(showPassword); // Show or hide password
-                }
-            }
+				}
+			}
 		}
 	}
 }

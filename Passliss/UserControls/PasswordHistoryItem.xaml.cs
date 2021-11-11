@@ -60,19 +60,19 @@ namespace Passliss.UserControls
 		}
 
 		internal void HideOrShowPasswordInPlainText(bool showPassword)
-        {
+		{
 			if (showPassword)
-            {
+			{
 				PasswordTxt.Text = Password;
-            }
+			}
 			else
-            {
+			{
 				PasswordTxt.Text = ""; // Clear
 				for (int i = 0; i < Password.Length; i++)
-                {
+				{
 					PasswordTxt.Text += "\u2022";
 				}
-            }
-        }
+			}
+		}
 	}
 }
