@@ -210,6 +210,7 @@ namespace Passliss.Pages
 
 						PasswordHistory.Visibility = Visibility.Visible; // Show
 						HistoryScroll.Visibility = Visibility.Visible; // Show
+						HidePasswordBtn.Visibility = Visibility.Visible; // Show
 
 						HistoryBtn.Content = "\uF36A"; // Set text
 						for (int i = 0; i < PasswordHistory.Children.Count; i++)
@@ -228,6 +229,7 @@ namespace Passliss.Pages
 
 						PasswordHistory.Visibility = Visibility.Collapsed; // Hide
 						HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+						HidePasswordBtn.Visibility = Visibility.Collapsed; // Hide
 
 						HistoryBtn.Content = "\uF47F"; // Set text
 					}
@@ -244,6 +246,7 @@ namespace Passliss.Pages
 
 				HistoryBtn.Content = "\uF47F"; // Set text
 				HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
+				HidePasswordBtn.Visibility = Visibility.Collapsed; // Hide
 				if (sender is not PasswordHistoryItem)
 				{
 					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show
