@@ -97,6 +97,7 @@ namespace Passliss.Pages
 			}
 
 			HidePasswordInStrengthChk.IsChecked = Global.Settings.HidePasswordInStrengthPage; // Set
+			HidePasswordInHistoryChk.IsChecked = Global.Settings.AlwaysHidePasswordInHistory; // Set
 
 			// Borders
 			if (DarkRadioBtn.IsChecked.Value)
@@ -550,5 +551,11 @@ namespace Passliss.Pages
 			Global.Settings.HidePasswordInStrengthPage = HidePasswordInStrengthChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
 		}
-	}
+
+        private void HidePasswordInHistoryChk_Checked(object sender, RoutedEventArgs e)
+        {
+			Global.Settings.AlwaysHidePasswordInHistory = HidePasswordInHistoryChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
+    }
 }

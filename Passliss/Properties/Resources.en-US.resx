@@ -402,4 +402,7 @@
   <data name="AlwaysHidePasswordInStrengthPage" xml:space="preserve">
     <value>Hide the password in "Strength" page by default.</value>
   </data>
+  <data name="AlwaysHidePasswordInHistory" xml:space="preserve">
+    <value>Hide the password in history by default.</value>
+  </data>
 </root>

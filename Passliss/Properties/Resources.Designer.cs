@@ -70,6 +70,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide the password in history by default..
+        /// </summary>
+        public static string AlwaysHidePasswordInHistory {
+            get {
+                return ResourceManager.GetString("AlwaysHidePasswordInHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide the password in &quot;Strength&quot; page by default..
         /// </summary>
         public static string AlwaysHidePasswordInStrengthPage {
