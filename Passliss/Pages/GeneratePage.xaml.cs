@@ -94,7 +94,7 @@ namespace Passliss.Pages
 
 			if (!IsNoCheckboxesChecked())
 			{
-				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
 				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history
 			}
 			else
@@ -210,8 +210,16 @@ namespace Passliss.Pages
 
 						PasswordHistory.Visibility = Visibility.Visible; // Show
 						HistoryScroll.Visibility = Visibility.Visible; // Show
+						HidePasswordBtn.Visibility = Visibility.Visible; // Show
 
 						HistoryBtn.Content = "\uF36A"; // Set text
+						for (int i = 0; i < PasswordHistory.Children.Count; i++)
+						{
+							if (PasswordHistory.Children[i] is PasswordHistoryItem passwordHistoryItem)
+							{
+								passwordHistoryItem.HideOrShowPasswordInPlainText(showPassword); // Show or hide password
+							}
+						}
 					}
 					else
 					{
@@ -221,6 +229,7 @@ namespace Passliss.Pages
 
 						PasswordHistory.Visibility = Visibility.Collapsed; // Hide
 						HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+						HidePasswordBtn.Visibility = Visibility.Collapsed; // Hide
 
 						HistoryBtn.Content = "\uF47F"; // Set text
 					}
@@ -237,6 +246,7 @@ namespace Passliss.Pages
 
 				HistoryBtn.Content = "\uF47F"; // Set text
 				HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
+				HidePasswordBtn.Visibility = Visibility.Collapsed; // Hide
 				if (sender is not PasswordHistoryItem)
 				{
 					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show
@@ -257,6 +267,21 @@ namespace Passliss.Pages
 		private void ShowFullPasswordBtn_Click(object sender, RoutedEventArgs e)
 		{
 			new SeeFullPassword(PasswordTxt.Text).Show(); // Show the window
+		}
+
+		bool showPassword = !Global.Settings.AlwaysHidePasswordInHistory.Value;
+		private void HidePasswordBtn_Click(object sender, RoutedEventArgs e)
+		{
+			showPassword = !showPassword; // Update
+			HidePasswordBtn.Content = showPassword ? "\uF3F8" : "\uF3FC"; // Set icon text
+
+			for (int i = 0; i < PasswordHistory.Children.Count; i++)
+			{
+				if (PasswordHistory.Children[i] is PasswordHistoryItem passwordHistoryItem)
+				{
+					passwordHistoryItem.HideOrShowPasswordInPlainText(showPassword); // Show or hide password
+				}
+			}
 		}
 	}
 }

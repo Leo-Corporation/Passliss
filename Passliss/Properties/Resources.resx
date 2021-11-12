@@ -137,7 +137,7 @@
     <value>Lowercases</value>
   </data>
   <data name="SpecialCaracters" xml:space="preserve">
-    <value>Special caracters</value>
+    <value>Special characters</value>
   </data>
   <data name="Numbers" xml:space="preserve">
     <value>Numbers</value>
@@ -378,5 +378,14 @@
   </data>
   <data name="ShowFullPassword" xml:space="preserve">
     <value>Show full password</value>
+  </data>
+  <data name="AlwaysHidePasswordInStrengthPage" xml:space="preserve">
+    <value>Hide the password in "Strength" page by default.</value>
+  </data>
+  <data name="AlwaysHidePasswordInHistory" xml:space="preserve">
+    <value>Hide the password in history by default.</value>
+  </data>
+  <data name="OtherCharacters" xml:space="preserve">
+    <value>Other characters (separated by a ",")</value>
   </data>
 </root>

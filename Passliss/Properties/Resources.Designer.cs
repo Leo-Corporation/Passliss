@@ -19,7 +19,7 @@ namespace Passliss.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -66,6 +66,24 @@ namespace Passliss.Properties {
         public static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide the password in history by default..
+        /// </summary>
+        public static string AlwaysHidePasswordInHistory {
+            get {
+                return ResourceManager.GetString("AlwaysHidePasswordInHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide the password in &quot;Strength&quot; page by default..
+        /// </summary>
+        public static string AlwaysHidePasswordInStrengthPage {
+            get {
+                return ResourceManager.GetString("AlwaysHidePasswordInStrengthPage", resourceCulture);
             }
         }
         
@@ -547,6 +565,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other characters (separated by a &quot;,&quot;).
+        /// </summary>
+        public static string OtherCharacters {
+            get {
+                return ResourceManager.GetString("OtherCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passliss.
         /// </summary>
         public static string Passliss {
@@ -745,7 +772,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special caracters.
+        ///   Looks up a localized string similar to Special characters.
         /// </summary>
         public static string SpecialCaracters {
             get {

@@ -38,10 +38,11 @@ Passliss is written in C# .NET 5 using WPF.
 
 ## Contribute
 To contribute to the project, you'll need:
-- Visual Studio 2019 v16.8 or higher
+- Visual Studio 2022 (or 2019) v17.0 or higher
   - .NET Desktop Developpement
   - Git
 - .NET 5
+- .NET 6
 - (*optionnal*) Inno Setup v6.1 or higher
 
 [Click here](https://github.com/Leo-Corporation/Passliss/blob/main/CONTRIBUTING.md) to see the full guidelines.

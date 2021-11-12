@@ -58,5 +58,21 @@ namespace Passliss.UserControls
 			StackPanel.Children.Remove(this); // Remove
 			Global.GeneratePage.HistoryBtn_Click(this, null);
 		}
+
+		internal void HideOrShowPasswordInPlainText(bool showPassword)
+		{
+			if (showPassword)
+			{
+				PasswordTxt.Text = Password;
+			}
+			else
+			{
+				PasswordTxt.Text = ""; // Clear
+				for (int i = 0; i < Password.Length; i++)
+				{
+					PasswordTxt.Text += "\u2022";
+				}
+			}
+		}
 	}
 }

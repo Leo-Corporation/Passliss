@@ -399,4 +399,13 @@
   <data name="ShowFullPassword" xml:space="preserve">
     <value>Afficher le mot de passe en entier</value>
   </data>
+  <data name="AlwaysHidePasswordInStrengthPage" xml:space="preserve">
+    <value>Cacher le mot de passe dans la page "Force" par défaut.</value>
+  </data>
+  <data name="AlwaysHidePasswordInHistory" xml:space="preserve">
+    <value>Cacher le mot de passe dans l'historique par défaut.</value>
+  </data>
+  <data name="OtherCharacters" xml:space="preserve">
+    <value>Autres caractères (séparés par un ",")</value>
+  </data>
 </root>

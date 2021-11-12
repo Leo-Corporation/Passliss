@@ -71,6 +71,16 @@ namespace Passliss.Pages
 				Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
 			}
 
+			if (!Global.Settings.HidePasswordInStrengthPage.HasValue)
+			{
+				Global.Settings.HidePasswordInStrengthPage = false; // Set to default value
+			}
+
+			if (!Global.Settings.AlwaysHidePasswordInHistory.HasValue)
+            {
+				Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
+            }
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -85,6 +95,9 @@ namespace Passliss.Pages
 					StrengthPageRadioBtn.IsChecked = true;
 					break;
 			}
+
+			HidePasswordInStrengthChk.IsChecked = Global.Settings.HidePasswordInStrengthPage; // Set
+			HidePasswordInHistoryChk.IsChecked = Global.Settings.AlwaysHidePasswordInHistory; // Set
 
 			// Borders
 			if (DarkRadioBtn.IsChecked.Value)
@@ -310,6 +323,8 @@ namespace Passliss.Pages
 					UseRandomPasswordLengthOnStart = true,
 					IsThemeSystem = true,
 					StartupPage = DefaultPage.Generate,
+					HidePasswordInStrengthPage = false,
+					AlwaysHidePasswordInHistory = false,
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -530,5 +545,17 @@ namespace Passliss.Pages
 			Global.Settings.StartupPage = DefaultPage.Strength; // Update
 			SettingsManager.Save(); // Save changes
 		}
-	}
+
+		private void HidePasswordInStrengthChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.HidePasswordInStrengthPage = HidePasswordInStrengthChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
+
+        private void HidePasswordInHistoryChk_Checked(object sender, RoutedEventArgs e)
+        {
+			Global.Settings.AlwaysHidePasswordInHistory = HidePasswordInHistoryChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
+    }
 }
