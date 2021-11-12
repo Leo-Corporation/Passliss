@@ -94,7 +94,7 @@ namespace Passliss.Pages
 
 			if (!IsNoCheckboxesChecked())
 			{
-				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate 
+				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
 				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history
 			}
 			else

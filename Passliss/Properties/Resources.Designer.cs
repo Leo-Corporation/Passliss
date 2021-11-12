@@ -565,7 +565,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other characters (separated by a &quot;;&quot;).
+        ///   Looks up a localized string similar to Other characters (separated by a &quot;,&quot;).
         /// </summary>
         public static string OtherCharacters {
             get {
