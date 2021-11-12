@@ -565,6 +565,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other characters (separated by a &quot;;&quot;).
+        /// </summary>
+        public static string OtherCharacters {
+            get {
+                return ResourceManager.GetString("OtherCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passliss.
         /// </summary>
         public static string Passliss {

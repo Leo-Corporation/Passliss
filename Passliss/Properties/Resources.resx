@@ -385,4 +385,7 @@
   <data name="AlwaysHidePasswordInHistory" xml:space="preserve">
     <value>Hide the password in history by default.</value>
   </data>
+  <data name="OtherCharacters" xml:space="preserve">
+    <value>Other characters (separated by a ";")</value>
+  </data>
 </root>
