@@ -76,6 +76,11 @@ namespace Passliss.Pages
 				Global.Settings.HidePasswordInStrengthPage = false; // Set to default value
 			}
 
+			if (!Global.Settings.AlwaysHidePasswordInHistory.HasValue)
+            {
+				Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
+            }
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -318,6 +323,7 @@ namespace Passliss.Pages
 					IsThemeSystem = true,
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
+					AlwaysHidePasswordInHistory = false,
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes

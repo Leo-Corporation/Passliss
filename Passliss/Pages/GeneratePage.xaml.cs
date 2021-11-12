@@ -269,7 +269,7 @@ namespace Passliss.Pages
 			new SeeFullPassword(PasswordTxt.Text).Show(); // Show the window
 		}
 
-		bool showPassword = true;
+		bool showPassword = !Global.Settings.AlwaysHidePasswordInHistory.Value;
 		private void HidePasswordBtn_Click(object sender, RoutedEventArgs e)
 		{
 			showPassword = !showPassword; // Update

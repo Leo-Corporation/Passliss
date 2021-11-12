@@ -90,6 +90,11 @@ namespace Passliss.Classes
 		/// True if the password in <see cref="Pages.StrenghtPage"/> should be hidden by default.
 		/// </summary>
 		public bool? HidePasswordInStrengthPage { get; set; }
+
+		/// <summary>
+		/// True if Passliss should always hide generated passwords in history.
+		/// </summary>
+		public bool? AlwaysHidePasswordInHistory { get; set; }
 	}
 
 	/// <summary>
@@ -128,6 +133,7 @@ namespace Passliss.Classes
 					IsThemeSystem = true,
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
+					AlwaysHidePasswordInHistory = false,
 				}; // Create a new settings file
 
 				Save(); // Save the changes
