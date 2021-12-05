@@ -11,7 +11,7 @@
 	  Title="SettingsPage">
 
 	<ScrollViewer HorizontalScrollBarVisibility="Hidden" Template="{DynamicResource ScrollViewerControlTemplate}" CanContentScroll="True" Height="344">
-		<Grid Height="1090">
+		<Grid Height="1110">
 			<StackPanel Margin="10,40,10,10" Grid.Row="0">
 				<TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
 
