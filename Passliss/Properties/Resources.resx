@@ -388,4 +388,25 @@
   <data name="OtherCharacters" xml:space="preserve">
     <value>Other characters (separated by a ",")</value>
   </data>
+  <data name="Encryption" xml:space="preserve">
+    <value>Encryption</value>
+  </data>
+  <data name="StringToEncrypt" xml:space="preserve">
+    <value>String to encrypt</value>
+  </data>
+  <data name="Encrypt" xml:space="preserve">
+    <value>Encrypt</value>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algorithm</value>
+  </data>
+  <data name="AES" xml:space="preserve">
+    <value>AES</value>
+  </data>
+  <data name="3DES" xml:space="preserve">
+    <value>Triple-DES</value>
+  </data>
+  <data name="Decrypt" xml:space="preserve">
+    <value>Decrypt</value>
+  </data>
 </root>

@@ -61,11 +61,38 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Triple-DES.
+        /// </summary>
+        public static string _3DES {
+            get {
+                return ResourceManager.GetString("3DES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES.
+        /// </summary>
+        public static string AES {
+            get {
+                return ResourceManager.GetString("AES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Algorithm.
+        /// </summary>
+        public static string Algorithm {
+            get {
+                return ResourceManager.GetString("Algorithm", resourceCulture);
             }
         }
         
@@ -232,6 +259,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decrypt.
+        /// </summary>
+        public static string Decrypt {
+            get {
+                return ResourceManager.GetString("Decrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string Default {
@@ -246,6 +282,24 @@ namespace Passliss.Properties {
         public static string DefaultPreset {
             get {
                 return ResourceManager.GetString("DefaultPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt.
+        /// </summary>
+        public static string Encrypt {
+            get {
+                return ResourceManager.GetString("Encrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption.
+        /// </summary>
+        public static string Encryption {
+            get {
+                return ResourceManager.GetString("Encryption", resourceCulture);
             }
         }
         
@@ -849,6 +903,15 @@ namespace Passliss.Properties {
         public static string StrenghtWarning {
             get {
                 return ResourceManager.GetString("StrenghtWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to String to encrypt.
+        /// </summary>
+        public static string StringToEncrypt {
+            get {
+                return ResourceManager.GetString("StringToEncrypt", resourceCulture);
             }
         }
         
