@@ -5,7 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  xmlns:local="clr-namespace:Passliss.Pages"
 	  xmlns:lang="clr-namespace:Passliss.Properties"
-	  mc:Ignorable="d" 
+	  mc:Ignorable="d" Foreground="{Binding Source={StaticResource Foreground1}}"
 	  d:DesignHeight="350" d:DesignWidth="560"
 	  FontFamily="../Fonts/#Montserrat"
 	  Title="EncryptPage">
