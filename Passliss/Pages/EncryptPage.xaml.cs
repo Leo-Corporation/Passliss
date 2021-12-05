@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using LeoCorpLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,32 @@ namespace Passliss.Pages
 		public EncryptPage()
 		{
 			InitializeComponent();
+			InitUI();
+		}
+
+		private void InitUI()
+		{
+			AlgorithmComboBox.SelectedIndex = 0;
+		}
+
+		private void EncryptBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrEmpty(KeyTxt.Text))
+			{
+				return; // Stop
+			}
+
+			if (string.IsNullOrEmpty(StringToEncryptTxt.Text))
+			{
+				return; // Stop
+			}
+
+			// Encrypt
+			EncryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
+			{
+				0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text),
+				_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text)
+			};
 		}
 	}
 }

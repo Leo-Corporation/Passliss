@@ -432,4 +432,7 @@
   <data name="EncryptedString" xml:space="preserve">
     <value>Chaîne de caractères encryptée</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Clé</value>
+  </data>
 </root>
