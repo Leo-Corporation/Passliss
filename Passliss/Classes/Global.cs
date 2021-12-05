@@ -56,6 +56,11 @@ namespace Passliss.Classes
 		public static StrenghtPage StrenghtPage { get; set; }
 
 		/// <summary>
+		/// The <see cref="Pages.EncryptPage"/>.
+		/// </summary>
+		public static EncryptPage EncryptPage { get; set; }
+
+		/// <summary>
 		/// Lower case letters.
 		/// </summary>
 		public static string LowerCaseLetters => "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";

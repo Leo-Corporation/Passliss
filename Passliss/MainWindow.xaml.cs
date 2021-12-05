@@ -59,6 +59,7 @@ namespace Passliss
 			{
 				DefaultPage.Generate => Global.GeneratePage,
 				DefaultPage.Strength => Global.StrenghtPage,
+				DefaultPage.Encryption => Global.EncryptPage,
 				_ => Global.GeneratePage
 			}; // Set startup page
 
@@ -66,6 +67,7 @@ namespace Passliss
 			{
 				DefaultPage.Generate => GenerateTabBtn,
 				DefaultPage.Strength => StrenghtTabBtn,
+				DefaultPage.Encryption => EncryptTabBtn,
 				_ => GenerateTabBtn
 			}); // Check the selected page's button
 		}
@@ -77,6 +79,10 @@ namespace Passliss
 
 			StrenghtTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
 			StrenghtTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+
+			EncryptTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+			EncryptTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+
 
 			SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
 			SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
@@ -141,6 +147,14 @@ namespace Passliss
 			CheckButton(SettingsTabBtn); // Check the "Settings" button
 
 			PageContent.Navigate(Global.SettingsPage); // Navigate
+		}
+
+		private void EncryptTabBtn_Click(object sender, RoutedEventArgs e)
+		{
+			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+			CheckButton(EncryptTabBtn); // Check the "Generate" button
+
+			PageContent.Navigate(Global.EncryptPage); // Navigate
 		}
 	}
 }

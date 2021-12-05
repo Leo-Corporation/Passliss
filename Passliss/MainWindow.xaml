@@ -184,6 +184,26 @@
 									</EventTrigger>
 								</Button.Triggers>
                             </Button>
+                            <Button Click="EncryptTabBtn_Click" x:Name="EncryptTabBtn" Margin="5" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" Padding="8" Style="{DynamicResource TabButtonStyle}" FontSize="20" HorizontalAlignment="Left" Width="190" HorizontalContentAlignment="Left" MouseEnter="TabEnter" MouseLeave="TabLeave">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Name="EncryptIcon" Text="&#xeb50;" FontWeight="Regular" FontFamily="/Fonts/#FluentlyIcons" Margin="0 0 10 0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Static lang:Resources.Encryption}" VerticalAlignment="Center" Grid.Column="1"/>
+                                </Grid>
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation From="0" To="20" Duration="0:0:0.2" Storyboard.TargetName="EncryptIcon" Storyboard.TargetProperty="Width"/>
+                                                <ColorAnimation From="{Binding Source={StaticResource Background1}}" To="{Binding Source={StaticResource AccentColor}}" Duration="0:0:0.2" Storyboard.TargetName="EncryptTabBtn" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                            </Button>
                             <Button Click="SettingsTabBtn_Click" x:Name="SettingsTabBtn" Margin="5" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" Padding="8" Style="{DynamicResource TabButtonStyle}" FontSize="20" HorizontalAlignment="Left" Width="190" HorizontalContentAlignment="Left" MouseEnter="TabEnter" MouseLeave="TabLeave" Cursor="Hand">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="&#xEAE0;" FontWeight="Regular" FontFamily="/Fonts/#FluentlyIcons" Margin="0 0 10 0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">

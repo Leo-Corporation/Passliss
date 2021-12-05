@@ -37,6 +37,11 @@ namespace Passliss.Enums
 		/// <summary>
 		/// The "Strength" page (<see cref="Pages.StrenghtPage"/>).
 		/// </summary>
-		Strength = 1
+		Strength = 1,
+
+		/// <summary>
+		/// The "Encryption" page (<see cref="Pages.EncryptPage"/>).
+		/// </summary>
+		Encryption = 2
 	}
 }

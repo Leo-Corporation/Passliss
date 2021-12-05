@@ -21,31 +21,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using Passliss.Classes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Passliss
+namespace Passliss.Pages
 {
 	/// <summary>
-	/// Interaction logic for App.xaml
+	/// Interaction logic for EncryptPage.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class EncryptPage : Page
 	{
-		protected override void OnStartup(StartupEventArgs e)
+		public EncryptPage()
 		{
-			SettingsManager.Load(); // Load settings
-
-			Global.ChangeTheme(); // Update the theme
-			Global.ChangeLanguage(); // Change the language
-
-			PasswordConfigurationManager.Load(); // Load configurations
-
-			Global.SettingsPage = new(); // Create a new settings page
-			Global.GeneratePage = new(); // Create a new generate page
-			Global.StrenghtPage = new(); // Create a new strenght page
-			Global.EncryptPage = new(); // Create a new encryption page
-
-			base.OnStartup(e);
+			InitializeComponent();
 		}
 	}
 }

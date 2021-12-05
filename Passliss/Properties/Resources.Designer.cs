@@ -295,6 +295,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encrypted string.
+        /// </summary>
+        public static string EncryptedString {
+            get {
+                return ResourceManager.GetString("EncryptedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encryption.
         /// </summary>
         public static string Encryption {

@@ -429,4 +429,7 @@
   <data name="Decrypt" xml:space="preserve">
     <value>Décrypter</value>
   </data>
+  <data name="EncryptedString" xml:space="preserve">
+    <value>Chaîne de caractères encryptée</value>
+  </data>
 </root>
