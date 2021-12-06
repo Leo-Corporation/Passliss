@@ -44,6 +44,7 @@ namespace Passliss.Pages
 	/// </summary>
 	public partial class EncryptPage : Page
 	{
+		bool isPlaceholderShownEncrypt;
 		public EncryptPage()
 		{
 			InitializeComponent();
@@ -53,6 +54,7 @@ namespace Passliss.Pages
 		private void InitUI()
 		{
 			AlgorithmComboBox.SelectedIndex = 0;
+			isPlaceholderShownEncrypt = true;
 		}
 
 		private void EncryptBtn_Click(object sender, RoutedEventArgs e)
@@ -73,6 +75,26 @@ namespace Passliss.Pages
 				0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text),
 				_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text)
 			};
+		}
+
+		private void StringToEncryptTxt_GotFocus(object sender, RoutedEventArgs e)
+		{
+			if (isPlaceholderShownEncrypt)
+			{
+				StringToEncryptTxt.Text = ""; // Clear
+				isPlaceholderShownEncrypt = false; // Set to false
+				StringToEncryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set foreground
+			}
+		}
+
+		private void StringToEncryptTxt_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (StringToEncryptTxt.Text == string.Empty)
+			{
+				StringToEncryptTxt.Text = Properties.Resources.StringToEncrypt; // Set text
+				isPlaceholderShownEncrypt = true; // Set to true
+				StringToEncryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkGray"].ToString()) }; // Set foreground
+			}
 		}
 	}
 }
