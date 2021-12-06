@@ -673,6 +673,24 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please provide a key..
+        /// </summary>
+        public static string PleaseProvideKeyMsg {
+            get {
+                return ResourceManager.GetString("PleaseProvideKeyMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide the text to encrypt..
+        /// </summary>
+        public static string PleaseProvideText {
+            get {
+                return ResourceManager.GetString("PleaseProvideText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a checkbox to generate a password..
         /// </summary>
         public static string PleaseSelectChkMsg {

@@ -61,11 +61,13 @@ namespace Passliss.Pages
 		{
 			if (string.IsNullOrEmpty(KeyTxt.Text))
 			{
+				MessageBox.Show(Properties.Resources.PleaseProvideKeyMsg, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
 				return; // Stop
 			}
 
-			if (string.IsNullOrEmpty(StringToEncryptTxt.Text))
+			if (string.IsNullOrEmpty(StringToEncryptTxt.Text) || isPlaceholderShownEncrypt)
 			{
+				MessageBox.Show(Properties.Resources.PleaseProvideText, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
 				return; // Stop
 			}
 

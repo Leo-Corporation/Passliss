@@ -435,4 +435,10 @@
   <data name="Key" xml:space="preserve">
     <value>Clé</value>
   </data>
+  <data name="PleaseProvideKeyMsg" xml:space="preserve">
+    <value>Veuillez spécifier une clé d'encryption.</value>
+  </data>
+  <data name="PleaseProvideText" xml:space="preserve">
+    <value>Veuillez spécifier le texte à encrypter.</value>
+  </data>
 </root>
