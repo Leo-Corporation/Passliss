@@ -268,6 +268,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decrypted string.
+        /// </summary>
+        public static string DecryptedString {
+            get {
+                return ResourceManager.GetString("DecryptedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string Default {
@@ -673,6 +682,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plaintext.
+        /// </summary>
+        public static string Plaintext {
+            get {
+                return ResourceManager.GetString("Plaintext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please provide a key..
         /// </summary>
         public static string PleaseProvideKeyMsg {
@@ -939,6 +957,15 @@ namespace Passliss.Properties {
         public static string StrenghtWarning {
             get {
                 return ResourceManager.GetString("StrenghtWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to String to decrypt.
+        /// </summary>
+        public static string StringToDecrypt {
+            get {
+                return ResourceManager.GetString("StringToDecrypt", resourceCulture);
             }
         }
         

@@ -46,6 +46,7 @@ namespace Passliss.Pages
 	public partial class EncryptPage : Page
 	{
 		bool isPlaceholderShownEncrypt;
+		bool isPlaceholderShownDecrypt;
 		private Button CheckedButton { get; set; }
 		public EncryptPage()
 		{
@@ -57,6 +58,7 @@ namespace Passliss.Pages
 		{
 			AlgorithmComboBox.SelectedIndex = 0;
 			isPlaceholderShownEncrypt = true;
+			isPlaceholderShownDecrypt = true;
 
 			CheckButton(EncryptTabBtn); // Check
 		}
@@ -148,12 +150,65 @@ namespace Passliss.Pages
 		{
 			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
 			CheckButton(EncryptTabBtn); // Check the "Encrypt" button
+
+			DecryptTabPage.Visibility = Visibility.Collapsed; // Hide
+			EncryptTabPage.Visibility = Visibility.Visible; // Hide
 		}
 
 		private void DecryptTabBtn_Click(object sender, RoutedEventArgs e)
 		{
 			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
 			CheckButton(DecryptTabBtn); // Check the "Decrypt" button
+
+			DecryptTabPage.Visibility = Visibility.Visible; // Hide
+			EncryptTabPage.Visibility = Visibility.Collapsed; // Hide
+		}
+
+		private void DecryptBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (string.IsNullOrEmpty(DecryptKeyTxt.Text))
+			{
+				MessageBox.Show(Properties.Resources.PleaseProvideKeyMsg, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
+				return; // Stop
+			}
+
+			if (string.IsNullOrEmpty(StringToDecryptTxt.Text) || isPlaceholderShownEncrypt)
+			{
+				MessageBox.Show(Properties.Resources.PleaseProvideText, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
+				return; // Stop
+			}
+
+			// Decrypt
+			DecryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
+			{
+				0 => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // AES
+				_ => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text) // AES (by default)
+			};
+		}
+
+		private void CopyDecryptBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(DecryptedStringTxt.Text); // Copy decrypted string
+		}
+
+		private void StringToDecryptTxt_GotFocus(object sender, RoutedEventArgs e)
+		{
+			if (isPlaceholderShownDecrypt)
+			{
+				StringToDecryptTxt.Text = ""; // Clear
+				isPlaceholderShownDecrypt = false; // Set to false
+				StringToDecryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set foreground
+			}
+		}
+
+		private void StringToDecryptTxt_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (StringToDecryptTxt.Text == string.Empty)
+			{
+				StringToDecryptTxt.Text = Properties.Resources.StringToDecrypt; // Set text
+				isPlaceholderShownDecrypt = true; // Set to true
+				StringToDecryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkGray"].ToString()) }; // Set foreground
+			}
 		}
 	}
 }
