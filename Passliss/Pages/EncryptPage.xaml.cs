@@ -74,8 +74,9 @@ namespace Passliss.Pages
 			// Encrypt
 			EncryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
 			{
-				0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text),
-				_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text)
+				0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text), // AES
+				1 => Crypt.Encrypt(StringToEncryptTxt.Text, KeyTxt.Text), // 3DES
+				_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text) // AES (by default)
 			};
 		}
 
