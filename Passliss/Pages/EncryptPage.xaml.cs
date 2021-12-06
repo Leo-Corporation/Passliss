@@ -65,25 +65,32 @@ namespace Passliss.Pages
 
 		private void EncryptBtn_Click(object sender, RoutedEventArgs e)
 		{
-			if (string.IsNullOrEmpty(KeyTxt.Text))
+			try
 			{
-				MessageBox.Show(Properties.Resources.PleaseProvideKeyMsg, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
-				return; // Stop
-			}
+				if (string.IsNullOrEmpty(KeyTxt.Text))
+				{
+					MessageBox.Show(Properties.Resources.PleaseProvideKeyMsg, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
+					return; // Stop
+				}
 
-			if (string.IsNullOrEmpty(StringToEncryptTxt.Text) || isPlaceholderShownEncrypt)
-			{
-				MessageBox.Show(Properties.Resources.PleaseProvideText, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
-				return; // Stop
-			}
+				if (string.IsNullOrEmpty(StringToEncryptTxt.Text) || isPlaceholderShownEncrypt)
+				{
+					MessageBox.Show(Properties.Resources.PleaseProvideText, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
+					return; // Stop
+				}
 
-			// Encrypt
-			EncryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
+				// Encrypt
+				EncryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
+				{
+					0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text), // AES
+					1 => Crypt.Encrypt(StringToEncryptTxt.Text, KeyTxt.Text), // 3DES
+					_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text) // AES (by default)
+				};
+			}
+			catch (Exception ex)
 			{
-				0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text), // AES
-				1 => Crypt.Encrypt(StringToEncryptTxt.Text, KeyTxt.Text), // 3DES
-				_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text) // AES (by default)
-			};
+				MessageBox.Show($"{Properties.Resources.ErrorOccured}.\n{ex.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
+			}
 		}
 
 		private void StringToEncryptTxt_GotFocus(object sender, RoutedEventArgs e)
@@ -166,25 +173,32 @@ namespace Passliss.Pages
 
 		private void DecryptBtn_Click(object sender, RoutedEventArgs e)
 		{
-			if (string.IsNullOrEmpty(DecryptKeyTxt.Text))
+			try
 			{
-				MessageBox.Show(Properties.Resources.PleaseProvideKeyMsg, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
-				return; // Stop
-			}
+				if (string.IsNullOrEmpty(DecryptKeyTxt.Text))
+				{
+					MessageBox.Show(Properties.Resources.PleaseProvideKeyMsg, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
+					return; // Stop
+				}
 
-			if (string.IsNullOrEmpty(StringToDecryptTxt.Text) || isPlaceholderShownEncrypt)
-			{
-				MessageBox.Show(Properties.Resources.PleaseProvideText, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
-				return; // Stop
-			}
+				if (string.IsNullOrEmpty(StringToDecryptTxt.Text) || isPlaceholderShownDecrypt)
+				{
+					MessageBox.Show(Properties.Resources.PleaseProvideText, Properties.Resources.Encryption, MessageBoxButton.OK, MessageBoxImage.Information);
+					return; // Stop
+				}
 
-			// Decrypt
-			DecryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
+				// Decrypt
+				DecryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
+				{
+					0 => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // AES
+					1 => Crypt.Decrypt(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // 3DES
+					_ => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text) // AES (by default)
+				};
+			}
+			catch (Exception ex)
 			{
-				0 => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // AES
-				1 => Crypt.Decrypt(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // 3DES
-				_ => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text) // AES (by default)
-			};
+				MessageBox.Show($"{Properties.Resources.ErrorOccured}.\n{ex.Message}", Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
+			}
 		}
 
 		private void CopyDecryptBtn_Click(object sender, RoutedEventArgs e)
