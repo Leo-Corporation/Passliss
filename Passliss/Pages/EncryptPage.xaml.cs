@@ -99,5 +99,10 @@ namespace Passliss.Pages
 				StringToEncryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkGray"].ToString()) }; // Set foreground
 			}
 		}
+
+		private void CopyEncryptBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(EncryptedStringTxt.Text); // Copy to clipboard
+		}
 	}
 }
