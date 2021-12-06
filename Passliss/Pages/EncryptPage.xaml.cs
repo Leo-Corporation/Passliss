@@ -182,6 +182,7 @@ namespace Passliss.Pages
 			DecryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
 			{
 				0 => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // AES
+				1 => Crypt.Decrypt(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // 3DES
 				_ => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text) // AES (by default)
 			};
 		}
