@@ -30,6 +30,22 @@
                         <ComboBoxItem Content="{x:Static lang:Resources._3DES}"/>
                     </ComboBox>
                 </Grid>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="EncryptTabBtn" Click="EncryptTabBtn_Click" Padding="5" Margin="5" Style="{DynamicResource TabButtonStyle}" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{Binding Source={StaticResource AccentColor}}" BorderThickness="0" MouseEnter="TabEnter" MouseLeave="TabLeave">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="&#xF503;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,10,0" Foreground="{Binding Source={StaticResource Foreground1}}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Static lang:Resources.Encrypt}" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="DecryptTabBtn" Click="DecryptTabBtn_Click" Padding="5" Margin="5" Style="{DynamicResource TabButtonStyle}" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{Binding Source={StaticResource AccentColor}}" BorderThickness="0" MouseEnter="TabEnter" MouseLeave="TabLeave">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="&#xFC25;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,10,0" Foreground="{Binding Source={StaticResource Foreground1}}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Static lang:Resources.Decrypt}" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
 
             <Grid x:Name="Content" Margin="10" Grid.Row="1">
