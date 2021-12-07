@@ -77,9 +77,9 @@ namespace Passliss.Pages
 			}
 
 			if (!Global.Settings.AlwaysHidePasswordInHistory.HasValue)
-            {
+			{
 				Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
-            }
+			}
 
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -93,6 +93,9 @@ namespace Passliss.Pages
 					break;
 				case DefaultPage.Strength:
 					StrengthPageRadioBtn.IsChecked = true;
+					break;
+				case DefaultPage.Encryption:
+					EncryptionPageRadioBtn.IsChecked = true;
 					break;
 			}
 
@@ -121,6 +124,10 @@ namespace Passliss.Pages
 			else if (StrengthPageRadioBtn.IsChecked.Value)
 			{
 				CheckedBorder2 = StrengthPageBorder; // Set
+			}
+			else if (EncryptionPageRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder2 = EncryptionPageBorder; // Set
 			}
 			RefreshBordersPage(); // Refresh
 
@@ -287,14 +294,6 @@ namespace Passliss.Pages
 			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
 		}
 
-		private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
-				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
-				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
-				"Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
-		}
-
 		private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
 		{
 			Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
@@ -305,35 +304,6 @@ namespace Passliss.Pages
 		{
 			Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
-		}
-
-		private void ResetSettingsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			if (MessageBox.Show(Properties.Resources.ResetSettingsConfirmMsg, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-			{
-				Global.Settings = new()
-				{
-					CheckUpdatesOnStart = true,
-					IsDarkTheme = false,
-					Language = "_default",
-					NotifyUpdates = true,
-					PasswordPreset = PasswordPresets.Simple,
-					MinRandomLength = 10,
-					MaxRandomLength = 30,
-					UseRandomPasswordLengthOnStart = true,
-					IsThemeSystem = true,
-					StartupPage = DefaultPage.Generate,
-					HidePasswordInStrengthPage = false,
-					AlwaysHidePasswordInHistory = false,
-				}; // Create default settings
-
-				SettingsManager.Save(); // Save the changes
-				InitUI(); // Reload the page
-
-				MessageBox.Show(Properties.Resources.SettingsReset, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
-				Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe");
-				Environment.Exit(0); // Quit
-			}
 		}
 
 		private void RandomLengthApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -470,24 +440,13 @@ namespace Passliss.Pages
 			CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
 		}
 
-		private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
-		{
-			if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-			{
-				for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
-				{
-					Global.PasswordConfigurations[i].IsDefault = false; // Reset to default
-				}
-				SettingsManager.Save(); // Save changes
-			}
-		}
-
 		Border CheckedBorder2 { get; set; }
 
 		private void RefreshBordersPage()
 		{
 			GeneratePageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 			StrengthPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
+			EncryptionPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
 
 			CheckedBorder2.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
 		}
@@ -552,10 +511,79 @@ namespace Passliss.Pages
 			SettingsManager.Save(); // Save changes
 		}
 
-        private void HidePasswordInHistoryChk_Checked(object sender, RoutedEventArgs e)
-        {
+		private void HidePasswordInHistoryChk_Checked(object sender, RoutedEventArgs e)
+		{
 			Global.Settings.AlwaysHidePasswordInHistory = HidePasswordInHistoryChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
 		}
-    }
+
+		private void ResetPwrConfigBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+			{
+				for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
+				{
+					Global.PasswordConfigurations[i].IsDefault = false; // Reset to default
+				}
+				SettingsManager.Save(); // Save changes
+			}
+		}
+
+		private void ResetSettingsLink_Click(object sender, RoutedEventArgs e)
+		{
+			if (MessageBox.Show(Properties.Resources.ResetSettingsConfirmMsg, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				Global.Settings = new()
+				{
+					CheckUpdatesOnStart = true,
+					IsDarkTheme = false,
+					Language = "_default",
+					NotifyUpdates = true,
+					PasswordPreset = PasswordPresets.Simple,
+					MinRandomLength = 10,
+					MaxRandomLength = 30,
+					UseRandomPasswordLengthOnStart = true,
+					IsThemeSystem = true,
+					StartupPage = DefaultPage.Generate,
+					HidePasswordInStrengthPage = false,
+					AlwaysHidePasswordInHistory = false,
+				}; // Create default settings
+
+				SettingsManager.Save(); // Save the changes
+				InitUI(); // Reload the page
+
+				MessageBox.Show(Properties.Resources.SettingsReset, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+				Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe");
+				Environment.Exit(0); // Quit
+			}
+		}
+
+		private void SeeLicensesBtn_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
+				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
+				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
+				"Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void EncryptionPageRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			CheckedBorder2 = EncryptionPageBorder; // Set
+			EncryptionPageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Encryption; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void EncryptionPageBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			CheckedBorder2 = EncryptionPageBorder; // Set
+			EncryptionPageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Encryption; // Update
+			SettingsManager.Save(); // Save changes
+		}
+	}
 }

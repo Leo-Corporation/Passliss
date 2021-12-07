@@ -408,4 +408,46 @@
   <data name="OtherCharacters" xml:space="preserve">
     <value>Autres caractères (séparés par un ",")</value>
   </data>
+  <data name="Encryption" xml:space="preserve">
+    <value>Cryptage</value>
+  </data>
+  <data name="StringToEncrypt" xml:space="preserve">
+    <value>Chaîne de caractères à encrypter</value>
+  </data>
+  <data name="Encrypt" xml:space="preserve">
+    <value>Encrypter</value>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algorithme</value>
+  </data>
+  <data name="AES" xml:space="preserve">
+    <value>AES</value>
+  </data>
+  <data name="3DES" xml:space="preserve">
+    <value>Triple-DES</value>
+  </data>
+  <data name="Decrypt" xml:space="preserve">
+    <value>Décrypter</value>
+  </data>
+  <data name="EncryptedString" xml:space="preserve">
+    <value>Chaîne de caractères encryptée</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Clé</value>
+  </data>
+  <data name="PleaseProvideKeyMsg" xml:space="preserve">
+    <value>Veuillez spécifier une clé d'encryption.</value>
+  </data>
+  <data name="PleaseProvideText" xml:space="preserve">
+    <value>Veuillez spécifier le texte à encrypter.</value>
+  </data>
+  <data name="StringToDecrypt" xml:space="preserve">
+    <value>Chaîne de caractères à décrypter</value>
+  </data>
+  <data name="Plaintext" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="DecryptedString" xml:space="preserve">
+    <value>Chaîne de caractères décryptée</value>
+  </data>
 </root>

@@ -56,6 +56,11 @@ namespace Passliss.Classes
 		public static StrenghtPage StrenghtPage { get; set; }
 
 		/// <summary>
+		/// The <see cref="Pages.EncryptPage"/>.
+		/// </summary>
+		public static EncryptPage EncryptPage { get; set; }
+
+		/// <summary>
 		/// Lower case letters.
 		/// </summary>
 		public static string LowerCaseLetters => "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
@@ -100,7 +105,7 @@ namespace Passliss.Classes
 		/// <summary>
 		/// The current version of Passliss.
 		/// </summary>
-		public static string Version => "1.9.0.2111";
+		public static string Version => "2.0.0.2112";
 
 		/// <summary>
 		/// GitHub link for the last version (<see cref="string"/>).
@@ -149,7 +154,7 @@ namespace Passliss.Classes
 
 		public static bool IsSystemThemeDark()
 		{
-			if (Env.WindowsVersion != WindowsVersion.Windows10)
+			if (Env.WindowsVersion != WindowsVersion.Windows10 && Env.WindowsVersion != WindowsVersion.Windows11)
 			{
 				return false; // Avoid errors on older OSs
 			}

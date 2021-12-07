@@ -11,7 +11,7 @@
 	  Title="SettingsPage">
 
 	<ScrollViewer HorizontalScrollBarVisibility="Hidden" Template="{DynamicResource ScrollViewerControlTemplate}" CanContentScroll="True" Height="344">
-		<Grid Height="1090">
+		<Grid Margin="0,0,0,40">
 			<StackPanel Margin="10,40,10,10" Grid.Row="0">
 				<TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
 
@@ -112,19 +112,26 @@
 							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="StrengthPageRadioBtn" Checked="StrengthPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
 						</StackPanel>
 					</Border>
-				</StackPanel>
+                    <Border x:Name="EncryptionPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="EncryptionPageBorder_MouseLeftButtonUp">
+                        <StackPanel	Orientation="Vertical">
+                            <TextBlock Text="&#xF834;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+                            <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="EncryptionPageRadioBtn" Checked="EncryptionPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Encryption}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
 
-                <CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
-                <CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>
+				<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
+				<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>
 
-                <TextBlock Text="{x:Static lang:Resources.PasswordConfigurations}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+				<TextBlock Text="{x:Static lang:Resources.PasswordConfigurations}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
 				<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
 
-				<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_1">
-					<TextBlock.TextDecorations>
-						<TextDecoration/>
-					</TextBlock.TextDecorations>
-				</TextBlock>
+				<Button x:Name="ResetPwrConfigBtn" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetPwrConfigBtn_Click" HorizontalAlignment="Left">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+						<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" VerticalAlignment="Center"/>
+					</StackPanel>
+				</Button>
 
 				<TextBlock Text="{x:Static lang:Resources.Language}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
 				<TextBlock Text="{x:Static lang:Resources.Language}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
@@ -154,18 +161,20 @@
 						</StackPanel>
 					</Button>
 				</StackPanel>
-				<TextBlock x:Name="ResetSettingsLink" Text="{x:Static lang:Resources.ResetSettings}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" MouseLeftButtonDown="ResetSettingsLink_MouseLeftButtonDown">
-					<TextBlock.TextDecorations>
-						<TextDecoration/>
-					</TextBlock.TextDecorations>
-				</TextBlock>
+				<Button x:Name="ResetSettingsLink" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetSettingsLink_Click" HorizontalAlignment="Left">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+						<TextBlock Text="{x:Static lang:Resources.ResetSettings}" VerticalAlignment="Center"/>
+					</StackPanel>
+				</Button>
 
 				<TextBlock Text="{x:Static lang:Resources.Licenses}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-				<TextBlock Text="{x:Static lang:Resources.SeeLicenses}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
-					<TextBlock.TextDecorations>
-						<TextDecoration/>
-					</TextBlock.TextDecorations>
-				</TextBlock>
+				<Button x:Name="SeeLicensesBtn" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="SeeLicensesBtn_Click" HorizontalAlignment="Left">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+						<TextBlock Text="{x:Static lang:Resources.SeeLicenses}" VerticalAlignment="Center"/>
+					</StackPanel>
+				</Button>
 
 			</StackPanel>
 		</Grid>
