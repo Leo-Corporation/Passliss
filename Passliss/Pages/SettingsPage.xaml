@@ -112,7 +112,13 @@
 							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="StrengthPageRadioBtn" Checked="StrengthPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
 						</StackPanel>
 					</Border>
-				</StackPanel>
+                    <Border x:Name="EncryptionPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="EncryptionPageBorder_MouseLeftButtonUp">
+                        <StackPanel	Orientation="Vertical">
+                            <TextBlock Text="&#xF834;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+                            <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="EncryptionPageRadioBtn" Checked="EncryptionPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Encryption}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
 
 				<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
 				<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>

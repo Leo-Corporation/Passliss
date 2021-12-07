@@ -94,6 +94,9 @@ namespace Passliss.Pages
 				case DefaultPage.Strength:
 					StrengthPageRadioBtn.IsChecked = true;
 					break;
+				case DefaultPage.Encryption:
+					EncryptionPageRadioBtn.IsChecked = true;
+					break;
 			}
 
 			HidePasswordInStrengthChk.IsChecked = Global.Settings.HidePasswordInStrengthPage; // Set
@@ -121,6 +124,10 @@ namespace Passliss.Pages
 			else if (StrengthPageRadioBtn.IsChecked.Value)
 			{
 				CheckedBorder2 = StrengthPageBorder; // Set
+			}
+			else if (EncryptionPageRadioBtn.IsChecked.Value)
+			{
+				CheckedBorder2 = EncryptionPageBorder; // Set
 			}
 			RefreshBordersPage(); // Refresh
 
@@ -439,6 +446,7 @@ namespace Passliss.Pages
 		{
 			GeneratePageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 			StrengthPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
+			EncryptionPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
 
 			CheckedBorder2.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
 		}
@@ -556,6 +564,26 @@ namespace Passliss.Pages
 				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
 				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
 				"Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void EncryptionPageRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			CheckedBorder2 = EncryptionPageBorder; // Set
+			EncryptionPageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Encryption; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void EncryptionPageBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			CheckedBorder2 = EncryptionPageBorder; // Set
+			EncryptionPageRadioBtn.IsChecked = true;
+			RefreshBordersPage(); // Refresh
+
+			Global.Settings.StartupPage = DefaultPage.Encryption; // Update
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }
