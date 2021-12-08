@@ -50,6 +50,8 @@ namespace Passliss.Pages
 			isPlaceholderShownEncrypt = true;
 			isPlaceholderShownDecrypt = true;
 
+			ResetAllCheckStatus();
+
 			CheckButton(EncryptTabBtn); // Check
 		}
 
@@ -123,7 +125,6 @@ namespace Passliss.Pages
 			{
 				button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 			}
-
 		}
 
 		private void ResetAllCheckStatus()
