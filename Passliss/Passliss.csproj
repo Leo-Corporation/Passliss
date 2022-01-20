@@ -17,6 +17,7 @@
     <FileVersion>2.0.1.2112</FileVersion>
     <Company>Léo Corporation</Company>
     <Product>Passliss</Product>
+    <Description>A modern password generator for Windows.</Description>
   </PropertyGroup>
 
   <ItemGroup>
