@@ -562,8 +562,8 @@ namespace Passliss.Pages
 		{
 			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
 				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
-				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
-				"Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+				"LeoCorpLibrary - MIT License - © 2020-2022 Léo Corporation\n" +
+				"Passliss - MIT License - © 2021-2022 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		private void EncryptionPageRadioBtn_Checked(object sender, RoutedEventArgs e)
