@@ -453,4 +453,7 @@
   <data name="DisableHistory" xml:space="preserve">
     <value>Désactiver l'historique</value>
   </data>
+  <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
+    <value>Voulez-vous activer les vérifications automatiques des mises à jour au démarrage ?</value>
+  </data>
 </root>

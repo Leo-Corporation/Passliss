@@ -58,7 +58,7 @@ namespace Passliss.Pages
 			InitUI(); // Init the UI
 		}
 
-		private async void InitUI()
+		internal async void InitUI()
 		{
 			if (!Global.Settings.IsThemeSystem.HasValue)
 			{
@@ -84,6 +84,11 @@ namespace Passliss.Pages
 			if (!Global.Settings.DisableHistory.HasValue)
 			{
 				Global.Settings.DisableHistory = false; // Set
+			}
+
+			if (!Global.Settings.IsFirstRun.HasValue)
+			{
+				Global.Settings.IsFirstRun = true; // Set
 			}
 
 			// Load RadioButtons
@@ -143,6 +148,7 @@ namespace Passliss.Pages
 			DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
 
 			// Load LangComboBox
+			LangComboBox.Items.Clear(); // Clear
 			LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
 			for (int i = 0; i < Global.LanguageList.Count; i++)
@@ -554,7 +560,8 @@ namespace Passliss.Pages
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
-					DisableHistory = false
+					DisableHistory = false,
+					IsFirstRun = true
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes

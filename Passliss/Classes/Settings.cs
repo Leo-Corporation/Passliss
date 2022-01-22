@@ -101,6 +101,10 @@ namespace Passliss.Classes
 		/// </summary>
 		public bool? DisableHistory { get; set; }
 
+		/// <summary>
+		/// True if this is the first run of Passliss.
+		/// </summary>
+		public bool? IsFirstRun { get; set; }
 	}
 
 	/// <summary>
@@ -140,7 +144,8 @@ namespace Passliss.Classes
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
-					DisableHistory = false
+					DisableHistory = false,
+					IsFirstRun = true
 				}; // Create a new settings file
 
 				Save(); // Save the changes
