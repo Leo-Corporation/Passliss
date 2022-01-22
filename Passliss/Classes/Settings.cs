@@ -100,6 +100,7 @@ namespace Passliss.Classes
 		/// True if the history should be disabled.
 		/// </summary>
 		public bool? DisableHistory { get; set; }
+
 	}
 
 	/// <summary>
@@ -129,7 +130,7 @@ namespace Passliss.Classes
 				{
 					IsDarkTheme = false,
 					Language = "_default",
-					CheckUpdatesOnStart = true,
+					CheckUpdatesOnStart = false,
 					NotifyUpdates = true,
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
