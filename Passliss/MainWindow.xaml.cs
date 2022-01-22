@@ -70,6 +70,27 @@ namespace Passliss
 				DefaultPage.Encryption => EncryptTabBtn,
 				_ => GenerateTabBtn
 			}); // Check the selected page's button
+
+			if (Global.Settings.IsFirstRun.Value)
+			{
+				ContentRendered += (o, e) =>
+				{
+					if (MessageBox.Show(Properties.Resources.EnableAutoUpdatesOnStartMsg, Properties.Resources.Updates, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+					{
+						Global.Settings.CheckUpdatesOnStart = true; // Set value
+					}
+					else
+					{
+						Global.Settings.CheckUpdatesOnStart = false; // Set value
+
+					}
+
+					Global.Settings.IsFirstRun = false; // First run message has been shown to the user
+					SettingsManager.Save(); // Save changes
+
+					Global.SettingsPage.InitUI();
+				};
+			}
 		}
 
 		private void ResetAllCheckStatus()

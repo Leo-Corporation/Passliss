@@ -430,4 +430,10 @@
   <data name="DecryptedString" xml:space="preserve">
     <value>Decrypted string</value>
   </data>
+  <data name="DisableHistory" xml:space="preserve">
+    <value>Disable history</value>
+  </data>
+  <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
+    <value>Do you want to enable automatic checks for updates at startup?</value>
+  </data>
 </root>

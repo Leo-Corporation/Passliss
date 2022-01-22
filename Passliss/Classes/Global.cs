@@ -95,17 +95,17 @@ namespace Passliss.Classes
 		/// <summary>
 		/// List of the available languages.
 		/// </summary>
-		public static List<string> LanguageList => new() { "English (United States)", "Français (France)" };
+		public static List<string> LanguageList => new() { "English (United States)", "Français (France)", "中文（简体）" };
 
 		/// <summary>
 		/// List of the available languages codes.
 		/// </summary>
-		public static List<string> LanguageCodeList => new() { "en-US", "fr-FR" };
+		public static List<string> LanguageCodeList => new() { "en-US", "fr-FR", "zh-CN" };
 
 		/// <summary>
 		/// The current version of Passliss.
 		/// </summary>
-		public static string Version => "2.0.1.2112";
+		public static string Version => "2.1.0.2201";
 
 		/// <summary>
 		/// GitHub link for the last version (<see cref="string"/>).
@@ -351,6 +351,10 @@ namespace Passliss.Classes
 
 				case "fr-FR": // French (FR)
 					Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); // Change
+					break;
+
+				case "zh-CN": // Chinese (CN)
+					Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN"); // Change
 					break;
 				default: // No language
 					break;

@@ -95,6 +95,16 @@ namespace Passliss.Classes
 		/// True if Passliss should always hide generated passwords in history.
 		/// </summary>
 		public bool? AlwaysHidePasswordInHistory { get; set; }
+
+		/// <summary>
+		/// True if the history should be disabled.
+		/// </summary>
+		public bool? DisableHistory { get; set; }
+
+		/// <summary>
+		/// True if this is the first run of Passliss.
+		/// </summary>
+		public bool? IsFirstRun { get; set; }
 	}
 
 	/// <summary>
@@ -124,7 +134,7 @@ namespace Passliss.Classes
 				{
 					IsDarkTheme = false,
 					Language = "_default",
-					CheckUpdatesOnStart = true,
+					CheckUpdatesOnStart = false,
 					NotifyUpdates = true,
 					PasswordPreset = PasswordPresets.Simple,
 					MinRandomLength = 10,
@@ -134,6 +144,8 @@ namespace Passliss.Classes
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
+					DisableHistory = false,
+					IsFirstRun = true
 				}; // Create a new settings file
 
 				Save(); // Save the changes

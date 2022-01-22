@@ -79,13 +79,28 @@ namespace Passliss.Pages
 			}
 
 			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
-			PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history
+			if (!Global.Settings.DisableHistory.Value)
+			{
+				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
+			}
+			else
+			{
+				HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
+			}
 		}
 
 		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
 		{
 			LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
-			HistoryBtn.Visibility = Visibility.Visible; // Set visibility
+			if (!Global.Settings.DisableHistory.Value)
+			{
+				HistoryBtn.Visibility = Visibility.Visible; // Set visibility 
+			}
+			else
+			{
+				HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
+			}
+
 			if (LenghtTxt.Text.Length <= 0 || !(int.Parse(LenghtTxt.Text) > 0))
 			{
 				MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
@@ -95,7 +110,10 @@ namespace Passliss.Pages
 			if (!IsNoCheckboxesChecked())
 			{
 				PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
-				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history
+				if (!Global.Settings.DisableHistory.Value)
+				{
+					PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
+				}
 			}
 			else
 			{

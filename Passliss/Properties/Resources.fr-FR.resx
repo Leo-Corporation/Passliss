@@ -406,7 +406,7 @@
     <value>Cacher le mot de passe dans l'historique par défaut.</value>
   </data>
   <data name="OtherCharacters" xml:space="preserve">
-    <value>Autres caractères (séparés par un ",")</value>
+    <value>Autres caractères (séparés par une ",")</value>
   </data>
   <data name="Encryption" xml:space="preserve">
     <value>Cryptage</value>
@@ -449,5 +449,11 @@
   </data>
   <data name="DecryptedString" xml:space="preserve">
     <value>Chaîne de caractères décryptée</value>
+  </data>
+  <data name="DisableHistory" xml:space="preserve">
+    <value>Désactiver l'historique</value>
+  </data>
+  <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
+    <value>Voulez-vous activer les vérifications automatiques des mises à jour au démarrage ?</value>
   </data>
 </root>

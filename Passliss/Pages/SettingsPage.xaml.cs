@@ -58,7 +58,7 @@ namespace Passliss.Pages
 			InitUI(); // Init the UI
 		}
 
-		private async void InitUI()
+		internal async void InitUI()
 		{
 			if (!Global.Settings.IsThemeSystem.HasValue)
 			{
@@ -79,6 +79,16 @@ namespace Passliss.Pages
 			if (!Global.Settings.AlwaysHidePasswordInHistory.HasValue)
 			{
 				Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
+			}
+
+			if (!Global.Settings.DisableHistory.HasValue)
+			{
+				Global.Settings.DisableHistory = false; // Set
+			}
+
+			if (!Global.Settings.IsFirstRun.HasValue)
+			{
+				Global.Settings.IsFirstRun = true; // Set
 			}
 
 			// Load RadioButtons
@@ -132,11 +142,13 @@ namespace Passliss.Pages
 			RefreshBordersPage(); // Refresh
 
 			// Load checkboxes
-			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
-			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
-			RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart.HasValue ? Global.Settings.UseRandomPasswordLengthOnStart.Value : true; // Set
+			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
+			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
+			RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart ?? true; // Set
+			DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
 
 			// Load LangComboBox
+			LangComboBox.Items.Clear(); // Clear
 			LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
 			for (int i = 0; i < Global.LanguageList.Count; i++)
@@ -217,6 +229,7 @@ namespace Passliss.Pages
 			{
 				"English (United States)" => Global.LanguageCodeList[0], // Set the settings value
 				"Français (France)" => Global.LanguageCodeList[1], // Set the settings value
+				"中文（简体）" => Global.LanguageCodeList[2], // Set the settings value
 				_ => "_default" // Set the settings value
 			};
 			SettingsManager.Save(); // Save the changes
@@ -535,7 +548,7 @@ namespace Passliss.Pages
 			{
 				Global.Settings = new()
 				{
-					CheckUpdatesOnStart = true,
+					CheckUpdatesOnStart = false,
 					IsDarkTheme = false,
 					Language = "_default",
 					NotifyUpdates = true,
@@ -547,6 +560,8 @@ namespace Passliss.Pages
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
+					DisableHistory = false,
+					IsFirstRun = true
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -562,8 +577,8 @@ namespace Passliss.Pages
 		{
 			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
 				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
-				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
-				"Passliss - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+				"LeoCorpLibrary - MIT License - © 2020-2022 Léo Corporation\n" +
+				"Passliss - MIT License - © 2021-2022 Léo Corporation", $"{Properties.Resources.Passliss} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		private void EncryptionPageRadioBtn_Checked(object sender, RoutedEventArgs e)
@@ -583,6 +598,13 @@ namespace Passliss.Pages
 			RefreshBordersPage(); // Refresh
 
 			Global.Settings.StartupPage = DefaultPage.Encryption; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void DisableHistoryChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.DisableHistory = DisableHistoryChk.IsChecked; // Set
+
 			SettingsManager.Save(); // Save changes
 		}
 	}

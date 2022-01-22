@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Passliss" xml:space="preserve">
+    <value>Passliss</value>
+  </data>
+  <data name="Hi" xml:space="preserve">
+    <value>嗨</value>
+  </data>
+  <data name="GoodAfternoon" xml:space="preserve">
+    <value>下午好</value>
+  </data>
+  <data name="GoodNight" xml:space="preserve">
+    <value>晚安</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>晚上好</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="Strenght" xml:space="preserve">
+    <value>强度</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="GeneratePassword" xml:space="preserve">
+    <value>生成密码</value>
+  </data>
+  <data name="UpperCase" xml:space="preserve">
+    <value>大写</value>
+  </data>
+  <data name="LowerCase" xml:space="preserve">
+    <value>小写</value>
+  </data>
+  <data name="SpecialCaracters" xml:space="preserve">
+    <value>特殊字符</value>
+  </data>
+  <data name="Numbers" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="PleaseSelectChkMsg" xml:space="preserve">
+    <value>请选择一个复选框以生成密码。</value>
+  </data>
+  <data name="Lenght" xml:space="preserve">
+    <value>长度</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>输入密码</value>
+  </data>
+  <data name="StrenghtVeryGood" xml:space="preserve">
+    <value>密码强度非常好</value>
+  </data>
+  <data name="StrenghtGood" xml:space="preserve">
+    <value>密码强度不错</value>
+  </data>
+  <data name="StrenghtMedium" xml:space="preserve">
+    <value>密码强度中等</value>
+  </data>
+  <data name="StrenghtLow" xml:space="preserve">
+    <value>密码强度低</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="AvailableUpdates" xml:space="preserve">
+    <value>有可用更新。</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>安装</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>深色模式</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>浅色模式</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="ChangeTheme" xml:space="preserve">
+    <value>更改 Passliss 主题。</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>更改 Passliss 语言。</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Passliss 是最新的。</value>
+  </data>
+  <data name="PleaseSpecifyLenghtMsg" xml:space="preserve">
+    <value>请指定长度以生成密码。</value>
+  </data>
+  <data name="StrenghtWarning" xml:space="preserve">
+    <value>强度指示器在这里让您了解密码的强度，而不是确认它的真实强度。</value>
+  </data>
+  <data name="NeedRestartToApplyChanges" xml:space="preserve">
+    <value>Passliss 需要重新启动才能应用更改。 你想现在重新开始吗？</value>
+  </data>
+  <data name="InstallConfirmMsg" xml:space="preserve">
+    <value>要安装更新，Passliss 需要重新启动。 你要继续吗？</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="InstallVersion" xml:space="preserve">
+    <value>安装版本</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="PasswordConfigurations" xml:space="preserve">
+    <value>密码配置</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="OpenD" xml:space="preserve">
+    <value>打开...</value>
+  </data>
+  <data name="NoPasswordConfigurations" xml:space="preserve">
+    <value>没有创建密码配置。 创建一个开始。</value>
+  </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>许可证</value>
+  </data>
+  <data name="SeeLicenses" xml:space="preserve">
+    <value>查看许可证</value>
+  </data>
+  <data name="UnableToCheckUpdates" xml:space="preserve">
+    <value>无法检查更新</value>
+  </data>
+  <data name="CheckUpdatesOnStart" xml:space="preserve">
+    <value>启动时检查更新</value>
+  </data>
+  <data name="NotifyUpdates" xml:space="preserve">
+    <value>有可用更新时显示通知</value>
+  </data>
+  <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
+    <value>禁用启动时检查更新。</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>发生了错误</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>密码配置已成功导出。</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>密码配置导入成功。</value>
+  </data>
+  <data name="ImportConserve" xml:space="preserve">
+    <value>您想保存当前的密码配置吗？</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="LoadPasswordConfigurations" xml:space="preserve">
+    <value>加载密码配置</value>
+  </data>
+  <data name="CreatePasswordConfigurations" xml:space="preserve">
+    <value>创建密码配置</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>数据</value>
+  </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>重置设置</value>
+  </data>
+  <data name="ResetSettingsConfirmMsg" xml:space="preserve">
+    <value>您确定要重置所有设置吗？</value>
+  </data>
+  <data name="SettingsReset" xml:space="preserve">
+    <value>所有设置都已重置，Passliss 现在将重新启动。</value>
+  </data>
+  <data name="DefaultPreset" xml:space="preserve">
+    <value>默认预设</value>
+  </data>
+  <data name="Simple" xml:space="preserve">
+    <value>简单</value>
+  </data>
+  <data name="Complex" xml:space="preserve">
+    <value>复杂</value>
+  </data>
+  <data name="RandomPasswordLength" xml:space="preserve">
+    <value>随机密码长度</value>
+  </data>
+  <data name="RandomPasswordLengthDesc" xml:space="preserve">
+    <value>设置最小和最大长度的两个值。</value>
+  </data>
+  <data name="RandomPasswordLengthOnStart" xml:space="preserve">
+    <value>在启动时使用随机密码长度</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>之间</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="ValuesIncorrect" xml:space="preserve">
+    <value>指定的值不正确。</value>
+  </data>
+  <data name="ImportSettings" xml:space="preserve">
+    <value>导入设置</value>
+  </data>
+  <data name="ExportSettings" xml:space="preserve">
+    <value>导出设置</value>
+  </data>
+  <data name="SettingsExportedSucessMsg" xml:space="preserve">
+    <value>设置导出成功。</value>
+  </data>
+  <data name="SettingsImportedMsg" xml:space="preserve">
+    <value>设置已成功导入。 Passliss 现在将重新启动。</value>
+  </data>
+  <data name="HistoryEmpty" xml:space="preserve">
+    <value>历史是空的。</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>启动</value>
+  </data>
+  <data name="StartupPage" xml:space="preserve">
+    <value>选择默认启动页面。</value>
+  </data>
+  <data name="SetDefaultPwrConfigMsg" xml:space="preserve">
+    <value>是否要将此密码配置设置为默认值。 当前的将被此替换。</value>
+  </data>
+  <data name="UnsetPwrConfigMsg" xml:space="preserve">
+    <value>是否要重置默认密码配置？</value>
+  </data>
+  <data name="ResetDefaultPwrConfig" xml:space="preserve">
+    <value>重置默认密码配置</value>
+  </data>
+  <data name="SeeFullPassword" xml:space="preserve">
+    <value>查看完整密码</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="RandomizePasswordConfiguration" xml:space="preserve">
+    <value>随机密码配置</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="HideShowPassword" xml:space="preserve">
+    <value>隐藏/显示密码为纯文本</value>
+  </data>
+  <data name="GenerateRandomLength" xml:space="preserve">
+    <value>生成随机密码长度</value>
+  </data>
+  <data name="ShowFullPassword" xml:space="preserve">
+    <value>显示完整密码</value>
+  </data>
+  <data name="AlwaysHidePasswordInStrengthPage" xml:space="preserve">
+    <value>默认隐藏“强度”页面中的密码。</value>
+  </data>
+  <data name="AlwaysHidePasswordInHistory" xml:space="preserve">
+    <value>默认隐藏历史密码。</value>
+  </data>
+  <data name="OtherCharacters" xml:space="preserve">
+    <value>其他字符（以“，”分隔）</value>
+  </data>
+  <data name="Encryption" xml:space="preserve">
+    <value>加密</value>
+  </data>
+  <data name="StringToEncrypt" xml:space="preserve">
+    <value>字符串加密</value>
+  </data>
+  <data name="Encrypt" xml:space="preserve">
+    <value>加密</value>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>算法</value>
+  </data>
+  <data name="AES" xml:space="preserve">
+    <value>AES</value>
+  </data>
+  <data name="3DES" xml:space="preserve">
+    <value>Triple-DES</value>
+  </data>
+  <data name="Decrypt" xml:space="preserve">
+    <value>解密</value>
+  </data>
+  <data name="EncryptedString" xml:space="preserve">
+    <value>加密字符串</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>密钥</value>
+  </data>
+  <data name="PleaseProvideKeyMsg" xml:space="preserve">
+    <value>请提供密钥。</value>
+  </data>
+  <data name="PleaseProvideText" xml:space="preserve">
+    <value>请提供要加密的文本。</value>
+  </data>
+  <data name="StringToDecrypt" xml:space="preserve">
+    <value>解密字符串</value>
+  </data>
+  <data name="Plaintext" xml:space="preserve">
+    <value>纯文本</value>
+  </data>
+  <data name="DecryptedString" xml:space="preserve">
+    <value>Decrypted string</value>
+  </data>
+  <data name="DisableHistory" xml:space="preserve">
+    <value>Disable history</value>
+  </data>
+  <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
+    <value>Do you want to enable automatic checks for updates at startup?</value>
+  </data>
+</root>
