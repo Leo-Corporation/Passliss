@@ -137,10 +137,10 @@ namespace Passliss.Pages
 			RefreshBordersPage(); // Refresh
 
 			// Load checkboxes
-			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
-			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
-			RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart.HasValue ? Global.Settings.UseRandomPasswordLengthOnStart.Value : true; // Set
-			DisableHistoryChk.IsChecked = Global.Settings.DisableHistory.HasValue ? Global.Settings.DisableHistory.Value : false; // Set
+			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
+			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
+			RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart ?? true; // Set
+			DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
 
 			// Load LangComboBox
 			LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
