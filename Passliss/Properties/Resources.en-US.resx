@@ -450,4 +450,7 @@
   <data name="DecryptedString" xml:space="preserve">
     <value>Decrypted string</value>
   </data>
+  <data name="DisableHistory" xml:space="preserve">
+    <value>Disable history</value>
+  </data>
 </root>

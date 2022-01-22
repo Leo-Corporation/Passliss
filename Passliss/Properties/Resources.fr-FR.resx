@@ -450,4 +450,7 @@
   <data name="DecryptedString" xml:space="preserve">
     <value>Chaîne de caractères décryptée</value>
   </data>
+  <data name="DisableHistory" xml:space="preserve">
+    <value>Désactiver l'historique</value>
+  </data>
 </root>

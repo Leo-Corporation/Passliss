@@ -295,6 +295,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable history.
+        /// </summary>
+        public static string DisableHistory {
+            get {
+                return ResourceManager.GetString("DisableHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encrypt.
         /// </summary>
         public static string Encrypt {
