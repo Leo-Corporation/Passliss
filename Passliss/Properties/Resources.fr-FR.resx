@@ -406,7 +406,7 @@
     <value>Cacher le mot de passe dans l'historique par défaut.</value>
   </data>
   <data name="OtherCharacters" xml:space="preserve">
-    <value>Autres caractères (séparés par un ",")</value>
+    <value>Autres caractères (séparés par une ",")</value>
   </data>
   <data name="Encryption" xml:space="preserve">
     <value>Cryptage</value>
