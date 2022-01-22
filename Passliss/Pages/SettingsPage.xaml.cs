@@ -81,6 +81,11 @@ namespace Passliss.Pages
 				Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
 			}
 
+			if (!Global.Settings.DisableHistory.HasValue)
+			{
+				Global.Settings.DisableHistory = false; // Set
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -135,6 +140,7 @@ namespace Passliss.Pages
 			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
 			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
 			RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart.HasValue ? Global.Settings.UseRandomPasswordLengthOnStart.Value : true; // Set
+			DisableHistoryChk.IsChecked = Global.Settings.DisableHistory.HasValue ? Global.Settings.DisableHistory.Value : false; // Set
 
 			// Load LangComboBox
 			LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
@@ -547,6 +553,7 @@ namespace Passliss.Pages
 					StartupPage = DefaultPage.Generate,
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
+					DisableHistory = false
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -583,6 +590,13 @@ namespace Passliss.Pages
 			RefreshBordersPage(); // Refresh
 
 			Global.Settings.StartupPage = DefaultPage.Encryption; // Update
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void DisableHistoryChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.DisableHistory = DisableHistoryChk.IsChecked; // Set
+
 			SettingsManager.Save(); // Save changes
 		}
 	}
