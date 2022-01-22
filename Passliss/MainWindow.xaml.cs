@@ -89,7 +89,7 @@ namespace Passliss
 					SettingsManager.Save(); // Save changes
 
 					Global.SettingsPage.InitUI();
-				}; 
+				};
 			}
 		}
 
