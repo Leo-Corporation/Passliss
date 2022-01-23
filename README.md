@@ -48,3 +48,8 @@ To contribute to the project, you'll need:
 [Click here](https://github.com/Leo-Corporation/Passliss/blob/main/CONTRIBUTING.md) to see the full guidelines.
 ## License
 This project is under the [MIT License](https://github.com/Leo-Corporation/Passliss/blob/main/LICENSE).
+
+## Translations Credits
+Special thanks to:
+
+- [@wcxu21](https://github.com/wcxu21) for Simplified Chinese
