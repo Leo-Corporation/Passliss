@@ -448,12 +448,12 @@
     <value>纯文本</value>
   </data>
   <data name="DecryptedString" xml:space="preserve">
-    <value>Decrypted string</value>
+    <value>解密字符串</value>
   </data>
   <data name="DisableHistory" xml:space="preserve">
-    <value>Disable history</value>
+    <value>禁用历史</value>
   </data>
   <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
-    <value>Do you want to enable automatic checks for updates at startup?</value>
+    <value>是否要在启动时启用自动检查更新？</value>
   </data>
 </root>
