@@ -483,4 +483,7 @@
   <data name="ChangesApplyAfterRestart" xml:space="preserve">
     <value>Les modifications seront appliquées après un redémarrage de Passliss.</value>
   </data>
+  <data name="LetsGo" xml:space="preserve">
+    <value>Allons-y</value>
+  </data>
 </root>

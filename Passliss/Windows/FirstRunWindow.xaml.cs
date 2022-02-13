@@ -21,9 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Passliss.Classes;
 using Passliss.Pages.FirstRunPages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +80,20 @@ namespace Passliss.Windows
 				3 => LanguagePage,
 				_ => WelcomePage // By default go the home page
 			}); // Navigate to the next page
+
+			if (pageID == 4)
+			{
+				NextTxt.Text = Properties.Resources.LetsGo; // Set text
+			}
+
+			if (pageID == 5)
+			{
+				Global.Settings.IsFirstRun = false;
+				SettingsManager.Save();
+
+				Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe"); // Start
+				Environment.Exit(0); // Close
+			}
 		}
 	}
 }
