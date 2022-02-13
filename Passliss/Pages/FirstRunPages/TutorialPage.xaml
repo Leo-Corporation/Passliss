@@ -11,28 +11,67 @@
 
 	<Grid>
 		<StackPanel Margin="10">
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" Margin="50,0,0,0">
 				<Border Width="31" Height="31" BorderThickness="2" CornerRadius="16" Background="{Binding Source={StaticResource LightAccentColor}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" Padding="8">
 					<TextBlock Foreground="{Binding Source={StaticResource AccentColor}}" Text="&#xF503;" FontFamily="..\..\Fonts\#FluentSystemIcons-Regular" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 				</Border>
 				<TextBlock Text="{x:Static lang:Resources.Generate}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                <StackPanel.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
+                                    <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
+                                </ThicknessAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
 			</StackPanel>
 			<TextBlock Text="{x:Static lang:Resources.WelcomeGenerate}" Margin="41,0,0,0" FontSize="14" TextWrapping="Wrap"/>
 
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" Margin="50,0,0,0">
 				<Border Width="31" Height="31" BorderThickness="2" CornerRadius="16" Background="{Binding Source={StaticResource LightAccentColor}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" Padding="8">
 					<TextBlock Foreground="{Binding Source={StaticResource AccentColor}}" Text="&#xF6BF;" FontFamily="..\..\Fonts\#FluentSystemIcons-Regular" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 				</Border>
 				<TextBlock Text="{x:Static lang:Resources.Strenght}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
-			</StackPanel>
+
+                <StackPanel.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:0.2">
+                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
+                                    <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
+                                </ThicknessAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
+            </StackPanel>
 			<TextBlock Text="{x:Static lang:Resources.WelcomeTestStrength}" Margin="41,0,0,0" FontSize="14" TextWrapping="Wrap" Height="52.1"/>
 
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" Margin="50,0,0,0">
 				<Border Width="31" Height="31" BorderThickness="2" CornerRadius="16" Background="{Binding Source={StaticResource LightAccentColor}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" Padding="8">
 					<TextBlock Foreground="{Binding Source={StaticResource AccentColor}}" Text="&#xF834;" FontFamily="..\..\Fonts\#FluentSystemIcons-Regular" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 				</Border>
 				<TextBlock Text="{x:Static lang:Resources.Encrypt}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
-			</StackPanel>
+
+                <StackPanel.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:0.4">
+                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
+                                    <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
+                                </ThicknessAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
+            </StackPanel>
 			<TextBlock Text="{x:Static lang:Resources.WelcomeEncrypt}" Margin="41,0,0,0" FontSize="14" TextWrapping="Wrap"/>
 		</StackPanel>
 	</Grid>
