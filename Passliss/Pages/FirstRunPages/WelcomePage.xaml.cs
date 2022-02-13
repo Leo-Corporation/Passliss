@@ -21,31 +21,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using Passliss.Pages.FirstRunPages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace Passliss.Windows
+namespace Passliss.Pages.FirstRunPages
 {
 	/// <summary>
-	/// Interaction logic for FirstRunWindow.xaml
+	/// Interaction logic for WelcomePage.xaml
 	/// </summary>
-	public partial class FirstRunWindow : Window
+	public partial class WelcomePage : Page
 	{
-		WelcomePage WelcomePage => new();
-
-		public FirstRunWindow()
+		public WelcomePage()
 		{
 			InitializeComponent();
 			InitUI(); // Load the UI
@@ -53,17 +39,7 @@ namespace Passliss.Windows
 
 		private void InitUI()
 		{
-			PageViewer.Navigate(WelcomePage); // Show welcome page
-		}
-
-		private void CloseBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Environment.Exit(0); // Quit Passliss
-		}
-
-		private void NextBtn_Click(object sender, RoutedEventArgs e)
-		{
-			//TODO: Add pages
+			WelcomeTxt.Text = $"{Properties.Resources.Welcome}, {Environment.UserName}."; // Say hello to the user
 		}
 	}
 }

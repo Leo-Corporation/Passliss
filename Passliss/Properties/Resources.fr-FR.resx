@@ -465,4 +465,7 @@
   <data name="Back" xml:space="preserve">
     <value>Retour</value>
   </data>
+  <data name="WelcomeThanks" xml:space="preserve">
+    <value>Merci d'utiliser Passliss ! Commençons !</value>
+  </data>
 </root>

@@ -1103,5 +1103,14 @@ namespace Passliss.Properties {
                 return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for using Passliss! Let&apos;s get started!.
+        /// </summary>
+        public static string WelcomeThanks {
+            get {
+                return ResourceManager.GetString("WelcomeThanks", resourceCulture);
+            }
+        }
     }
 }
