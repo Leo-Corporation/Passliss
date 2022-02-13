@@ -21,36 +21,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using Passliss.Pages.FirstRunPages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Passliss.Classes;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace Passliss.Windows
+namespace Passliss.Pages.FirstRunPages
 {
 	/// <summary>
-	/// Interaction logic for FirstRunWindow.xaml
+	/// Interaction logic for LanguagePage.xaml
 	/// </summary>
-	public partial class FirstRunWindow : Window
+	public partial class LanguagePage : Page
 	{
-		WelcomePage WelcomePage => new(); // PageID = 0
-		TutorialPage TutorialPage => new(); // PageID = 1
-		ThemePage ThemePage => new(); // PageID = 2
-
-		LanguagePage LanguagePage => new(); // PageID = 3
-
-		int pageID = 0;
-		public FirstRunWindow()
+		public LanguagePage()
 		{
 			InitializeComponent();
 			InitUI(); // Load the UI
@@ -58,25 +40,35 @@ namespace Passliss.Windows
 
 		private void InitUI()
 		{
-			PageViewer.Navigate(WelcomePage); // Show welcome page
-		}
+			// Load LangComboBox
+			LangComboBox.Items.Clear(); // Clear
+			LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
-		private void CloseBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Environment.Exit(0); // Quit Passliss
-		}
-
-		private void NextBtn_Click(object sender, RoutedEventArgs e)
-		{
-			pageID++; // Increment
-			PageViewer.Navigate(pageID switch
+			for (int i = 0; i < Global.LanguageList.Count; i++)
 			{
-				0 => WelcomePage,
-				1 => TutorialPage,
-				2 => ThemePage,
-				3 => LanguagePage,
-				_ => WelcomePage // By default go the home page
-			}); // Navigate to the next page
+				LangComboBox.Items.Add(Global.LanguageList[i]);
+			}
+
+			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
+
+		}
+
+		private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			LangApplyBtn.Visibility = Visibility.Visible; // Show
+		}
+
+		private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.Language = LangComboBox.Text switch
+			{
+				"English (United States)" => Global.LanguageCodeList[0], // Set the settings value
+				"Français (France)" => Global.LanguageCodeList[1], // Set the settings value
+				"中文（简体）" => Global.LanguageCodeList[2], // Set the settings value
+				_ => "_default" // Set the settings value
+			};
+			SettingsManager.Save(); // Save the changes
+			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
 		}
 	}
 }
