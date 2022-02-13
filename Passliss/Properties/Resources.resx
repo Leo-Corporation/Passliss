@@ -436,4 +436,13 @@
   <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
     <value>Do you want to enable automatic checks for updates at startup?</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

@@ -456,4 +456,13 @@
   <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
     <value>Voulez-vous activer les vérifications automatiques des mises à jour au démarrage ?</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Suivant</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
 </root>
