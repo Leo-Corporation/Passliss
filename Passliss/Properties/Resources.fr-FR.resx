@@ -468,4 +468,13 @@
   <data name="WelcomeThanks" xml:space="preserve">
     <value>Merci d'utiliser Passliss ! Commençons !</value>
   </data>
+  <data name="WelcomeGenerate" xml:space="preserve">
+    <value>Générez des mots de passe forts et sûrs avec Passliss. Personnalisez tous les paramètres pour créer le mot de passe le plus fort de tous les temps! Enregistrez ces configurations grâce aux "Configurations de mot de passe".</value>
+  </data>
+  <data name="WelcomeTestStrength" xml:space="preserve">
+    <value>Testez la force de tous les mots de passe et générez-en un nouveau si le vôtre est trop faible.</value>
+  </data>
+  <data name="WelcomeEncrypt" xml:space="preserve">
+    <value>Vous voulez garder quelque chose de secret? Chiffrez n’importe quelle chaîne de caractères à l’aide de différents algorithmes de chiffrement. Bien sûr, vous pouvez également les déchiffrer à l’aide d’une clé secrète!</value>
+  </data>
 </root>

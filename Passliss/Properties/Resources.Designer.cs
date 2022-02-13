@@ -1105,6 +1105,33 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Want to keep something secret? Encrypt any string using different encryption algorithms. Of course, you can also decrypt them using a secret key!.
+        /// </summary>
+        public static string WelcomeEncrypt {
+            get {
+                return ResourceManager.GetString("WelcomeEncrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to &quot;Password Configurations&quot;..
+        /// </summary>
+        public static string WelcomeGenerate {
+            get {
+                return ResourceManager.GetString("WelcomeGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test the strength of any passwords and generate a new one if yours is too weak..
+        /// </summary>
+        public static string WelcomeTestStrength {
+            get {
+                return ResourceManager.GetString("WelcomeTestStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thanks for using Passliss! Let&apos;s get started!.
         /// </summary>
         public static string WelcomeThanks {
