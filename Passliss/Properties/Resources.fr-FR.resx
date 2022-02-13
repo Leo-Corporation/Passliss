@@ -477,4 +477,10 @@
   <data name="WelcomeEncrypt" xml:space="preserve">
     <value>Vous voulez garder quelque chose de secret? Chiffrez n’importe quelle chaîne de caractères à l’aide de différents algorithmes de chiffrement. Bien sûr, vous pouvez également les déchiffrer à l’aide d’une clé secrète!</value>
   </data>
+  <data name="WelcomeThemeTitle" xml:space="preserve">
+    <value>Faites de Passliss le vôtre.</value>
+  </data>
+  <data name="ChangesApplyAfterRestart" xml:space="preserve">
+    <value>Les modifications seront appliquées après un redémarrage de Passliss.</value>
+  </data>
 </root>

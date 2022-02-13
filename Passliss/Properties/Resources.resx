@@ -457,4 +457,10 @@
   <data name="WelcomeEncrypt" xml:space="preserve">
     <value>Want to keep something secret? Encrypt any string using different encryption algorithms. Of course, you can also decrypt them using a secret key!</value>
   </data>
+  <data name="WelcomeThemeTitle" xml:space="preserve">
+    <value>Make Passliss yours.</value>
+  </data>
+  <data name="ChangesApplyAfterRestart" xml:space="preserve">
+    <value>Changes will be applied after a restart of Passliss.</value>
+  </data>
 </root>

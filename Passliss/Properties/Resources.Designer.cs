@@ -178,6 +178,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Changes will be applied after a restart of Passliss..
+        /// </summary>
+        public static string ChangesApplyAfterRestart {
+            get {
+                return ResourceManager.GetString("ChangesApplyAfterRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Passliss theme..
         /// </summary>
         public static string ChangeTheme {
@@ -1137,6 +1146,15 @@ namespace Passliss.Properties {
         public static string WelcomeThanks {
             get {
                 return ResourceManager.GetString("WelcomeThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Passliss yours..
+        /// </summary>
+        public static string WelcomeThemeTitle {
+            get {
+                return ResourceManager.GetString("WelcomeThemeTitle", resourceCulture);
             }
         }
     }
