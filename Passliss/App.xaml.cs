@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Passliss.Classes;
+using Passliss.Windows;
 using System.Windows;
 
 namespace Passliss
@@ -45,7 +46,14 @@ namespace Passliss
 			Global.StrenghtPage = new(); // Create a new strenght page
 			Global.EncryptPage = new(); // Create a new encryption page
 
-			base.OnStartup(e);
+			if (Global.Settings.IsFirstRun.Value)
+			{
+				new FirstRunWindow().Show(); // Show first run experience
+			}
+			else
+			{
+				new MainWindow().Show(); // Open Passliss
+			}
 		}
 	}
 }
