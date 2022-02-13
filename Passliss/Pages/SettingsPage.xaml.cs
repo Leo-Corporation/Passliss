@@ -561,7 +561,7 @@ namespace Passliss.Pages
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
 					DisableHistory = false,
-					IsFirstRun = true
+					IsFirstRun = false
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
