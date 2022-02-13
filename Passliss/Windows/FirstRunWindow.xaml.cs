@@ -49,8 +49,8 @@ namespace Passliss.Windows
 		WelcomePage WelcomePage => new(); // PageID = 0
 		TutorialPage TutorialPage => new(); // PageID = 1
 		ThemePage ThemePage => new(); // PageID = 2
-
 		LanguagePage LanguagePage => new(); // PageID = 3
+		UpdatePage UpdatePage => new(); // PageID = 4
 
 		int pageID = 0;
 		public FirstRunWindow()
@@ -78,6 +78,7 @@ namespace Passliss.Windows
 				1 => TutorialPage,
 				2 => ThemePage,
 				3 => LanguagePage,
+				4 => UpdatePage,
 				_ => WelcomePage // By default go the home page
 			}); // Navigate to the next page
 
