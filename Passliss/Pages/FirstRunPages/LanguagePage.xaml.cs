@@ -50,7 +50,7 @@ namespace Passliss.Pages.FirstRunPages
 			}
 
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
-
+			LangApplyBtn.Visibility = Visibility.Collapsed; // Hide
 		}
 
 		private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
