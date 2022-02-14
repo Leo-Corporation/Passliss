@@ -487,6 +487,9 @@
     <value>Let's go</value>
   </data>
   <data name="HistorySettings" xml:space="preserve">
-    <value>History settings</value>
+    <value>History settings.</value>
+  </data>
+  <data name="ManageData" xml:space="preserve">
+    <value>Manage your data.</value>
   </data>
 </root>

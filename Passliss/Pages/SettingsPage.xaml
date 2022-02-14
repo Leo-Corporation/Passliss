@@ -36,213 +36,227 @@
 					</StackPanel>
 				</Border>
 
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF33C;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Theme}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.ChangeTheme}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
+
+					<StackPanel Orientation="Horizontal">
+						<Border x:Name="LightBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="LightBorder_MouseLeftButtonUp">
+							<StackPanel Orientation="Vertical">
+								<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="..\Images\LightTheme.png"/>
+									</Rectangle.Fill>
+								</Rectangle>
+								<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="LightRadioBtn" Checked="LightRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Light}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+							</StackPanel>
+						</Border>
+						<Border x:Name="DarkBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="DarkBorder_MouseLeftButtonUp">
+							<StackPanel Orientation="Vertical">
+								<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="..\Images\DarkTheme.png"/>
+									</Rectangle.Fill>
+								</Rectangle>
+								<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="DarkRadioBtn" Checked="DarkRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Dark}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+							</StackPanel>
+						</Border>
+						<Border x:Name="SystemBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="SystemBorder_MouseLeftButtonUp">
+							<StackPanel Orientation="Vertical">
+								<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="..\Images\SystemTheme.png"/>
+									</Rectangle.Fill>
+								</Rectangle>
+								<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="SystemRadioBtn" Checked="SystemRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.System}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+							</StackPanel>
+						</Border>
+						<Button x:Name="ThemeApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="ThemeApplyBtn_Click" Visibility="Hidden">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="&#xE98E;" FontWeight="Regular" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,5,0" VerticalAlignment="Center"/>
+								<TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
+							</StackPanel>
+						</Button>
+					</StackPanel>
+				</Expander>
+
+				<Border CornerRadius="5" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+
+						<StackPanel Margin="15,15,10,15" Orientation="Horizontal">
+							<TextBlock Text="&#xF834;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Language}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.ChangeLanguage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Grid.Column="1">
+							<ComboBox SelectionChanged="LangComboBox_SelectionChanged" BorderThickness="2" Padding="5" Style="{DynamicResource ComboBoxStyle1}" x:Name="LangComboBox" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center"/>
+							<Button x:Name="LangApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="LangApplyBtn_Click" Visibility="Hidden">
+								<TextBlock Text="&#xF680;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+								<Button.ToolTip>
+									<ToolTip Content="{x:Static lang:Resources.Apply}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+								</Button.ToolTip>
+							</Button>
+						</StackPanel>
+					</Grid>
+				</Border>
+				
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xFC97;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.RandomPasswordLength}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.RandomPasswordLengthDesc}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
+
+					<StackPanel Margin="10 0 10 10">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
+							<TextBlock Text="{x:Static lang:Resources.Between}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
+							<TextBox x:Name="MinLengthTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle1}" FontSize="14" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,0,10,0" VerticalAlignment="Center" TextChanged="MinLengthTxt_TextChanged" MaxLength="3" TextAlignment="Center"/>
+							<TextBlock Text="{x:Static lang:Resources.And}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
+							<TextBox x:Name="MaxLengthTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle1}" FontSize="14" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,0,10,0" VerticalAlignment="Center" TextChanged="MaxLengthTxt_TextChanged" MaxLength="3" TextAlignment="Center"/>
+							<Button x:Name="RandomLengthApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="RandomLengthApplyBtn_Click" Visibility="Hidden">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="&#xE98E;" FontWeight="Regular" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,5,0" VerticalAlignment="Center"/>
+									<TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
+								</StackPanel>
+							</Button>
+						</StackPanel>
+
+						<CheckBox Margin="0 2 0 2" x:Name="RandomLengthOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.RandomPasswordLengthOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="RandomLengthOnStartChk_Checked" Checked="RandomLengthOnStartChk_Checked"/>
+					</StackPanel>
+				</Expander>
+
+
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF60F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Startup}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.StartupPage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
+
+					<StackPanel Margin="10 0 10 10">
+						<StackPanel Orientation="Horizontal">
+							<Border x:Name="GeneratePageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="GeneratePageBorder_MouseLeftButtonUp">
+								<StackPanel	Orientation="Vertical">
+									<TextBlock Text="&#xFC23;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+									<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="GeneratePageRadioBtn" Checked="GeneratePageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Generate}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+								</StackPanel>
+							</Border>
+							<Border x:Name="StrengthPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="StrengthPageBorder_MouseLeftButtonUp">
+								<StackPanel	Orientation="Vertical">
+									<TextBlock Text="&#xF6BF;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+									<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="StrengthPageRadioBtn" Checked="StrengthPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+								</StackPanel>
+							</Border>
+							<Border x:Name="EncryptionPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="EncryptionPageBorder_MouseLeftButtonUp">
+								<StackPanel	Orientation="Vertical">
+									<TextBlock Text="&#xF834;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+									<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="EncryptionPageRadioBtn" Checked="EncryptionPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Encryption}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+								</StackPanel>
+							</Border>
+						</StackPanel>
+
+						<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
+					</StackPanel>
+				</Expander>
+
+
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF6AA;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.PasswordConfigurations}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
+
+					<Button x:Name="ResetPwrConfigBtn" Padding="5" Margin="10,0,10,10" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetPwrConfigBtn_Click" HorizontalAlignment="Left">
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+							<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" VerticalAlignment="Center"/>
+						</StackPanel>
+					</Button>
+				</Expander>
+
+
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF47F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.History}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.HistorySettings}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
+
+					<StackPanel Margin="10 0 10 10">
+						<CheckBox Margin="0 2 0 2" x:Name="DisableHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.DisableHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="DisableHistoryChk_Checked" Checked="DisableHistoryChk_Checked"/>
+						<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>
+					</StackPanel>
+				</Expander>
+
+
                 <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
                     <Expander.Header>
                         <StackPanel Margin="10 15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF33C;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+                            <TextBlock Text="&#xF419;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
                             <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.Theme}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.ChangeTheme}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                                <TextBlock Text="{x:Static lang:Resources.Data}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+                                <TextBlock Text="{x:Static lang:Resources.ManageData}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
                             </StackPanel>
                         </StackPanel>
                     </Expander.Header>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Border x:Name="LightBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="LightBorder_MouseLeftButtonUp">
-                            <StackPanel Orientation="Vertical">
-                                <Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="..\Images\LightTheme.png"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="LightRadioBtn" Checked="LightRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Light}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
-                            </StackPanel>
-                        </Border>
-                        <Border x:Name="DarkBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="DarkBorder_MouseLeftButtonUp">
-                            <StackPanel Orientation="Vertical">
-                                <Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="..\Images\DarkTheme.png"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="DarkRadioBtn" Checked="DarkRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Dark}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
-                            </StackPanel>
-                        </Border>
-                        <Border x:Name="SystemBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="SystemBorder_MouseLeftButtonUp">
-                            <StackPanel Orientation="Vertical">
-                                <Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="..\Images\SystemTheme.png"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="SystemRadioBtn" Checked="SystemRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.System}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
-                            </StackPanel>
-                        </Border>
-                        <Button x:Name="ThemeApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="ThemeApplyBtn_Click" Visibility="Hidden">
+                    <StackPanel Margin="10 0 10 10">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <Button x:Name="ImportBtn" Click="ImportBtn_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xF151;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+                                    <TextBlock Text="{x:Static lang:Resources.ImportSettings}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ExportBtn" Click="ExportBtn_Click" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" MouseEnter="BtnEnter" MouseLeave="BtnLeave">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xF1A5;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+                                    <TextBlock Text="{x:Static lang:Resources.ExportSettings}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Button x:Name="ResetSettingsLink" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetSettingsLink_Click" HorizontalAlignment="Left">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE98E;" FontWeight="Regular" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Static lang:Resources.ResetSettings}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
                 </Expander>
 
-                <Border CornerRadius="5" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Margin="15,15,10,15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF834;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-                            <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.Language}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.ChangeLanguage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Grid.Column="1">
-                            <ComboBox SelectionChanged="LangComboBox_SelectionChanged" BorderThickness="2" Padding="5" Style="{DynamicResource ComboBoxStyle1}" x:Name="LangComboBox" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                            <Button x:Name="LangApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="LangApplyBtn_Click" Visibility="Hidden">
-                                <TextBlock Text="&#xF680;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,0,0" VerticalAlignment="Center"/>
-
-                                <Button.ToolTip>
-                                    <ToolTip Content="{x:Static lang:Resources.Apply}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
-                                </Button.ToolTip>
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-                
-                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
-                    <Expander.Header>
-                        <StackPanel Margin="10 15" Orientation="Horizontal">
-                            <TextBlock Text="&#xFC97;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-                            <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.RandomPasswordLength}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.RandomPasswordLengthDesc}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Expander.Header>
-
-                    <StackPanel Margin="10 0 10 10">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
-                            <TextBlock Text="{x:Static lang:Resources.Between}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-                            <TextBox x:Name="MinLengthTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle1}" FontSize="14" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,0,10,0" VerticalAlignment="Center" TextChanged="MinLengthTxt_TextChanged" MaxLength="3" TextAlignment="Center"/>
-                            <TextBlock Text="{x:Static lang:Resources.And}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-                            <TextBox x:Name="MaxLengthTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle1}" FontSize="14" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,0,10,0" VerticalAlignment="Center" TextChanged="MaxLengthTxt_TextChanged" MaxLength="3" TextAlignment="Center"/>
-                            <Button x:Name="RandomLengthApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="RandomLengthApplyBtn_Click" Visibility="Hidden">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="&#xE98E;" FontWeight="Regular" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-
-                        <CheckBox Margin="0 2 0 2" x:Name="RandomLengthOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.RandomPasswordLengthOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="RandomLengthOnStartChk_Checked" Checked="RandomLengthOnStartChk_Checked"/>
-                    </StackPanel>
-                </Expander>
-
-
-                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
-                    <Expander.Header>
-                        <StackPanel Margin="10 15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF60F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-                            <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.Startup}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.StartupPage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Expander.Header>
-
-                    <StackPanel Margin="10 0 10 10">
-                        <StackPanel Orientation="Horizontal">
-                            <Border x:Name="GeneratePageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="GeneratePageBorder_MouseLeftButtonUp">
-                                <StackPanel	Orientation="Vertical">
-                                    <TextBlock Text="&#xFC23;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
-                                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="GeneratePageRadioBtn" Checked="GeneratePageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Generate}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
-                                </StackPanel>
-                            </Border>
-                            <Border x:Name="StrengthPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="StrengthPageBorder_MouseLeftButtonUp">
-                                <StackPanel	Orientation="Vertical">
-                                    <TextBlock Text="&#xF6BF;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
-                                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="StrengthPageRadioBtn" Checked="StrengthPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
-                                </StackPanel>
-                            </Border>
-                            <Border x:Name="EncryptionPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="EncryptionPageBorder_MouseLeftButtonUp">
-                                <StackPanel	Orientation="Vertical">
-                                    <TextBlock Text="&#xF834;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
-                                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="EncryptionPageRadioBtn" Checked="EncryptionPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Encryption}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-
-                        <CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
-                    </StackPanel>
-                </Expander>
-
-
-                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
-                    <Expander.Header>
-                        <StackPanel Margin="10 15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF6AA;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-                            <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.PasswordConfigurations}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Expander.Header>
-
-                    <Button x:Name="ResetPwrConfigBtn" Padding="5" Margin="10,0,10,10" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetPwrConfigBtn_Click" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                </Expander>
-
-
-                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
-                    <Expander.Header>
-                        <StackPanel Margin="10 15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF47F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-                            <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.History}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.HistorySettings}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Expander.Header>
-
-                    <StackPanel Margin="10 0 10 10">
-                        <CheckBox Margin="0 2 0 2" x:Name="DisableHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.DisableHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="DisableHistoryChk_Checked" Checked="DisableHistoryChk_Checked"/>
-                        <CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>
-                    </StackPanel>
-                </Expander>
-                           
-                <TextBlock Text="{x:Static lang:Resources.Data}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-				<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-					<Button x:Name="ImportBtn" Click="ImportBtn_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Margin="0,0,10,0">
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="&#xF151;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-							<TextBlock Text="{x:Static lang:Resources.ImportSettings}" VerticalAlignment="Center"/>
-						</StackPanel>
-					</Button>
-					<Button x:Name="ExportBtn" Click="ExportBtn_Click" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" MouseEnter="BtnEnter" MouseLeave="BtnLeave">
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="&#xF1A5;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-							<TextBlock Text="{x:Static lang:Resources.ExportSettings}" VerticalAlignment="Center"/>
-						</StackPanel>
-					</Button>
-				</StackPanel>
-				<Button x:Name="ResetSettingsLink" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetSettingsLink_Click" HorizontalAlignment="Left">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
-						<TextBlock Text="{x:Static lang:Resources.ResetSettings}" VerticalAlignment="Center"/>
-					</StackPanel>
-				</Button>
-
-				<TextBlock Text="{x:Static lang:Resources.Licenses}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+                <TextBlock Text="{x:Static lang:Resources.Licenses}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
 				<Button x:Name="SeeLicensesBtn" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="SeeLicensesBtn_Click" HorizontalAlignment="Left">
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>

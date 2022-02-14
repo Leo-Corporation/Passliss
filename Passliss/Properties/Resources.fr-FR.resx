@@ -487,6 +487,9 @@
     <value>Allons-y</value>
   </data>
   <data name="HistorySettings" xml:space="preserve">
-    <value>Paramètres de l'historique</value>
+    <value>Paramètres de l'historique.</value>
+  </data>
+  <data name="ManageData" xml:space="preserve">
+    <value>Gérez vos données.</value>
   </data>
 </root>

@@ -502,7 +502,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to History settings.
+        ///   Looks up a localized string similar to History settings..
         /// </summary>
         public static string HistorySettings {
             get {
@@ -642,6 +642,15 @@ namespace Passliss.Properties {
         public static string LowerCase {
             get {
                 return ResourceManager.GetString("LowerCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage your data..
+        /// </summary>
+        public static string ManageData {
+            get {
+                return ResourceManager.GetString("ManageData", resourceCulture);
             }
         }
         
