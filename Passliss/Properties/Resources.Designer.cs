@@ -502,6 +502,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History settings.
+        /// </summary>
+        public static string HistorySettings {
+            get {
+                return ResourceManager.GetString("HistorySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string Import {
