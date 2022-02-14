@@ -21,39 +21,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using Passliss.Classes;
-using Passliss.Windows;
-using System.Windows;
+using System.Windows.Controls;
 
-namespace Passliss
+namespace Passliss.Pages.FirstRunPages
 {
 	/// <summary>
-	/// Interaction logic for App.xaml
+	/// Interaction logic for TutorialPage.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class TutorialPage : Page
 	{
-		protected override void OnStartup(StartupEventArgs e)
+		public TutorialPage()
 		{
-			SettingsManager.Load(); // Load settings
-
-			Global.ChangeTheme(); // Update the theme
-			Global.ChangeLanguage(); // Change the language
-
-			PasswordConfigurationManager.Load(); // Load configurations
-
-			Global.SettingsPage = new(); // Create a new settings page
-			Global.GeneratePage = new(); // Create a new generate page
-			Global.StrenghtPage = new(); // Create a new strenght page
-			Global.EncryptPage = new(); // Create a new encryption page
-
-			if (Global.Settings.IsFirstRun.Value)
-			{
-				new FirstRunWindow().Show(); // Show first run experience
-			}
-			else
-			{
-				new MainWindow().Show(); // Open Passliss
-			}
+			InitializeComponent();
 		}
 	}
 }

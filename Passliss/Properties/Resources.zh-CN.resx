@@ -448,12 +448,48 @@
     <value>纯文本</value>
   </data>
   <data name="DecryptedString" xml:space="preserve">
-    <value>Decrypted string</value>
+    <value>解密字符串</value>
   </data>
   <data name="DisableHistory" xml:space="preserve">
-    <value>Disable history</value>
+    <value>禁用历史</value>
   </data>
   <data name="EnableAutoUpdatesOnStartMsg" xml:space="preserve">
-    <value>Do you want to enable automatic checks for updates at startup?</value>
+    <value>是否要在启动时启用自动检查更新？</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="WelcomeThanks" xml:space="preserve">
+    <value>Thanks for using Passliss! Let's get started!</value>
+  </data>
+  <data name="WelcomeGenerate" xml:space="preserve">
+    <value>Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to "Password Configurations".</value>
+  </data>
+  <data name="WelcomeTestStrength" xml:space="preserve">
+    <value>Test the strength of any passwords and generate a new one if yours is too weak.</value>
+  </data>
+  <data name="WelcomeEncrypt" xml:space="preserve">
+    <value>Want to keep something secret? Encrypt any string using different encryption algorithms. Of course, you can also decrypt them using a secret key!</value>
+  </data>
+  <data name="WelcomeThemeTitle" xml:space="preserve">
+    <value>Make Passliss yours.</value>
+  </data>
+  <data name="ChangesApplyAfterRestart" xml:space="preserve">
+    <value>Changes will be applied after a restart of Passliss.</value>
+  </data>
+  <data name="LetsGo" xml:space="preserve">
+    <value>Let's go</value>
+  </data>
+  <data name="HistorySettings" xml:space="preserve">
+    <value>History settings.</value>
+  </data>
+  <data name="ManageData" xml:space="preserve">
+    <value>Manage your data.</value>
   </data>
 </root>

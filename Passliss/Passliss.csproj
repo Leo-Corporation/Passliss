@@ -6,15 +6,15 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>2.1.0.2201</Version>
+    <Version>2.2.0.2202</Version>
     <Authors>Léo Corporation</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Leo-Corporation/Passliss</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Leo-Corporation/Passliss</RepositoryUrl>
     <Copyright>© 2022</Copyright>
-    <AssemblyVersion>2.1.0.2201</AssemblyVersion>
-    <FileVersion>2.1.0.2201</FileVersion>
+    <AssemblyVersion>2.2.0.2202</AssemblyVersion>
+    <FileVersion>2.2.0.2202</FileVersion>
     <Company>Léo Corporation</Company>
     <Product>Passliss</Product>
     <Description>A modern password generator for Windows.</Description>
@@ -30,11 +30,12 @@
     <None Remove="Images\BackgroundWhite.png" />
     <None Remove="Images\DarkTheme.png" />
     <None Remove="Images\LightTheme.png" />
+    <None Remove="Images\Passliss.png" />
     <None Remove="Images\SystemTheme.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LeoCorpLibrary" Version="4.2.0.2201" />
+    <PackageReference Include="LeoCorpLibrary" Version="4.3.0.2202" />
   </ItemGroup>
 
   <ItemGroup>
@@ -84,6 +85,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\LightTheme.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Passliss.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\SystemTheme.png">

@@ -22,38 +22,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Passliss.Classes;
-using Passliss.Windows;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace Passliss
+namespace Passliss.Pages.FirstRunPages
 {
 	/// <summary>
-	/// Interaction logic for App.xaml
+	/// Interaction logic for UpdatePage.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class UpdatePage : Page
 	{
-		protected override void OnStartup(StartupEventArgs e)
+		public UpdatePage()
 		{
-			SettingsManager.Load(); // Load settings
+			InitializeComponent();
+			InitUI(); // Load the UI
+		}
 
-			Global.ChangeTheme(); // Update the theme
-			Global.ChangeLanguage(); // Change the language
+		private void InitUI()
+		{
+			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
+			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
+		}
 
-			PasswordConfigurationManager.Load(); // Load configurations
+		private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
 
-			Global.SettingsPage = new(); // Create a new settings page
-			Global.GeneratePage = new(); // Create a new generate page
-			Global.StrenghtPage = new(); // Create a new strenght page
-			Global.EncryptPage = new(); // Create a new encryption page
-
-			if (Global.Settings.IsFirstRun.Value)
-			{
-				new FirstRunWindow().Show(); // Show first run experience
-			}
-			else
-			{
-				new MainWindow().Show(); // Open Passliss
-			}
+		private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }

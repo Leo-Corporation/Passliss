@@ -142,6 +142,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Between.
         /// </summary>
         public static string Between {
@@ -165,6 +174,15 @@ namespace Passliss.Properties {
         public static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes will be applied after a restart of Passliss..
+        /// </summary>
+        public static string ChangesApplyAfterRestart {
+            get {
+                return ResourceManager.GetString("ChangesApplyAfterRestart", resourceCulture);
             }
         }
         
@@ -484,6 +502,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History settings..
+        /// </summary>
+        public static string HistorySettings {
+            get {
+                return ResourceManager.GetString("HistorySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string Import {
@@ -574,6 +601,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Let&apos;s go.
+        /// </summary>
+        public static string LetsGo {
+            get {
+                return ResourceManager.GetString("LetsGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string Licenses {
@@ -610,6 +646,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage your data..
+        /// </summary>
+        public static string ManageData {
+            get {
+                return ResourceManager.GetString("ManageData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -624,6 +669,15 @@ namespace Passliss.Properties {
         public static string NeedRestartToApplyChanges {
             get {
                 return ResourceManager.GetString("NeedRestartToApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         
@@ -1074,6 +1128,60 @@ namespace Passliss.Properties {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Want to keep something secret? Encrypt any string using different encryption algorithms. Of course, you can also decrypt them using a secret key!.
+        /// </summary>
+        public static string WelcomeEncrypt {
+            get {
+                return ResourceManager.GetString("WelcomeEncrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to &quot;Password Configurations&quot;..
+        /// </summary>
+        public static string WelcomeGenerate {
+            get {
+                return ResourceManager.GetString("WelcomeGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test the strength of any passwords and generate a new one if yours is too weak..
+        /// </summary>
+        public static string WelcomeTestStrength {
+            get {
+                return ResourceManager.GetString("WelcomeTestStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for using Passliss! Let&apos;s get started!.
+        /// </summary>
+        public static string WelcomeThanks {
+            get {
+                return ResourceManager.GetString("WelcomeThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Passliss yours..
+        /// </summary>
+        public static string WelcomeThemeTitle {
+            get {
+                return ResourceManager.GetString("WelcomeThemeTitle", resourceCulture);
             }
         }
     }

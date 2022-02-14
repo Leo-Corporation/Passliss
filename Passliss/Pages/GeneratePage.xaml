@@ -69,29 +69,29 @@
 				<CheckBox Margin="0 2 0 2" x:Name="SpecialCaractersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SpecialCaracters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Center"/>
 				<CheckBox Margin="0 2 0 2" x:Name="NumbersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.Numbers}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Center"/>
 
-                <StackPanel x:Name="ExportBar" Orientation="Horizontal" Grid.Row="2" Margin="0,5,0,0" VerticalAlignment="Bottom">
-                    <Button x:Name="LoadPwrConfig" Padding="10"  Click="LoadPwrConfig_Click" Content="&#xEA0E;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" Width="34" Cursor="Hand">
-                        <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.LoadPasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button x:Name="NewPwrConfig" Padding="10" Click="NewPwrConfig_Click" Content="&#xEAD5;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0">
-                        <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.CreatePasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button x:Name="ImportPwrConfig" Padding="10" Click="ImportPwrConfig_Click" Content="&#xE931;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" Margin="0,0,5,0" Width="34">
-                        <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.Import}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button x:Name="ExportPwrConfig" Padding="10" Click="ExportPwrConfig_Click" Content="&#xE918;" FontSize="8.7" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" Width="34">
-                        <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.Export}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
+				<StackPanel x:Name="ExportBar" Orientation="Horizontal" Grid.Row="2" Margin="0,5,0,0" VerticalAlignment="Bottom">
+					<Button x:Name="LoadPwrConfig" Padding="10"  Click="LoadPwrConfig_Click" Content="&#xEA0E;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" Width="34" Cursor="Hand">
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.LoadPasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+						</Button.ToolTip>
+					</Button>
+					<Button x:Name="NewPwrConfig" Padding="10" Click="NewPwrConfig_Click" Content="&#xEAD5;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0">
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.CreatePasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+						</Button.ToolTip>
+					</Button>
+					<Button x:Name="ImportPwrConfig" Padding="10" Click="ImportPwrConfig_Click" Content="&#xE931;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" Margin="0,0,5,0" Width="34">
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.Import}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+						</Button.ToolTip>
+					</Button>
+					<Button x:Name="ExportPwrConfig" Padding="10" Click="ExportPwrConfig_Click" Content="&#xE918;" FontSize="8.7" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" Width="34">
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.Export}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+						</Button.ToolTip>
+					</Button>
+				</StackPanel>
+			</StackPanel>
 
 			<StackPanel Grid.Column="1">
 				<StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
@@ -108,10 +108,10 @@
 			</StackPanel>
 		</Grid>
 
-        <ScrollViewer x:Name="HistoryScroll" Visibility="Collapsed" Margin="10" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Template="{DynamicResource ScrollViewerControlTemplate}" Height="230">
-            <StackPanel x:Name="PasswordHistory" >
+		<ScrollViewer x:Name="HistoryScroll" Visibility="Collapsed" Margin="10" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Template="{DynamicResource ScrollViewerControlTemplate}" Height="230">
+			<StackPanel x:Name="PasswordHistory" >
 
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
 </Page>
