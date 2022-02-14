@@ -144,36 +144,47 @@
                     </StackPanel>
                 </Expander>
 
-              
-				
-				<TextBlock Text="{x:Static lang:Resources.Startup}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-				<TextBlock Text="{x:Static lang:Resources.StartupPage}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
 
-				<StackPanel Orientation="Horizontal">
-					<Border x:Name="GeneratePageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="GeneratePageBorder_MouseLeftButtonUp">
-						<StackPanel	Orientation="Vertical">
-							<TextBlock Text="&#xFC23;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
-							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="GeneratePageRadioBtn" Checked="GeneratePageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Generate}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
-						</StackPanel>
-					</Border>
-					<Border x:Name="StrengthPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="StrengthPageBorder_MouseLeftButtonUp">
-						<StackPanel	Orientation="Vertical">
-							<TextBlock Text="&#xF6BF;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
-							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="StrengthPageRadioBtn" Checked="StrengthPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
-						</StackPanel>
-					</Border>
-                    <Border x:Name="EncryptionPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="EncryptionPageBorder_MouseLeftButtonUp">
-                        <StackPanel	Orientation="Vertical">
-                            <TextBlock Text="&#xF834;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
-                            <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="EncryptionPageRadioBtn" Checked="EncryptionPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Encryption}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+                    <Expander.Header>
+                        <StackPanel Margin="10 15" Orientation="Horizontal">
+                            <TextBlock Text="&#xF60F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+                            <StackPanel>
+                                <TextBlock Text="{x:Static lang:Resources.Startup}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+                                <TextBlock Text="{x:Static lang:Resources.StartupPage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
+                    </Expander.Header>
 
-				<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
-				<CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>
+                    <StackPanel Margin="10 0 10 10">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="GeneratePageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="GeneratePageBorder_MouseLeftButtonUp">
+                                <StackPanel	Orientation="Vertical">
+                                    <TextBlock Text="&#xFC23;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+                                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="GeneratePageRadioBtn" Checked="GeneratePageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Generate}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+                                </StackPanel>
+                            </Border>
+                            <Border x:Name="StrengthPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="StrengthPageBorder_MouseLeftButtonUp">
+                                <StackPanel	Orientation="Vertical">
+                                    <TextBlock Text="&#xF6BF;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+                                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="StrengthPageRadioBtn" Checked="StrengthPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+                                </StackPanel>
+                            </Border>
+                            <Border x:Name="EncryptionPageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter_1" MouseLeave="Border_MouseLeave_1" Cursor="Hand" MouseLeftButtonUp="EncryptionPageBorder_MouseLeftButtonUp">
+                                <StackPanel	Orientation="Vertical">
+                                    <TextBlock Text="&#xF834;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+                                    <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="EncryptionPageRadioBtn" Checked="EncryptionPageRadioBtn_Checked" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.Encryption}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#2153E0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
 
-				<TextBlock Text="{x:Static lang:Resources.PasswordConfigurations}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+                        <CheckBox Margin="0 2 0 2" x:Name="HidePasswordInStrengthChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInStrengthPage}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInStrengthChk_Checked" Checked="HidePasswordInStrengthChk_Checked"/>
+                        <CheckBox Margin="0 2 0 2" x:Name="HidePasswordInHistoryChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.AlwaysHidePasswordInHistory}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="HidePasswordInHistoryChk_Checked" Checked="HidePasswordInHistoryChk_Checked"/>
+
+                    </StackPanel>
+                </Expander>
+
+                <TextBlock Text="{x:Static lang:Resources.PasswordConfigurations}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
 				<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
 
                 <Button x:Name="ResetPwrConfigBtn" Padding="5" Margin="1" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetPwrConfigBtn_Click" HorizontalAlignment="Left">
