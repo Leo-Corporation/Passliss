@@ -17,18 +17,18 @@
 				</Border>
 				<TextBlock Text="{x:Static lang:Resources.Generate}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
 
-                <StackPanel.Triggers>
-                    <EventTrigger RoutedEvent="Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
-                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
-                                    <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
-                                </ThicknessAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </StackPanel.Triggers>
+				<StackPanel.Triggers>
+					<EventTrigger RoutedEvent="Loaded">
+						<BeginStoryboard>
+							<Storyboard>
+								<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+									<SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
+									<SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
+								</ThicknessAnimationUsingKeyFrames>
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+				</StackPanel.Triggers>
 			</StackPanel>
 			<TextBlock Text="{x:Static lang:Resources.WelcomeGenerate}" Margin="41,0,0,0" FontSize="14" TextWrapping="Wrap"/>
 
@@ -38,19 +38,19 @@
 				</Border>
 				<TextBlock Text="{x:Static lang:Resources.Strenght}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
 
-                <StackPanel.Triggers>
-                    <EventTrigger RoutedEvent="Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:0.2">
-                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
-                                    <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
-                                </ThicknessAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </StackPanel.Triggers>
-            </StackPanel>
+				<StackPanel.Triggers>
+					<EventTrigger RoutedEvent="Loaded">
+						<BeginStoryboard>
+							<Storyboard>
+								<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:0.2">
+									<SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
+									<SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
+								</ThicknessAnimationUsingKeyFrames>
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+				</StackPanel.Triggers>
+			</StackPanel>
 			<TextBlock Text="{x:Static lang:Resources.WelcomeTestStrength}" Margin="41,0,0,0" FontSize="14" TextWrapping="Wrap" Height="52.1"/>
 
 			<StackPanel Orientation="Horizontal" Margin="50,0,0,0">
@@ -59,19 +59,19 @@
 				</Border>
 				<TextBlock Text="{x:Static lang:Resources.Encrypt}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
 
-                <StackPanel.Triggers>
-                    <EventTrigger RoutedEvent="Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:0.4">
-                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
-                                    <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
-                                </ThicknessAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </StackPanel.Triggers>
-            </StackPanel>
+				<StackPanel.Triggers>
+					<EventTrigger RoutedEvent="Loaded">
+						<BeginStoryboard>
+							<Storyboard>
+								<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:0.4">
+									<SplineThicknessKeyFrame KeyTime="00:00:00" Value="50,0,0,0" />
+									<SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0,0,0,0" />
+								</ThicknessAnimationUsingKeyFrames>
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+				</StackPanel.Triggers>
+			</StackPanel>
 			<TextBlock Text="{x:Static lang:Resources.WelcomeEncrypt}" Margin="41,0,0,0" FontSize="14" TextWrapping="Wrap"/>
 		</StackPanel>
 	</Grid>

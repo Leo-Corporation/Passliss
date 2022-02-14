@@ -9,23 +9,23 @@
 	  d:DesignHeight="450" d:DesignWidth="800" Foreground="{Binding Source={StaticResource Foreground1}}"
 	  Title="UpdatePage">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="&#xF191;" Margin="30 0" FontSize="100" FontFamily="..\..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-            <TextBlock Text="{x:Static lang:Resources.Updates}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
-        </StackPanel>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock Text="&#xF191;" Margin="30 0" FontSize="100" FontFamily="..\..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+			<TextBlock Text="{x:Static lang:Resources.Updates}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+		</StackPanel>
 
-        <StackPanel Margin="10" Grid.Column="1">
-            <TextBlock Text="{x:Static lang:Resources.Updates}" FontWeight="Bold" FontSize="16"/>
-            <TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" Margin="0,0,0,15"/>
+		<StackPanel Margin="10" Grid.Column="1">
+			<TextBlock Text="{x:Static lang:Resources.Updates}" FontWeight="Bold" FontSize="16"/>
+			<TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" Margin="0,0,0,15"/>
 
-            <CheckBox Margin="0 2 0 2" x:Name="CheckUpdatesOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.CheckUpdatesOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="CheckUpdatesOnStartChk_Checked" Checked="CheckUpdatesOnStartChk_Checked"/>
-            <CheckBox Margin="0 2 0 2" x:Name="NotifyUpdatesChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.NotifyUpdates}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="NotifyUpdatesChk_Checked" Checked="NotifyUpdatesChk_Checked"/>
-        </StackPanel>
-    </Grid>
+			<CheckBox Margin="0 2 0 2" x:Name="CheckUpdatesOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.CheckUpdatesOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="CheckUpdatesOnStartChk_Checked" Checked="CheckUpdatesOnStartChk_Checked"/>
+			<CheckBox Margin="0 2 0 2" x:Name="NotifyUpdatesChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.NotifyUpdates}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="NotifyUpdatesChk_Checked" Checked="NotifyUpdatesChk_Checked"/>
+		</StackPanel>
+	</Grid>
 </Page>
