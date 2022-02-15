@@ -209,6 +209,7 @@ namespace Passliss.Pages
 				UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
 				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
 				InstallIconTxt.Text = "\uE92A"; // Set text 
+				UpdateStatusPanel.Orientation = Orientation.Vertical; // Set orientation
 			}
 
 			VersionTxt.Text = Global.Version; // Set text
@@ -294,6 +295,8 @@ namespace Passliss.Pages
 					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
 					InstallIconTxt.Text = "\uE92A"; // Set text 
 				}
+
+				UpdateStatusPanel.Orientation = Orientation.Horizontal;
 			}
 		}
 
