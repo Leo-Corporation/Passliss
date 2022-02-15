@@ -22,9 +22,9 @@
 					<StackPanel>
 						<TextBlock Text="{x:Static lang:Resources.Passliss}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="28" Margin="0,0,0,0"/>
 						<TextBlock x:Name="VersionTxt" Text="{x:Static lang:Resources.Passliss}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Normal" Margin="0,0,0,5" FontSize="14"/>
-						<StackPanel Orientation="Horizontal">
+						<StackPanel x:Name="UpdateStatusPanel" Orientation="Horizontal">
 							<TextBlock x:Name="UpdateStatusTxt" Text="{x:Static lang:Resources.Updates}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,15,0"/>
-							<Button x:Name="RefreshInstallBtn" Click="RefreshInstallBtn_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center">
+							<Button x:Name="RefreshInstallBtn" Click="RefreshInstallBtn_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left">
 								<StackPanel Orientation="Horizontal">
 									<TextBlock x:Name="InstallIconTxt" Text="&#xE9EA;" FontWeight="Regular" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,5,0" VerticalAlignment="Center"/>
 									<TextBlock x:Name="InstallMsgTxt" Text="{x:Static lang:Resources.Install}" VerticalAlignment="Center"/>
