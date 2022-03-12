@@ -421,6 +421,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate key.
+        /// </summary>
+        public static string GenerateKey {
+            get {
+                return ResourceManager.GetString("GenerateKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate a password.
         /// </summary>
         public static string GeneratePassword {

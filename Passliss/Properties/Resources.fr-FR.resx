@@ -492,4 +492,7 @@
   <data name="ManageData" xml:space="preserve">
     <value>Gérez vos données.</value>
   </data>
+  <data name="GenerateKey" xml:space="preserve">
+    <value>Générer une clé</value>
+  </data>
 </root>
