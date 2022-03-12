@@ -216,5 +216,10 @@ namespace Passliss.Pages
 				StringToDecryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkGray"].ToString()) }; // Set foreground
 			}
 		}
+
+		private async void GenerateKeyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			KeyTxt.Text = await Password.GenerateAsync(24, LeoCorpLibrary.Enums.PasswordPresets.Simple);
+		}
 	}
 }
