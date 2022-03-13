@@ -304,6 +304,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default encryption algorithm.
+        /// </summary>
+        public static string DefaultEncryptionMode {
+            get {
+                return ResourceManager.GetString("DefaultEncryptionMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default preset.
         /// </summary>
         public static string DefaultPreset {
@@ -354,6 +363,15 @@ namespace Passliss.Properties {
         public static string Encryption {
             get {
                 return ResourceManager.GetString("Encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption settings.
+        /// </summary>
+        public static string EncryptionSettings {
+            get {
+                return ResourceManager.GetString("EncryptionSettings", resourceCulture);
             }
         }
         

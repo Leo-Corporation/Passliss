@@ -92,6 +92,11 @@ namespace Passliss.Pages
 				Global.Settings.IsFirstRun = true; // Set
 			}
 
+			if (!Global.Settings.DefaultEncryptionAlgorithm.HasValue)
+			{
+				Global.Settings.DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES; // Set
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -156,6 +161,9 @@ namespace Passliss.Pages
 			{
 				LangComboBox.Items.Add(Global.LanguageList[i]);
 			}
+
+			// AlogrithmComboBox
+			AlgorithmComboBox.SelectedIndex = (int)Global.Settings.DefaultEncryptionAlgorithm.Value;
 
 			LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
@@ -565,7 +573,8 @@ namespace Passliss.Pages
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
 					DisableHistory = false,
-					IsFirstRun = false
+					IsFirstRun = false,
+					DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -608,6 +617,13 @@ namespace Passliss.Pages
 		private void DisableHistoryChk_Checked(object sender, RoutedEventArgs e)
 		{
 			Global.Settings.DisableHistory = DisableHistoryChk.IsChecked; // Set
+
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void AlgorithmComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Global.Settings.DefaultEncryptionAlgorithm = (EncryptionAlgorithm)AlgorithmComboBox.SelectedIndex;
 
 			SettingsManager.Save(); // Save changes
 		}

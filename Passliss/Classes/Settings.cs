@@ -106,6 +106,11 @@ namespace Passliss.Classes
 		/// True if this is the first run of Passliss.
 		/// </summary>
 		public bool? IsFirstRun { get; set; }
+
+		/// <summary>
+		/// The default encryption algorithm in <see cref="Pages.EncryptPage"/>.
+		/// </summary>
+		public EncryptionAlgorithm? DefaultEncryptionAlgorithm { get; set; }
 	}
 
 	/// <summary>
@@ -146,7 +151,8 @@ namespace Passliss.Classes
 					HidePasswordInStrengthPage = false,
 					AlwaysHidePasswordInHistory = false,
 					DisableHistory = false,
-					IsFirstRun = true
+					IsFirstRun = true,
+					DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES
 				}; // Create a new settings file
 
 				Save(); // Save the changes

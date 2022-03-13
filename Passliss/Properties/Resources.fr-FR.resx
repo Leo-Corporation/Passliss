@@ -495,4 +495,10 @@
   <data name="GenerateKey" xml:space="preserve">
     <value>Générer une clé</value>
   </data>
+  <data name="EncryptionSettings" xml:space="preserve">
+    <value>Paramètres d'encryptage</value>
+  </data>
+  <data name="DefaultEncryptionMode" xml:space="preserve">
+    <value>Algorithme de chiffrement par défaut</value>
+  </data>
 </root>

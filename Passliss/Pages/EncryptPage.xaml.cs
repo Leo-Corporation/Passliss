@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
+using Passliss.Classes;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,7 +47,7 @@ namespace Passliss.Pages
 
 		private void InitUI()
 		{
-			AlgorithmComboBox.SelectedIndex = 0;
+			AlgorithmComboBox.SelectedIndex = (int)Global.Settings.DefaultEncryptionAlgorithm.Value;
 			isPlaceholderShownEncrypt = true;
 			isPlaceholderShownDecrypt = true;
 

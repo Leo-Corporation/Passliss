@@ -475,4 +475,10 @@
   <data name="GenerateKey" xml:space="preserve">
     <value>Generate key</value>
   </data>
+  <data name="EncryptionSettings" xml:space="preserve">
+    <value>Encryption settings</value>
+  </data>
+  <data name="DefaultEncryptionMode" xml:space="preserve">
+    <value>Default encryption algorithm</value>
+  </data>
 </root>
