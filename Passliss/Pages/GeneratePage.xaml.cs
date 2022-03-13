@@ -301,5 +301,14 @@ namespace Passliss.Pages
 				}
 			}
 		}
+
+		public MainWindow MainWindow { get; set; }
+		private void TestStrengthBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.StrenghtPage.PasswordTxt.Text = PasswordTxt.Text; // Set text
+			Global.StrenghtPage.PasswordPwrBox.Password = PasswordTxt.Text; // Set text
+
+			MainWindow.StrenghtTabBtn_Click(this, null);
+		}
 	}
 }

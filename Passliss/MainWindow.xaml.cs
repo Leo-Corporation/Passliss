@@ -91,6 +91,8 @@ namespace Passliss
 					Global.SettingsPage.InitUI();
 				};
 			}
+
+			Global.GeneratePage.MainWindow = this;
 		}
 
 		private void ResetAllCheckStatus()
@@ -153,7 +155,7 @@ namespace Passliss
 			PageContent.Navigate(Global.GeneratePage); // Navigate
 		}
 
-		private void StrenghtTabBtn_Click(object sender, RoutedEventArgs e)
+		internal void StrenghtTabBtn_Click(object sender, RoutedEventArgs e)
 		{
 			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
 			CheckButton(StrenghtTabBtn); // Check the "Strenght" button
