@@ -2,19 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>2.2.1.2202</Version>
+    <Version>2.3.0.2203</Version>
     <Authors>Léo Corporation</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Leo-Corporation/Passliss</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Leo-Corporation/Passliss</RepositoryUrl>
     <Copyright>© 2022</Copyright>
-    <AssemblyVersion>2.2.1.2202</AssemblyVersion>
-    <FileVersion>2.2.1.2202</FileVersion>
+    <AssemblyVersion>2.3.0.2203</AssemblyVersion>
+    <FileVersion>2.3.0.2203</FileVersion>
     <Company>Léo Corporation</Company>
     <Product>Passliss</Product>
     <Description>A modern password generator for Windows.</Description>
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LeoCorpLibrary" Version="4.3.0.2202" />
+    <PackageReference Include="LeoCorpLibrary" Version="4.4.0.2203" />
   </ItemGroup>
 
   <ItemGroup>

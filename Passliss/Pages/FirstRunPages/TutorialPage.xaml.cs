@@ -23,16 +23,15 @@ SOFTWARE.
 */
 using System.Windows.Controls;
 
-namespace Passliss.Pages.FirstRunPages
+namespace Passliss.Pages.FirstRunPages;
+
+/// <summary>
+/// Interaction logic for TutorialPage.xaml
+/// </summary>
+public partial class TutorialPage : Page
 {
-	/// <summary>
-	/// Interaction logic for TutorialPage.xaml
-	/// </summary>
-	public partial class TutorialPage : Page
+	public TutorialPage()
 	{
-		public TutorialPage()
-		{
-			InitializeComponent();
-		}
+		InitializeComponent();
 	}
 }

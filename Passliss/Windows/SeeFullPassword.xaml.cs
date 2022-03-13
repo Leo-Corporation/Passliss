@@ -23,45 +23,44 @@ SOFTWARE.
 */
 using System.Windows;
 
-namespace Passliss.Windows
+namespace Passliss.Windows;
+
+/// <summary>
+/// Interaction logic for SeeFullPassword.xaml
+/// </summary>
+public partial class SeeFullPassword : Window
 {
-	/// <summary>
-	/// Interaction logic for SeeFullPassword.xaml
-	/// </summary>
-	public partial class SeeFullPassword : Window
+	string Password { get; set; }
+	public SeeFullPassword(string password)
 	{
-		string Password { get; set; }
-		public SeeFullPassword(string password)
-		{
-			InitializeComponent();
-			Password = password; // Set value to specified password
+		InitializeComponent();
+		Password = password; // Set value to specified password
 
-			InitUI(); // Load the UI
-		}
+		InitUI(); // Load the UI
+	}
 
-		private void InitUI()
-		{
-			PasswordTxt.Text = Password; // Set text
-		}
+	private void InitUI()
+	{
+		PasswordTxt.Text = Password; // Set text
+	}
 
-		private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
-		{
-			WindowState = WindowState.Minimized; // Minimize
-		}
+	private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+	{
+		WindowState = WindowState.Minimized; // Minimize
+	}
 
-		private void CloseBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Close(); // Close              
-		}
+	private void CloseBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Close(); // Close              
+	}
 
-		private void CopyBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(Password); // Copy to clipboard
-		}
+	private void CopyBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Clipboard.SetText(Password); // Copy to clipboard
+	}
 
-		private void CloseWindowBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Close(); // Close
-		}
+	private void CloseWindowBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Close(); // Close
 	}
 }

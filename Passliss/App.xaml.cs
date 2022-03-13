@@ -25,35 +25,34 @@ using Passliss.Classes;
 using Passliss.Windows;
 using System.Windows;
 
-namespace Passliss
+namespace Passliss;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application
+	protected override void OnStartup(StartupEventArgs e)
 	{
-		protected override void OnStartup(StartupEventArgs e)
+		SettingsManager.Load(); // Load settings
+
+		Global.ChangeTheme(); // Update the theme
+		Global.ChangeLanguage(); // Change the language
+
+		PasswordConfigurationManager.Load(); // Load configurations
+
+		Global.SettingsPage = new(); // Create a new settings page
+		Global.GeneratePage = new(); // Create a new generate page
+		Global.StrenghtPage = new(); // Create a new strenght page
+		Global.EncryptPage = new(); // Create a new encryption page
+
+		if (Global.Settings.IsFirstRun.Value)
 		{
-			SettingsManager.Load(); // Load settings
-
-			Global.ChangeTheme(); // Update the theme
-			Global.ChangeLanguage(); // Change the language
-
-			PasswordConfigurationManager.Load(); // Load configurations
-
-			Global.SettingsPage = new(); // Create a new settings page
-			Global.GeneratePage = new(); // Create a new generate page
-			Global.StrenghtPage = new(); // Create a new strenght page
-			Global.EncryptPage = new(); // Create a new encryption page
-
-			if (Global.Settings.IsFirstRun.Value)
-			{
-				new FirstRunWindow().Show(); // Show first run experience
-			}
-			else
-			{
-				new MainWindow().Show(); // Open Passliss
-			}
+			new FirstRunWindow().Show(); // Show first run experience
+		}
+		else
+		{
+			new MainWindow().Show(); // Open Passliss
 		}
 	}
 }

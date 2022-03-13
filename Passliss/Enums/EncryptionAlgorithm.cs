@@ -21,32 +21,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using System;
-
-namespace Xalyus_Updater;
+namespace Passliss.Enums;
 
 /// <summary>
-/// A class that contains informations about the update status.
+/// Encryption algorithms available in Passliss
 /// </summary>
-public static class Global
+public enum EncryptionAlgorithm
 {
 	/// <summary>
-	/// The progress of the update installation.
+	/// AES algorithm.
 	/// </summary>
-	public static int UpdateProgress { get; set; }
+	AES,
 
 	/// <summary>
-	/// The link of the file to be updated.
+	/// Triple-DES algorithm.
 	/// </summary>
-	public static string ZIPLink { get; set; }
-
-	/// <summary>
-	/// The directory where the file is downloaded.
-	/// </summary>
-	public static string Directory => AppDomain.CurrentDomain.BaseDirectory + @"\UpdatedGavilyaFiles.zip";
-
-	/// <summary>
-	/// The displayed message when the update is installed.
-	/// </summary>
-	public static string InstallMessage { get; set; }
+	TripleDES
 }

@@ -22,26 +22,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Passliss.Enums
+namespace Passliss.Enums;
+
+/// <summary>
+/// Default startup pages.
+/// </summary>
+public enum DefaultPage
 {
 	/// <summary>
-	/// Default startup pages.
+	/// The "Generate" page (<see cref="Pages.GeneratePage"/>).
 	/// </summary>
-	public enum DefaultPage
-	{
-		/// <summary>
-		/// The "Generate" page (<see cref="Pages.GeneratePage"/>).
-		/// </summary>
-		Generate = 0,
+	Generate = 0,
 
-		/// <summary>
-		/// The "Strength" page (<see cref="Pages.StrenghtPage"/>).
-		/// </summary>
-		Strength = 1,
+	/// <summary>
+	/// The "Strength" page (<see cref="Pages.StrenghtPage"/>).
+	/// </summary>
+	Strength = 1,
 
-		/// <summary>
-		/// The "Encryption" page (<see cref="Pages.EncryptPage"/>).
-		/// </summary>
-		Encryption = 2
-	}
+	/// <summary>
+	/// The "Encryption" page (<see cref="Pages.EncryptPage"/>).
+	/// </summary>
+	Encryption = 2
 }
