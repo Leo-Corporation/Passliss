@@ -25,53 +25,52 @@ using Passliss.Classes;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Passliss.UserControls
+namespace Passliss.UserControls;
+
+/// <summary>
+/// Interaction logic for PasswordHistoryItem.xaml
+/// </summary>
+public partial class PasswordHistoryItem : UserControl
 {
-	/// <summary>
-	/// Interaction logic for PasswordHistoryItem.xaml
-	/// </summary>
-	public partial class PasswordHistoryItem : UserControl
+	string Password { get; init; }
+	StackPanel StackPanel { get; init; }
+	public PasswordHistoryItem(string password, StackPanel stackPanel)
 	{
-		string Password { get; init; }
-		StackPanel StackPanel { get; init; }
-		public PasswordHistoryItem(string password, StackPanel stackPanel)
-		{
-			InitializeComponent();
-			Password = password; // Set
-			StackPanel = stackPanel; // Set
+		InitializeComponent();
+		Password = password; // Set
+		StackPanel = stackPanel; // Set
 
-			InitUI();
+		InitUI();
+	}
+
+	private void InitUI()
+	{
+		PasswordTxt.Text = Password; // Set text
+	}
+
+	private void CopyBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Clipboard.SetText(Password); // Copy
+	}
+
+	private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+	{
+		StackPanel.Children.Remove(this); // Remove
+		Global.GeneratePage.HistoryBtn_Click(this, null);
+	}
+
+	internal void HideOrShowPasswordInPlainText(bool showPassword)
+	{
+		if (showPassword)
+		{
+			PasswordTxt.Text = Password;
 		}
-
-		private void InitUI()
+		else
 		{
-			PasswordTxt.Text = Password; // Set text
-		}
-
-		private void CopyBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(Password); // Copy
-		}
-
-		private void DeleteBtn_Click(object sender, RoutedEventArgs e)
-		{
-			StackPanel.Children.Remove(this); // Remove
-			Global.GeneratePage.HistoryBtn_Click(this, null);
-		}
-
-		internal void HideOrShowPasswordInPlainText(bool showPassword)
-		{
-			if (showPassword)
+			PasswordTxt.Text = ""; // Clear
+			for (int i = 0; i < Password.Length; i++)
 			{
-				PasswordTxt.Text = Password;
-			}
-			else
-			{
-				PasswordTxt.Text = ""; // Clear
-				for (int i = 0; i < Password.Length; i++)
-				{
-					PasswordTxt.Text += "\u2022";
-				}
+				PasswordTxt.Text += "\u2022";
 			}
 		}
 	}

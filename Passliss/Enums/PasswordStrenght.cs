@@ -22,36 +22,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Passliss.Enums
+namespace Passliss.Enums;
+
+/// <summary>
+/// The password strenght enum.
+/// </summary>
+public enum PasswordStrenght
 {
 	/// <summary>
-	/// The password strenght enum.
+	/// Very good password strenght.
 	/// </summary>
-	public enum PasswordStrenght
-	{
-		/// <summary>
-		/// Very good password strenght.
-		/// </summary>
-		VeryGood,
+	VeryGood,
 
-		/// <summary>
-		/// Good password strenght.
-		/// </summary>
-		Good,
+	/// <summary>
+	/// Good password strenght.
+	/// </summary>
+	Good,
 
-		/// <summary>
-		/// Medium password strenght.
-		/// </summary>
-		Medium,
+	/// <summary>
+	/// Medium password strenght.
+	/// </summary>
+	Medium,
 
-		/// <summary>
-		/// Low password strenght.
-		/// </summary>
-		Low,
+	/// <summary>
+	/// Low password strenght.
+	/// </summary>
+	Low,
 
-		/// <summary>
-		/// Unknown password strenght.
-		/// </summary>
-		Unknown
-	}
+	/// <summary>
+	/// Unknown password strenght.
+	/// </summary>
+	Unknown
 }

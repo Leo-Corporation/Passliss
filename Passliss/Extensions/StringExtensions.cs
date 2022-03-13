@@ -25,67 +25,66 @@ using Passliss.Classes;
 using System;
 using System.Linq;
 
-namespace Passliss.Extensions
+namespace Passliss.Extensions;
+
+/// <summary>
+/// Extensions of the <see cref="string"/> type.
+/// </summary>
+public static class StringExtensions
 {
 	/// <summary>
-	/// Extensions of the <see cref="string"/> type.
+	/// Checks if a string contains lower cases.
 	/// </summary>
-	public static class StringExtensions
+	/// <param name="s"></param>
+	/// <returns>A <see cref="bool"/> value.</returns>
+	public static bool ContainsLowerCases(this string s)
 	{
-		/// <summary>
-		/// Checks if a string contains lower cases.
-		/// </summary>
-		/// <param name="s"></param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		public static bool ContainsLowerCases(this string s)
-		{
-			string[] lowerCase = Global.LowerCaseLetters.Split(new string[] { "," }, StringSplitOptions.None); // Lower case
+		string[] lowerCase = Global.LowerCaseLetters.Split(new string[] { "," }, StringSplitOptions.None); // Lower case
 
-			for (int i = 0; i < lowerCase.Length; i++)
+		for (int i = 0; i < lowerCase.Length; i++)
+		{
+			for (int j = 0; j < s.Length; j++)
 			{
-				for (int j = 0; j < s.Length; j++)
+				if (s[j].ToString().Contains(lowerCase[i]))
 				{
-					if (s[j].ToString().Contains(lowerCase[i]))
-					{
-						return true; // Return
-					}
+					return true; // Return
 				}
 			}
-
-			return false; // Return
 		}
 
-		/// <summary>
-		/// Checks if a string contains upper cases.
-		/// </summary>
-		/// <param name="s"></param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		public static bool ContainsUpperCases(this string s)
-		{
-			string[] upperCase = Global.UpperCaseLetters.Split(new string[] { "," }, StringSplitOptions.None); // Upper case
+		return false; // Return
+	}
 
-			for (int i = 0; i < upperCase.Length; i++)
+	/// <summary>
+	/// Checks if a string contains upper cases.
+	/// </summary>
+	/// <param name="s"></param>
+	/// <returns>A <see cref="bool"/> value.</returns>
+	public static bool ContainsUpperCases(this string s)
+	{
+		string[] upperCase = Global.UpperCaseLetters.Split(new string[] { "," }, StringSplitOptions.None); // Upper case
+
+		for (int i = 0; i < upperCase.Length; i++)
+		{
+			for (int j = 0; j < s.Length; j++)
 			{
-				for (int j = 0; j < s.Length; j++)
+				if (s[j].ToString().Contains(upperCase[i]))
 				{
-					if (s[j].ToString().Contains(upperCase[i]))
-					{
-						return true; // Return
-					}
+					return true; // Return
 				}
 			}
-
-			return false; // Return
 		}
 
-		/// <summary>
-		/// Checks if a letter is being repeated in a <see cref="string"/>.
-		/// </summary>
-		/// <param name="s"></param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		public static bool HasRepeatedCaracters(this string s)
-		{
-			return !s.Where((c, i) => i >= 2 && s[i - 1] == c && s[i - 2] == c).Any();
-		}
+		return false; // Return
+	}
+
+	/// <summary>
+	/// Checks if a letter is being repeated in a <see cref="string"/>.
+	/// </summary>
+	/// <param name="s"></param>
+	/// <returns>A <see cref="bool"/> value.</returns>
+	public static bool HasRepeatedCaracters(this string s)
+	{
+		return !s.Where((c, i) => i >= 2 && s[i - 1] == c && s[i - 2] == c).Any();
 	}
 }

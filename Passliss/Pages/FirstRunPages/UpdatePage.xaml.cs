@@ -25,35 +25,34 @@ using Passliss.Classes;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Passliss.Pages.FirstRunPages
+namespace Passliss.Pages.FirstRunPages;
+
+/// <summary>
+/// Interaction logic for UpdatePage.xaml
+/// </summary>
+public partial class UpdatePage : Page
 {
-	/// <summary>
-	/// Interaction logic for UpdatePage.xaml
-	/// </summary>
-	public partial class UpdatePage : Page
+	public UpdatePage()
 	{
-		public UpdatePage()
-		{
-			InitializeComponent();
-			InitUI(); // Load the UI
-		}
+		InitializeComponent();
+		InitUI(); // Load the UI
+	}
 
-		private void InitUI()
-		{
-			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
-			NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
-		}
+	private void InitUI()
+	{
+		CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
+		NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
+	}
 
-		private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
-		{
-			Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
-			SettingsManager.Save(); // Save changes
-		}
+	private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
+	}
 
-		private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
-		{
-			Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
-			SettingsManager.Save(); // Save changes
-		}
+	private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
 	}
 }
