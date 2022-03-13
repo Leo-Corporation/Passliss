@@ -94,6 +94,8 @@ public partial class MainWindow : Window
 		}
 
 		Global.GeneratePage.MainWindow = this;
+
+		PageContent.Navigated += (o, e) => AnimatePage();
 	}
 
 	private void ResetAllCheckStatus()
@@ -178,5 +180,21 @@ public partial class MainWindow : Window
 		CheckButton(EncryptTabBtn); // Check the "Generate" button
 
 		PageContent.Navigate(Global.EncryptPage); // Navigate
+	}
+
+	private void AnimatePage()
+	{
+		Storyboard storyboard = new();
+
+		ThicknessAnimationUsingKeyFrames t = new();
+		t.KeyFrames.Add(new SplineThicknessKeyFrame(new(0, 30, 0, 0), KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0))));
+		t.KeyFrames.Add(new SplineThicknessKeyFrame(new(0), KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.1))));
+		t.AccelerationRatio = 0.5;
+
+		storyboard.Children.Add(t);
+
+		Storyboard.SetTargetName(t, PageContent.Name);
+		Storyboard.SetTargetProperty(t, new(Frame.MarginProperty));
+		storyboard.Begin(this);
 	}
 }
