@@ -89,6 +89,8 @@ public partial class StrenghtPage : Page
 		CommentTxt.Text = GetStrenghtText(password); // Get text
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+
+		SeeMoreBtn.Visibility = PasswordTxt.Text.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
 	}
 
 	private void HideShowPassword_Click(object sender, RoutedEventArgs e)
@@ -119,6 +121,8 @@ public partial class StrenghtPage : Page
 		CommentTxt.Text = GetStrenghtText(password); // Get text
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+
+		SeeMoreBtn.Visibility = PasswordPwrBox.Password.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
 	}
 
 	private void InitSeeMoreUI()
