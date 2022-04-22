@@ -481,4 +481,10 @@
   <data name="DefaultEncryptionMode" xml:space="preserve">
     <value>Default encryption algorithm</value>
   </data>
+  <data name="More" xml:space="preserve">
+    <value>See more</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Go back</value>
+  </data>
 </root>
