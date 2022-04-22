@@ -72,25 +72,25 @@
 			<TextBlock x:Name="SeeMorePasswordTxt" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 
 			<Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
 
-                <TextBlock Text="{x:Static lang:Resources.UpperCase}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0"/>
-                <TextBlock Text="{x:Static lang:Resources.LowerCase}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="1"/>
-                <TextBlock Text="{x:Static lang:Resources.Numbers}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="2"/>
-                <TextBlock Text="{x:Static lang:Resources.SpecialCaracters}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="3"/>
-                <TextBlock Text="{x:Static lang:Resources.Lenght}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="4"/>
+				<TextBlock Text="{x:Static lang:Resources.UpperCase}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0"/>
+				<TextBlock Text="{x:Static lang:Resources.LowerCase}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="1"/>
+				<TextBlock Text="{x:Static lang:Resources.Numbers}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="2"/>
+				<TextBlock Text="{x:Static lang:Resources.SpecialCaracters}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="3"/>
+				<TextBlock Text="{x:Static lang:Resources.Lenght}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="4"/>
 
-                <TextBlock x:Name="UpperCaseTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="1"/>
+				<TextBlock x:Name="UpperCaseTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="1"/>
 				<TextBlock x:Name="LowerCaseTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Row="1" Grid.Column="1"/>
 				<TextBlock x:Name="NumbersTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Row="2" Grid.Column="1"/>
 				<TextBlock x:Name="SpecialCharsTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Row="3" Grid.Column="1"/>

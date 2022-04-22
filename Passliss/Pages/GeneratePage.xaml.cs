@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
-using Microsoft.Win32;
 using Passliss.Classes;
 using Passliss.UserControls;
 using Passliss.Windows;
