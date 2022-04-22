@@ -627,4 +627,34 @@ public partial class SettingsPage : Page
 
 		SettingsManager.Save(); // Save changes
 	}
+
+	private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)
+	{
+		SaveFileDialog saveFileDialog = new()
+		{
+			FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+			Title = Properties.Resources.Export,
+			Filter = "XML Files|*.xml"
+		}; // Create a SaveFileDialog
+
+		if (saveFileDialog.ShowDialog() ?? true)
+		{
+			PasswordConfigurationManager.Export(Global.PasswordConfigurations, saveFileDialog.FileName); // Export
+		}
+	}
+
+	private void ImportPwrConfig_Click(object sender, RoutedEventArgs e)
+	{
+		OpenFileDialog openFileDialog = new()
+		{
+			FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+			Title = Properties.Resources.Import,
+			Filter = "XML Files|*.xml"
+		}; // Create a OpenFileDialog
+
+		if (openFileDialog.ShowDialog() ?? true)
+		{
+			PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
+		}
+	}
 }
