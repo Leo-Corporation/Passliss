@@ -179,7 +179,8 @@ public partial class StrenghtPage : Page
 		{
 			StrengthContent.Visibility = Visibility.Collapsed; // Change the visibility
 			SeeMoreContent.Visibility = Visibility.Visible; // Change the visibility
-			SeeMoreIconTxt.Text = "\ue9f9"; // Change text
+			SeeMoreIconTxt.Text = "\uF15C"; // Change text
+			SeeMoreTxt.Text = Properties.Resources.GoBack; // Change text
 
 			InitSeeMoreUI(); // Init UI
 		}
@@ -187,7 +188,8 @@ public partial class StrenghtPage : Page
 		{
 			StrengthContent.Visibility = Visibility.Visible; // Change the visibility
 			SeeMoreContent.Visibility = Visibility.Collapsed; // Change the visibility
-			SeeMoreIconTxt.Text = "\ue9f8"; // Change text
+			SeeMoreIconTxt.Text = "\uF182"; // Change text
+			SeeMoreTxt.Text = Properties.Resources.More; // Change text
 		}
 	}
 }
