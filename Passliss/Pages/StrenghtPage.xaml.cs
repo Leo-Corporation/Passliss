@@ -120,4 +120,20 @@ public partial class StrenghtPage : Page
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
 	}
+
+	private void SeeMoreBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (StrengthContent.Visibility == Visibility.Visible) // If the content is visible
+		{
+			StrengthContent.Visibility = Visibility.Collapsed; // Change the visibility
+			SeeMoreContent.Visibility = Visibility.Visible; // Change the visibility
+			SeeMoreIconTxt.Text = "\ue9f9"; // Change text
+		}
+		else // If the content is hidden
+		{
+			StrengthContent.Visibility = Visibility.Visible; // Change the visibility
+			SeeMoreContent.Visibility = Visibility.Collapsed; // Change the visibility
+			SeeMoreIconTxt.Text = "\ue9f8"; // Change text
+		}
+	}
 }
