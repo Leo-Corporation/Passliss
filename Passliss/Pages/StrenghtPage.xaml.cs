@@ -121,6 +121,58 @@ public partial class StrenghtPage : Page
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
 	}
 
+	private void InitSeeMoreUI()
+	{
+		SeeMorePasswordTxt.Text = PasswordTxt.Text; // Set text
+
+		// Get number of upper case letters in password
+		int upperCaseLetters = 0;
+		foreach (char c in PasswordTxt.Text)
+		{
+			if (char.IsUpper(c))
+			{
+				upperCaseLetters++;
+			}
+		}
+
+		// Get number of lower case letters in password
+		int lowerCaseLetters = 0;
+		foreach (char c in PasswordTxt.Text)
+		{
+			if (char.IsLower(c))
+			{
+				lowerCaseLetters++;
+			}
+		}
+
+		// Get number of numbers in password
+		int numbers = 0;
+		foreach (char c in PasswordTxt.Text)
+		{
+			if (char.IsNumber(c))
+			{
+				numbers++;
+			}
+		}
+
+		// Get number of special characters in password
+		int specialCharacters = 0;
+		foreach (char c in PasswordTxt.Text)
+		{
+			if (char.IsPunctuation(c) || char.IsSymbol(c) || Global.SpecialCaracters.Contains(c))
+			{
+				specialCharacters++;
+			}
+		}
+
+		// Display informations to the user
+		UpperCaseTxt.Text = upperCaseLetters.ToString(); // Set text
+		LowerCaseTxt.Text = lowerCaseLetters.ToString(); // Set text
+		NumbersTxt.Text = numbers.ToString(); // Set text
+		SpecialCharsTxt.Text = specialCharacters.ToString(); // Set text
+		LengthTxt.Text = PasswordTxt.Text.Length.ToString(); // Get length
+	}
+
 	private void SeeMoreBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (StrengthContent.Visibility == Visibility.Visible) // If the content is visible
@@ -128,6 +180,8 @@ public partial class StrenghtPage : Page
 			StrengthContent.Visibility = Visibility.Collapsed; // Change the visibility
 			SeeMoreContent.Visibility = Visibility.Visible; // Change the visibility
 			SeeMoreIconTxt.Text = "\ue9f9"; // Change text
+
+			InitSeeMoreUI(); // Init UI
 		}
 		else // If the content is hidden
 		{
