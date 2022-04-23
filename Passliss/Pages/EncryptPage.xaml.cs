@@ -92,7 +92,7 @@ public partial class EncryptPage : Page
 		{
 			StringToEncryptTxt.Text = ""; // Clear
 			isPlaceholderShownEncrypt = false; // Set to false
-			StringToEncryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set foreground
+			StringToEncryptTxt.Foreground = new SolidColorBrush() { Color = Global.GetColorFromResource("Foreground1") }; // Set foreground
 		}
 	}
 
@@ -115,7 +115,7 @@ public partial class EncryptPage : Page
 	{
 		Button button = (Button)sender; // Create button
 
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") }; // Set the foreground
 	}
 
 	private void TabLeave(object sender, MouseEventArgs e)
@@ -124,23 +124,23 @@ public partial class EncryptPage : Page
 
 		if (button != CheckedButton)
 		{
-			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+			button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground 
 		}
 	}
 
 	private void ResetAllCheckStatus()
 	{
-		EncryptTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-		EncryptTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		EncryptTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground
+		EncryptTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("Background1") }; // Set the background
 
-		DecryptTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-		DecryptTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		DecryptTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground
+		DecryptTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("Background1") }; // Set the background
 	}
 
 	private void CheckButton(Button button)
 	{
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-		button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") }; // Set the foreground
+		button.Background = new SolidColorBrush { Color = Global.GetColorFromResource("AccentColor") }; // Set the background
 
 		CheckedButton = button; // Set the "checked" button
 	}
@@ -204,7 +204,7 @@ public partial class EncryptPage : Page
 		{
 			StringToDecryptTxt.Text = ""; // Clear
 			isPlaceholderShownDecrypt = false; // Set to false
-			StringToDecryptTxt.Foreground = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set foreground
+			StringToDecryptTxt.Foreground = new SolidColorBrush() { Color = Global.GetColorFromResource("Foreground1") }; // Set foreground
 		}
 	}
 
