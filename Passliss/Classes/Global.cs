@@ -364,7 +364,7 @@ public static class Global
 
 	public static Color GetColorFromResource(string resourceName)
 	{
-		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString()); 
+		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString());
 	}
 }
 
