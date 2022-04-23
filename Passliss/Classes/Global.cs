@@ -361,4 +361,11 @@ public static class Global
 				break;
 		}
 	}
+
+	public static Color GetColorFromResource(string resourceName)
+	{
+		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString()); 
+	}
 }
+
+public record ColorSyntaxItem(char Character, Color Color);

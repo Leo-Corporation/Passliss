@@ -23,8 +23,11 @@ SOFTWARE.
 */
 using Passliss.Classes;
 using Passliss.Enums;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace Passliss.Pages;
 
@@ -127,45 +130,37 @@ public partial class StrenghtPage : Page
 
 	private void InitSeeMoreUI()
 	{
-		SeeMorePasswordTxt.Text = PasswordTxt.Text; // Set text
+		List<ColorSyntaxItem> colorItems = new(); // Create a new list
+		SeeMorePasswordTxt.Inlines.Clear(); // Clear the text
 
-		// Get number of upper case letters in password
+		int numbers = 0;
+		int specialCharacters = 0;
+		int lowerCaseLetters = 0;
 		int upperCaseLetters = 0;
 		foreach (char c in PasswordTxt.Text)
 		{
-			if (char.IsUpper(c))
+			if (char.IsUpper(c) && !Global.SpecialCaracters.Contains(c)) // Get number of upper case letters in password
 			{
 				upperCaseLetters++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Red"))); // Add to dictionary
 			}
-		}
 
-		// Get number of lower case letters in password
-		int lowerCaseLetters = 0;
-		foreach (char c in PasswordTxt.Text)
-		{
-			if (char.IsLower(c))
+			if (char.IsLower(c) && !Global.SpecialCaracters.Contains(c)) // Get number of lower case letters in password
 			{
 				lowerCaseLetters++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Blue"))); // Add to dictionary
 			}
-		}
 
-		// Get number of numbers in password
-		int numbers = 0;
-		foreach (char c in PasswordTxt.Text)
-		{
-			if (char.IsNumber(c))
+			if (char.IsNumber(c)) // Get number of numbers in password
 			{
 				numbers++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Green"))); // Add to dictionary
 			}
-		}
 
-		// Get number of special characters in password
-		int specialCharacters = 0;
-		foreach (char c in PasswordTxt.Text)
-		{
-			if (char.IsPunctuation(c) || char.IsSymbol(c) || Global.SpecialCaracters.Contains(c))
+			if (char.IsPunctuation(c) || char.IsSymbol(c) || Global.SpecialCaracters.Contains(c)) // Get number of special characters in password
 			{
 				specialCharacters++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Purple"))); // Add to dictionary
 			}
 		}
 
@@ -175,6 +170,12 @@ public partial class StrenghtPage : Page
 		NumbersTxt.Text = numbers.ToString(); // Set text
 		SpecialCharsTxt.Text = specialCharacters.ToString(); // Set text
 		LengthTxt.Text = PasswordTxt.Text.Length.ToString(); // Get length
+
+		// Create color syntax
+		for (int i = 0; i < colorItems.Count; i++)
+		{
+			SeeMorePasswordTxt.Inlines.Add(new Run(colorItems[i].Character.ToString()) { Foreground = new SolidColorBrush() { Color = colorItems[i].Color } }); // Add to text
+		}
 	}
 
 	private void SeeMoreBtn_Click(object sender, RoutedEventArgs e)
