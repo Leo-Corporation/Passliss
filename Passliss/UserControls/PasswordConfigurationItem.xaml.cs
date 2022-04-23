@@ -73,7 +73,7 @@ public partial class PasswordConfigurationItem : UserControl
 	{
 		Button button = (Button)sender; // Create button
 
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground 
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") }; // Set the foreground 
 		DeleteBtn.Foreground = button.Foreground;
 		FavBtn.Foreground = button.Foreground;
 		EditBtn.Foreground = button.Foreground;
@@ -91,7 +91,7 @@ public partial class PasswordConfigurationItem : UserControl
 	{
 		Button button = (Button)sender; // Create button
 
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground 
 		DeleteBtn.Foreground = button.Foreground;
 		FavBtn.Foreground = button.Foreground;
 		EditBtn.Foreground = button.Foreground;

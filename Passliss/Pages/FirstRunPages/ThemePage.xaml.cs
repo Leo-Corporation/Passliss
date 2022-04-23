@@ -56,13 +56,13 @@ public partial class ThemePage : Page
 		DarkBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 		SystemBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 
-		CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		CheckedBorder.BorderBrush = new SolidColorBrush() { Color = Global.GetColorFromResource("AccentColor") }; // Set color
 	}
 
 	private void Border_MouseEnter(object sender, MouseEventArgs e)
 	{
 		Border border = (Border)sender;
-		border.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		border.BorderBrush = new SolidColorBrush() { Color = Global.GetColorFromResource("AccentColor") }; // Set color
 
 	}
 

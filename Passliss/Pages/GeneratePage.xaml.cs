@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using LeoCorpLibrary;
-using Microsoft.Win32;
 using Passliss.Classes;
 using Passliss.UserControls;
 using Passliss.Windows;
@@ -183,36 +182,6 @@ public partial class GeneratePage : Page
 		LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 	}
 
-	private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)
-	{
-		SaveFileDialog saveFileDialog = new()
-		{
-			FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
-			Title = Properties.Resources.Export,
-			Filter = "XML Files|*.xml"
-		}; // Create a SaveFileDialog
-
-		if (saveFileDialog.ShowDialog() ?? true)
-		{
-			PasswordConfigurationManager.Export(Global.PasswordConfigurations, saveFileDialog.FileName); // Export
-		}
-	}
-
-	private void ImportPwrConfig_Click(object sender, RoutedEventArgs e)
-	{
-		OpenFileDialog openFileDialog = new()
-		{
-			FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
-			Title = Properties.Resources.Import,
-			Filter = "XML Files|*.xml"
-		}; // Create a OpenFileDialog
-
-		if (openFileDialog.ShowDialog() ?? true)
-		{
-			PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
-		}
-	}
-
 	internal void HistoryBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (PasswordHistory.Children.Count > 0)
@@ -307,6 +276,7 @@ public partial class GeneratePage : Page
 	{
 		Global.StrenghtPage.PasswordTxt.Text = PasswordTxt.Text; // Set text
 		Global.StrenghtPage.PasswordPwrBox.Password = PasswordTxt.Text; // Set text
+		Global.StrenghtPage.InitSeeMoreUI(); // Init UI
 
 		MainWindow.StrenghtTabBtn_Click(this, null);
 	}

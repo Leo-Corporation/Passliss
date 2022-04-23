@@ -493,12 +493,18 @@
     <value>管理您的数据。</value>
   </data>
   <data name="GenerateKey" xml:space="preserve">
-    <value>Generate key</value>
+    <value>生成密钥</value>
   </data>
   <data name="EncryptionSettings" xml:space="preserve">
-    <value>Encryption settings</value>
+    <value>加密设置</value>
   </data>
   <data name="DefaultEncryptionMode" xml:space="preserve">
-    <value>Default encryption algorithm</value>
+    <value>默认加密算法</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>See more</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Go back</value>
   </data>
 </root>

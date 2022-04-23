@@ -23,8 +23,11 @@ SOFTWARE.
 */
 using Passliss.Classes;
 using Passliss.Enums;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace Passliss.Pages;
 
@@ -81,7 +84,7 @@ public partial class StrenghtPage : Page
 		};
 	}
 
-	private void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
+	internal void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
 
@@ -89,6 +92,8 @@ public partial class StrenghtPage : Page
 		CommentTxt.Text = GetStrenghtText(password); // Get text
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+
+		SeeMoreBtn.Visibility = PasswordTxt.Text.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
 	}
 
 	private void HideShowPassword_Click(object sender, RoutedEventArgs e)
@@ -119,5 +124,77 @@ public partial class StrenghtPage : Page
 		CommentTxt.Text = GetStrenghtText(password); // Get text
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
+
+		SeeMoreBtn.Visibility = PasswordPwrBox.Password.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
+	}
+
+	internal void InitSeeMoreUI()
+	{
+		List<ColorSyntaxItem> colorItems = new(); // Create a new list
+		SeeMorePasswordTxt.Inlines.Clear(); // Clear the text
+
+		int numbers = 0;
+		int specialCharacters = 0;
+		int lowerCaseLetters = 0;
+		int upperCaseLetters = 0;
+		foreach (char c in PasswordTxt.Text)
+		{
+			if (char.IsUpper(c) && !Global.SpecialCaracters.Contains(c)) // Get number of upper case letters in password
+			{
+				upperCaseLetters++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Red"))); // Add to dictionary
+			}
+
+			if (char.IsLower(c) && !Global.SpecialCaracters.Contains(c)) // Get number of lower case letters in password
+			{
+				lowerCaseLetters++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Blue"))); // Add to dictionary
+			}
+
+			if (char.IsNumber(c)) // Get number of numbers in password
+			{
+				numbers++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Green"))); // Add to dictionary
+			}
+
+			if (char.IsPunctuation(c) || char.IsSymbol(c) || Global.SpecialCaracters.Contains(c)) // Get number of special characters in password
+			{
+				specialCharacters++;
+				colorItems.Add(new(c, Global.GetColorFromResource("Purple"))); // Add to dictionary
+			}
+		}
+
+		// Display informations to the user
+		UpperCaseTxt.Text = upperCaseLetters.ToString(); // Set text
+		LowerCaseTxt.Text = lowerCaseLetters.ToString(); // Set text
+		NumbersTxt.Text = numbers.ToString(); // Set text
+		SpecialCharsTxt.Text = specialCharacters.ToString(); // Set text
+		LengthTxt.Text = PasswordTxt.Text.Length.ToString(); // Get length
+
+		// Create color syntax
+		for (int i = 0; i < colorItems.Count; i++)
+		{
+			SeeMorePasswordTxt.Inlines.Add(new Run(colorItems[i].Character.ToString()) { Foreground = new SolidColorBrush() { Color = colorItems[i].Color } }); // Add to text
+		}
+	}
+
+	private void SeeMoreBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (StrengthContent.Visibility == Visibility.Visible) // If the content is visible
+		{
+			StrengthContent.Visibility = Visibility.Collapsed; // Change the visibility
+			SeeMoreContent.Visibility = Visibility.Visible; // Change the visibility
+			SeeMoreIconTxt.Text = "\uF15C"; // Change text
+			SeeMoreTxt.Text = Properties.Resources.GoBack; // Change text
+
+			InitSeeMoreUI(); // Init UI
+		}
+		else // If the content is hidden
+		{
+			StrengthContent.Visibility = Visibility.Visible; // Change the visibility
+			SeeMoreContent.Visibility = Visibility.Collapsed; // Change the visibility
+			SeeMoreIconTxt.Text = "\uF182"; // Change text
+			SeeMoreTxt.Text = Properties.Resources.More; // Change text
+		}
 	}
 }

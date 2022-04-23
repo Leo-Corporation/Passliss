@@ -404,13 +404,13 @@ public partial class SettingsPage : Page
 	private void BtnEnter(object sender, MouseEventArgs e)
 	{
 		Button button = (Button)sender; // Create button
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") }; // Set the foreground
 	}
 
 	private void BtnLeave(object sender, MouseEventArgs e)
 	{
 		Button button = (Button)sender; // Create button
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground 
 	}
 
 	private void SystemRadioBtn_Checked(object sender, RoutedEventArgs e)
@@ -422,7 +422,7 @@ public partial class SettingsPage : Page
 	private void Border_MouseEnter(object sender, MouseEventArgs e)
 	{
 		Border border = (Border)sender;
-		border.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		border.BorderBrush = new SolidColorBrush() { Color = Global.GetColorFromResource("AccentColor") }; // Set color
 	}
 
 	private void Border_MouseLeave(object sender, MouseEventArgs e)
@@ -462,7 +462,7 @@ public partial class SettingsPage : Page
 		DarkBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 		SystemBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 
-		CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		CheckedBorder.BorderBrush = new SolidColorBrush() { Color = Global.GetColorFromResource("AccentColor") }; // Set color
 	}
 
 	Border CheckedBorder2 { get; set; }
@@ -473,7 +473,7 @@ public partial class SettingsPage : Page
 		StrengthPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
 		EncryptionPageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
 
-		CheckedBorder2.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		CheckedBorder2.BorderBrush = new SolidColorBrush() { Color = Global.GetColorFromResource("AccentColor") }; // Set color
 	}
 	private void GeneratePageRadioBtn_Checked(object sender, RoutedEventArgs e)
 	{
@@ -498,7 +498,7 @@ public partial class SettingsPage : Page
 	private void Border_MouseEnter_1(object sender, MouseEventArgs e)
 	{
 		Border border = (Border)sender;
-		border.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		border.BorderBrush = new SolidColorBrush() { Color = Global.GetColorFromResource("AccentColor") }; // Set color
 	}
 
 	private void Border_MouseLeave_1(object sender, MouseEventArgs e)
@@ -626,5 +626,35 @@ public partial class SettingsPage : Page
 		Global.Settings.DefaultEncryptionAlgorithm = (EncryptionAlgorithm)AlgorithmComboBox.SelectedIndex;
 
 		SettingsManager.Save(); // Save changes
+	}
+
+	private void ExportPwrConfig_Click(object sender, RoutedEventArgs e)
+	{
+		SaveFileDialog saveFileDialog = new()
+		{
+			FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+			Title = Properties.Resources.Export,
+			Filter = "XML Files|*.xml"
+		}; // Create a SaveFileDialog
+
+		if (saveFileDialog.ShowDialog() ?? true)
+		{
+			PasswordConfigurationManager.Export(Global.PasswordConfigurations, saveFileDialog.FileName); // Export
+		}
+	}
+
+	private void ImportPwrConfig_Click(object sender, RoutedEventArgs e)
+	{
+		OpenFileDialog openFileDialog = new()
+		{
+			FileName = $"{Properties.Resources.PasswordConfigurations}.xml",
+			Title = Properties.Resources.Import,
+			Filter = "XML Files|*.xml"
+		}; // Create a OpenFileDialog
+
+		if (openFileDialog.ShowDialog() ?? true)
+		{
+			PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
+		}
 	}
 }

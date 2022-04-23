@@ -41,8 +41,8 @@ public partial class MainWindow : Window
 
 	readonly ColorAnimation colorAnimation = new()
 	{
-		From = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()),
-		To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
+		From = Global.GetColorFromResource("AccentColor"),
+		To = Global.GetColorFromResource("Background1"),
 		Duration = new(TimeSpan.FromSeconds(0.2d))
 	};
 
@@ -100,23 +100,23 @@ public partial class MainWindow : Window
 
 	private void ResetAllCheckStatus()
 	{
-		GenerateTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-		GenerateTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		GenerateTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground
+		GenerateTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("Background1") }; // Set the background
 
-		StrenghtTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-		StrenghtTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		StrenghtTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground
+		StrenghtTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("Background1") }; // Set the background
 
-		EncryptTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-		EncryptTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		EncryptTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground
+		EncryptTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("Background1") }; // Set the background
 
-		SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-		SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		SettingsTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground
+		SettingsTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("Background1") }; // Set the background
 	}
 
 	private void CheckButton(Button button)
 	{
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-		button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") }; // Set the foreground
+		button.Background = new SolidColorBrush { Color = Global.GetColorFromResource("AccentColor") }; // Set the background
 
 		CheckedButton = button; // Set the "checked" button
 	}
@@ -135,7 +135,7 @@ public partial class MainWindow : Window
 	{
 		Button button = (Button)sender; // Create button
 
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") }; // Set the foreground
 	}
 
 	private void TabLeave(object sender, MouseEventArgs e)
@@ -144,7 +144,7 @@ public partial class MainWindow : Window
 
 		if (button != CheckedButton)
 		{
-			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+			button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("Foreground1") }; // Set the foreground 
 			button.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation); // Play animation
 		}
 
@@ -164,6 +164,7 @@ public partial class MainWindow : Window
 		CheckButton(StrenghtTabBtn); // Check the "Strenght" button
 
 		PageContent.Navigate(Global.StrenghtPage); // Navigate
+		Global.StrenghtPage.PasswordTxt_TextChanged(this, null); // Update the strenght
 	}
 
 	private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)

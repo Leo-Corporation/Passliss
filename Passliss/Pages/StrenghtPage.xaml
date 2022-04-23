@@ -7,7 +7,7 @@
 	  xmlns:lang="clr-namespace:Passliss.Properties"
 	  mc:Ignorable="d" 
 	  d:DesignHeight="450" d:DesignWidth="800"
-	  FontFamily="../Fonts/#Montserrat"
+	  FontFamily="../Fonts/#Montserrat" Foreground="{Binding Source={StaticResource Foreground1}}"
 	  Title="StrenghtPage">
 
 	<Grid>
@@ -17,8 +17,33 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel Margin="10,40,10,10" Grid.Row="0">
-			<TextBlock Text="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
+		<StackPanel Margin="10,40,10,0" Grid.Row="0">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
+
+				<Button Visibility="Collapsed" Padding="5" x:Name="SeeMoreBtn" Click="SeeMoreBtn_Click" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14" Margin="0,0,5,0">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock x:Name="SeeMoreTxt" Text="{x:Static lang:Resources.More}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+						<TextBlock x:Name="SeeMoreIconTxt" Text="&#xF182;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16"/>
+					</StackPanel>
+					
+					<Button.ToolTip>
+						<ToolTip Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+					</Button.ToolTip>
+				</Button>
+			</Grid>            
+		</StackPanel>
+
+		<Grid Grid.Row="1" x:Name="StrengthContent">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<Grid HorizontalAlignment="Center" Width="496.8">
 					<TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0" Height="25"/>
@@ -31,12 +56,47 @@
 					</Button.ToolTip>
 				</Button>
 			</StackPanel>
-		</StackPanel>
 
-		<StackPanel Grid.Row="1">
-			<TextBlock x:Name="IconTxt" Margin="10" Text="&#xF4AB;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="72" HorizontalAlignment="Center"/>
-			<TextBlock x:Name="CommentTxt" Text="{x:Static lang:Resources.EnterPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,0,15"/>
-		</StackPanel>
+			<StackPanel Grid.Row="1">
+				<TextBlock x:Name="IconTxt" Margin="10" Text="&#xF4AB;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="72" HorizontalAlignment="Center"/>
+				<TextBlock x:Name="CommentTxt" Text="{x:Static lang:Resources.EnterPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,0,15"/>
+			</StackPanel>
+		</Grid>
+
+		<Grid x:Name="SeeMoreContent" Margin="5" Grid.Row="1" Visibility="Collapsed">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<TextBlock x:Name="SeeMorePasswordTxt" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="{x:Static lang:Resources.UpperCase}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Red}}" Grid.Column="0"/>
+				<TextBlock Text="{x:Static lang:Resources.LowerCase}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Blue}}" Grid.Column="0" Grid.Row="1"/>
+				<TextBlock Text="{x:Static lang:Resources.Numbers}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Green}}" Grid.Column="0" Grid.Row="2"/>
+				<TextBlock Text="{x:Static lang:Resources.SpecialCaracters}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Purple}}" Grid.Column="0" Grid.Row="3"/>
+				<TextBlock Text="{x:Static lang:Resources.Lenght}" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Column="0" Grid.Row="4"/>
+
+				<TextBlock x:Name="UpperCaseTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Red}}" Grid.Column="1"/>
+				<TextBlock x:Name="LowerCaseTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Blue}}" Grid.Row="1" Grid.Column="1"/>
+				<TextBlock x:Name="NumbersTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Green}}" Grid.Row="2" Grid.Column="1"/>
+				<TextBlock x:Name="SpecialCharsTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Purple}}" Grid.Row="3" Grid.Column="1"/>
+				<TextBlock x:Name="LengthTxt" Margin="3" FontWeight="Bold" Foreground="{Binding Source={StaticResource Foreground1}}" Grid.Row="4" Grid.Column="1"/>
+			</Grid>
+		</Grid>
 
 		<Border x:Name="border" Background="{Binding Source={StaticResource LightAccentColor}}" CornerRadius="5" Padding="10" Margin="10" Grid.Row="2">
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">

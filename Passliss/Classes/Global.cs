@@ -106,7 +106,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Passliss.
 	/// </summary>
-	public static string Version => "2.3.0.2203";
+	public static string Version => "2.4.0.2204";
 
 	/// <summary>
 	/// GitHub link for the last version (<see cref="string"/>).
@@ -361,4 +361,11 @@ public static class Global
 				break;
 		}
 	}
+
+	public static Color GetColorFromResource(string resourceName)
+	{
+		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString());
+	}
 }
+
+public record ColorSyntaxItem(char Character, Color Color);
