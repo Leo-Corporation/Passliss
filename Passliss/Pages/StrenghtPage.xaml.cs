@@ -81,7 +81,7 @@ public partial class StrenghtPage : Page
 		};
 	}
 
-	private void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
+	internal void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
 

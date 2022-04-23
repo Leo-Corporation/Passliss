@@ -164,6 +164,7 @@ public partial class MainWindow : Window
 		CheckButton(StrenghtTabBtn); // Check the "Strenght" button
 
 		PageContent.Navigate(Global.StrenghtPage); // Navigate
+		Global.StrenghtPage.PasswordTxt_TextChanged(this, null); // Update the strenght
 	}
 
 	private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
