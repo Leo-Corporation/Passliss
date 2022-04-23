@@ -276,6 +276,7 @@ public partial class GeneratePage : Page
 	{
 		Global.StrenghtPage.PasswordTxt.Text = PasswordTxt.Text; // Set text
 		Global.StrenghtPage.PasswordPwrBox.Password = PasswordTxt.Text; // Set text
+		Global.StrenghtPage.InitSeeMoreUI(); // Init UI
 
 		MainWindow.StrenghtTabBtn_Click(this, null);
 	}

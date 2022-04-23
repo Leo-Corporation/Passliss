@@ -128,7 +128,7 @@ public partial class StrenghtPage : Page
 		SeeMoreBtn.Visibility = PasswordPwrBox.Password.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
 	}
 
-	private void InitSeeMoreUI()
+	internal void InitSeeMoreUI()
 	{
 		List<ColorSyntaxItem> colorItems = new(); // Create a new list
 		SeeMorePasswordTxt.Inlines.Clear(); // Clear the text
