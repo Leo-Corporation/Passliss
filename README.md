@@ -33,7 +33,7 @@ Passliss is a modern password generation Windows application that allows you to 
 Passliss is written in C# .NET 5 using WPF.
 
 ## Download
-- [Download](https://bit.ly/DownloadPassliss)
+- [Download](https://tinyurl.com/Passliss)
 - [Latest Release](https://github.com/Leo-Corporation/Passliss/releases)
 
 ## Contribute
