@@ -53,6 +53,7 @@ public partial class App : Application
 		else
 		{
 			new MainWindow().Show(); // Open Passliss
+			Global.CreateJumpLists(); // Create taskbar jump lists
 		}
 	}
 }

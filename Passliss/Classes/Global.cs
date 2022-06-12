@@ -30,9 +30,11 @@ using Passliss.Pages;
 using Passliss.Windows;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace Passliss.Classes;
 
@@ -365,6 +367,43 @@ public static class Global
 	public static Color GetColorFromResource(string resourceName)
 	{
 		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString());
+	}
+
+	internal static void CreateJumpLists()
+	{
+		JumpList jumpList = new(); // Create a jump list
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.Generate,
+			Arguments = "/page 0",
+			Description = Properties.Resources.WelcomeGenerate,
+			CustomCategory = Properties.Resources.Tasks,
+			IconResourcePath = Assembly.GetEntryAssembly().Location
+		}); // Add Generate jump task
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.Strenght,
+			Arguments = "/page 1",
+			Description = Properties.Resources.WelcomeTestStrength,
+			CustomCategory = Properties.Resources.Tasks,
+			IconResourcePath = Assembly.GetEntryAssembly().Location
+		}); // Add Strength jump task
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.Encrypt,
+			Arguments = "/page 2",
+			Description = Properties.Resources.WelcomeEncrypt,
+			CustomCategory = Properties.Resources.Tasks,
+			IconResourcePath = Assembly.GetEntryAssembly().Location
+		}); // Add Encrypt jump task
+
+		jumpList.ShowRecentCategory = false; // Hide the recent category
+		jumpList.ShowFrequentCategory = false; // Hide the frequent category
+
+		JumpList.SetJumpList(Application.Current, jumpList); // Set the jump list
 	}
 }
 
