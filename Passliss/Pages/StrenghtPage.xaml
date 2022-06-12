@@ -32,7 +32,7 @@
 					</StackPanel>
 					
 					<Button.ToolTip>
-						<ToolTip Content="{x:Static lang:Resources.Strenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+						<ToolTip Content="{x:Static lang:Resources.More}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
 					</Button.ToolTip>
 				</Button>
 			</Grid>            
