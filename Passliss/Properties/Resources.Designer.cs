@@ -1195,7 +1195,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to &quot;Password Configurations&quot;..
+        ///   Looks up a localized string similar to Generate strong and safe passwords with Passliss. Customize every settings to make the strongest password ever! Save these configurations thanks to &quot;Password Configurations&quot;..
         /// </summary>
         public static string WelcomeGenerate {
             get {

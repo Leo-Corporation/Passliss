@@ -469,7 +469,7 @@
     <value>Thanks for using Passliss! Let's get started!</value>
   </data>
   <data name="WelcomeGenerate" xml:space="preserve">
-    <value>Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to "Password Configurations".</value>
+    <value>Generate strong and safe passwords with Passliss. Customize every settings to make the strongest password ever! Save these configurations thanks to "Password Configurations".</value>
   </data>
   <data name="WelcomeTestStrength" xml:space="preserve">
     <value>Test the strength of any passwords and generate a new one if yours is too weak.</value>
