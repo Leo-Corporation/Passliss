@@ -507,4 +507,7 @@
   <data name="GoBack" xml:space="preserve">
     <value>Go back</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
 </root>
