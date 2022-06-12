@@ -52,7 +52,9 @@ public partial class App : Application
 		}
 		else
 		{
-			new MainWindow().Show(); // Open Passliss
+			int? pageID = (e.Args.Length >= 2 && e.Args[0] == "/page") ? int.Parse(e.Args[1]) : null; // Get the page ID
+
+			new MainWindow(pageID == null ? null : (Enums.DefaultPage)pageID).Show(); // Open Passliss
 			Global.CreateJumpLists(); // Create taskbar jump lists
 		}
 	}
