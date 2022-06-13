@@ -127,7 +127,15 @@ public class Settings
 	/// </summary>
 	public bool? SaveCustomChars { get; set; }
 
+	/// <summary>
+	/// Array of strings that contains the user-defined characters to use when generating a password.
+	/// </summary>
 	public string[] UserDefinedChars { get; set; }
+
+	/// <summary>
+	/// True if Passliss should use user defined chars instead of the default ones.
+	/// </summary>
+	public bool? UseUserDefinedCharacters { get; set; }
 }
 
 /// <summary>
@@ -173,7 +181,8 @@ public static class SettingsManager
 				UseSimpleSpecialChars = false,
 				CustomUserChars = "",
 				SaveCustomChars = true,
-				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters }
+				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
+				UseUserDefinedCharacters = false,
 			}; // Create a new settings file
 
 			Save(); // Save the changes

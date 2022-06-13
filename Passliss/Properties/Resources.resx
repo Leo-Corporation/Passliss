@@ -502,4 +502,7 @@
   <data name="SaveCustomChars" xml:space="preserve">
     <value>Save custom characters</value>
   </data>
+  <data name="UseUserDefinedChars" xml:space="preserve">
+    <value>Use your own characters</value>
+  </data>
 </root>

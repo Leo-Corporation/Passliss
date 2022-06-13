@@ -1204,6 +1204,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use your own characters.
+        /// </summary>
+        public static string UseUserDefinedChars {
+            get {
+                return ResourceManager.GetString("UseUserDefinedChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specified values are incorrect..
         /// </summary>
         public static string ValuesIncorrect {

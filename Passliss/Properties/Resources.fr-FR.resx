@@ -522,4 +522,7 @@
   <data name="SaveCustomChars" xml:space="preserve">
     <value>Enregistrer les caractères personnalisés</value>
   </data>
+  <data name="UseUserDefinedChars" xml:space="preserve">
+    <value>Utiliser vos propres caractères</value>
+  </data>
 </root>

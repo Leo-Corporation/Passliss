@@ -112,6 +112,11 @@ public partial class SettingsPage : Page
 			Global.Settings.UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters };
 		}
 
+		if (!Global.Settings.UseUserDefinedCharacters.HasValue)
+		{
+			Global.Settings.UseUserDefinedCharacters = false; // Set
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -602,6 +607,7 @@ public partial class SettingsPage : Page
 				CustomUserChars = "",
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
+				UseUserDefinedCharacters = false,				
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -708,7 +714,8 @@ public partial class SettingsPage : Page
 
 	private void UseCustomCharsChk_Checked(object sender, RoutedEventArgs e)
 	{
-		//TODO: Implement an option to enable/disable custom chars
+		Global.Settings.UseUserDefinedCharacters = UseCustomCharsChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
 	}
 
 	private void UpperCaseCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
