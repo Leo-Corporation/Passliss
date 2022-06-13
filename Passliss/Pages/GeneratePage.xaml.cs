@@ -45,6 +45,7 @@ public partial class GeneratePage : Page
 
 		// Set special characters in Global
 		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars ?? false ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : Global.SpecialCaracters;
+		OtherCharactersTxt.Text = Global.Settings.CustomUserChars;
 
 		for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
 		{
@@ -81,7 +82,7 @@ public partial class GeneratePage : Page
 			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 
-		PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
+		PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate
 		if (!Global.Settings.DisableHistory.Value)
 		{
 			PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 

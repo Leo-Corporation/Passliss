@@ -582,6 +582,7 @@ public partial class SettingsPage : Page
 				IsFirstRun = false,
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
 				UseSimpleSpecialChars = false,
+				CustomUserChars = "",
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes

@@ -116,6 +116,8 @@ public class Settings
 	/// True if Passliss should avoid special characters that may be hard for the user to type (ex: é,è,à,ñ).
 	/// </summary>
 	public bool? UseSimpleSpecialChars { get; set; }
+
+	public string CustomUserChars { get; set; }
 }
 
 /// <summary>
@@ -158,7 +160,8 @@ public static class SettingsManager
 				DisableHistory = false,
 				IsFirstRun = true,
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
-				UseSimpleSpecialChars = false
+				UseSimpleSpecialChars = false,
+				CustomUserChars = ""
 			}; // Create a new settings file
 
 			Save(); // Save the changes

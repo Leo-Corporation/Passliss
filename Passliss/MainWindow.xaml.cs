@@ -131,6 +131,9 @@ public partial class MainWindow : Window
 
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
+		Global.Settings.CustomUserChars = Global.GeneratePage.OtherCharactersTxt.Text; // Save custom user chars
+		SettingsManager.Save(); // Save changes
+
 		Environment.Exit(0); // Close
 	}
 
