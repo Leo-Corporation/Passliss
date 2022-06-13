@@ -220,22 +220,22 @@ public static class Global
 
 		if (lC) // If include lower cases
 		{
-			finalCaracters += LowerCaseLetters + ","; // Add lower cases
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[0] : LowerCaseLetters + ","; // Add lower cases
 		}
 
 		if (uC) // If include upper cases
 		{
-			finalCaracters += UpperCaseLetters + ","; // Add upper cases
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[1] : UpperCaseLetters + ","; // Add upper cases
 		}
 
 		if (n) // If include numbers
 		{
-			finalCaracters += Numbers + ","; // Add numbers
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[2] : Numbers + ","; // Add numbers
 		}
 
 		if (sC) // If include special caracters
 		{
-			finalCaracters += SpecialCaracters + ","; // Add special caracters
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[3] : SpecialCaracters + ","; // Add special caracters
 		}
 
 		return finalCaracters; // Return result
