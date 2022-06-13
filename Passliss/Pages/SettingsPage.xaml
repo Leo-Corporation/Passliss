@@ -95,7 +95,7 @@
 						</Grid.ColumnDefinitions>
 
 						<StackPanel Margin="15,15,10,15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF4F4;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<TextBlock Text="&#xF4F4;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
 							<StackPanel>
 								<TextBlock Text="{x:Static lang:Resources.Language}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
 								<TextBlock Text="{x:Static lang:Resources.ChangeLanguage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
@@ -194,30 +194,30 @@
 						</StackPanel>
 					</Expander.Header>
 
-                    <StackPanel>
-                        <Button x:Name="ResetPwrConfigBtn" Padding="5" Margin="10,0,10,10" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetPwrConfigBtn_Click" HorizontalAlignment="Left">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
+					<StackPanel>
+						<Button x:Name="ResetPwrConfigBtn" Padding="5" Margin="10,0,10,10" Background="{x:Null}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="ResetPwrConfigBtn_Click" HorizontalAlignment="Left">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+								<TextBlock Text="{x:Static lang:Resources.ResetDefaultPwrConfig}" VerticalAlignment="Center"/>
+							</StackPanel>
+						</Button>
 
-                        <StackPanel Orientation="Horizontal" Margin="10,0,0,5">
-                            <Button x:Name="ImportPwrConfig" Click="ImportPwrConfig_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Margin="0,0,10,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="&#xF151;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-                                    <TextBlock Text="{x:Static lang:Resources.Import}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="ExportPwrConfig" Click="ExportPwrConfig_Click" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" MouseEnter="BtnEnter" MouseLeave="BtnLeave">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="&#xF1A5;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-                                    <TextBlock Text="{x:Static lang:Resources.Export}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                    </StackPanel>
-                </Expander>
+						<StackPanel Orientation="Horizontal" Margin="10,0,0,5">
+							<Button x:Name="ImportPwrConfig" Click="ImportPwrConfig_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Margin="0,0,10,0">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="&#xF151;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+									<TextBlock Text="{x:Static lang:Resources.Import}" VerticalAlignment="Center"/>
+								</StackPanel>
+							</Button>
+							<Button x:Name="ExportPwrConfig" Click="ExportPwrConfig_Click" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" MouseEnter="BtnEnter" MouseLeave="BtnLeave">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="&#xF1A5;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+									<TextBlock Text="{x:Static lang:Resources.Export}" VerticalAlignment="Center"/>
+								</StackPanel>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</Expander>
 
 
 				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
@@ -237,37 +237,40 @@
 					</StackPanel>
 				</Expander>
 
-                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
-                    <Expander.Header>
-                        <StackPanel Margin="10 15" Orientation="Horizontal">
-                            <TextBlock Text="&#xF53D;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
-                            <StackPanel>
-                                <TextBlock Text="{x:Static lang:Resources.Characters}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
-                                <TextBlock Text="{x:Static lang:Resources.CharactersDesc}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" MaxWidth="440"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Expander.Header>
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF53D;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Characters}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.CharactersDesc}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" MaxWidth="440"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
 
-                    <StackPanel Margin="10 0 10 10">
-                        <CheckBox Margin="0 2 0 2" x:Name="UseSimplerCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.UseSimpleCharacters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="UseSimplerCharsChk_Unchecked" Checked="UseSimplerCharsChk_Unchecked"/>
-                        <CheckBox Margin="0 2 0 2" x:Name="SaveCustomCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SaveCustomChars}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="SaveCustomCharsChk_Checked" Checked="SaveCustomCharsChk_Checked"/>
+					<StackPanel Margin="10 0 10 10">
+						<CheckBox Margin="0 2 0 2" x:Name="UseSimplerCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.UseSimpleCharacters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="UseSimplerCharsChk_Unchecked" Checked="UseSimplerCharsChk_Unchecked"/>
+						<CheckBox Margin="0 2 0 2" x:Name="SaveCustomCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SaveCustomChars}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="SaveCustomCharsChk_Checked" Checked="SaveCustomCharsChk_Checked"/>
+						
+						
+						<CheckBox Margin="0 10 0 2" x:Name="UseCustomCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SaveCustomChars}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="UseCustomCharsChk_Checked" Checked="UseCustomCharsChk_Checked"/>
 
-                        <TextBlock Text="{x:Static lang:Resources.LowerCase}"/>
-                        <TextBox x:Name="LowerCaseCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+						<TextBlock Text="{x:Static lang:Resources.LowerCase}"/>
+						<TextBox x:Name="LowerCaseCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
 
-                        <TextBlock Text="{x:Static lang:Resources.UpperCase}"/>
-                        <TextBox x:Name="UpperCaseCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+						<TextBlock Text="{x:Static lang:Resources.UpperCase}"/>
+						<TextBox x:Name="UpperCaseCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="UpperCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
 
-                        <TextBlock Text="{x:Static lang:Resources.Numbers}"/>
-                        <TextBox x:Name="NumberCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+						<TextBlock Text="{x:Static lang:Resources.Numbers}"/>
+						<TextBox x:Name="NumberCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="NumberCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
 
-                        <TextBlock Text="{x:Static lang:Resources.SpecialCaracters}"/>
-                        <TextBox x:Name="SpecialCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+						<TextBlock Text="{x:Static lang:Resources.SpecialCaracters}"/>
+						<TextBox x:Name="SpecialCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="SpecialCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
 
-                    </StackPanel>
-                </Expander>
+					</StackPanel>
+				</Expander>
 
-                <Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
 					<Expander.Header>
 						<StackPanel Margin="10 15" Orientation="Horizontal">
 							<TextBlock Text="&#xF73F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>

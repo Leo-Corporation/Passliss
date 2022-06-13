@@ -702,6 +702,33 @@ public partial class SettingsPage : Page
 
 	private void LowerCaseCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
+		Global.Settings.UserDefinedChars[0] = LowerCaseCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void UseCustomCharsChk_Checked(object sender, RoutedEventArgs e)
+	{
+		//TODO: Implement an option to enable/disable custom chars
+	}
+
+	private void UpperCaseCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[1] = UpperCaseCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+
+	}
+
+	private void NumberCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[2] = NumberCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+
+	}
+
+	private void SpecialCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[3] = SpecialCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
 
 	}
 }
