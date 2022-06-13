@@ -386,7 +386,7 @@
     <value>Hide the password in history by default.</value>
   </data>
   <data name="OtherCharacters" xml:space="preserve">
-    <value>Other characters (separated by a ",")</value>
+    <value>Custom characters (separated by a ",")</value>
   </data>
   <data name="Encryption" xml:space="preserve">
     <value>Encryption</value>
@@ -498,5 +498,8 @@
   </data>
   <data name="CharactersDesc" xml:space="preserve">
     <value>Settings related to characters used when generating a password.</value>
+  </data>
+  <data name="SaveCustomChars" xml:space="preserve">
+    <value>Save custom characters</value>
   </data>
 </root>

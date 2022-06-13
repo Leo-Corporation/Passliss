@@ -519,4 +519,7 @@
   <data name="CharactersDesc" xml:space="preserve">
     <value>Settings related to characters used when generating a password.</value>
   </data>
+  <data name="SaveCustomChars" xml:space="preserve">
+    <value>Save custom characters</value>
+  </data>
 </root>

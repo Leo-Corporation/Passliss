@@ -781,7 +781,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other characters (separated by a &quot;,&quot;).
+        ///   Looks up a localized string similar to Custom characters (separated by a &quot;,&quot;).
         /// </summary>
         public static string OtherCharacters {
             get {
@@ -930,6 +930,15 @@ namespace Passliss.Properties {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save custom characters.
+        /// </summary>
+        public static string SaveCustomChars {
+            get {
+                return ResourceManager.GetString("SaveCustomChars", resourceCulture);
             }
         }
         
