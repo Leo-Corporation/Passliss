@@ -23,6 +23,7 @@ SOFTWARE.
 */
 using LeoCorpLibrary;
 using Passliss.Classes;
+using Passliss.Enums;
 using Passliss.UserControls;
 using Passliss.Windows;
 using System;
@@ -41,6 +42,10 @@ public partial class GeneratePage : Page
 	public GeneratePage()
 	{
 		InitializeComponent();
+
+		// Set special characters in Global
+		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars ?? false ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : Global.SpecialCaracters;
+		OtherCharactersTxt.Text = Global.Settings.SaveCustomChars ?? true ? Global.Settings.CustomUserChars : "";
 
 		for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
 		{
@@ -77,7 +82,7 @@ public partial class GeneratePage : Page
 			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 
-		PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value), ","); // Generate
+		PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate
 		if (!Global.Settings.DisableHistory.Value)
 		{
 			PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
@@ -86,6 +91,8 @@ public partial class GeneratePage : Page
 		{
 			HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
 		}
+		UpdateStrengthIcon(); // Update the icon
+		
 	}
 
 	private void GenerateBtn_Click(object sender, RoutedEventArgs e)
@@ -113,6 +120,8 @@ public partial class GeneratePage : Page
 			{
 				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
 			}
+
+			UpdateStrengthIcon(); // Update the icon
 		}
 		else
 		{
@@ -120,6 +129,22 @@ public partial class GeneratePage : Page
 		}
 	}
 
+	private void UpdateStrengthIcon()
+	{
+		// Set the Strength icon
+		var strength = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
+		StrengthIcon.Text = strength switch
+		{
+			PasswordStrenght.VeryGood => "\uF6EA", // If the password strenght is very good
+			PasswordStrenght.Good => "\uF299", // If the password strenght is good
+			PasswordStrenght.Medium => "\uF882", // If the password strenght is medium
+			PasswordStrenght.Low => "\uF36E", // If the password strenght is low
+			_ => "\uF4AB" // If the password strenght is unknown
+		};
+
+		StrengthIcon.Foreground = Global.GetStrenghtColorBrush(strength); // Set color
+	}
+	
 	/// <summary>
 	/// True if all unchecked.
 	/// </summary>

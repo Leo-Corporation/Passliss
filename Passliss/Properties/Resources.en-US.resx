@@ -406,7 +406,7 @@
     <value>Hide the password in history by default.</value>
   </data>
   <data name="OtherCharacters" xml:space="preserve">
-    <value>Other characters (separated by a ",")</value>
+    <value>Custom characters (separated by a ",")</value>
   </data>
   <data name="Encryption" xml:space="preserve">
     <value>Encryption</value>
@@ -469,7 +469,7 @@
     <value>Thanks for using Passliss! Let's get started!</value>
   </data>
   <data name="WelcomeGenerate" xml:space="preserve">
-    <value>Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to "Password Configurations".</value>
+    <value>Generate strong and safe passwords with Passliss. Customize every settings to make the strongest password ever! Save these configurations thanks to "Password Configurations".</value>
   </data>
   <data name="WelcomeTestStrength" xml:space="preserve">
     <value>Test the strength of any passwords and generate a new one if yours is too weak.</value>
@@ -506,5 +506,23 @@
   </data>
   <data name="GoBack" xml:space="preserve">
     <value>Go back</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="UseSimpleCharacters" xml:space="preserve">
+    <value>Use simpler special characters</value>
+  </data>
+  <data name="CharactersDesc" xml:space="preserve">
+    <value>Settings related to characters used when generating a password.</value>
+  </data>
+  <data name="SaveCustomChars" xml:space="preserve">
+    <value>Save custom characters</value>
+  </data>
+  <data name="UseUserDefinedChars" xml:space="preserve">
+    <value>Use your own characters</value>
   </data>
 </root>

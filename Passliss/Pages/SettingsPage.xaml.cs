@@ -97,6 +97,26 @@ public partial class SettingsPage : Page
 			Global.Settings.DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES; // Set
 		}
 
+		if (!Global.Settings.UseSimpleSpecialChars.HasValue)
+		{
+			Global.Settings.UseSimpleSpecialChars = false; // Set
+		}
+
+		if (!Global.Settings.SaveCustomChars.HasValue)
+		{
+			Global.Settings.SaveCustomChars = true; // Set
+		}
+
+		if (Global.Settings.UserDefinedChars is null)
+		{
+			Global.Settings.UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters };
+		}
+
+		if (!Global.Settings.UseUserDefinedCharacters.HasValue)
+		{
+			Global.Settings.UseUserDefinedCharacters = false; // Set
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -152,6 +172,8 @@ public partial class SettingsPage : Page
 		NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
 		RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart ?? true; // Set
 		DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
+		UseSimplerCharsChk.IsChecked = Global.Settings.UseSimpleSpecialChars ?? false; // Set
+		SaveCustomCharsChk.IsChecked = Global.Settings.SaveCustomChars ?? true; // Set
 
 		// Load LangComboBox
 		LangComboBox.Items.Clear(); // Clear
@@ -170,6 +192,12 @@ public partial class SettingsPage : Page
 		// Random TextBoxes
 		MinLengthTxt.Text = Global.Settings.MinRandomLength.HasValue ? Global.Settings.MinRandomLength.Value.ToString() : "10"; // Set
 		MaxLengthTxt.Text = Global.Settings.MaxRandomLength.HasValue ? Global.Settings.MaxRandomLength.Value.ToString() : "30"; // Set
+
+		// Chars TextBoxes
+		LowerCaseCharsTxt.Text = Global.Settings.UserDefinedChars[0]; // Set
+		UpperCaseCharsTxt.Text = Global.Settings.UserDefinedChars[1]; // Set
+		NumberCharsTxt.Text = Global.Settings.UserDefinedChars[2]; // Set
+		SpecialCharsTxt.Text = Global.Settings.UserDefinedChars[3]; // Set
 
 		if (!Global.Settings.MinRandomLength.HasValue)
 		{
@@ -574,7 +602,12 @@ public partial class SettingsPage : Page
 				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = false,
-				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES
+				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
+				UseSimpleSpecialChars = false,
+				CustomUserChars = "",
+				SaveCustomChars = true,
+				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
+				UseUserDefinedCharacters = false,				
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -656,5 +689,50 @@ public partial class SettingsPage : Page
 		{
 			PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
 		}
+	}
+
+	private void UseSimplerCharsChk_Unchecked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.UseSimpleSpecialChars = UseSimplerCharsChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
+
+		// Refresh special characters
+		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars.Value ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
+	}
+
+	private void SaveCustomCharsChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.SaveCustomChars = SaveCustomCharsChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void LowerCaseCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[0] = LowerCaseCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void UseCustomCharsChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.UseUserDefinedCharacters = UseCustomCharsChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void UpperCaseCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[1] = UpperCaseCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void NumberCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[2] = NumberCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void SpecialCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		Global.Settings.UserDefinedChars[3] = SpecialCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
 	}
 }

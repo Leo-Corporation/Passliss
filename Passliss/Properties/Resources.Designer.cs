@@ -196,6 +196,24 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Characters.
+        /// </summary>
+        public static string Characters {
+            get {
+                return ResourceManager.GetString("Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings related to characters used when generating a password..
+        /// </summary>
+        public static string CharactersDesc {
+            get {
+                return ResourceManager.GetString("CharactersDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check updates.
         /// </summary>
         public static string CheckUpdate {
@@ -763,7 +781,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other characters (separated by a &quot;,&quot;).
+        ///   Looks up a localized string similar to Custom characters (separated by a &quot;,&quot;).
         /// </summary>
         public static string OtherCharacters {
             get {
@@ -912,6 +930,15 @@ namespace Passliss.Properties {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save custom characters.
+        /// </summary>
+        public static string SaveCustomChars {
+            get {
+                return ResourceManager.GetString("SaveCustomChars", resourceCulture);
             }
         }
         
@@ -1105,6 +1132,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string Tasks {
+            get {
+                return ResourceManager.GetString("Tasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
         public static string Theme {
@@ -1159,6 +1195,24 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use simpler special characters.
+        /// </summary>
+        public static string UseSimpleCharacters {
+            get {
+                return ResourceManager.GetString("UseSimpleCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use your own characters.
+        /// </summary>
+        public static string UseUserDefinedChars {
+            get {
+                return ResourceManager.GetString("UseUserDefinedChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specified values are incorrect..
         /// </summary>
         public static string ValuesIncorrect {
@@ -1195,7 +1249,7 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate strong and safe passwords with Passliss. Custom every settings to make the strongest password ever! Save these configurations thanks to &quot;Password Configurations&quot;..
+        ///   Looks up a localized string similar to Generate strong and safe passwords with Passliss. Customize every settings to make the strongest password ever! Save these configurations thanks to &quot;Password Configurations&quot;..
         /// </summary>
         public static string WelcomeGenerate {
             get {

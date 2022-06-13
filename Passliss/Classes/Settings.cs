@@ -111,6 +111,31 @@ public class Settings
 	/// The default encryption algorithm in <see cref="Pages.EncryptPage"/>.
 	/// </summary>
 	public EncryptionAlgorithm? DefaultEncryptionAlgorithm { get; set; }
+
+	/// <summary>
+	/// True if Passliss should avoid special characters that may be hard for the user to type (ex: é,è,à,ñ).
+	/// </summary>
+	public bool? UseSimpleSpecialChars { get; set; }
+
+	/// <summary>
+	/// Contains all the user provided custom characters that can be used when generating a password.
+	/// </summary>
+	public string CustomUserChars { get; set; }
+
+	/// <summary>
+	/// True if Passliss should remember the custom characters provided by the user.
+	/// </summary>
+	public bool? SaveCustomChars { get; set; }
+
+	/// <summary>
+	/// Array of strings that contains the user-defined characters to use when generating a password.
+	/// </summary>
+	public string[] UserDefinedChars { get; set; }
+
+	/// <summary>
+	/// True if Passliss should use user defined chars instead of the default ones.
+	/// </summary>
+	public bool? UseUserDefinedCharacters { get; set; }
 }
 
 /// <summary>
@@ -152,7 +177,12 @@ public static class SettingsManager
 				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = true,
-				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES
+				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
+				UseSimpleSpecialChars = false,
+				CustomUserChars = "",
+				SaveCustomChars = true,
+				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
+				UseUserDefinedCharacters = false,
 			}; // Create a new settings file
 
 			Save(); // Save the changes

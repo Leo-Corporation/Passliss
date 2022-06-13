@@ -30,9 +30,11 @@ using Passliss.Pages;
 using Passliss.Windows;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace Passliss.Classes;
 
@@ -76,10 +78,15 @@ public static class Global
 	/// </summary>
 	public static string Numbers => "0,1,2,3,4,5,6,7,8,8,9";
 
+	private static string _specialChars = ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
 	/// <summary>
 	/// Special caracters.
 	/// </summary>
-	public static string SpecialCaracters => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
+	public static string SpecialCaracters
+	{
+		get { return _specialChars; }
+		set { _specialChars = value; }
+	}
 
 	public static string[] ForbidenCaracters => new string[] { "123", "456", "789", "password", "mdp", "pswr", "000", "admin", "111", "222", "333", "444", "555", "666", "777", "888", "999" };
 
@@ -106,7 +113,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Passliss.
 	/// </summary>
-	public static string Version => "2.4.0.2204";
+	public static string Version => "2.5.0.2206";
 
 	/// <summary>
 	/// GitHub link for the last version (<see cref="string"/>).
@@ -213,22 +220,22 @@ public static class Global
 
 		if (lC) // If include lower cases
 		{
-			finalCaracters += LowerCaseLetters + ","; // Add lower cases
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[0] : LowerCaseLetters + ","; // Add lower cases
 		}
 
 		if (uC) // If include upper cases
 		{
-			finalCaracters += UpperCaseLetters + ","; // Add upper cases
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[1] : UpperCaseLetters + ","; // Add upper cases
 		}
 
 		if (n) // If include numbers
 		{
-			finalCaracters += Numbers + ","; // Add numbers
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[2] : Numbers + ","; // Add numbers
 		}
 
 		if (sC) // If include special caracters
 		{
-			finalCaracters += SpecialCaracters + ","; // Add special caracters
+			finalCaracters += Settings.UseUserDefinedCharacters ?? false ? Settings.UserDefinedChars[3] : SpecialCaracters + ","; // Add special caracters
 		}
 
 		return finalCaracters; // Return result
@@ -365,6 +372,43 @@ public static class Global
 	public static Color GetColorFromResource(string resourceName)
 	{
 		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString());
+	}
+
+	internal static void CreateJumpLists()
+	{
+		JumpList jumpList = new(); // Create a jump list
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.Generate,
+			Arguments = "/page 0",
+			Description = Properties.Resources.WelcomeGenerate,
+			CustomCategory = Properties.Resources.Tasks,
+			IconResourcePath = Assembly.GetEntryAssembly().Location
+		}); // Add Generate jump task
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.Strenght,
+			Arguments = "/page 1",
+			Description = Properties.Resources.WelcomeTestStrength,
+			CustomCategory = Properties.Resources.Tasks,
+			IconResourcePath = Assembly.GetEntryAssembly().Location
+		}); // Add Strength jump task
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.Encrypt,
+			Arguments = "/page 2",
+			Description = Properties.Resources.WelcomeEncrypt,
+			CustomCategory = Properties.Resources.Tasks,
+			IconResourcePath = Assembly.GetEntryAssembly().Location
+		}); // Add Encrypt jump task
+
+		jumpList.ShowRecentCategory = false; // Hide the recent category
+		jumpList.ShowFrequentCategory = false; // Hide the frequent category
+
+		JumpList.SetJumpList(Application.Current, jumpList); // Set the jump list
 	}
 }
 

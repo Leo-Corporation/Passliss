@@ -406,7 +406,7 @@
     <value>Cacher le mot de passe dans l'historique par défaut.</value>
   </data>
   <data name="OtherCharacters" xml:space="preserve">
-    <value>Autres caractères (séparés par une ",")</value>
+    <value>Caractères personnalisés (séparés par une ",")</value>
   </data>
   <data name="Encryption" xml:space="preserve">
     <value>Cryptage</value>
@@ -506,5 +506,23 @@
   </data>
   <data name="GoBack" xml:space="preserve">
     <value>Retour</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tâches</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Caractères</value>
+  </data>
+  <data name="UseSimpleCharacters" xml:space="preserve">
+    <value>Utiliser des caractères spéciaux plus simples</value>
+  </data>
+  <data name="CharactersDesc" xml:space="preserve">
+    <value>Paramètres liés aux caractères utilisés lors de la génération d’un mot de passe.</value>
+  </data>
+  <data name="SaveCustomChars" xml:space="preserve">
+    <value>Enregistrer les caractères personnalisés</value>
+  </data>
+  <data name="UseUserDefinedChars" xml:space="preserve">
+    <value>Utiliser vos propres caractères</value>
   </data>
 </root>

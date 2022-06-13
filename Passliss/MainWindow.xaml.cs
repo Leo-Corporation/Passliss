@@ -38,6 +38,7 @@ namespace Passliss;
 public partial class MainWindow : Window
 {
 	private Button CheckedButton { get; set; }
+	private DefaultPage? StartPage { get; init; }
 
 	readonly ColorAnimation colorAnimation = new()
 	{
@@ -46,9 +47,11 @@ public partial class MainWindow : Window
 		Duration = new(TimeSpan.FromSeconds(0.2d))
 	};
 
-	public MainWindow()
+	public MainWindow(DefaultPage? defaultPage)
 	{
 		InitializeComponent();
+		StartPage = defaultPage;
+		
 		InitUI(); // Init the UI elements
 		Focus();
 	}
@@ -56,7 +59,7 @@ public partial class MainWindow : Window
 	private void InitUI()
 	{
 		HelloTxt.Text = Global.GetHiSentence; // Set the "Hi" message
-		PageContent.Content = Global.Settings.StartupPage switch
+		PageContent.Content = (StartPage ?? Global.Settings.StartupPage) switch
 		{
 			DefaultPage.Generate => Global.GeneratePage,
 			DefaultPage.Strength => Global.StrenghtPage,
@@ -64,7 +67,7 @@ public partial class MainWindow : Window
 			_ => Global.GeneratePage
 		}; // Set startup page
 
-		CheckButton(Global.Settings.StartupPage switch
+		CheckButton((StartPage ?? Global.Settings.StartupPage) switch
 		{
 			DefaultPage.Generate => GenerateTabBtn,
 			DefaultPage.Strength => StrenghtTabBtn,
@@ -128,6 +131,12 @@ public partial class MainWindow : Window
 
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
+		if (Global.Settings.SaveCustomChars ?? true)
+		{
+			Global.Settings.CustomUserChars = Global.GeneratePage.OtherCharactersTxt.Text; // Save custom user chars
+			SettingsManager.Save(); // Save changes 
+		}
+
 		Environment.Exit(0); // Close
 	}
 
