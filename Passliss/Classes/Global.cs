@@ -113,7 +113,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Passliss.
 	/// </summary>
-	public static string Version => "2.5.0.2206-pre1";
+	public static string Version => "2.5.0.2206-rc1";
 
 	/// <summary>
 	/// GitHub link for the last version (<see cref="string"/>).
