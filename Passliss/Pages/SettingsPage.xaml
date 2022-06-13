@@ -250,6 +250,7 @@
 
                     <StackPanel Margin="10 0 10 10">
                         <CheckBox Margin="0 2 0 2" x:Name="UseSimplerCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.UseSimpleCharacters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="UseSimplerCharsChk_Unchecked" Checked="UseSimplerCharsChk_Unchecked"/>
+                        <CheckBox Margin="0 2 0 2" x:Name="SaveCustomCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SaveCustomChars}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="SaveCustomCharsChk_Checked" Checked="SaveCustomCharsChk_Checked"/>
                     </StackPanel>
                 </Expander>
 

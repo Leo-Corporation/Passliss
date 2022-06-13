@@ -102,6 +102,11 @@ public partial class SettingsPage : Page
 			Global.Settings.UseSimpleSpecialChars = false; // Set
 		}
 
+		if (!Global.Settings.SaveCustomChars.HasValue)
+		{
+			Global.Settings.SaveCustomChars = true; // Set
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -158,6 +163,7 @@ public partial class SettingsPage : Page
 		RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart ?? true; // Set
 		DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
 		UseSimplerCharsChk.IsChecked = Global.Settings.UseSimpleSpecialChars ?? false; // Set
+		SaveCustomCharsChk.IsChecked = Global.Settings.SaveCustomChars ?? true; // Set
 
 		// Load LangComboBox
 		LangComboBox.Items.Clear(); // Clear
@@ -583,6 +589,7 @@ public partial class SettingsPage : Page
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
 				UseSimpleSpecialChars = false,
 				CustomUserChars = "",
+				SaveCustomChars = true,
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -673,5 +680,11 @@ public partial class SettingsPage : Page
 
 		// Refresh special characters
 		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars.Value ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
+	}
+
+	private void SaveCustomCharsChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.SaveCustomChars = SaveCustomCharsChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
 	}
 }

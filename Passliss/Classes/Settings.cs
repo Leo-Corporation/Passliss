@@ -117,7 +117,15 @@ public class Settings
 	/// </summary>
 	public bool? UseSimpleSpecialChars { get; set; }
 
+	/// <summary>
+	/// Contains all the user provided custom characters that can be used when generating a password.
+	/// </summary>
 	public string CustomUserChars { get; set; }
+
+	/// <summary>
+	/// True if Passliss should remember the custom characters provided by the user.
+	/// </summary>
+	public bool? SaveCustomChars { get; set; }
 }
 
 /// <summary>
@@ -161,7 +169,8 @@ public static class SettingsManager
 				IsFirstRun = true,
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
 				UseSimpleSpecialChars = false,
-				CustomUserChars = ""
+				CustomUserChars = "",
+				SaveCustomChars = true
 			}; // Create a new settings file
 
 			Save(); // Save the changes
