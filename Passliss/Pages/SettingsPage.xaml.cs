@@ -715,20 +715,17 @@ public partial class SettingsPage : Page
 	{
 		Global.Settings.UserDefinedChars[1] = UpperCaseCharsTxt.Text; // Set
 		SettingsManager.Save(); // Save changes
-
 	}
 
 	private void NumberCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		Global.Settings.UserDefinedChars[2] = NumberCharsTxt.Text; // Set
 		SettingsManager.Save(); // Save changes
-
 	}
 
 	private void SpecialCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		Global.Settings.UserDefinedChars[3] = SpecialCharsTxt.Text; // Set
 		SettingsManager.Save(); // Save changes
-
 	}
 }
