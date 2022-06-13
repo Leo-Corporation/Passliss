@@ -81,7 +81,11 @@ public static class Global
 	/// <summary>
 	/// Special caracters.
 	/// </summary>
-	public static string SpecialCaracters => ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
+	public static string SpecialCaracters
+	{
+		get { return ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨"; }
+		set { }
+	}
 
 	public static string[] ForbidenCaracters => new string[] { "123", "456", "789", "password", "mdp", "pswr", "000", "admin", "111", "222", "333", "444", "555", "666", "777", "888", "999" };
 

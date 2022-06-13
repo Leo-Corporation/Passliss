@@ -97,6 +97,11 @@ public partial class SettingsPage : Page
 			Global.Settings.DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES; // Set
 		}
 
+		if (!Global.Settings.UseSimpleSpecialChars.HasValue)
+		{
+			Global.Settings.UseSimpleSpecialChars = false; // Set
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -574,7 +579,8 @@ public partial class SettingsPage : Page
 				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = false,
-				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES
+				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
+				UseSimpleSpecialChars = false,
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes

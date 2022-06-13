@@ -111,6 +111,11 @@ public class Settings
 	/// The default encryption algorithm in <see cref="Pages.EncryptPage"/>.
 	/// </summary>
 	public EncryptionAlgorithm? DefaultEncryptionAlgorithm { get; set; }
+
+	/// <summary>
+	/// True if Passliss should avoid special characters that may be hard for the user to type (ex: é,è,à,ñ).
+	/// </summary>
+	public bool? UseSimpleSpecialChars { get; set; }
 }
 
 /// <summary>
@@ -152,7 +157,8 @@ public static class SettingsManager
 				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = true,
-				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES
+				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
+				UseSimpleSpecialChars = false
 			}; // Create a new settings file
 
 			Save(); // Save the changes

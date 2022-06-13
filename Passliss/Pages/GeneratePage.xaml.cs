@@ -43,6 +43,9 @@ public partial class GeneratePage : Page
 	{
 		InitializeComponent();
 
+		// Set special characters in Global
+		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars ?? false ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : Global.SpecialCaracters;
+
 		for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
 		{
 			if (Global.PasswordConfigurations[i].IsDefault.Value)
