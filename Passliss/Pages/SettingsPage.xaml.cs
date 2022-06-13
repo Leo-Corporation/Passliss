@@ -157,6 +157,7 @@ public partial class SettingsPage : Page
 		NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
 		RandomLengthOnStartChk.IsChecked = Global.Settings.UseRandomPasswordLengthOnStart ?? true; // Set
 		DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
+		UseSimplerCharsChk.IsChecked = Global.Settings.UseSimpleSpecialChars ?? false; // Set
 
 		// Load LangComboBox
 		LangComboBox.Items.Clear(); // Clear
@@ -662,5 +663,14 @@ public partial class SettingsPage : Page
 		{
 			PasswordConfigurationManager.Import(openFileDialog.FileName); // Import
 		}
+	}
+
+	private void UseSimplerCharsChk_Unchecked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.UseSimpleSpecialChars = UseSimplerCharsChk.IsChecked; // Set
+		SettingsManager.Save(); // Save changes
+
+		// Refresh special characters
+		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars.Value ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
 	}
 }

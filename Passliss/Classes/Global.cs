@@ -78,13 +78,14 @@ public static class Global
 	/// </summary>
 	public static string Numbers => "0,1,2,3,4,5,6,7,8,8,9";
 
+	private static string _specialChars = ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨";
 	/// <summary>
 	/// Special caracters.
 	/// </summary>
 	public static string SpecialCaracters
 	{
-		get { return ";,:,!,/,§,ù,*,$,%,µ,£,),=,+,*,-,&,é,',(,-,è,_,ç,<,>,?,^,¨"; }
-		set { }
+		get { return _specialChars; }
+		set { _specialChars = value; }
 	}
 
 	public static string[] ForbidenCaracters => new string[] { "123", "456", "789", "password", "mdp", "pswr", "000", "admin", "111", "222", "333", "444", "555", "666", "777", "888", "999" };
