@@ -251,6 +251,19 @@
                     <StackPanel Margin="10 0 10 10">
                         <CheckBox Margin="0 2 0 2" x:Name="UseSimplerCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.UseSimpleCharacters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="UseSimplerCharsChk_Unchecked" Checked="UseSimplerCharsChk_Unchecked"/>
                         <CheckBox Margin="0 2 0 2" x:Name="SaveCustomCharsChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SaveCustomChars}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="SaveCustomCharsChk_Checked" Checked="SaveCustomCharsChk_Checked"/>
+
+                        <TextBlock Text="{x:Static lang:Resources.LowerCase}"/>
+                        <TextBox x:Name="LowerCaseCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+
+                        <TextBlock Text="{x:Static lang:Resources.UpperCase}"/>
+                        <TextBox x:Name="UpperCaseCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+
+                        <TextBlock Text="{x:Static lang:Resources.Numbers}"/>
+                        <TextBox x:Name="NumberCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+
+                        <TextBlock Text="{x:Static lang:Resources.SpecialCaracters}"/>
+                        <TextBox x:Name="SpecialCharsTxt" MinWidth="40" Style="{DynamicResource TextBoxStyle2}" FontSize="14" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,3,10,10" VerticalAlignment="Center" TextChanged="LowerCaseCharsTxt_TextChanged" Background="{Binding Source={StaticResource Gray}}" BorderBrush="{Binding Source={StaticResource Gray}}" FontFamily="Consolas" BorderThickness="0" Width="490"/>
+
                     </StackPanel>
                 </Expander>
 

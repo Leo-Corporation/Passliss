@@ -188,6 +188,12 @@ public partial class SettingsPage : Page
 		MinLengthTxt.Text = Global.Settings.MinRandomLength.HasValue ? Global.Settings.MinRandomLength.Value.ToString() : "10"; // Set
 		MaxLengthTxt.Text = Global.Settings.MaxRandomLength.HasValue ? Global.Settings.MaxRandomLength.Value.ToString() : "30"; // Set
 
+		// Chars TextBoxes
+		LowerCaseCharsTxt.Text = Global.Settings.UserDefinedChars[0]; // Set
+		UpperCaseCharsTxt.Text = Global.Settings.UserDefinedChars[1]; // Set
+		NumberCharsTxt.Text = Global.Settings.UserDefinedChars[2]; // Set
+		SpecialCharsTxt.Text = Global.Settings.UserDefinedChars[3]; // Set
+
 		if (!Global.Settings.MinRandomLength.HasValue)
 		{
 			Global.Settings.MinRandomLength = int.Parse(MinLengthTxt.Text); // Set
@@ -692,5 +698,10 @@ public partial class SettingsPage : Page
 	{
 		Global.Settings.SaveCustomChars = SaveCustomCharsChk.IsChecked; // Set
 		SettingsManager.Save(); // Save changes
+	}
+
+	private void LowerCaseCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+
 	}
 }
