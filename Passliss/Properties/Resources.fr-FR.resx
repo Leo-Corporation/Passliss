@@ -510,4 +510,13 @@
   <data name="Tasks" xml:space="preserve">
     <value>Tâches</value>
   </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Caractères</value>
+  </data>
+  <data name="UseSimpleCharacters" xml:space="preserve">
+    <value>Utiliser des caractères spéciaux plus simples</value>
+  </data>
+  <data name="CharactersDesc" xml:space="preserve">
+    <value>Paramètres liés aux caractères utilisés lors de la génération d’un mot de passe.</value>
+  </data>
 </root>

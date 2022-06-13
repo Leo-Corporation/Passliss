@@ -510,4 +510,13 @@
   <data name="Tasks" xml:space="preserve">
     <value>Tasks</value>
   </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="UseSimpleCharacters" xml:space="preserve">
+    <value>Use simpler special characters</value>
+  </data>
+  <data name="CharactersDesc" xml:space="preserve">
+    <value>Settings related to characters used when generating a password.</value>
+  </data>
 </root>

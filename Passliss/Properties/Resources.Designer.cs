@@ -196,6 +196,24 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Characters.
+        /// </summary>
+        public static string Characters {
+            get {
+                return ResourceManager.GetString("Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings related to characters used when generating a password..
+        /// </summary>
+        public static string CharactersDesc {
+            get {
+                return ResourceManager.GetString("CharactersDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check updates.
         /// </summary>
         public static string CheckUpdate {
@@ -1164,6 +1182,15 @@ namespace Passliss.Properties {
         public static string UpToDate {
             get {
                 return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use simpler special characters.
+        /// </summary>
+        public static string UseSimpleCharacters {
+            get {
+                return ResourceManager.GetString("UseSimpleCharacters", resourceCulture);
             }
         }
         
