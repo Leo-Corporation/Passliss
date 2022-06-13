@@ -126,6 +126,8 @@ public class Settings
 	/// True if Passliss should remember the custom characters provided by the user.
 	/// </summary>
 	public bool? SaveCustomChars { get; set; }
+
+	public string[] UserDefinedChars { get; set; }
 }
 
 /// <summary>
@@ -170,7 +172,8 @@ public static class SettingsManager
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
 				UseSimpleSpecialChars = false,
 				CustomUserChars = "",
-				SaveCustomChars = true
+				SaveCustomChars = true,
+				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters }
 			}; // Create a new settings file
 
 			Save(); // Save the changes

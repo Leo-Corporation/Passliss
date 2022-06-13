@@ -107,6 +107,11 @@ public partial class SettingsPage : Page
 			Global.Settings.SaveCustomChars = true; // Set
 		}
 
+		if (Global.Settings.UserDefinedChars is null)
+		{
+			Global.Settings.UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters };
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -590,6 +595,7 @@ public partial class SettingsPage : Page
 				UseSimpleSpecialChars = false,
 				CustomUserChars = "",
 				SaveCustomChars = true,
+				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
