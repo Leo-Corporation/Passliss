@@ -607,7 +607,7 @@ public partial class SettingsPage : Page
 				CustomUserChars = "",
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
-				UseUserDefinedCharacters = false,				
+				UseUserDefinedCharacters = false,
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes

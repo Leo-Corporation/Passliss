@@ -92,7 +92,7 @@ public partial class GeneratePage : Page
 			HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
 		}
 		UpdateStrengthIcon(); // Update the icon
-		
+
 	}
 
 	private void GenerateBtn_Click(object sender, RoutedEventArgs e)
@@ -144,7 +144,7 @@ public partial class GeneratePage : Page
 
 		StrengthIcon.Foreground = Global.GetStrenghtColorBrush(strength); // Set color
 	}
-	
+
 	/// <summary>
 	/// True if all unchecked.
 	/// </summary>
