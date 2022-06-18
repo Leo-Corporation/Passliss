@@ -51,7 +51,7 @@ public partial class MainWindow : Window
 	{
 		InitializeComponent();
 		StartPage = defaultPage;
-		
+
 		InitUI(); // Init the UI elements
 		Focus();
 	}
