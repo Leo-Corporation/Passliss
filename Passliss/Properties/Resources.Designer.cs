@@ -781,6 +781,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Source - Made with ❤️ in France.
+        /// </summary>
+        public static string OpenSourceMention {
+            get {
+                return ResourceManager.GetString("OpenSourceMention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom characters (separated by a &quot;,&quot;).
         /// </summary>
         public static string OtherCharacters {

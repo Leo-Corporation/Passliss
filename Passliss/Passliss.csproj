@@ -6,15 +6,15 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>2.5.1.2206</Version>
+    <Version>2.5.2.2207</Version>
     <Authors>Léo Corporation</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Leo-Corporation/Passliss</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Leo-Corporation/Passliss</RepositoryUrl>
     <Copyright>© 2022</Copyright>
-    <AssemblyVersion>2.5.0.2206</AssemblyVersion>
-    <FileVersion>2.5.0.2206</FileVersion>
+    <AssemblyVersion>2.5.2.2207</AssemblyVersion>
+    <FileVersion>2.5.2.2207</FileVersion>
     <Company>Léo Corporation</Company>
     <Product>Passliss</Product>
     <Description>A modern password generator for Windows.</Description>
@@ -24,8 +24,8 @@
     <None Remove="Fonts\FluentlyIcons.ttf" />
     <None Remove="Fonts\FluentSystemIcons-Filled.ttf" />
     <None Remove="Fonts\FluentSystemIcons-Regular.ttf" />
-    <None Remove="Fonts\Montserrat-Bold.ttf" />
-    <None Remove="Fonts\Montserrat-Regular.ttf" />
+    <None Remove="Fonts\Hauora-ExtraBold.ttf" />
+    <None Remove="Fonts\Hauora-Regular.ttf" />
     <None Remove="Images\BackgroundBlack.png" />
     <None Remove="Images\BackgroundWhite.png" />
     <None Remove="Images\DarkTheme.png" />
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LeoCorpLibrary" Version="4.7.0.2206" />
+    <PackageReference Include="LeoCorpLibrary" Version="4.8.0.2207" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,10 +69,10 @@
     <Resource Include="Fonts\FluentSystemIcons-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Fonts\Montserrat-Bold.ttf">
+    <Resource Include="Fonts\Hauora-ExtraBold.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Fonts\Montserrat-Regular.ttf">
+    <Resource Include="Fonts\Hauora-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\BackgroundBlack.png">

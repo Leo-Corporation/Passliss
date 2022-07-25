@@ -525,4 +525,7 @@
   <data name="UseUserDefinedChars" xml:space="preserve">
     <value>Use your own characters</value>
   </data>
+  <data name="OpenSourceMention" xml:space="preserve">
+    <value>Open Source - Made with ❤️ in France</value>
+  </data>
 </root>
