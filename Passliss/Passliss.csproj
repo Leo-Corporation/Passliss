@@ -24,6 +24,8 @@
     <None Remove="Fonts\FluentlyIcons.ttf" />
     <None Remove="Fonts\FluentSystemIcons-Filled.ttf" />
     <None Remove="Fonts\FluentSystemIcons-Regular.ttf" />
+    <None Remove="Fonts\Hauora-ExtraBold.ttf" />
+    <None Remove="Fonts\Hauora-Regular.ttf" />
     <None Remove="Fonts\Montserrat-Bold.ttf" />
     <None Remove="Fonts\Montserrat-Regular.ttf" />
     <None Remove="Images\BackgroundBlack.png" />
@@ -67,6 +69,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\FluentSystemIcons-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Hauora-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Hauora-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\Montserrat-Bold.ttf">
