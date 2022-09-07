@@ -84,10 +84,12 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
 
-					<Button Grid.Column="1" FontSize="1" Content="&#xEACA;" FontFamily="/Fonts/#FluentlyIcons" Name="MinimizeBtn" Click="MinimizeBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
-					<Button Grid.Column="2" FontSize="11" Content="&#xE9D8;" FontFamily="/Fonts/#FluentlyIcons" Name="CloseBtn" Click="CloseBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarCloseButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
+					<Button Grid.Column="1" FontSize="16" Content="&#xF602;" FontFamily="/Fonts/#FluentSystemIcons-Regular" Name="PinBtn" Click="PinBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
+					<Button Grid.Column="2" FontSize="1" Content="&#xEACA;" FontFamily="/Fonts/#FluentlyIcons" Name="MinimizeBtn" Click="MinimizeBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
+					<Button Grid.Column="3" FontSize="11" Content="&#xE9D8;" FontFamily="/Fonts/#FluentlyIcons" Name="CloseBtn" Click="CloseBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarCloseButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
 				</Grid>
 			</Border>
 
