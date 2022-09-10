@@ -219,22 +219,31 @@ public partial class SettingsPage : Page
 		// Update the UpdateStatusTxt
 		if (Global.Settings.CheckUpdatesOnStart.Value)
 		{
-			if (await NetworkConnection.IsAvailableAsync())
+			try
 			{
-				isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
-
-				UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-				InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
-				InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
-
-				if (isAvailable && Global.Settings.NotifyUpdates.Value)
+				if (await NetworkConnection.IsAvailableAsync())
 				{
-					notifyIcon.Visible = true; // Show
-					notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
-					notifyIcon.Visible = false; // Hide
+					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+					InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
+
+					if (isAvailable && Global.Settings.NotifyUpdates.Value)
+					{
+						notifyIcon.Visible = true; // Show
+						notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+						notifyIcon.Visible = false; // Hide
+					}
+				}
+				else
+				{
+					UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+					InstallIconTxt.Text = "\uE92A"; // Set text 
 				}
 			}
-			else
+			catch // This will get called if there is no Internet connection available for instance
 			{
 				UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
 				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
@@ -299,41 +308,50 @@ public partial class SettingsPage : Page
 
 	private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
 	{
-		if (isAvailable) // If there is updates
+		try
 		{
-			string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
-			if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+			if (isAvailable) // If there is updates
 			{
-				Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
-				Environment.Exit(0); // Close
-			}
-		}
-		else
-		{
-			if (await NetworkConnection.IsAvailableAsync())
-			{
-				// Update the UpdateStatusTxt
-				isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
-
-				UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-				InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
-				InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
-
-				if (isAvailable && Global.Settings.NotifyUpdates.Value)
+				string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+				if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 				{
-					notifyIcon.Visible = true; // Show
-					notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
-					notifyIcon.Visible = false; // Hide
+					Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+					Environment.Exit(0); // Close
 				}
 			}
 			else
 			{
-				UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
-				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
-				InstallIconTxt.Text = "\uE92A"; // Set text 
-			}
+				if (await NetworkConnection.IsAvailableAsync())
+				{
+					// Update the UpdateStatusTxt
+					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-			UpdateStatusPanel.Orientation = Orientation.Horizontal;
+					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+					InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
+
+					if (isAvailable && Global.Settings.NotifyUpdates.Value)
+					{
+						notifyIcon.Visible = true; // Show
+						notifyIcon.ShowBalloonTip(5000, Properties.Resources.Passliss, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+						notifyIcon.Visible = false; // Hide
+					}
+				}
+				else
+				{
+					UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+					InstallIconTxt.Text = "\uE92A"; // Set text 
+				}
+
+				UpdateStatusPanel.Orientation = Orientation.Horizontal;
+			}
+		}
+		catch // This will get called if there is no Internet connection available for instance
+		{
+			UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set text
+			InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+			InstallIconTxt.Text = "\uE92A"; // Set text 
 		}
 	}
 
