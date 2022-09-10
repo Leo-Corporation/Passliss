@@ -133,7 +133,7 @@ public partial class GeneratePage : Page
 	{
 		// Set the Strength icon
 		var strength = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
-		StrengthIcon.Text = strength switch
+		TestStrengthBtn.Content = strength switch
 		{
 			PasswordStrenght.VeryGood => "\uF6EA", // If the password strenght is very good
 			PasswordStrenght.Good => "\uF299", // If the password strenght is good
@@ -142,7 +142,7 @@ public partial class GeneratePage : Page
 			_ => "\uF4AB" // If the password strenght is unknown
 		};
 
-		StrengthIcon.Foreground = Global.GetStrenghtColorBrush(strength); // Set color
+		TestStrengthBtn.Foreground = Global.GetStrenghtColorBrush(strength); // Set color
 	}
 
 	/// <summary>

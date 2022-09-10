@@ -137,7 +137,7 @@ public partial class MainWindow : Window
 			SettingsManager.Save(); // Save changes 
 		}
 
-		Environment.Exit(0); // Close
+		Application.Current.Shutdown(); // Close
 	}
 
 	private void TabEnter(object sender, MouseEventArgs e)
@@ -206,5 +206,11 @@ public partial class MainWindow : Window
 		Storyboard.SetTargetName(t, PageContent.Name);
 		Storyboard.SetTargetProperty(t, new(Frame.MarginProperty));
 		storyboard.Begin(this);
+	}
+
+	private void PinBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Topmost = !Topmost; // Toggle
+		PinBtn.Content = Topmost ? "\uF604" : "\uF602"; // Set text
 	}
 }

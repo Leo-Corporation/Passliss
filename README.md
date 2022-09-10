@@ -28,9 +28,20 @@
 </p>
 
 ## What is it?
-Passliss is a modern password generation Windows application that allows you to generate passwords within a click. It is the sucessor of [Password Generator 3](https://github.com/Leo-Corporation/Generateur-de-mots-de-passe/) (also known as "Générateur de mots de passe 3")
+Passliss is a modern password generation Windows application that allows you to generate passwords within a click. Passliss is written in C# .NET 6 using WPF.
 
-Passliss is written in C# .NET 5 using WPF.
+## Features
+- Generate powerful passwords in a single click
+- Test the strength of existing passwords
+- Encrypt and decrypt your secrets using AES or Triple-DES encryption algorithms
+- Customizable password generation system
+- Dark theme
+- Multiple languages available:
+  - English (US)
+  - French (France)
+  - Simplified Chinese (PRC)
+
+*And more...*
 
 ## Download
 - [Download](https://tinyurl.com/Passliss)
@@ -39,11 +50,10 @@ Passliss is written in C# .NET 5 using WPF.
 ## Contribute
 To contribute to the project, you'll need:
 - Visual Studio 2022 (or 2019) v17.0 or higher
-  - .NET Desktop Developpement
+  - .NET Desktop Development
   - Git
-- .NET 5
-- .NET 6
-- (*optionnal*) Inno Setup v6.1 or higher
+- .NET 5 and 6
+- (*optional*) Inno Setup v6.1 or higher
 
 [Click here](https://github.com/Leo-Corporation/Passliss/blob/main/CONTRIBUTING.md) to see the full guidelines.
 ## License
