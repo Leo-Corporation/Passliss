@@ -58,6 +58,9 @@ public partial class StrenghtPage : Page
 			HideShowPassword.Content = "\ue9fa"; // Change text
 			HideShowPassword.FontSize = 15; // Change font size
 		}
+
+		SeeMoreBtn.MouseEnter += (o, e) => SeeMoreBtn.Foreground = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) };
+		SeeMoreBtn.MouseLeave += (o, e) => SeeMoreBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["Foreground1"].ToString()) };
 	}
 
 	private static string GetStrenghtCaracter(PasswordStrenght passwordStrenght)
