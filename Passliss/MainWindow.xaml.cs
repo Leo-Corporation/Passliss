@@ -137,7 +137,7 @@ public partial class MainWindow : Window
 			SettingsManager.Save(); // Save changes 
 		}
 
-		Environment.Exit(0); // Close
+		Application.Current.Shutdown(); // Close
 	}
 
 	private void TabEnter(object sender, MouseEventArgs e)
