@@ -1159,6 +1159,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toggle Confidential Mode by default.
+        /// </summary>
+        public static string ToggleConfidentialMode {
+            get {
+                return ResourceManager.GetString("ToggleConfidentialMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to check updates.
         /// </summary>
         public static string UnableToCheckUpdates {

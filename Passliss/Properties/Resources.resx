@@ -508,4 +508,7 @@
   <data name="OpenSourceMention" xml:space="preserve">
     <value>Open Source - Made with ❤️ in France</value>
   </data>
+  <data name="ToggleConfidentialMode" xml:space="preserve">
+    <value>Toggle Confidential Mode by default</value>
+  </data>
 </root>
