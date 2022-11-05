@@ -131,6 +131,11 @@ public static class Global
 	public static PasswordConfiguration DefaultPasswordConfiguration { get; set; }
 
 	/// <summary>
+	/// <see langword="true"/> if confidential mode is enabled.
+	/// </summary>
+	public static bool IsConfidentialModeEnabled { get; set; }
+
+	/// <summary>
 	/// Changes the application's theme.
 	/// </summary>
 	public static void ChangeTheme()

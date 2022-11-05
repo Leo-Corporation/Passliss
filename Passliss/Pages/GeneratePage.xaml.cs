@@ -27,6 +27,7 @@ using Passliss.Enums;
 using Passliss.UserControls;
 using Passliss.Windows;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,6 +40,7 @@ namespace Passliss.Pages;
 /// </summary>
 public partial class GeneratePage : Page
 {
+	string password = "";
 	public GeneratePage()
 	{
 		InitializeComponent();
@@ -83,6 +85,7 @@ public partial class GeneratePage : Page
 		}
 
 		PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate
+		password = PasswordTxt.Text;
 		if (!Global.Settings.DisableHistory.Value)
 		{
 			PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
@@ -116,12 +119,18 @@ public partial class GeneratePage : Page
 		if (!IsNoCheckboxesChecked())
 		{
 			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
+			password = PasswordTxt.Text;
+			
 			if (!Global.Settings.DisableHistory.Value)
 			{
 				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
 			}
 
 			UpdateStrengthIcon(); // Update the icon
+			string text = "";
+			for (int i = 0; i < password.Length; i++) text += "•";
+
+			PasswordTxt.Text = Global.IsConfidentialModeEnabled ? text : password;
 		}
 		else
 		{
@@ -222,14 +231,13 @@ public partial class GeneratePage : Page
 
 					PasswordHistory.Visibility = Visibility.Visible; // Show
 					HistoryScroll.Visibility = Visibility.Visible; // Show
-					HidePasswordBtn.Visibility = Visibility.Visible; // Show
 
 					HistoryBtn.Content = "\uF36A"; // Set text
 					for (int i = 0; i < PasswordHistory.Children.Count; i++)
 					{
 						if (PasswordHistory.Children[i] is PasswordHistoryItem passwordHistoryItem)
 						{
-							passwordHistoryItem.HideOrShowPasswordInPlainText(showPassword); // Show or hide password
+							passwordHistoryItem.HideOrShowPasswordInPlainText(!Global.IsConfidentialModeEnabled); // Show or hide password
 						}
 					}
 				}
@@ -241,7 +249,6 @@ public partial class GeneratePage : Page
 
 					PasswordHistory.Visibility = Visibility.Collapsed; // Hide
 					HistoryScroll.Visibility = Visibility.Collapsed; // Hide
-					HidePasswordBtn.Visibility = Visibility.Collapsed; // Hide
 
 					HistoryBtn.Content = "\uF47F"; // Set text
 				}
@@ -258,7 +265,6 @@ public partial class GeneratePage : Page
 
 			HistoryBtn.Content = "\uF47F"; // Set text
 			HistoryBtn.Visibility = Visibility.Collapsed; // Set visibility
-			HidePasswordBtn.Visibility = Visibility.Collapsed; // Hide
 			if (sender is not PasswordHistoryItem)
 			{
 				MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show
@@ -280,20 +286,19 @@ public partial class GeneratePage : Page
 	{
 		new SeeFullPassword(PasswordTxt.Text).Show(); // Show the window
 	}
-
-	bool showPassword = !Global.Settings.AlwaysHidePasswordInHistory.Value;
-	private void HidePasswordBtn_Click(object sender, RoutedEventArgs e)
+	internal void ToggleConfidentialMode()
 	{
-		showPassword = !showPassword; // Update
-		HidePasswordBtn.Content = showPassword ? "\uF3F8" : "\uF3FC"; // Set icon text
-
 		for (int i = 0; i < PasswordHistory.Children.Count; i++)
 		{
 			if (PasswordHistory.Children[i] is PasswordHistoryItem passwordHistoryItem)
 			{
-				passwordHistoryItem.HideOrShowPasswordInPlainText(showPassword); // Show or hide password
+				passwordHistoryItem.HideOrShowPasswordInPlainText(!Global.IsConfidentialModeEnabled); // Show or hide password
 			}
 		}
+		string text = "";
+		for (int i = 0; i < password.Length; i++) text += "•";
+
+		PasswordTxt.Text = Global.IsConfidentialModeEnabled ? text : password;
 	}
 
 	public MainWindow MainWindow { get; set; }
@@ -301,7 +306,7 @@ public partial class GeneratePage : Page
 	{
 		Global.StrenghtPage.PasswordTxt.Text = PasswordTxt.Text; // Set text
 		Global.StrenghtPage.PasswordPwrBox.Password = PasswordTxt.Text; // Set text
-		Global.StrenghtPage.InitSeeMoreUI(); // Init UI
+		Global.StrenghtPage.InitSeeMoreUI(Global.IsConfidentialModeEnabled); // Init UI
 
 		MainWindow.StrenghtTabBtn_Click(this, null);
 	}

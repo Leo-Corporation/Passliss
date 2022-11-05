@@ -44,20 +44,7 @@ public partial class StrenghtPage : Page
 
 	private void InitUI()
 	{
-		if (Global.Settings.HidePasswordInStrengthPage.Value)
-		{
-			PasswordPwrBox.Visibility = Visibility.Visible; // Change the visibility
-			PasswordTxt.Visibility = Visibility.Hidden; // Change the visibility
-			HideShowPassword.Content = "\ue9fb"; // Change text
-			HideShowPassword.FontSize = 9; // Change font size
-		}
-		else
-		{
-			PasswordPwrBox.Visibility = Visibility.Hidden; // Change the visibility
-			PasswordTxt.Visibility = Visibility.Visible; // Change the visibility
-			HideShowPassword.Content = "\ue9fa"; // Change text
-			HideShowPassword.FontSize = 15; // Change font size
-		}
+		ToggleConfidentialMode();
 
 		SeeMoreBtn.MouseEnter += (o, e) => SeeMoreBtn.Foreground = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) };
 		SeeMoreBtn.MouseLeave += (o, e) => SeeMoreBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["Foreground1"].ToString()) };
@@ -99,24 +86,21 @@ public partial class StrenghtPage : Page
 		SeeMoreBtn.Visibility = PasswordTxt.Text.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
 	}
 
-	private void HideShowPassword_Click(object sender, RoutedEventArgs e)
+	internal void ToggleConfidentialMode()
 	{
-		if (PasswordPwrBox.Visibility == Visibility.Hidden) // If the password is visible
+		if (Global.IsConfidentialModeEnabled)
 		{
 			PasswordPwrBox.Visibility = Visibility.Visible; // Change the visibility
 			PasswordTxt.Visibility = Visibility.Hidden; // Change the visibility
 			PasswordPwrBox.Password = PasswordTxt.Text; // Set text
-			HideShowPassword.Content = "\ue9fb"; // Change text
-			HideShowPassword.FontSize = 9; // Change font size
 		}
-		else // If the password is hidden
+		else
 		{
 			PasswordPwrBox.Visibility = Visibility.Hidden; // Change the visibility
 			PasswordTxt.Visibility = Visibility.Visible; // Change the visibility
 			PasswordTxt.Text = PasswordPwrBox.Password; // Set text
-			HideShowPassword.Content = "\ue9fa"; // Change text
-			HideShowPassword.FontSize = 15; // Change font size
 		}
+		InitSeeMoreUI(Global.IsConfidentialModeEnabled);
 	}
 
 	private void PasswordPwrBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -131,7 +115,7 @@ public partial class StrenghtPage : Page
 		SeeMoreBtn.Visibility = PasswordPwrBox.Password.Length > 0 ? Visibility.Visible : Visibility.Collapsed; // Change visibility
 	}
 
-	internal void InitSeeMoreUI()
+	internal void InitSeeMoreUI(bool t)
 	{
 		List<ColorSyntaxItem> colorItems = new(); // Create a new list
 		SeeMorePasswordTxt.Inlines.Clear(); // Clear the text
@@ -140,30 +124,30 @@ public partial class StrenghtPage : Page
 		int specialCharacters = 0;
 		int lowerCaseLetters = 0;
 		int upperCaseLetters = 0;
-		foreach (char c in PasswordTxt.Text)
+		foreach (char c in t ? PasswordPwrBox.Password : PasswordTxt.Text)
 		{
 			if (char.IsUpper(c) && !Global.SpecialCaracters.Contains(c)) // Get number of upper case letters in password
 			{
 				upperCaseLetters++;
-				colorItems.Add(new(c, Global.GetColorFromResource("Red"))); // Add to dictionary
+				colorItems.Add(new(t ? '•' : c, Global.GetColorFromResource("Red"))); // Add to dictionary
 			}
 
 			if (char.IsLower(c) && !Global.SpecialCaracters.Contains(c)) // Get number of lower case letters in password
 			{
 				lowerCaseLetters++;
-				colorItems.Add(new(c, Global.GetColorFromResource("Blue"))); // Add to dictionary
+				colorItems.Add(new(t ? '•' : c, Global.GetColorFromResource("Blue"))); // Add to dictionary
 			}
 
 			if (char.IsNumber(c)) // Get number of numbers in password
 			{
 				numbers++;
-				colorItems.Add(new(c, Global.GetColorFromResource("Green"))); // Add to dictionary
+				colorItems.Add(new(t ? '•' : c, Global.GetColorFromResource("Green"))); // Add to dictionary
 			}
 
 			if (char.IsPunctuation(c) || char.IsSymbol(c) || Global.SpecialCaracters.Contains(c)) // Get number of special characters in password
 			{
 				specialCharacters++;
-				colorItems.Add(new(c, Global.GetColorFromResource("Purple"))); // Add to dictionary
+				colorItems.Add(new(t ? '•' : c, Global.GetColorFromResource("Purple"))); // Add to dictionary
 			}
 		}
 
@@ -190,7 +174,7 @@ public partial class StrenghtPage : Page
 			SeeMoreIconTxt.Text = "\uF15C"; // Change text
 			SeeMoreTxt.Text = Properties.Resources.GoBack; // Change text
 
-			InitSeeMoreUI(); // Init UI
+			InitSeeMoreUI(Global.IsConfidentialModeEnabled); // Init UI
 		}
 		else // If the content is hidden
 		{
