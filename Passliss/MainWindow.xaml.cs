@@ -99,6 +99,8 @@ public partial class MainWindow : Window
 		Global.GeneratePage.MainWindow = this;
 
 		PageContent.Navigated += (o, e) => AnimatePage();
+
+		if (Global.Settings.UseConfidentialMode ?? false) ConfidentialBtn_Click(this, null);
 	}
 
 	private void ResetAllCheckStatus()

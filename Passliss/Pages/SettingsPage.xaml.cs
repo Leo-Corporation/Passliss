@@ -72,16 +72,6 @@ public partial class SettingsPage : Page
 			Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
 		}
 
-		if (!Global.Settings.HidePasswordInStrengthPage.HasValue)
-		{
-			Global.Settings.HidePasswordInStrengthPage = false; // Set to default value
-		}
-
-		if (!Global.Settings.AlwaysHidePasswordInHistory.HasValue)
-		{
-			Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
-		}
-
 		if (!Global.Settings.DisableHistory.HasValue)
 		{
 			Global.Settings.DisableHistory = false; // Set
@@ -116,6 +106,11 @@ public partial class SettingsPage : Page
 		{
 			Global.Settings.UseUserDefinedCharacters = false; // Set
 		}
+		
+		if (!Global.Settings.UseConfidentialMode.HasValue)
+		{
+			Global.Settings.UseConfidentialMode = false; // Set
+		}
 
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -134,9 +129,6 @@ public partial class SettingsPage : Page
 				EncryptionPageRadioBtn.IsChecked = true;
 				break;
 		}
-
-		HidePasswordInStrengthChk.IsChecked = Global.Settings.HidePasswordInStrengthPage; // Set
-		HidePasswordInHistoryChk.IsChecked = Global.Settings.AlwaysHidePasswordInHistory; // Set
 
 		// Borders
 		if (DarkRadioBtn.IsChecked.Value)
@@ -174,6 +166,7 @@ public partial class SettingsPage : Page
 		DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
 		UseSimplerCharsChk.IsChecked = Global.Settings.UseSimpleSpecialChars ?? false; // Set
 		SaveCustomCharsChk.IsChecked = Global.Settings.SaveCustomChars ?? true; // Set
+		ToggleConfidentialChk.IsChecked = Global.Settings.UseConfidentialMode ?? false; // Set
 
 		// Load LangComboBox
 		LangComboBox.Items.Clear(); // Clear
@@ -576,18 +569,6 @@ public partial class SettingsPage : Page
 		SettingsManager.Save(); // Save changes
 	}
 
-	private void HidePasswordInStrengthChk_Checked(object sender, RoutedEventArgs e)
-	{
-		Global.Settings.HidePasswordInStrengthPage = HidePasswordInStrengthChk.IsChecked; // Set
-		SettingsManager.Save(); // Save changes
-	}
-
-	private void HidePasswordInHistoryChk_Checked(object sender, RoutedEventArgs e)
-	{
-		Global.Settings.AlwaysHidePasswordInHistory = HidePasswordInHistoryChk.IsChecked; // Set
-		SettingsManager.Save(); // Save changes
-	}
-
 	private void ResetPwrConfigBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
@@ -616,8 +597,6 @@ public partial class SettingsPage : Page
 				UseRandomPasswordLengthOnStart = true,
 				IsThemeSystem = true,
 				StartupPage = DefaultPage.Generate,
-				HidePasswordInStrengthPage = false,
-				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = false,
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
@@ -626,6 +605,7 @@ public partial class SettingsPage : Page
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
 				UseUserDefinedCharacters = false,
+				UseConfidentialMode = false
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -751,6 +731,12 @@ public partial class SettingsPage : Page
 	private void SpecialCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		Global.Settings.UserDefinedChars[3] = SpecialCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void ToggleConfidentialChk_Unchecked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.UseConfidentialMode = ToggleConfidentialChk.IsChecked;
 		SettingsManager.Save(); // Save changes
 	}
 }
