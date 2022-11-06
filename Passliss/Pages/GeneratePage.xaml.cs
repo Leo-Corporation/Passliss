@@ -310,4 +310,22 @@ public partial class GeneratePage : Page
 
 		MainWindow.StrenghtTabBtn_Click(this, null);
 	}
+
+	private void GeneratePwrsBtn_Click(object sender, RoutedEventArgs e)
+	{
+		MultiplePasswordsPopup.IsOpen = true;
+	}
+
+	private async void GeneratePasswordsBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (string.IsNullOrEmpty(PasswordAmountTxt.Text))
+		{
+			MessageBox.Show(Properties.Resources.ProvideNumPasswordsMsg, Properties.Resources.GenerateMultiplePasswords, MessageBoxButton.OK, MessageBoxImage.Warning);
+			return;
+		}
+
+		var passwords = await Password.GenerateAmountAsync(int.Parse(PasswordAmountTxt.Text), int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",");
+		new SeeFullPassword(passwords).Show();
+		MultiplePasswordsPopup.IsOpen = false;
+	}
 }
