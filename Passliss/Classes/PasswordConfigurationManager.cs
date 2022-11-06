@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,7 +40,7 @@ public static class PasswordConfigurationManager
 	/// </summary>
 	public static void Load()
 	{
-		string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
+		string path = FileSys.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
 
 		if (File.Exists(path)) // If the file exist
 		{
@@ -64,13 +64,13 @@ public static class PasswordConfigurationManager
 	/// </summary>
 	public static void Save()
 	{
-		string path = Env.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
+		string path = FileSys.AppDataPath + @"\Passliss\PasswordConfigurations.xml"; // The path of the List<PasswordConfiguration> file
 
 		XmlSerializer xmlSerializer = new(typeof(List<PasswordConfiguration>)); // Create XML Serializer
 
-		if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+		if (!Directory.Exists(FileSys.AppDataPath + @"\Passliss")) // If the directory doesn't exist
 		{
-			Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+			Directory.CreateDirectory(FileSys.AppDataPath + @"\Passliss"); // Create the directory
 		}
 
 		StreamWriter streamWriter = new(path); // The place where the file is going to be written

@@ -21,13 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
-using LeoCorpLibrary.Enums;
 using Microsoft.Win32;
 using Passliss.Enums;
 using Passliss.Extensions;
 using Passliss.Pages;
-using Passliss.Windows;
+using PeyrSharp.Enums;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -96,11 +95,6 @@ public static class Global
 	public static Settings Settings { get; set; }
 
 	/// <summary>
-	/// <see cref="LoadPasswordConfigurationWindow"/>.
-	/// </summary>
-	public static LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow { get; set; }
-
-	/// <summary>
 	/// List of the available languages.
 	/// </summary>
 	public static List<string> LanguageList => new() { "English (United States)", "Français (France)", "中文（简体）" };
@@ -113,7 +107,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Passliss.
 	/// </summary>
-	public static string Version => "2.6.0.2209";
+	public static string Version => "2.7.0.2211";
 
 	/// <summary>
 	/// GitHub link for the last version (<see cref="string"/>).
@@ -129,6 +123,11 @@ public static class Global
 	/// The default <see cref="PasswordConfiguration"/>.
 	/// </summary>
 	public static PasswordConfiguration DefaultPasswordConfiguration { get; set; }
+
+	/// <summary>
+	/// <see langword="true"/> if confidential mode is enabled.
+	/// </summary>
+	public static bool IsConfidentialModeEnabled { get; set; }
 
 	/// <summary>
 	/// Changes the application's theme.
@@ -162,7 +161,7 @@ public static class Global
 
 	public static bool IsSystemThemeDark()
 	{
-		if (Env.WindowsVersion != WindowsVersion.Windows10 && Env.WindowsVersion != WindowsVersion.Windows11)
+		if (Sys.CurrentWindowsVersion != WindowsVersion.Windows10 && Sys.CurrentWindowsVersion != WindowsVersion.Windows11)
 		{
 			return false; // Avoid errors on older OSs
 		}

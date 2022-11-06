@@ -528,4 +528,19 @@
   <data name="OpenSourceMention" xml:space="preserve">
     <value>Open Source - Made with ❤️ in France</value>
   </data>
+  <data name="ToggleConfidentialMode" xml:space="preserve">
+    <value>Toggle Confidential Mode by default</value>
+  </data>
+  <data name="GenerateMultiplePasswords" xml:space="preserve">
+    <value>Generate multiple passwords</value>
+  </data>
+  <data name="NumberOfPasswords" xml:space="preserve">
+    <value>Number of passwords</value>
+  </data>
+  <data name="ProvideNumPasswordsMsg" xml:space="preserve">
+    <value>Please provide a number of passwords to generate.</value>
+  </data>
+  <data name="CreateEditPwrConfig" xml:space="preserve">
+    <value>Create or edit a Password Configuration</value>
+  </data>
 </root>

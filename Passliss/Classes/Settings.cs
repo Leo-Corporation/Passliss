@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using LeoCorpLibrary;
-using LeoCorpLibrary.Enums;
 using Passliss.Enums;
+using PeyrSharp.Enums;
+using PeyrSharp.Env;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -88,16 +88,6 @@ public class Settings
 	public DefaultPage? StartupPage { get; set; }
 
 	/// <summary>
-	/// True if the password in <see cref="Pages.StrenghtPage"/> should be hidden by default.
-	/// </summary>
-	public bool? HidePasswordInStrengthPage { get; set; }
-
-	/// <summary>
-	/// True if Passliss should always hide generated passwords in history.
-	/// </summary>
-	public bool? AlwaysHidePasswordInHistory { get; set; }
-
-	/// <summary>
 	/// True if the history should be disabled.
 	/// </summary>
 	public bool? DisableHistory { get; set; }
@@ -136,6 +126,11 @@ public class Settings
 	/// True if Passliss should use user defined chars instead of the default ones.
 	/// </summary>
 	public bool? UseUserDefinedCharacters { get; set; }
+
+	/// <summary>
+	/// True if Passliss should toggle the confidential mode on by default.
+	/// </summary>
+	public bool? UseConfidentialMode { get; set; }
 }
 
 /// <summary>
@@ -148,7 +143,7 @@ public static class SettingsManager
 	/// </summary>
 	public static void Load()
 	{
-		string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+		string path = FileSys.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
 		if (File.Exists(path)) // If the file exist
 		{
@@ -173,8 +168,6 @@ public static class SettingsManager
 				UseRandomPasswordLengthOnStart = true,
 				IsThemeSystem = true,
 				StartupPage = DefaultPage.Generate,
-				HidePasswordInStrengthPage = false,
-				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = true,
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
@@ -183,6 +176,7 @@ public static class SettingsManager
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
 				UseUserDefinedCharacters = false,
+				UseConfidentialMode = false
 			}; // Create a new settings file
 
 			Save(); // Save the changes
@@ -194,13 +188,13 @@ public static class SettingsManager
 	/// </summary>
 	public static void Save()
 	{
-		string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+		string path = FileSys.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
 		XmlSerializer xmlSerializer = new(typeof(Settings)); // Create XML Serializer
 
-		if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+		if (!Directory.Exists(FileSys.AppDataPath + @"\Passliss")) // If the directory doesn't exist
 		{
-			Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+			Directory.CreateDirectory(FileSys.AppDataPath + @"\Passliss"); // Create the directory
 		}
 
 		StreamWriter streamWriter = new(path); // The place where the file is going to be written

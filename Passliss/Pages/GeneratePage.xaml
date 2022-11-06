@@ -35,11 +35,6 @@
 						<ToolTip Content="{x:Static lang:Resources.ShowFullPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
 					</Button.ToolTip>
 				</Button>
-				<Button Content="&#xF3F8;" Padding="5" x:Name="HidePasswordBtn" Click="HidePasswordBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="5" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14" Margin="0,0,5,0" Visibility="Collapsed">
-					<Button.ToolTip>
-						<ToolTip Content="{x:Static lang:Resources.HideShowPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
-					</Button.ToolTip>
-				</Button>
 				<Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="6" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14">
 					<Button.ToolTip>
 						<ToolTip Content="{x:Static lang:Resources.History}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
@@ -68,18 +63,109 @@
 				<CheckBox Margin="0 2 0 2" x:Name="NumbersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.Numbers}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="ExtraBold" FontSize="14" VerticalContentAlignment="Center" />
 
 				<StackPanel x:Name="ExportBar" Orientation="Horizontal" Grid.Row="2" Margin="0,5,0,0" VerticalAlignment="Bottom">
-					<Button x:Name="LoadPwrConfig" Padding="10" Click="LoadPwrConfig_Click" Content="&#xEA0E;" FontSize="10" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" Width="34" Cursor="Hand">
+					<Button x:Name="LoadPwrConfig" Padding="5" Click="LoadPwrConfig_Click" Content="&#xF2F2;" FontSize="16" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" Cursor="Hand">
 						<Button.ToolTip>
-							<ToolTip Content="{x:Static lang:Resources.LoadPasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}" />
+							<ToolTip Content="{x:Static lang:Resources.CreateEditPwrConfig}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}" />
 						</Button.ToolTip>
 					</Button>
-					<Button x:Name="NewPwrConfig" Padding="10" Click="NewPwrConfig_Click" Content="&#xEAD5;" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0">
+					<Button x:Name="GeneratePwrsBtn" Padding="5" Click="GeneratePwrsBtn_Click" Content="&#xF59E;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="0,0,5,0" FontSize="16">
 						<Button.ToolTip>
-							<ToolTip Content="{x:Static lang:Resources.CreatePasswordConfigurations}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}" />
+							<ToolTip Content="{x:Static lang:Resources.GenerateMultiplePasswords}" Background="{Binding Source={StaticResource Background1}}" Foreground="{Binding Source={StaticResource Foreground1}}" />
 						</Button.ToolTip>
 					</Button>
 				</StackPanel>
 			</StackPanel>
+
+			<Popup x:Name="MultiplePasswordsPopup" AllowsTransparency="True" Placement="Top" StaysOpen="False" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=GeneratePwrsBtn}">
+				<Border Background="{Binding Source={StaticResource Background3}}" Padding="10" CornerRadius="5" Margin="8">
+					<StackPanel>
+						<StackPanel	Orientation="Horizontal">
+							<TextBlock Foreground="{Binding Source={StaticResource Foreground1}}" Text="{x:Static lang:Resources.NumberOfPasswords}" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Bold"/>
+							<TextBox x:Name="PasswordAmountTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" VerticalAlignment="Center" />
+						</StackPanel>
+						<Button x:Name="GeneratePasswordsBtn" Click="GeneratePasswordsBtn_Click" Content="{x:Static lang:Resources.Generate}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" Margin="0,10,10,0" />
+
+					</StackPanel>
+
+					<Border.Effect>
+						<DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10" Opacity="0.4" RenderingBias="Quality" />
+					</Border.Effect>
+				</Border>
+			</Popup>
+
+			<Popup x:Name="PasswordConfigPopup"  AllowsTransparency="True" Placement="Top" StaysOpen="False" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=LoadPwrConfig}">
+				<Border  Background="{Binding Source={StaticResource Background3}}" Padding="10" CornerRadius="5" Margin="8">
+					<Grid>
+						<Grid x:Name="LoadGrid">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<TextBlock Text="{x:Static lang:Resources.OpenD}" FontSize="14" FontWeight="ExtraBold" Foreground="{Binding Source={StaticResource Foreground1}}" />
+
+							<ScrollViewer Grid.Row="1" Margin="0,10,0,0" Height="95">
+								<WrapPanel x:Name="ItemDisplayer" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" FlowDirection="LeftToRight" Orientation="Horizontal" Grid.Row="1" Width="280" />
+							</ScrollViewer>
+							<Button Grid.Row="2" x:Name="NewBtn" Click="NewBtn_Click" Content="{x:Static lang:Resources.CreatePasswordConfigurations}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,0,0" Cursor="Hand" />
+
+						</Grid>
+						<Grid x:Name="NewGrid" Visibility="Collapsed">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+								<TextBlock Text="{x:Static lang:Resources.Name}" FontSize="14" FontWeight="ExtraBold" Foreground="{Binding Source={StaticResource Foreground1}}" Margin="0,0,10,0" VerticalAlignment="Center" />
+								<TextBox x:Name="NameTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Width="200" VerticalAlignment="Center" />
+							</StackPanel>
+
+							<Grid Grid.Row="1" Margin="0,10,0,0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+
+								<StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">
+									<CheckBox Margin="0 2 0 2" x:Name="PUpperCaseChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.UpperCase}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="ExtraBold" FontSize="14" VerticalContentAlignment="Center" />
+									<CheckBox Margin="0 2 0 2" x:Name="PLowerCaseChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.LowerCase}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="ExtraBold" FontSize="14" VerticalContentAlignment="Center" />
+								</StackPanel>
+
+								<StackPanel Grid.Row="0" Grid.Column="1">
+									<CheckBox Margin="0 2 0 2" x:Name="PSpecialCaractersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.SpecialCaracters}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="ExtraBold" FontSize="14" VerticalContentAlignment="Center" />
+									<CheckBox Margin="0 2 0 2" x:Name="PNumbersChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.Numbers}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="ExtraBold" FontSize="14" VerticalContentAlignment="Center" />
+								</StackPanel>
+
+								<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,4,0,0">
+									<TextBlock Text="{x:Static lang:Resources.Lenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Margin="0,0,10,0" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" />
+									<TextBox x:Name="PLenghtTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" />
+									<Button x:Name="PRandomizeLength" Click="PRandomizeLength_Click" Content="&#xea4b;" Cursor="Hand" Padding="7,5,7,5" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="5,0,0,0">
+										<Button.ToolTip>
+											<ToolTip Content="{x:Static lang:Resources.GenerateRandomLength}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
+										</Button.ToolTip>
+									</Button>
+								</StackPanel>
+							</Grid>
+
+							<StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,5,0,5" HorizontalAlignment="Center">
+								<Button x:Name="SaveBtn" Click="SaveBtn_Click" Content="{x:Static lang:Resources.Save}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" Margin="0,10,10,0" />
+								<Button x:Name="BackBtn" Click="BackBtn_Click" Content="{x:Static lang:Resources.Back}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,0,0" />
+							</StackPanel>
+						</Grid>
+					</Grid>
+					<Border.Effect>
+						<DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10" Opacity="0.4" RenderingBias="Quality" />
+					</Border.Effect>
+				</Border>
+			</Popup>
 
 			<StackPanel Grid.Column="1">
 				<StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">

@@ -268,6 +268,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create or edit a Password Configuration.
+        /// </summary>
+        public static string CreateEditPwrConfig {
+            get {
+                return ResourceManager.GetString("CreateEditPwrConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a Password Configuration.
         /// </summary>
         public static string CreatePasswordConfigurations {
@@ -462,6 +471,15 @@ namespace Passliss.Properties {
         public static string GenerateKey {
             get {
                 return ResourceManager.GetString("GenerateKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate multiple passwords.
+        /// </summary>
+        public static string GenerateMultiplePasswords {
+            get {
+                return ResourceManager.GetString("GenerateMultiplePasswords", resourceCulture);
             }
         }
         
@@ -763,6 +781,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of passwords.
+        /// </summary>
+        public static string NumberOfPasswords {
+            get {
+                return ResourceManager.GetString("NumberOfPasswords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numbers.
         /// </summary>
         public static string Numbers {
@@ -867,6 +894,15 @@ namespace Passliss.Properties {
         public static string PleaseSpecifyLenghtMsg {
             get {
                 return ResourceManager.GetString("PleaseSpecifyLenghtMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a number of passwords to generate..
+        /// </summary>
+        public static string ProvideNumPasswordsMsg {
+            get {
+                return ResourceManager.GetString("ProvideNumPasswordsMsg", resourceCulture);
             }
         }
         
@@ -1155,6 +1191,15 @@ namespace Passliss.Properties {
         public static string Theme {
             get {
                 return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Confidential Mode by default.
+        /// </summary>
+        public static string ToggleConfidentialMode {
+            get {
+                return ResourceManager.GetString("ToggleConfidentialMode", resourceCulture);
             }
         }
         

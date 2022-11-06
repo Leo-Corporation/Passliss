@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Passliss.Windows;
@@ -35,6 +36,14 @@ public partial class SeeFullPassword : Window
 	{
 		InitializeComponent();
 		Password = password; // Set value to specified password
+
+		InitUI(); // Load the UI
+	}
+
+	public SeeFullPassword(List<string> password)
+	{
+		InitializeComponent();
+		for (int i = 0; i < password.Count; i++) Password += password[i] + "\n";
 
 		InitUI(); // Load the UI
 	}

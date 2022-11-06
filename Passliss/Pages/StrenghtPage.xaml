@@ -35,17 +35,11 @@
 			</Grid.RowDefinitions>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Grid HorizontalAlignment="Center" Width="496.8">
-					<TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0" Height="25" />
-					<PasswordBox Visibility="Hidden" Style="{DynamicResource PasswordBoxStyle1}" x:Name="PasswordPwrBox" Margin="10,15,10,0" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" BorderThickness="3" PasswordChanged="PasswordPwrBox_PasswordChanged" />
-				</Grid>
-
-				<Button x:Name="HideShowPassword" Click="HideShowPassword_Click" Content="&#xe9fa;" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="15" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,0,0" Padding="7,5,7,5" VerticalAlignment="Bottom" Height="25">
-					<Button.ToolTip>
-						<ToolTip Content="{x:Static lang:Resources.HideShowPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
-					</Button.ToolTip>
-				</Button>
-			</StackPanel>
+                <Grid HorizontalAlignment="Center" Width="496.8">
+                    <TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0" Height="25" />
+                    <PasswordBox Visibility="Hidden" Style="{DynamicResource PasswordBoxStyle1}" x:Name="PasswordPwrBox" Margin="10,15,10,0" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" BorderThickness="3" PasswordChanged="PasswordPwrBox_PasswordChanged" />
+                </Grid>
+            </StackPanel>
 
 			<StackPanel Grid.Row="1">
 				<TextBlock x:Name="IconTxt" Margin="10" Text="&#xF4AB;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="72" HorizontalAlignment="Center" />

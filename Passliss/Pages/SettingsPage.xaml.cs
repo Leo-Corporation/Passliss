@@ -21,11 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
-using LeoCorpLibrary.Enums;
 using Microsoft.Win32;
 using Passliss.Classes;
 using Passliss.Enums;
+using PeyrSharp.Core;
+using PeyrSharp.Enums;
+using PeyrSharp.Env;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -52,7 +53,7 @@ public partial class SettingsPage : Page
 			string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
 			if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 			{
-				Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+				Sys.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
 				Environment.Exit(0); // Close
 			}
 		};
@@ -70,16 +71,6 @@ public partial class SettingsPage : Page
 		if (Global.Settings.StartupPage is null) // If the value is null
 		{
 			Global.Settings.StartupPage = DefaultPage.Generate; // Set default value
-		}
-
-		if (!Global.Settings.HidePasswordInStrengthPage.HasValue)
-		{
-			Global.Settings.HidePasswordInStrengthPage = false; // Set to default value
-		}
-
-		if (!Global.Settings.AlwaysHidePasswordInHistory.HasValue)
-		{
-			Global.Settings.AlwaysHidePasswordInHistory = false; // Set to default value
 		}
 
 		if (!Global.Settings.DisableHistory.HasValue)
@@ -117,6 +108,11 @@ public partial class SettingsPage : Page
 			Global.Settings.UseUserDefinedCharacters = false; // Set
 		}
 
+		if (!Global.Settings.UseConfidentialMode.HasValue)
+		{
+			Global.Settings.UseConfidentialMode = false; // Set
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -134,9 +130,6 @@ public partial class SettingsPage : Page
 				EncryptionPageRadioBtn.IsChecked = true;
 				break;
 		}
-
-		HidePasswordInStrengthChk.IsChecked = Global.Settings.HidePasswordInStrengthPage; // Set
-		HidePasswordInHistoryChk.IsChecked = Global.Settings.AlwaysHidePasswordInHistory; // Set
 
 		// Borders
 		if (DarkRadioBtn.IsChecked.Value)
@@ -174,6 +167,7 @@ public partial class SettingsPage : Page
 		DisableHistoryChk.IsChecked = Global.Settings.DisableHistory ?? false; // Set
 		UseSimplerCharsChk.IsChecked = Global.Settings.UseSimpleSpecialChars ?? false; // Set
 		SaveCustomCharsChk.IsChecked = Global.Settings.SaveCustomChars ?? true; // Set
+		ToggleConfidentialChk.IsChecked = Global.Settings.UseConfidentialMode ?? false; // Set
 
 		// Load LangComboBox
 		LangComboBox.Items.Clear(); // Clear
@@ -221,7 +215,7 @@ public partial class SettingsPage : Page
 		{
 			try
 			{
-				if (await NetworkConnection.IsAvailableAsync())
+				if (await Internet.IsAvailableAsync())
 				{
 					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
@@ -315,13 +309,13 @@ public partial class SettingsPage : Page
 				string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
 				if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 				{
-					Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+					Sys.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
 					Environment.Exit(0); // Close
 				}
 			}
 			else
 			{
-				if (await NetworkConnection.IsAvailableAsync())
+				if (await Internet.IsAvailableAsync())
 				{
 					// Update the UpdateStatusTxt
 					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
@@ -576,18 +570,6 @@ public partial class SettingsPage : Page
 		SettingsManager.Save(); // Save changes
 	}
 
-	private void HidePasswordInStrengthChk_Checked(object sender, RoutedEventArgs e)
-	{
-		Global.Settings.HidePasswordInStrengthPage = HidePasswordInStrengthChk.IsChecked; // Set
-		SettingsManager.Save(); // Save changes
-	}
-
-	private void HidePasswordInHistoryChk_Checked(object sender, RoutedEventArgs e)
-	{
-		Global.Settings.AlwaysHidePasswordInHistory = HidePasswordInHistoryChk.IsChecked; // Set
-		SettingsManager.Save(); // Save changes
-	}
-
 	private void ResetPwrConfigBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (MessageBox.Show(Properties.Resources.UnsetPwrConfigMsg, Properties.Resources.Passliss, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
@@ -616,8 +598,6 @@ public partial class SettingsPage : Page
 				UseRandomPasswordLengthOnStart = true,
 				IsThemeSystem = true,
 				StartupPage = DefaultPage.Generate,
-				HidePasswordInStrengthPage = false,
-				AlwaysHidePasswordInHistory = false,
 				DisableHistory = false,
 				IsFirstRun = false,
 				DefaultEncryptionAlgorithm = EncryptionAlgorithm.AES,
@@ -626,6 +606,7 @@ public partial class SettingsPage : Page
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
 				UseUserDefinedCharacters = false,
+				UseConfidentialMode = false
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -751,6 +732,12 @@ public partial class SettingsPage : Page
 	private void SpecialCharsTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		Global.Settings.UserDefinedChars[3] = SpecialCharsTxt.Text; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void ToggleConfidentialChk_Unchecked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.UseConfidentialMode = ToggleConfidentialChk.IsChecked;
 		SettingsManager.Save(); // Save changes
 	}
 }
