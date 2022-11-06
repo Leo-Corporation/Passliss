@@ -304,8 +304,8 @@ public partial class GeneratePage : Page
 	public MainWindow MainWindow { get; set; }
 	private void TestStrengthBtn_Click(object sender, RoutedEventArgs e)
 	{
-		Global.StrenghtPage.PasswordTxt.Text = PasswordTxt.Text; // Set text
-		Global.StrenghtPage.PasswordPwrBox.Password = PasswordTxt.Text; // Set text
+		Global.StrenghtPage.PasswordTxt.Text = password; // Set text
+		Global.StrenghtPage.PasswordPwrBox.Password = password; // Set text
 		Global.StrenghtPage.InitSeeMoreUI(Global.IsConfidentialModeEnabled); // Init UI
 
 		MainWindow.StrenghtTabBtn_Click(this, null);
