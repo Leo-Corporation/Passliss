@@ -208,7 +208,6 @@ public partial class GeneratePage : Page
 		Clipboard.SetText(PasswordTxt.Text); // Copy the password
 	}
 
-	readonly LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow = new(); // Create a LoadPasswordConfigurationWindow
 	private void LoadPwrConfig_Click(object sender, RoutedEventArgs e)
 	{
 		InitPopupUI();
