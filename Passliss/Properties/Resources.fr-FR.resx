@@ -531,4 +531,13 @@
   <data name="ToggleConfidentialMode" xml:space="preserve">
     <value>Activer le mode Confidentiel par défaut</value>
   </data>
+  <data name="GenerateMultiplePasswords" xml:space="preserve">
+    <value>Générer plusieurs mots de passe</value>
+  </data>
+  <data name="NumberOfPasswords" xml:space="preserve">
+    <value>Nombre de mots de passe</value>
+  </data>
+  <data name="ProvideNumPasswordsMsg" xml:space="preserve">
+    <value>Veuillez fournir un certain nombre de mots de passe à générer.</value>
+  </data>
 </root>

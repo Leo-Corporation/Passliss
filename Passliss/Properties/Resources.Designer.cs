@@ -466,6 +466,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate multiple passwords.
+        /// </summary>
+        public static string GenerateMultiplePasswords {
+            get {
+                return ResourceManager.GetString("GenerateMultiplePasswords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate a password.
         /// </summary>
         public static string GeneratePassword {
@@ -763,6 +772,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of passwords.
+        /// </summary>
+        public static string NumberOfPasswords {
+            get {
+                return ResourceManager.GetString("NumberOfPasswords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numbers.
         /// </summary>
         public static string Numbers {
@@ -867,6 +885,15 @@ namespace Passliss.Properties {
         public static string PleaseSpecifyLenghtMsg {
             get {
                 return ResourceManager.GetString("PleaseSpecifyLenghtMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a number of passwords to generate..
+        /// </summary>
+        public static string ProvideNumPasswordsMsg {
+            get {
+                return ResourceManager.GetString("ProvideNumPasswordsMsg", resourceCulture);
             }
         }
         
