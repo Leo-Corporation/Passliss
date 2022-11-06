@@ -21,8 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
 using Passliss.Classes;
+using PeyrSharp.Core;
+using PeyrSharp.Enums;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -75,9 +76,9 @@ public partial class EncryptPage : Page
 			// Encrypt
 			EncryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
 			{
-				0 => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text), // AES
-				1 => Crypt.Encrypt(StringToEncryptTxt.Text, KeyTxt.Text), // 3DES
-				_ => Crypt.EncryptAES(StringToEncryptTxt.Text, KeyTxt.Text) // AES (by default)
+				0 => Crypt.EncryptAes(StringToEncryptTxt.Text, KeyTxt.Text), // AES
+				1 => Crypt.Encrypt3Des(StringToEncryptTxt.Text, KeyTxt.Text), // 3DES
+				_ => Crypt.EncryptAes(StringToEncryptTxt.Text, KeyTxt.Text) // AES (by default)
 			};
 		}
 		catch (Exception ex)
@@ -182,9 +183,9 @@ public partial class EncryptPage : Page
 			// Decrypt
 			DecryptedStringTxt.Text = AlgorithmComboBox.SelectedIndex switch
 			{
-				0 => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // AES
-				1 => Crypt.Decrypt(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // 3DES
-				_ => Crypt.DecryptAES(StringToDecryptTxt.Text, DecryptKeyTxt.Text) // AES (by default)
+				0 => Crypt.DecryptAes(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // AES
+				1 => Crypt.Decrypt3Des(StringToDecryptTxt.Text, DecryptKeyTxt.Text), // 3DES
+				_ => Crypt.DecryptAes(StringToDecryptTxt.Text, DecryptKeyTxt.Text) // AES (by default)
 			};
 		}
 		catch (Exception ex)
@@ -220,6 +221,6 @@ public partial class EncryptPage : Page
 
 	private async void GenerateKeyBtn_Click(object sender, RoutedEventArgs e)
 	{
-		KeyTxt.Text = await Password.GenerateAsync(24, LeoCorpLibrary.Enums.PasswordPresets.Simple);
+		KeyTxt.Text = await Password.GenerateAsync(24, PasswordPresets.Simple);
 	}
 }

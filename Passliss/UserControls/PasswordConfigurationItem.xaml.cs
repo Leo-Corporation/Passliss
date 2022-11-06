@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Passliss.Classes;
-using Passliss.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

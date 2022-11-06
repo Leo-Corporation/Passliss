@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using LeoCorpLibrary;
-using LeoCorpLibrary.Enums;
 using Passliss.Enums;
+using PeyrSharp.Enums;
+using PeyrSharp.Env;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -143,7 +143,7 @@ public static class SettingsManager
 	/// </summary>
 	public static void Load()
 	{
-		string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+		string path = FileSys.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
 		if (File.Exists(path)) // If the file exist
 		{
@@ -188,13 +188,13 @@ public static class SettingsManager
 	/// </summary>
 	public static void Save()
 	{
-		string path = Env.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
+		string path = FileSys.AppDataPath + @"\Passliss\Settings.xml"; // The path of the settings file
 
 		XmlSerializer xmlSerializer = new(typeof(Settings)); // Create XML Serializer
 
-		if (!Directory.Exists(Env.AppDataPath + @"\Passliss")) // If the directory doesn't exist
+		if (!Directory.Exists(FileSys.AppDataPath + @"\Passliss")) // If the directory doesn't exist
 		{
-			Directory.CreateDirectory(Env.AppDataPath + @"\Passliss"); // Create the directory
+			Directory.CreateDirectory(FileSys.AppDataPath + @"\Passliss"); // Create the directory
 		}
 
 		StreamWriter streamWriter = new(path); // The place where the file is going to be written

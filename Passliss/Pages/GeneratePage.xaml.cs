@@ -21,13 +21,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
+
 using Passliss.Classes;
 using Passliss.Enums;
 using Passliss.UserControls;
 using Passliss.Windows;
+using PeyrSharp.Core;
 using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,7 +46,7 @@ public partial class GeneratePage : Page
 		InitializeComponent();
 		InitUI();
 	}
-	private void InitUI()
+	private async void InitUI()
 	{
 		// Set special characters in Global
 		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars ?? false ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : Global.SpecialCaracters;
@@ -87,7 +87,7 @@ public partial class GeneratePage : Page
 			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 
-		PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate
+		PasswordTxt.Text = await Password.GenerateAsync(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate
 		password = PasswordTxt.Text;
 		if (!Global.Settings.DisableHistory.Value)
 		{
@@ -99,7 +99,7 @@ public partial class GeneratePage : Page
 		}
 		UpdateStrengthIcon(); // Update the icon
 
-		
+
 	}
 
 	internal void InitPopupUI()
@@ -132,7 +132,7 @@ public partial class GeneratePage : Page
 		}
 	}
 
-	private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+	private async void GenerateBtn_Click(object sender, RoutedEventArgs e)
 	{
 		LenghtTxt.Text = LenghtTxt.Text.Replace(" ", ""); // Remove whitespaces
 		if (!Global.Settings.DisableHistory.Value)
@@ -152,9 +152,9 @@ public partial class GeneratePage : Page
 
 		if (!IsNoCheckboxesChecked())
 		{
-			PasswordTxt.Text = Password.Generate(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
+			PasswordTxt.Text = await Password.GenerateAsync(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
 			password = PasswordTxt.Text;
-			
+
 			if (!Global.Settings.DisableHistory.Value)
 			{
 				PasswordHistory.Children.Add(new PasswordHistoryItem(PasswordTxt.Text, PasswordHistory)); // Add to history 
@@ -328,7 +328,7 @@ public partial class GeneratePage : Page
 			return;
 		}
 
-		var passwords = await Password.GenerateAmountAsync(int.Parse(PasswordAmountTxt.Text), int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",");
+		var passwords = await Password.GenerateAsync(int.Parse(PasswordAmountTxt.Text), int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",");
 		new SeeFullPassword(passwords).Show();
 		MultiplePasswordsPopup.IsOpen = false;
 	}

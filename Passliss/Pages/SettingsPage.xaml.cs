@@ -21,11 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using LeoCorpLibrary;
-using LeoCorpLibrary.Enums;
 using Microsoft.Win32;
 using Passliss.Classes;
 using Passliss.Enums;
+using PeyrSharp.Core;
+using PeyrSharp.Enums;
+using PeyrSharp.Env;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -52,7 +53,7 @@ public partial class SettingsPage : Page
 			string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
 			if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 			{
-				Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+				Sys.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
 				Environment.Exit(0); // Close
 			}
 		};
@@ -106,7 +107,7 @@ public partial class SettingsPage : Page
 		{
 			Global.Settings.UseUserDefinedCharacters = false; // Set
 		}
-		
+
 		if (!Global.Settings.UseConfidentialMode.HasValue)
 		{
 			Global.Settings.UseConfidentialMode = false; // Set
@@ -214,7 +215,7 @@ public partial class SettingsPage : Page
 		{
 			try
 			{
-				if (await NetworkConnection.IsAvailableAsync())
+				if (await Internet.IsAvailableAsync())
 				{
 					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
@@ -308,13 +309,13 @@ public partial class SettingsPage : Page
 				string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
 				if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
 				{
-					Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+					Sys.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
 					Environment.Exit(0); // Close
 				}
 			}
 			else
 			{
-				if (await NetworkConnection.IsAvailableAsync())
+				if (await Internet.IsAvailableAsync())
 				{
 					// Update the UpdateStatusTxt
 					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
