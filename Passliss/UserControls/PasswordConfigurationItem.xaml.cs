@@ -82,7 +82,7 @@ public partial class PasswordConfigurationItem : UserControl
 	private void DeleteBtn_Click(object sender, RoutedEventArgs e)
 	{
 		Global.PasswordConfigurations.Remove(PasswordConfiguration); // Remove the item
-		Global.LoadPasswordConfigurationWindow.InitUI(); // Refresh the list
+		Global.GeneratePage.InitPopupUI(); // Refresh the list
 		PasswordConfigurationManager.Save(); // Save the changes
 		return;
 	}
@@ -104,6 +104,7 @@ public partial class PasswordConfigurationItem : UserControl
 		Global.GeneratePage.UpperCaseChk.IsChecked = PasswordConfiguration.UseUpperCase; // Check
 		Global.GeneratePage.NumbersChk.IsChecked = PasswordConfiguration.UseNumbers; // Check
 		Global.GeneratePage.SpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Check
+		Global.GeneratePage.PasswordConfigPopup.IsOpen = false; // Close the popup
 	}
 
 	private void NameTxt_MouseDown(object sender, MouseButtonEventArgs e)
@@ -115,7 +116,6 @@ public partial class PasswordConfigurationItem : UserControl
 			Global.GeneratePage.UpperCaseChk.IsChecked = PasswordConfiguration.UseUpperCase; // Check
 			Global.GeneratePage.NumbersChk.IsChecked = PasswordConfiguration.UseNumbers; // Check
 			Global.GeneratePage.SpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Check
-			Global.LoadPasswordConfigurationWindow.Hide(); // Hide the parent window
 		}
 	}
 
@@ -152,16 +152,12 @@ public partial class PasswordConfigurationItem : UserControl
 		PasswordConfigurationManager.Save(); // Save changes
 	}
 
-	NewPasswordConfigurationWindow NewPasswordConfigurationWindow;
 	private void EditBtn_Click(object sender, RoutedEventArgs e)
 	{
-		NewPasswordConfigurationWindow = new(PasswordConfiguration); // Create
-		double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
-
-		NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
-		NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
-		NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
-		NewPasswordConfigurationWindow.Show(); // Show
-		NewPasswordConfigurationWindow.Focus();
+		Global.GeneratePage.IsEditMode = true;
+		Global.GeneratePage.PasswordConfiguration = PasswordConfiguration;
+		Global.GeneratePage.InitPopupUI();
+		Global.GeneratePage.LoadGrid.Visibility = Visibility.Collapsed;
+		Global.GeneratePage.NewGrid.Visibility = Visibility.Visible;
 	}
 }

@@ -37,7 +37,6 @@ public partial class LoadPasswordConfigurationWindow : Window
 	{
 		InitializeComponent();
 		InitUI(); // Load UI
-		Global.LoadPasswordConfigurationWindow = this; // Define
 	}
 
 	/// <summary>

@@ -540,4 +540,7 @@
   <data name="ProvideNumPasswordsMsg" xml:space="preserve">
     <value>Veuillez fournir un certain nombre de mots de passe à générer.</value>
   </data>
+  <data name="CreateEditPwrConfig" xml:space="preserve">
+    <value>Créer ou modifier une configuration de Mot de passe</value>
+  </data>
 </root>

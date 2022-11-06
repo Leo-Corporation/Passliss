@@ -96,11 +96,6 @@ public static class Global
 	public static Settings Settings { get; set; }
 
 	/// <summary>
-	/// <see cref="LoadPasswordConfigurationWindow"/>.
-	/// </summary>
-	public static LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow { get; set; }
-
-	/// <summary>
 	/// List of the available languages.
 	/// </summary>
 	public static List<string> LanguageList => new() { "English (United States)", "Français (France)", "中文（简体）" };

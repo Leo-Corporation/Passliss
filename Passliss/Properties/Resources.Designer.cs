@@ -268,6 +268,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create or edit a Password Configuration.
+        /// </summary>
+        public static string CreateEditPwrConfig {
+            get {
+                return ResourceManager.GetString("CreateEditPwrConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a Password Configuration.
         /// </summary>
         public static string CreatePasswordConfigurations {

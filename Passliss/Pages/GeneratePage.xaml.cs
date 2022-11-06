@@ -44,7 +44,10 @@ public partial class GeneratePage : Page
 	public GeneratePage()
 	{
 		InitializeComponent();
-
+		InitUI();
+	}
+	private void InitUI()
+	{
 		// Set special characters in Global
 		Global.SpecialCaracters = Global.Settings.UseSimpleSpecialChars ?? false ? ";,:,!,/,*,$,%,),=,+,-,',(,_,<,>,?" : Global.SpecialCaracters;
 		OtherCharactersTxt.Text = Global.Settings.SaveCustomChars ?? true ? Global.Settings.CustomUserChars : "";
@@ -96,6 +99,37 @@ public partial class GeneratePage : Page
 		}
 		UpdateStrengthIcon(); // Update the icon
 
+		
+	}
+
+	internal void InitPopupUI()
+	{
+		ItemDisplayer.Children.Clear(); // Clear items
+
+		for (int i = 0; i < Global.PasswordConfigurations.Count; i++)
+		{
+			ItemDisplayer.Children.Add(new PasswordConfigurationItem(Global.PasswordConfigurations[i])); // Add item
+		}
+
+		if (!IsEditMode)
+		{
+			NameTxt.Text = Properties.Resources.PasswordConfigurations + $"{Global.PasswordConfigurations.Count + 1}"; // Set the name
+			PLowerCaseChk.IsChecked = true; // Check the checkbox
+			PUpperCaseChk.IsChecked = true; // Check the checkbox
+			PNumbersChk.IsChecked = true; // Check the checkbox
+
+			PLenghtTxt.Text = "20";
+		}
+		else
+		{
+			NameTxt.Text = PasswordConfiguration.Name; // Set text
+			PLowerCaseChk.IsChecked = PasswordConfiguration.UseLowerCase; // Set
+			PUpperCaseChk.IsChecked = PasswordConfiguration.UseUpperCase; // Set
+			PNumbersChk.IsChecked = PasswordConfiguration.UseNumbers; // Set
+			PSpecialCaractersChk.IsChecked = PasswordConfiguration.UseSpecialCaracters; // Set
+
+			PLenghtTxt.Text = PasswordConfiguration.Length; // Set
+		}
 	}
 
 	private void GenerateBtn_Click(object sender, RoutedEventArgs e)
@@ -177,37 +211,8 @@ public partial class GeneratePage : Page
 	readonly LoadPasswordConfigurationWindow LoadPasswordConfigurationWindow = new(); // Create a LoadPasswordConfigurationWindow
 	private void LoadPwrConfig_Click(object sender, RoutedEventArgs e)
 	{
-		double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
-
-		if (Global.PasswordConfigurations.Count > 0) // If there is Password Configurations (at least one)
-		{
-			NewPasswordConfigurationWindow.Hide(); // Hide the NewPasswordConfigurationWindow
-
-			LoadPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
-			LoadPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - LoadPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
-			LoadPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + LoadPasswordConfigurationWindow.Height); // Calculate the Y position
-			LoadPasswordConfigurationWindow.InitUI(); // Refresh
-			LoadPasswordConfigurationWindow.Show(); // Show
-			LoadPasswordConfigurationWindow.Focus();
-		}
-		else
-		{
-			MessageBox.Show(Properties.Resources.NoPasswordConfigurations, Properties.Resources.PasswordConfigurations, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-		}
-	}
-
-	readonly NewPasswordConfigurationWindow NewPasswordConfigurationWindow = new(); // Create a NewPasswordConfigurationWindow
-	private void NewPwrConfig_Click(object sender, RoutedEventArgs e)
-	{
-		double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11; // Get factor for DPI
-
-		LoadPasswordConfigurationWindow.Hide(); // Hide the LoadPasswordConfigurationWindow
-
-		NewPasswordConfigurationWindow.WindowStartupLocation = WindowStartupLocation.Manual; // Set the startup position to manual
-		NewPasswordConfigurationWindow.Left = (PointToScreen(Mouse.GetPosition(this)).X - NewPasswordConfigurationWindow.Width / 2) / factor; // Calculate the X position
-		NewPasswordConfigurationWindow.Top = PointToScreen(Mouse.GetPosition(this)).Y / factor - (10 + NewPasswordConfigurationWindow.Height); // Calculate the Y position
-		NewPasswordConfigurationWindow.Show(); // Show
-		NewPasswordConfigurationWindow.Focus();
+		InitPopupUI();
+		PasswordConfigPopup.IsOpen = true;
 	}
 
 	private void RandomizeLength_Click(object sender, RoutedEventArgs e)
@@ -327,5 +332,80 @@ public partial class GeneratePage : Page
 		var passwords = await Password.GenerateAmountAsync(int.Parse(PasswordAmountTxt.Text), int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",");
 		new SeeFullPassword(passwords).Show();
 		MultiplePasswordsPopup.IsOpen = false;
+	}
+
+	private void PRandomizeLength_Click(object sender, RoutedEventArgs e)
+	{
+		Random random = new();
+		PLenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
+	}
+
+	private void NewBtn_Click(object sender, RoutedEventArgs e)
+	{
+		LoadGrid.Visibility = Visibility.Collapsed;
+		NewGrid.Visibility = Visibility.Visible;
+		IsEditMode = false;
+	}
+	internal PasswordConfiguration PasswordConfiguration { get; set; }
+	internal bool IsEditMode { get; set; }
+
+	private bool PIsNoCheckboxesChecked()
+	{
+		return (!PLowerCaseChk.IsChecked.Value && !PUpperCaseChk.IsChecked.Value && !PNumbersChk.IsChecked.Value && !PSpecialCaractersChk.IsChecked.Value);
+	}
+	private void SaveBtn_Click(object sender, RoutedEventArgs e)
+	{
+		// Check if the provided length is correct
+		PLenghtTxt.Text = PLenghtTxt.Text.Replace(" ", ""); // Remove whitespaces to avoid errors
+		if (PLenghtTxt.Text.Length <= 0 || !(int.Parse(PLenghtTxt.Text) > 0))
+		{
+			MessageBox.Show(Properties.Resources.PleaseSpecifyLenghtMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
+			return;
+		}
+
+		if (!PIsNoCheckboxesChecked())
+		{
+			if (!IsEditMode)
+			{
+				Global.PasswordConfigurations.Add(new PasswordConfiguration
+				{
+					UseLowerCase = PLowerCaseChk.IsChecked.Value, // Set value
+					UseNumbers = PNumbersChk.IsChecked.Value, // Set value
+					UseSpecialCaracters = PSpecialCaractersChk.IsChecked.Value, // Set value
+					UseUpperCase = PUpperCaseChk.IsChecked.Value, // Set value
+					Length = PLenghtTxt.Text, // Set value
+					Name = NameTxt.Text // Set value
+				});
+			}
+			else
+			{
+				Global.PasswordConfigurations[Global.PasswordConfigurations.IndexOf(PasswordConfiguration)] = new()
+				{
+					UseLowerCase = PLowerCaseChk.IsChecked.Value, // Set value
+					UseNumbers = PNumbersChk.IsChecked.Value, // Set value
+					UseSpecialCaracters = PSpecialCaractersChk.IsChecked.Value, // Set value
+					UseUpperCase = PUpperCaseChk.IsChecked.Value, // Set value
+					Length = PLenghtTxt.Text, // Set value
+					Name = NameTxt.Text, // Set value
+					IsDefault = PasswordConfiguration.IsDefault
+				};
+			}
+
+			PasswordConfigurationManager.Save(); // Save the changes
+		}
+		else
+		{
+			MessageBox.Show(Properties.Resources.PleaseSelectChkMsg, Properties.Resources.Passliss, MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		LoadGrid.Visibility = Visibility.Visible;
+		NewGrid.Visibility = Visibility.Collapsed;
+		InitPopupUI();
+	}
+
+	private void BackBtn_Click(object sender, RoutedEventArgs e)
+	{
+		LoadGrid.Visibility = Visibility.Visible;
+		NewGrid.Visibility = Visibility.Collapsed;
 	}
 }

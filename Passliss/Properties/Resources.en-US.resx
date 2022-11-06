@@ -540,4 +540,7 @@
   <data name="ProvideNumPasswordsMsg" xml:space="preserve">
     <value>Please provide a number of passwords to generate.</value>
   </data>
+  <data name="CreateEditPwrConfig" xml:space="preserve">
+    <value>Create or edit a Password Configuration</value>
+  </data>
 </root>
