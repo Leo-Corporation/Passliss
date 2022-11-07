@@ -541,6 +541,6 @@
     <value>请提供要生成的密码的数量。</value>
   </data>
 	<data name="CreateEditPwrConfig" xml:space="preserve">
-    <value>Create or edit a Password Configuration</value>
+    <value>创建或编辑一个密码配置</value>
   </data>
 </root>
