@@ -35,11 +35,19 @@
 			</Grid.RowDefinitions>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Grid HorizontalAlignment="Center" Width="496.8">
-                    <TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Margin="10,15,10,0" Height="25" />
-                    <PasswordBox Visibility="Hidden" Style="{DynamicResource PasswordBoxStyle1}" x:Name="PasswordPwrBox" Margin="10,15,10,0" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" BorderThickness="3" PasswordChanged="PasswordPwrBox_PasswordChanged" />
-                </Grid>
-            </StackPanel>
+				<Grid HorizontalAlignment="Center" Width="496.8">
+					<TextBox TextChanged="PasswordTxt_TextChanged" x:Name="PasswordTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="ExtraBold" Background="{Binding Source={StaticResource Background4}}" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" Padding="3" SelectionBrush="#FF007AF5" Margin="10,15,10,0" Height="25" VerticalContentAlignment="Center" >
+						<TextBox.Effect>
+							<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+						</TextBox.Effect>
+					</TextBox>
+					<PasswordBox Visibility="Hidden" Style="{DynamicResource PasswordBoxStyle1}" x:Name="PasswordPwrBox" Margin="10,15,10,0" FontSize="15" FontWeight="ExtraBold" Background="{Binding Source={StaticResource Background4}}" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" Padding="3" SelectionBrush="#FF007AF5" PasswordChanged="PasswordPwrBox_PasswordChanged" VerticalContentAlignment="Center" >
+						<PasswordBox.Effect>
+							<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+						</PasswordBox.Effect>
+					</PasswordBox>
+				</Grid>
+			</StackPanel>
 
 			<StackPanel Grid.Row="1">
 				<TextBlock x:Name="IconTxt" Margin="10" Text="&#xF4AB;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="72" HorizontalAlignment="Center" />
