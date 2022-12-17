@@ -6,15 +6,13 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Passliss.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>2.7.1.2211</Version>
+    <Version>2.8.0.2212-pre1</Version>
     <Authors>Léo Corporation</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Leo-Corporation/Passliss</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Leo-Corporation/Passliss</RepositoryUrl>
     <Copyright>© 2022</Copyright>
-    <AssemblyVersion>2.7.1.2211</AssemblyVersion>
-    <FileVersion>2.7.1.2211</FileVersion>
     <Company>Léo Corporation</Company>
     <Product>Passliss</Product>
     <Description>A modern password generator for Windows.</Description>
