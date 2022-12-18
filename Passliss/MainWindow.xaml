@@ -88,15 +88,30 @@
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="1" FontSize="16" Name="ConfidentialBtn" Click="ConfidentialBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" >
-                        <Grid>
-                            <TextBlock x:Name="RegularLockTxt" Text="&#xFC25;" FontFamily="/Fonts/#FluentSystemIcons-Regular"/>
-                            <TextBlock x:Name="FilledLockTxt" Text="&#xFC2C;" FontFamily="/Fonts/#FluentSystemIcons-Filled" Visibility="Collapsed"/>
-                        </Grid>
-                    </Button>
-					<Button Grid.Column="2" FontSize="16" Content="&#xF602;" FontFamily="/Fonts/#FluentSystemIcons-Regular" Name="PinBtn" Click="PinBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
-					<Button Grid.Column="3" FontSize="1" Content="&#xEACA;" FontFamily="/Fonts/#FluentlyIcons" Name="MinimizeBtn" Click="MinimizeBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
-					<Button Grid.Column="4" FontSize="11" Content="&#xE9D8;" FontFamily="/Fonts/#FluentlyIcons" Name="CloseBtn" Click="CloseBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarCloseButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" />
+					<Button Grid.Column="1" FontSize="16" Name="ConfidentialBtn" Click="ConfidentialBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" >
+						<Grid>
+							<TextBlock x:Name="RegularLockTxt" Text="&#xFC25;" FontFamily="/Fonts/#FluentSystemIcons-Regular"/>
+							<TextBlock x:Name="FilledLockTxt" Text="&#xFC2C;" FontFamily="/Fonts/#FluentSystemIcons-Filled" Visibility="Collapsed"/>
+						</Grid>
+						<Button.ToolTip>
+							<ToolTip x:Name="CMToolTip" Content="{x:Static lang:Resources.EnableConfidentialMode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
+						</Button.ToolTip>
+					</Button>
+					<Button Grid.Column="2" FontSize="16" Content="&#xF602;" FontFamily="/Fonts/#FluentSystemIcons-Regular" Name="PinBtn" Click="PinBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" >
+						<Button.ToolTip>
+							<ToolTip x:Name="PinToolTip" Content="{x:Static lang:Resources.Pin}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
+						</Button.ToolTip>
+					</Button>
+					<Button Grid.Column="3" FontSize="1" Content="&#xEACA;" FontFamily="/Fonts/#FluentlyIcons" Name="MinimizeBtn" Click="MinimizeBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" >
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.Minimize}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
+						</Button.ToolTip>
+					</Button>
+					<Button Grid.Column="4" FontSize="11" Content="&#xE9D8;" FontFamily="/Fonts/#FluentlyIcons" Name="CloseBtn" Click="CloseBtn_Click" RenderOptions.EdgeMode="Aliased" Style="{StaticResource TitleBarCloseButtonStyle}" Background="Transparent" Width="46" Height="32" Foreground="{Binding Source={StaticResource Foreground1}}" >
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.Close}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
+						</Button.ToolTip>
+					</Button>
 				</Grid>
 			</Border>
 
