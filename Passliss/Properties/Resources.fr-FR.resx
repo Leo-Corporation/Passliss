@@ -543,4 +543,19 @@
   <data name="CreateEditPwrConfig" xml:space="preserve">
     <value>Créer ou modifier une configuration de Mot de passe</value>
   </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimiser</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>Epingler</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Désépingler</value>
+  </data>
+  <data name="DisableConfidentialMode" xml:space="preserve">
+    <value>Désactiver le mode Confidentiel</value>
+  </data>
+  <data name="EnableConfidentialMode" xml:space="preserve">
+    <value>Activer le mode Confidentiel</value>
+  </data>
 </root>
