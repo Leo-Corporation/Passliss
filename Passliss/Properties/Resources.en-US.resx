@@ -543,4 +543,19 @@
   <data name="CreateEditPwrConfig" xml:space="preserve">
     <value>Create or edit a Password Configuration</value>
   </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Unpin</value>
+  </data>
+  <data name="DisableConfidentialMode" xml:space="preserve">
+    <value>Disable Confidential mode</value>
+  </data>
+  <data name="EnableConfidentialMode" xml:space="preserve">
+    <value>Enable Confidential mode</value>
+  </data>
 </root>

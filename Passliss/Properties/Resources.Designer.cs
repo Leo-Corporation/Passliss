@@ -349,6 +349,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable Confidential mode.
+        /// </summary>
+        public static string DisableConfidentialMode {
+            get {
+                return ResourceManager.GetString("DisableConfidentialMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable history.
         /// </summary>
         public static string DisableHistory {
@@ -363,6 +372,15 @@ namespace Passliss.Properties {
         public static string EnableAutoUpdatesOnStartMsg {
             get {
                 return ResourceManager.GetString("EnableAutoUpdatesOnStartMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Confidential mode.
+        /// </summary>
+        public static string EnableConfidentialMode {
+            get {
+                return ResourceManager.GetString("EnableConfidentialMode", resourceCulture);
             }
         }
         
@@ -727,6 +745,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimize.
+        /// </summary>
+        public static string Minimize {
+            get {
+                return ResourceManager.GetString("Minimize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See more.
         /// </summary>
         public static string More {
@@ -849,6 +876,15 @@ namespace Passliss.Properties {
         public static string PasswordConfigurations {
             get {
                 return ResourceManager.GetString("PasswordConfigurations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin.
+        /// </summary>
+        public static string Pin {
+            get {
+                return ResourceManager.GetString("Pin", resourceCulture);
             }
         }
         
@@ -1209,6 +1245,15 @@ namespace Passliss.Properties {
         public static string UnableToCheckUpdates {
             get {
                 return ResourceManager.GetString("UnableToCheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unpin.
+        /// </summary>
+        public static string Unpin {
+            get {
+                return ResourceManager.GetString("Unpin", resourceCulture);
             }
         }
         

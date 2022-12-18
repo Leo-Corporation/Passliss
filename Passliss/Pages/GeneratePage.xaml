@@ -81,7 +81,11 @@
 					<StackPanel>
 						<StackPanel	Orientation="Horizontal">
 							<TextBlock Foreground="{Binding Source={StaticResource Foreground1}}" Text="{x:Static lang:Resources.NumberOfPasswords}" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Bold"/>
-							<TextBox x:Name="PasswordAmountTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" VerticalAlignment="Center" />
+							<TextBox Padding="2" x:Name="PasswordAmountTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{Binding Source={StaticResource Background4}}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" VerticalAlignment="Center" >
+								<TextBox.Effect>
+									<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+								</TextBox.Effect>
+							</TextBox>
 						</StackPanel>
 						<Button x:Name="GeneratePasswordsBtn" Click="GeneratePasswordsBtn_Click" Content="{x:Static lang:Resources.Generate}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" Margin="0,10,10,0" />
 
@@ -120,7 +124,11 @@
 
 							<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
 								<TextBlock Text="{x:Static lang:Resources.Name}" FontSize="14" FontWeight="ExtraBold" Foreground="{Binding Source={StaticResource Foreground1}}" Margin="0,0,10,0" VerticalAlignment="Center" />
-								<TextBox x:Name="NameTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Width="200" VerticalAlignment="Center" />
+								<TextBox Padding="2" x:Name="NameTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="14" FontWeight="ExtraBold" Background="{Binding Source={StaticResource Background4}}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" Width="200" VerticalAlignment="Center" >
+									<TextBox.Effect>
+										<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+									</TextBox.Effect>
+								</TextBox>
 							</StackPanel>
 
 							<Grid Grid.Row="1" Margin="0,10,0,0">
@@ -146,7 +154,11 @@
 
 								<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,4,0,0">
 									<TextBlock Text="{x:Static lang:Resources.Lenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Margin="0,0,10,0" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" />
-									<TextBox x:Name="PLenghtTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" />
+									<TextBox Padding="2" x:Name="PLenghtTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{Binding Source={StaticResource Background4}}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" VerticalContentAlignment="Center" >
+										<TextBox.Effect>
+											<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+										</TextBox.Effect>
+									</TextBox>
 									<Button x:Name="PRandomizeLength" Click="PRandomizeLength_Click" Content="&#xea4b;" Cursor="Hand" Padding="7,5,7,5" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="5,0,0,0">
 										<Button.ToolTip>
 											<ToolTip Content="{x:Static lang:Resources.GenerateRandomLength}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
@@ -170,7 +182,11 @@
 			<StackPanel Grid.Column="1">
 				<StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top">
 					<TextBlock Text="{x:Static lang:Resources.Lenght}" Foreground="{Binding Source={StaticResource Foreground1}}" Margin="0,0,10,0" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" />
-					<TextBox x:Name="LenghtTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#FF007FFF" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" />
+					<TextBox x:Name="LenghtTxt" PreviewTextInput="LenghtTxt_PreviewTextInput" Style="{DynamicResource TextBoxStyle1}" Width="50" FontSize="14" FontWeight="ExtraBold" Background="{Binding Source={StaticResource Background4}}" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#FF007AF5" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" >
+						<TextBox.Effect>
+							<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+						</TextBox.Effect>
+					</TextBox>
 					<Button x:Name="RandomizeLength" Click="RandomizeLength_Click" Content="&#xea4b;" Cursor="Hand" Padding="7,5,7,5" FontFamily="..\Fonts\#FluentlyIcons" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" Margin="5,0,0,0">
 						<Button.ToolTip>
 							<ToolTip Content="{x:Static lang:Resources.GenerateRandomLength}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" />
@@ -178,7 +194,11 @@
 					</Button>
 				</StackPanel>
 				<TextBlock Text="{x:Static lang:Resources.OtherCharacters}" Foreground="{Binding Source={StaticResource Foreground1}}" Margin="0,10,10,0" FontWeight="ExtraBold" FontSize="14" VerticalAlignment="Center" TextWrapping="Wrap" />
-				<TextBox d:Text="Hello" x:Name="OtherCharactersTxt" Padding="5" Style="{DynamicResource TextBoxStyle1}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{x:Null}" BorderBrush="#FF007FFF" Margin="0,5,5,5" Grid.Row="1" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionTextBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" Height="60" />
+				<TextBox d:Text="Hello" x:Name="OtherCharactersTxt" Padding="5" Style="{DynamicResource TextBoxStyle1}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background4}}" BorderBrush="#FF007FFF" Margin="0,5,5,5" Grid.Row="1" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionTextBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" Height="60" >
+					<TextBox.Effect>
+						<DropShadowEffect BlurRadius="15" Color="#000" Direction="135" Opacity="0.2" ShadowDepth="0" />
+					</TextBox.Effect>
+				</TextBox>
 			</StackPanel>
 		</Grid>
 

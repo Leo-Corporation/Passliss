@@ -214,6 +214,7 @@ public partial class MainWindow : Window
 	{
 		Topmost = !Topmost; // Toggle
 		PinBtn.Content = Topmost ? "\uF604" : "\uF602"; // Set text
+		PinToolTip.Content = Topmost ? Properties.Resources.Unpin : Properties.Resources.Pin; // Set text
 	}
 
 	private void ConfidentialBtn_Click(object sender, RoutedEventArgs e)
@@ -222,6 +223,8 @@ public partial class MainWindow : Window
 
 		RegularLockTxt.Visibility = Global.IsConfidentialModeEnabled ? Visibility.Collapsed : Visibility.Visible;
 		FilledLockTxt.Visibility = !Global.IsConfidentialModeEnabled ? Visibility.Collapsed : Visibility.Visible;
+
+		CMToolTip.Content = Global.IsConfidentialModeEnabled ? Properties.Resources.DisableConfidentialMode : Properties.Resources.EnableConfidentialMode;
 
 		Global.GeneratePage.ToggleConfidentialMode();
 		Global.StrenghtPage.ToggleConfidentialMode();
