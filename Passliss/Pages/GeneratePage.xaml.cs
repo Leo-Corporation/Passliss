@@ -439,8 +439,10 @@ public partial class GeneratePage : Page
 	{
 		// Clear the states
 		StrengthTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("AccentColor") };
+		AdvancedTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("AccentColor") };
 
 		StrengthTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("LightAccentColor") };
+		AdvancedTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("LightAccentColor") };
 
 		// Set the "checked" state on the specified button
 		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") };
@@ -451,6 +453,13 @@ public partial class GeneratePage : Page
 	{
 		CheckButton((Button)sender);
 		StrengthGrid.Visibility = Visibility.Visible;
+		Content.Visibility = Visibility.Collapsed;
 	}
 
+	private void AdvancedTabBtn_Click(object sender, RoutedEventArgs e)
+	{
+		CheckButton((Button)sender);
+		StrengthGrid.Visibility = Visibility.Collapsed;
+		Content.Visibility = Visibility.Visible;
+	}
 }
