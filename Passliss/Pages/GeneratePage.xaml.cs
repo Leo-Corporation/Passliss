@@ -33,6 +33,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Passliss.Pages;
 
@@ -102,7 +103,10 @@ public partial class GeneratePage : Page
 		}
 		UpdateStrengthIcon(); // Update the icon
 
-
+		// Update the selected "view" (by strength/advanced)
+		CheckButton(StrengthTabBtn);
+		StrengthGrid.Visibility = Visibility.Visible;
+		Content.Visibility = Visibility.Collapsed;
 	}
 
 	internal void InitPopupUI()
@@ -430,4 +434,23 @@ public partial class GeneratePage : Page
 		CommentTxt.Text = Global.GetStrenghtText(strenght); // Get text
 
 	}
+
+	private void CheckButton(Button button)
+	{
+		// Clear the states
+		StrengthTabBtn.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("AccentColor") };
+
+		StrengthTabBtn.Background = new SolidColorBrush { Color = Global.GetColorFromResource("LightAccentColor") };
+
+		// Set the "checked" state on the specified button
+		button.Foreground = new SolidColorBrush { Color = Global.GetColorFromResource("WindowButtonsHoverForeground1") };
+		button.Background = new SolidColorBrush { Color = Global.GetColorFromResource("AccentColor") };
+	}
+
+	private void StrengthTabBtn_Click(object sender, RoutedEventArgs e)
+	{
+		CheckButton((Button)sender);
+		StrengthGrid.Visibility = Visibility.Visible;
+	}
+
 }

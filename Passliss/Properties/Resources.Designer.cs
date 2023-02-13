@@ -79,6 +79,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string Advanced {
+            get {
+                return ResourceManager.GetString("Advanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AES.
         /// </summary>
         public static string AES {
@@ -156,6 +165,15 @@ namespace Passliss.Properties {
         public static string Between {
             get {
                 return ResourceManager.GetString("Between", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By strength.
+        /// </summary>
+        public static string ByStrength {
+            get {
+                return ResourceManager.GetString("ByStrength", resourceCulture);
             }
         }
         

@@ -558,4 +558,10 @@
   <data name="EnableConfidentialMode" xml:space="preserve">
     <value>Enable Confidential mode</value>
   </data>
+  <data name="ByStrength" xml:space="preserve">
+    <value>By strength</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
 </root>
