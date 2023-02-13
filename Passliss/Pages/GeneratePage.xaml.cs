@@ -27,6 +27,7 @@ using Passliss.Enums;
 using Passliss.UserControls;
 using Passliss.Windows;
 using PeyrSharp.Core;
+using PeyrSharp.Enums;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -87,7 +88,9 @@ public partial class GeneratePage : Page
 			LenghtTxt.Text = random.Next(Global.Settings.MinRandomLength.Value, Global.Settings.MaxRandomLength.Value).ToString();
 		}
 
-		PasswordTxt.Text = await Password.GenerateAsync(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate
+		PasswordTxt.Text = StrengthGrid.Visibility == Visibility.Collapsed
+			? await Password.GenerateAsync(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",")
+			: await Global.GeneratePasswordByStrength((PasswordStrength)(3 - StrengthSlider.Value)); // Generate 
 		password = PasswordTxt.Text;
 		if (!Global.Settings.DisableHistory.Value)
 		{
@@ -152,7 +155,9 @@ public partial class GeneratePage : Page
 
 		if (!IsNoCheckboxesChecked())
 		{
-			PasswordTxt.Text = await Password.GenerateAsync(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ","); // Generate 
+			PasswordTxt.Text = StrengthGrid.Visibility == Visibility.Collapsed 
+				? await Password.GenerateAsync(int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",")
+				: await Global.GeneratePasswordByStrength((PasswordStrength)(3 - StrengthSlider.Value)); // Generate 
 			password = PasswordTxt.Text;
 
 			if (!Global.Settings.DisableHistory.Value)
@@ -328,7 +333,8 @@ public partial class GeneratePage : Page
 			return;
 		}
 
-		var passwords = await Password.GenerateAsync(int.Parse(PasswordAmountTxt.Text), int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",");
+		var passwords = StrengthGrid.Visibility == Visibility.Collapsed ? await Password.GenerateAsync(int.Parse(PasswordAmountTxt.Text), int.Parse(LenghtTxt.Text) + 1, Global.GetFinalCaracters(LowerCaseChk.IsChecked.Value, UpperCaseChk.IsChecked.Value, NumbersChk.IsChecked.Value, SpecialCaractersChk.IsChecked.Value) + OtherCharactersTxt.Text, ",")
+			: await Global.GeneratePasswordByStrength(int.Parse(PasswordAmountTxt.Text), (PasswordStrength)(3 - StrengthSlider.Value));
 		new SeeFullPassword(passwords).Show();
 		MultiplePasswordsPopup.IsOpen = false;
 	}
@@ -406,5 +412,22 @@ public partial class GeneratePage : Page
 	{
 		LoadGrid.Visibility = Visibility.Visible;
 		NewGrid.Visibility = Visibility.Collapsed;
+	}
+
+	private void StrengthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+	{
+		PasswordStrenght strenght = StrengthSlider.Value switch
+		{
+			0 => PasswordStrenght.Low,
+			1 => PasswordStrenght.Medium,
+			2 => PasswordStrenght.Good,
+			3 => PasswordStrenght.VeryGood,
+			_ => PasswordStrenght.Unknown
+		};
+
+		IconTxt.Text = Global.GetStrenghtCaracter(strenght); // Get text
+		IconTxt.Foreground = Global.GetStrenghtColorBrush(strenght); // Get the color
+		CommentTxt.Text = Global.GetStrenghtText(strenght); // Get text
+
 	}
 }

@@ -50,7 +50,7 @@
 			</StackPanel>
 		</StackPanel>
 
-		<Grid x:Name="Content" Margin="10" Grid.Row="1">
+		<Grid Visibility="Collapsed" x:Name="Content" Margin="10" Grid.Row="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition />
@@ -202,6 +202,14 @@
 			</StackPanel>
 		</Grid>
 
+		<Grid x:Name="StrengthGrid" Margin="10" Grid.Row="1">
+			<StackPanel>
+				<TextBlock x:Name="IconTxt" Margin="5" Text="&#xF4AB;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="64" HorizontalAlignment="Center" />
+				<TextBlock x:Name="CommentTxt" Text="{x:Static lang:Resources.EnterPassword}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="0,0,0,5" />
+				<Slider x:Name="StrengthSlider" Value="2" Maximum="3" Minimum="0" SmallChange="1" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="StrengthSlider_ValueChanged" Style="{DynamicResource SliderStyle1}"/>
+			</StackPanel>
+		</Grid>
+		
 		<ScrollViewer x:Name="HistoryScroll" Visibility="Collapsed" Margin="10" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Template="{DynamicResource ScrollViewerControlTemplate}" Height="230">
 			<StackPanel x:Name="PasswordHistory"></StackPanel>
 		</ScrollViewer>
