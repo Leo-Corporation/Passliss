@@ -18,10 +18,10 @@
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-				<StackPanel Orientation="Horizontal">
+				<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 					<TextBlock Text="{x:Static lang:Resources.Password}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16" VerticalAlignment="Center" />
-					<Button FontWeight="Bold" Content="{x:Static lang:Resources.ByStrength}" Padding="5" x:Name="StrengthTabBtn" Click="StrengthTabBtn_Click" Grid.Column="3" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource LightAccentColor}}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" Margin="10,0,5,0"/>
-					<Button FontWeight="Bold" Content="{x:Static lang:Resources.Advanced}" Padding="5" x:Name="AdvancedTabBtn" Click="AdvancedTabBtn_Click" Grid.Column="3" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource LightAccentColor}}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" Margin="0,0,5,0"/>
+					<Button FontWeight="Bold" Content="{x:Static lang:Resources.ByStrength}" Padding="5 2" x:Name="StrengthTabBtn" Click="StrengthTabBtn_Click" Grid.Column="3" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource LightAccentColor}}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" Margin="10,0,5,0"/>
+					<Button FontWeight="Bold" Content="{x:Static lang:Resources.Advanced}" Padding="5 2" x:Name="AdvancedTabBtn" Click="AdvancedTabBtn_Click" Grid.Column="3" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource LightAccentColor}}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" Margin="0,0,5,0"/>
 				</StackPanel>
 				<Button Content="&#xF6C8;" Padding="2" x:Name="TestStrengthBtn" Click="TestStrengthBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Filled" Grid.Column="2" Style="{DynamicResource TabButtonStyle}" Background="Transparent" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="18" Margin="0,0,5,0">
 					<Button.ToolTip>
