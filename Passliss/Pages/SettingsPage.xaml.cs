@@ -113,6 +113,11 @@ public partial class SettingsPage : Page
 			Global.Settings.UseConfidentialMode = false; // Set
 		}
 
+		if (!Global.Settings.DefaultPasswordStrength.HasValue)
+		{
+			Global.Settings.DefaultPasswordStrength = PasswordStrength.Good;
+		}
+
 		// Load RadioButtons
 		DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 		LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -253,8 +258,18 @@ public partial class SettingsPage : Page
 		}
 
 		VersionTxt.Text = Global.Version; // Set text
-	}
 
+		StrengthSlider.Value = 3 - (int)Global.Settings.DefaultPasswordStrength;
+		PasswordStrenght strenght = (PasswordStrenght)(3 - StrengthSlider.Value);
+		SelectedStrengthTxt.Text = string.Format(Properties.Resources.DefaultStrength, strenght switch
+		{
+			PasswordStrenght.VeryGood => Properties.Resources.VeryGood,
+			PasswordStrenght.Good => Properties.Resources.Good,
+			PasswordStrenght.Medium => Properties.Resources.Medium,
+			_ => Properties.Resources.Low,
+		});
+		StrengthSlider.ValueChanged += StrengthSlider_ValueChanged;
+	}
 	private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
 	{
 		Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
@@ -606,7 +621,8 @@ public partial class SettingsPage : Page
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
 				UseUserDefinedCharacters = false,
-				UseConfidentialMode = false
+				UseConfidentialMode = false,
+				DefaultPasswordStrength = PasswordStrength.Good
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -738,6 +754,20 @@ public partial class SettingsPage : Page
 	private void ToggleConfidentialChk_Unchecked(object sender, RoutedEventArgs e)
 	{
 		Global.Settings.UseConfidentialMode = ToggleConfidentialChk.IsChecked;
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void StrengthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+	{
+		PasswordStrenght strenght = (PasswordStrenght)(3 - StrengthSlider.Value);
+		SelectedStrengthTxt.Text = string.Format(Properties.Resources.DefaultStrength, strenght switch
+		{
+			PasswordStrenght.VeryGood => Properties.Resources.VeryGood,
+			PasswordStrenght.Good => Properties.Resources.Good,
+			PasswordStrenght.Medium => Properties.Resources.Medium,
+			_ => Properties.Resources.Low,
+		});
+		Global.Settings.DefaultPasswordStrength = (PasswordStrength)(3 - StrengthSlider.Value);
 		SettingsManager.Save(); // Save changes
 	}
 }

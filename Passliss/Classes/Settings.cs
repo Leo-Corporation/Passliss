@@ -131,6 +131,11 @@ public class Settings
 	/// True if Passliss should toggle the confidential mode on by default.
 	/// </summary>
 	public bool? UseConfidentialMode { get; set; }
+
+	/// <summary>
+	/// The default strength to use when generating a password using the "By strength" section.
+	/// </summary>
+	public PasswordStrength? DefaultPasswordStrength { get; set; }
 }
 
 /// <summary>
@@ -176,7 +181,8 @@ public static class SettingsManager
 				SaveCustomChars = true,
 				UserDefinedChars = new string[4] { Global.LowerCaseLetters, Global.UpperCaseLetters, Global.Numbers, Global.SpecialCaracters },
 				UseUserDefinedCharacters = false,
-				UseConfidentialMode = false
+				UseConfidentialMode = false,
+				DefaultPasswordStrength = PasswordStrength.Good
 			}; // Create a new settings file
 
 			Save(); // Save the changes
