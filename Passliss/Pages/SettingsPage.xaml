@@ -177,6 +177,15 @@
 						</StackPanel>
 
 						<CheckBox Margin="0 2 0 2" x:Name="ToggleConfidentialChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.ToggleConfidentialMode}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="ToggleConfidentialChk_Unchecked" Checked="ToggleConfidentialChk_Unchecked" />
+
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock x:Name="SelectedStrengthTxt" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap"/>
+							<Slider x:Name="StrengthSlider" Value="2" Maximum="3" Minimum="0" SmallChange="1" IsSnapToTickEnabled="True" TickFrequency="1" Style="{DynamicResource SliderStyle1}" VerticalAlignment="Center" Grid.Column="1" Width="200"/>
+						</Grid>
 					</StackPanel>
 				</Expander>
 

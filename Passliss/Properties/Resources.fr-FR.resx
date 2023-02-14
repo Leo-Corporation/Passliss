@@ -558,4 +558,25 @@
   <data name="EnableConfidentialMode" xml:space="preserve">
     <value>Activer le mode Confidentiel</value>
   </data>
+  <data name="ByStrength" xml:space="preserve">
+    <value>Par force</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Avancé</value>
+  </data>
+  <data name="DefaultStrength" xml:space="preserve">
+    <value>Force par défaut : {0}</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>Excellent</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Bonne</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Faible</value>
+  </data>
 </root>

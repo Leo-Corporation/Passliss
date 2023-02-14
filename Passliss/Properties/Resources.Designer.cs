@@ -79,6 +79,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string Advanced {
+            get {
+                return ResourceManager.GetString("Advanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AES.
         /// </summary>
         public static string AES {
@@ -156,6 +165,15 @@ namespace Passliss.Properties {
         public static string Between {
             get {
                 return ResourceManager.GetString("Between", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By strength.
+        /// </summary>
+        public static string ByStrength {
+            get {
+                return ResourceManager.GetString("ByStrength", resourceCulture);
             }
         }
         
@@ -349,6 +367,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default strength: {0}.
+        /// </summary>
+        public static string DefaultStrength {
+            get {
+                return ResourceManager.GetString("DefaultStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable Confidential mode.
         /// </summary>
         public static string DisableConfidentialMode {
@@ -525,6 +552,15 @@ namespace Passliss.Properties {
         public static string GoBack {
             get {
                 return ResourceManager.GetString("GoBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good.
+        /// </summary>
+        public static string Good {
+            get {
+                return ResourceManager.GetString("Good", resourceCulture);
             }
         }
         
@@ -727,6 +763,15 @@ namespace Passliss.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Low.
+        /// </summary>
+        public static string Low {
+            get {
+                return ResourceManager.GetString("Low", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lowercases.
         /// </summary>
         public static string LowerCase {
@@ -741,6 +786,15 @@ namespace Passliss.Properties {
         public static string ManageData {
             get {
                 return ResourceManager.GetString("ManageData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        public static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
             }
         }
         
@@ -1326,6 +1380,15 @@ namespace Passliss.Properties {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excellent.
+        /// </summary>
+        public static string VeryGood {
+            get {
+                return ResourceManager.GetString("VeryGood", resourceCulture);
             }
         }
         

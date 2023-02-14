@@ -50,36 +50,14 @@ public partial class StrenghtPage : Page
 		SeeMoreBtn.MouseLeave += (o, e) => SeeMoreBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["Foreground1"].ToString()) };
 	}
 
-	private static string GetStrenghtCaracter(PasswordStrenght passwordStrenght)
-	{
-		return passwordStrenght switch
-		{
-			PasswordStrenght.VeryGood => "\uF6EA", // If the password strenght is very good
-			PasswordStrenght.Good => "\uF299", // If the password strenght is good
-			PasswordStrenght.Medium => "\uF882", // If the password strenght is medium
-			PasswordStrenght.Low => "\uF36E", // If the password strenght is low
-			_ => "\uF4AB" // If the password strenght is unknown
-		};
-	}
-
-	private static string GetStrenghtText(PasswordStrenght passwordStrenght)
-	{
-		return passwordStrenght switch
-		{
-			PasswordStrenght.VeryGood => Properties.Resources.StrenghtVeryGood, // If the password strenght is very good
-			PasswordStrenght.Good => Properties.Resources.StrenghtGood, // If the password strenght is good
-			PasswordStrenght.Medium => Properties.Resources.StrenghtMedium, // If the password strenght is medium
-			PasswordStrenght.Low => Properties.Resources.StrenghtLow, // If the password strenght is low
-			_ => Properties.Resources.EnterPassword // If the password strenght is unknown
-		};
-	}
+	
 
 	internal void PasswordTxt_TextChanged(object sender, TextChangedEventArgs e)
 	{
 		PasswordStrenght password = Global.GetPasswordStrenght(PasswordTxt.Text); // Get strenght
 
-		IconTxt.Text = GetStrenghtCaracter(password); // Get text
-		CommentTxt.Text = GetStrenghtText(password); // Get text
+		IconTxt.Text = Global.GetStrenghtCaracter(password); // Get text
+		CommentTxt.Text = Global.GetStrenghtText(password); // Get text
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
 
@@ -107,8 +85,8 @@ public partial class StrenghtPage : Page
 	{
 		PasswordStrenght password = Global.GetPasswordStrenght(PasswordPwrBox.Password); // Get strenght
 
-		IconTxt.Text = GetStrenghtCaracter(password); // Get text
-		CommentTxt.Text = GetStrenghtText(password); // Get text
+		IconTxt.Text = Global.GetStrenghtCaracter(password); // Get text
+		CommentTxt.Text = Global.GetStrenghtText(password); // Get text
 
 		IconTxt.Foreground = Global.GetStrenghtColorBrush(password); // Get the color
 

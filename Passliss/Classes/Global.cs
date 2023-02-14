@@ -25,12 +25,14 @@ using Microsoft.Win32;
 using Passliss.Enums;
 using Passliss.Extensions;
 using Passliss.Pages;
+using PeyrSharp.Core;
 using PeyrSharp.Enums;
 using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shell;
@@ -107,7 +109,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Passliss.
 	/// </summary>
-	public static string Version => "2.8.0.2212";
+	public static string Version => "2.9.0.2302";
 
 	/// <summary>
 	/// GitHub link for the last version (<see cref="string"/>).
@@ -134,7 +136,7 @@ public static class Global
 	/// </summary>
 	public static void ChangeTheme()
 	{
-		App.Current.Resources.MergedDictionaries.Clear(); // Clear all resources
+		Application.Current.Resources.MergedDictionaries.Clear(); // Clear all resources
 		ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
 
 		if (!Settings.IsThemeSystem.HasValue)
@@ -156,7 +158,7 @@ public static class Global
 			resourceDictionary.Source = new Uri("..\\Themes\\Light.xaml", UriKind.Relative); // Add source
 		}
 
-		App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
+		Application.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
 	}
 
 	public static bool IsSystemThemeDark()
@@ -295,7 +297,7 @@ public static class Global
 
 		if (password.ContainsLowerCases() && password.ContainsUpperCases()) // If there is upper and lower cases
 		{
-			pswrScore += 5; // Add 2
+			pswrScore += 2; // Add 2
 		}
 		else
 		{
@@ -307,7 +309,7 @@ public static class Global
 			pswrScore -= 5; // Sub 5
 		}
 
-		if (pswrScore < 2)
+		if (pswrScore < 3)
 		{
 			return PasswordStrenght.Low; // Return
 		}
@@ -342,13 +344,13 @@ public static class Global
 			PasswordStrenght.Good => new SolidColorBrush { Color = Color.FromRgb(104, 234, 0) }, // Return
 			PasswordStrenght.Medium => new SolidColorBrush { Color = Color.FromRgb(255, 123, 0) }, // Return
 			PasswordStrenght.Low => new SolidColorBrush { Color = Color.FromRgb(255, 0, 0) }, // Return
-			_ => new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Gray"].ToString()) }, // Return
+			_ => new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["Gray"].ToString()) }, // Return
 		};
 	}
 
 	public static void ChangeLanguage()
 	{
-		switch (Global.Settings.Language) // For each case
+		switch (Settings.Language) // For each case
 		{
 			case "_default": // No language
 				break;
@@ -370,7 +372,7 @@ public static class Global
 
 	public static Color GetColorFromResource(string resourceName)
 	{
-		return (Color)ColorConverter.ConvertFromString(App.Current.Resources[resourceName].ToString());
+		return (Color)ColorConverter.ConvertFromString(Application.Current.Resources[resourceName].ToString());
 	}
 
 	internal static void CreateJumpLists()
@@ -409,6 +411,42 @@ public static class Global
 
 		JumpList.SetJumpList(Application.Current, jumpList); // Set the jump list
 	}
+
+	public static string GetStrenghtCaracter(PasswordStrenght passwordStrenght) => passwordStrenght switch
+	{
+		PasswordStrenght.VeryGood => "\uF6EA", // If the password strenght is very good
+		PasswordStrenght.Good => "\uF299", // If the password strenght is good
+		PasswordStrenght.Medium => "\uF882", // If the password strenght is medium
+		PasswordStrenght.Low => "\uF36E", // If the password strenght is low
+		_ => "\uF4AB" // If the password strenght is unknown
+	};
+
+	public static string GetStrenghtText(PasswordStrenght passwordStrenght) => passwordStrenght switch
+	{
+		PasswordStrenght.VeryGood => Properties.Resources.StrenghtVeryGood, // If the password strenght is very good
+		PasswordStrenght.Good => Properties.Resources.StrenghtGood, // If the password strenght is good
+		PasswordStrenght.Medium => Properties.Resources.StrenghtMedium, // If the password strenght is medium
+		PasswordStrenght.Low => Properties.Resources.StrenghtLow, // If the password strenght is low
+		_ => Properties.Resources.EnterPassword // If the password strenght is unknown
+	};
+
+	public static async Task<string> GeneratePasswordByStrength(PasswordStrength passwordStrength) => passwordStrength switch
+	{
+		PasswordStrength.Low => await Password.GenerateAsync(9, GetFinalCaracters(true, true, false, false), ","),
+		PasswordStrength.Medium => await Password.GenerateAsync(12, GetFinalCaracters(true, true, true, false), ","),
+		PasswordStrength.Good => await Password.GenerateAsync(19, GetFinalCaracters(true, true, true, false), ","),
+		PasswordStrength.VeryGood => await Password.GenerateAsync(20, GetFinalCaracters(true, true, true, true), ","),
+		_ => await Password.GenerateAsync(9, GetFinalCaracters(true, true, false, false), ","),
+	};
+
+	public static async Task<List<string>> GeneratePasswordByStrength(int amount, PasswordStrength passwordStrength) => passwordStrength switch
+	{
+		PasswordStrength.Low => await Password.GenerateAsync(amount, 9, GetFinalCaracters(true, true, false, false), ","),
+		PasswordStrength.Medium => await Password.GenerateAsync(amount, 12, GetFinalCaracters(true, true, true, false), ","),
+		PasswordStrength.Good => await Password.GenerateAsync(amount, 19, GetFinalCaracters(true, true, true, false), ","),
+		PasswordStrength.VeryGood => await Password.GenerateAsync(amount, 20, GetFinalCaracters(true, true, true, true), ","),
+		_ => await Password.GenerateAsync(amount, 9, GetFinalCaracters(true, true, false, false), ","),
+	};
 }
 
 public record ColorSyntaxItem(char Character, Color Color);
