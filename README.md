@@ -7,10 +7,11 @@
 
 <br />
 <p align="center">
+  <strong>⚠️ Warning: Passliss is going through a major evolution. ⚠️<br><a href="https://github.com/Leo-Corporation/Passliss/blob/main/ROADMAP.md">Learn more</a></strong>
+  <br>
   <a href="https://github.com/Leo-Corporation/Passliss">
     <img src=".github/images/logo.png" alt="Logo" width="80" height="80">
   </a>
-
   <h1 align="center">Passliss</h1>
 
   <p align="center">
@@ -26,6 +27,10 @@
 
   </p>
 </p>
+
+## Introducing Passliss for the Web
+We are working on the next major iteration of Passliss: Passliss for the Web. We are committed to bring Passliss to more devices with this change.
+[Learn more](https://github.com/Leo-Corporation/Passliss/blob/main/ROADMAP.md).
 
 ## What is it?
 Passliss is a modern password generation Windows application that allows you to generate passwords within a click. Passliss is written in C# .NET 6 using WPF.
