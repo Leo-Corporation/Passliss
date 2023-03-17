@@ -78,7 +78,7 @@ export function PageContent({ children }: LayoutProps) {
                         <p className="ml-2">{t("encryption")}</p>
                     </Link>
                 </nav>
-                <div className="col-start-1">{children}</div>
+                <div className="col-start-2">{children}</div>
             </section>
         </>
     )

@@ -8,5 +8,7 @@
     "strength": "Force",
     "encryption": "Chiffrage",
     "pinned": "Épinglé",
-    "tools": "Outils"
+    "tools": "Outils",
+    "simple": "Simple",
+    "advanced": "Avancé"
 }

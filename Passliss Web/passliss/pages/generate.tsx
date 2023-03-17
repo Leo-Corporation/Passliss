@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site"
 import { Layout } from "@/components/layout"
 import { buttonVariants } from "@/components/ui/button"
 import { PageContent } from "@/components/page"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useTranslation from 'next-translate/useTranslation'
 
 
@@ -23,7 +24,23 @@ export default function IndexPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <PageContent>
+                <Tabs defaultValue="simple" className="w-[400px]">
+                    <TabsList>
+                        <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
+                        <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
+                    </TabsList>
+                    <TabsContent className="border-none" value="simple">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                            Simple
+                        </p>
+                    </TabsContent>
+                    <TabsContent className="border-none" value="advanced">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                            Advanced
+                        </p>
 
+                    </TabsContent>
+                </Tabs>
             </PageContent>
         </Layout>
     )
