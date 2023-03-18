@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation'
 import Link from "next/link"
 import { Button, buttonVariants } from "./ui/button"
-import { Home24Filled, Settings24Filled, History24Filled, LockClosed24Regular, Shield24Regular, Translate24Regular, Navigation24Regular } from '@fluentui/react-icons';
+import { Settings20Filled, History20Filled, LockClosed24Regular, Shield24Regular, Translate24Regular, Navigation24Regular, Home20Filled, LockClosed20Regular, Translate20Regular, Shield20Regular } from '@fluentui/react-icons';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from './ui/sheet';
 
 export interface PageProps {
@@ -13,7 +13,7 @@ export function PageContent({ children, page }: PageProps) {
     const { t } = useTranslation("common")
     return (
         <>
-            <header className='p-2 py-10 md:p-10 flex space-x-2'>
+            <header className='p-2 pt-5 flex space-x-2'>
                 <Sheet>
                     <SheetTrigger>
                         <Button className="md:hidden" variant="ghost">
@@ -22,14 +22,14 @@ export function PageContent({ children, page }: PageProps) {
                     </SheetTrigger>
                     <SheetContent position='left' size='content'>
                         <nav>
-                            <h3 className="font-bold m-2">{t("pinned")}</h3>
+                            <h3 className="font-bold m-2 text-xs">{t("pinned")}</h3>
                             <Link className={buttonVariants({
                                 size: "sm",
                                 variant: page == "home" ? "navselect" : "nav",
-                                className: "text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                                className: "text-black dark:text-white h-auto pr-3 pl-0 w-full my-1 mx-2",
                             })} href={"/home"}>
-                                <div className="p-2 rounded-lg bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
-                                    <Home24Filled className="text-white" />
+                                <div className="p-1 rounded-lg bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
+                                    <Home20Filled className="text-white" />
                                 </div>
                                 <p className="ml-2">{t("home")}</p>
                             </Link>
@@ -37,10 +37,10 @@ export function PageContent({ children, page }: PageProps) {
                             <Link className={buttonVariants({
                                 size: "sm",
                                 variant: page == "activity" ? "navselect" : "nav",
-                                className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                                className: " text-black dark:text-white h-auto pr-3 pl-0 w-full my-1 mx-2",
                             })} href={"/activity"}>
-                                <div className="p-2 rounded-lg bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
-                                    <History24Filled className="text-white" />
+                                <div className="p-1 rounded-lg bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
+                                    <History20Filled className="text-white" />
                                 </div>
                                 <p className="ml-2">{t("activity")}</p>
                             </Link>
@@ -48,39 +48,39 @@ export function PageContent({ children, page }: PageProps) {
                             <Link className={buttonVariants({
                                 size: "sm",
                                 variant: page == "settings" ? "navselect" : "nav",
-                                className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                                className: " text-black dark:text-white h-auto pr-3 pl-0 w-full my-1 mx-2",
                             })} href={"/settings"}>
-                                <div className="p-2 rounded-lg bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
-                                    <Settings24Filled className="text-white" />
+                                <div className="p-1 rounded-lg bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
+                                    <Settings20Filled className="text-white" />
                                 </div>
                                 <p className="ml-2">{t("settings")}</p>
                             </Link>
-                            <h3 className="font-bold m-2">{t("tools")}</h3>
+                            <h3 className="font-bold m-2 text-xs">{t("tools")}</h3>
                             <Link className={buttonVariants({
-                                size: "sm",
-                                variant: page == "generate" ? "navselect" : "nav",
-                                className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
+                                size: "nav",
+                                variant: page == "generate" ? "navselect2" : "nav2",
+                                className: "text-[#0088FF] w-full mx-2 my-1",
                             })} href={"/generate"}>
-                                <LockClosed24Regular className="text-white" />
+                                <LockClosed20Regular className="text-[#0088FF]" />
 
                                 <p className="ml-2">{t("generate")}</p>
                             </Link>
                             <Link className={buttonVariants({
-                                size: "sm",
-                                variant: page == "strength" ? "navselect" : "nav",
-                                className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
+                                size: "nav",
+                                variant: page == "strength" ? "navselect2" : "nav2",
+                                className: "text-[#0088FF] w-full mx-2 my-1",
                             })} href={"/strength"}>
-                                <Shield24Regular
-                                    className="text-white" />
+                                <Shield20Regular
+                                    className="text-[#0088FF]" />
 
                                 <p className="ml-2">{t("strength")}</p>
                             </Link>
                             <Link className={buttonVariants({
-                                size: "sm",
-                                variant: page == "crypt" ? "navselect" : "nav",
-                                className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
+                                size: "nav",
+                                variant: page == "crypt" ? "navselect2" : "nav2",
+                                className: "text-[#0088FF] w-full mx-2 my-1",
                             })} href={"/encryption"}>
-                                <Translate24Regular className="text-white" />
+                                <Translate20Regular className="text-[#0088FF]" />
 
                                 <p className="ml-2">{t("encryption")}</p>
                             </Link>
@@ -88,20 +88,20 @@ export function PageContent({ children, page }: PageProps) {
                     </SheetContent>
                 </Sheet>
                 <div>
-                    <h1 className='font-bold text-5xl'>{t("title")}</h1>
-                    <p>{t("hello")}</p>
+                    <h1 className='font-bold text-4xl'>{t("title")}</h1>
+                    <p className='font-bold'>{t("hello")}</p>
                 </div>
             </header>
             <section className="grid grid-cols-4 xl:grid-cols-5">
                 <nav className='hidden md:block m-2'>
-                    <h3 className="font-bold m-2">{t("pinned")}</h3>
+                    <h3 className="font-bold m-2 text-xs">{t("pinned")}</h3>
                     <Link className={buttonVariants({
                         size: "sm",
                         variant: page == "home" ? "navselect" : "nav",
-                        className: "text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                        className: "text-black dark:text-white h-auto pr-3 pl-0 w-full my-1 mx-2",
                     })} href={"/home"}>
-                        <div className="p-2 rounded-lg bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
-                            <Home24Filled className="text-white" />
+                        <div className="p-[5px] rounded-md bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
+                            <Home20Filled className="text-white" />
                         </div>
                         <p className="ml-2">{t("home")}</p>
                     </Link>
@@ -109,10 +109,10 @@ export function PageContent({ children, page }: PageProps) {
                     <Link className={buttonVariants({
                         size: "sm",
                         variant: page == "activity" ? "navselect" : "nav",
-                        className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                        className: " text-black dark:text-white h-auto pr-3 pl-0 w-full my-1 mx-2",
                     })} href={"/activity"}>
-                        <div className="p-2 rounded-lg bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
-                            <History24Filled className="text-white" />
+                        <div className="p-[5px] rounded-md bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
+                            <History20Filled className="text-white" />
                         </div>
                         <p className="ml-2">{t("activity")}</p>
                     </Link>
@@ -120,39 +120,39 @@ export function PageContent({ children, page }: PageProps) {
                     <Link className={buttonVariants({
                         size: "sm",
                         variant: page == "settings" ? "navselect" : "nav",
-                        className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                        className: " text-black dark:text-white h-auto pr-3 pl-0 w-full my-1 mx-2",
                     })} href={"/settings"}>
-                        <div className="p-2 rounded-lg bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
-                            <Settings24Filled className="text-white" />
+                        <div className="p-[5px] rounded-md bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
+                            <Settings20Filled className="text-white" />
                         </div>
                         <p className="ml-2">{t("settings")}</p>
                     </Link>
-                    <h3 className="font-bold m-2">{t("tools")}</h3>
+                    <h3 className="font-bold m-2 text-xs">{t("tools")}</h3>
                     <Link className={buttonVariants({
-                        size: "sm",
-                        variant: page == "generate" ? "navselect" : "nav",
-                        className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
+                        size: "nav",
+                        variant: page == "generate" ? "navselect2" : "nav2",
+                        className: "text-[#0088FF] w-full mx-2 my-1",
                     })} href={"/generate"}>
-                        <LockClosed24Regular className="text-white" />
+                        <LockClosed20Regular className="text-[#0088FF]" />
 
                         <p className="ml-2">{t("generate")}</p>
                     </Link>
                     <Link className={buttonVariants({
-                        size: "sm",
-                        variant: page == "strength" ? "navselect" : "nav",
-                        className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
+                        size: "nav",
+                        variant: page == "strength" ? "navselect2" : "nav2",
+                        className: "text-[#0088FF] w-full mx-2 my-1",
                     })} href={"/strength"}>
-                        <Shield24Regular
-                            className="text-white" />
+                        <Shield20Regular
+                            className="text-[#0088FF]" />
 
                         <p className="ml-2">{t("strength")}</p>
                     </Link>
                     <Link className={buttonVariants({
-                        size: "sm",
-                        variant: page == "crypt" ? "navselect" : "nav",
-                        className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
+                        size: "nav",
+                        variant: page == "crypt" ? "navselect2" : "nav2",
+                        className: "text-[#0088FF] w-full mx-2 my-1",
                     })} href={"/encryption"}>
-                        <Translate24Regular className="text-white" />
+                        <Translate20Regular className="text-[#0088FF]" />
 
                         <p className="ml-2">{t("encryption")}</p>
                     </Link>
