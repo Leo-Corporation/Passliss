@@ -1,7 +1,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Leo-Corporation/Passliss)
 ![GitHub issues](https://img.shields.io/github/issues/Leo-Corporation/Passliss)
 ![GitHub](https://img.shields.io/github/license/Leo-Corporation/Passliss)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Leo-Corporation/Passliss/dotnet-desktop.yml?branch=main)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4c2ed8b9-b362-4ff2-865f-e6aef8759dff/deploy-status)](https://app.netlify.com/sites/passliss/deploys)
 ![Using PeyrSharp](https://img.shields.io/badge/using-PeyrSharp-DD00FF?logo=nuget)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Leo-Corporation/Passliss)
 
