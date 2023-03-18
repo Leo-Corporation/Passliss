@@ -23,7 +23,7 @@ export default function IndexPage() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageContent>
+            <PageContent page="generate">
                 <Tabs defaultValue="simple" className="w-[400px]">
                     <TabsList>
                         <TabsTrigger value="simple">{t("simple")}</TabsTrigger>

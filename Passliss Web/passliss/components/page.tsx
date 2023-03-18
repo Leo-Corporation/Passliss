@@ -4,9 +4,13 @@ import { LayoutProps } from "./layout"
 import { buttonVariants } from "./ui/button"
 import { Home24Filled, Settings24Filled, History24Filled, LockClosed24Regular, Shield24Regular, Translate24Regular } from '@fluentui/react-icons';
 
+export interface PageProps {
+    children: React.ReactNode,
+    page: string
+}
 
-export function PageContent({ children }: LayoutProps) {
-    const { t } = useTranslation("common") // default namespace (optional)
+export function PageContent({ children, page }: PageProps) {
+    const { t } = useTranslation("common")
     return (
         <>
             <header className='p-10'>
@@ -18,8 +22,8 @@ export function PageContent({ children }: LayoutProps) {
                     <h3 className="font-bold m-2">{t("pinned")}</h3>
                     <Link className={buttonVariants({
                         size: "sm",
-                        variant: "nav",
-                        className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
+                        variant: page == "home" ? "navselect" : "nav",
+                        className: "text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
                     })} href={"/home"}>
                         <div className="p-2 rounded-lg bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
                             <Home24Filled className="text-white" />
@@ -29,7 +33,7 @@ export function PageContent({ children }: LayoutProps) {
 
                     <Link className={buttonVariants({
                         size: "sm",
-                        variant: "nav",
+                        variant: page == "activity" ? "navselect" : "nav",
                         className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
                     })} href={"/activity"}>
                         <div className="p-2 rounded-lg bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
@@ -40,7 +44,7 @@ export function PageContent({ children }: LayoutProps) {
 
                     <Link className={buttonVariants({
                         size: "sm",
-                        variant: "nav",
+                        variant: page == "settings" ? "navselect" : "nav",
                         className: " text-slate-700 dark:text-slate-400 h-auto pr-3 pl-0 w-full m-2",
                     })} href={"/settings"}>
                         <div className="p-2 rounded-lg bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
@@ -51,7 +55,7 @@ export function PageContent({ children }: LayoutProps) {
                     <h3 className="font-bold m-2">{t("tools")}</h3>
                     <Link className={buttonVariants({
                         size: "sm",
-                        variant: "nav",
+                        variant: page == "generate" ? "navselect" : "nav",
                         className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
                     })} href={"/generate"}>
                         <LockClosed24Regular className="text-white" />
@@ -60,7 +64,7 @@ export function PageContent({ children }: LayoutProps) {
                     </Link>
                     <Link className={buttonVariants({
                         size: "sm",
-                        variant: "nav",
+                        variant: page == "strength" ? "navselect" : "nav",
                         className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
                     })} href={"/strength"}>
                         <Shield24Regular
@@ -70,7 +74,7 @@ export function PageContent({ children }: LayoutProps) {
                     </Link>
                     <Link className={buttonVariants({
                         size: "sm",
-                        variant: "nav",
+                        variant: page == "crypt" ? "navselect" : "nav",
                         className: " text-slate-700 dark:text-slate-400 px-3 w-full mx-2 my-1",
                     })} href={"/encryption"}>
                         <Translate24Regular className="text-white" />
