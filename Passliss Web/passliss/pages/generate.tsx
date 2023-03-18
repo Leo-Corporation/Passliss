@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useTranslation from 'next-translate/useTranslation'
 import { Slider } from "@/components/ui/slider"
 import { GeneratePassword, GeneratePasswordByStrength } from "@/lib/password-gen"
-import { Password20Regular } from "@fluentui/react-icons"
+import { LockClosed12Regular, LockClosed20Regular, LockClosed24Regular, Password20Regular } from "@fluentui/react-icons"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -113,6 +113,11 @@ export default function IndexPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <PageContent page="generate">
+                <div className="flex space-x-2 items-center mb-2">
+                    <LockClosed20Regular primaryFill="#0088FF" className="text-white" />
+
+                    <p className="ml-2">{t("generate")}</p>
+                </div>
                 <Tabs defaultValue="simple">
                     <TabsList>
                         <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
