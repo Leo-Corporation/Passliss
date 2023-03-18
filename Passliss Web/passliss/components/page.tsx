@@ -11,6 +11,23 @@ export interface PageProps {
 
 export function PageContent({ children, page }: PageProps) {
     const { t } = useTranslation("common")
+
+    function GetWelcomeMessage(): string {
+        let hour = new Date().getHours(); // Get the current hour
+        if (hour >= 21 || hour <= 7) {
+            // If between 9PM & 7AM
+            return t("night"); // Return the correct value
+        } else if (hour >= 7 && hour <= 12) {
+            // If between 7AM - 12PM
+            return t("hello"); // Return the correct value
+        } else if (hour >= 12 && hour <= 17) {
+            // If between 12PM - 5PM
+            return t("afternoon"); // Return the correct value
+        } else if (hour >= 17 && hour <= 21) {
+            // If between 5PM - 9PM
+            return t("evening"); // Return the correct value
+        }
+    }
     return (
         <>
             <header className='p-2 pt-5 flex space-x-2'>
@@ -89,7 +106,7 @@ export function PageContent({ children, page }: PageProps) {
                 </Sheet>
                 <div>
                     <h1 className='font-bold text-4xl'>{t("title")}</h1>
-                    <p className='font-bold'>{t("hello")}</p>
+                    <p className='font-bold'>{GetWelcomeMessage()}</p>
                 </div>
             </header>
             <section className="grid grid-cols-4 xl:grid-cols-5">

@@ -1,5 +1,8 @@
 {
-    "hello": "Bonjour",
+    "hello": "Bonjour.",
+    "afternoon": "Bonne après-midi.",
+    "evening": "Bonsoir.",
+    "night": "Bonne nuit",
     "title": "Passliss",
     "home": "Accueil",
     "activity": "Activité",
