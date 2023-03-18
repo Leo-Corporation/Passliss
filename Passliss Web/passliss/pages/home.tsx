@@ -23,7 +23,7 @@ export default function EncryptionPage() {
                 <div className="flex space-x-2 items-center mb-2">
                     <Home20Regular primaryFill="#0088FF" className="text-white" />
 
-                    <p className="ml-2">{t("home")}</p>
+                    <p className="font-bold ml-2">{t("home")}</p>
                 </div>
             </PageContent>
         </Layout>

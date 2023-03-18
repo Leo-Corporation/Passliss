@@ -116,7 +116,7 @@ export default function IndexPage() {
                 <div className="flex space-x-2 items-center mb-2">
                     <LockClosed20Regular primaryFill="#0088FF" className="text-white" />
 
-                    <p className="ml-2">{t("generate")}</p>
+                    <p className="font-bold ml-2">{t("generate")}</p>
                 </div>
                 <Tabs defaultValue="simple">
                     <TabsList>

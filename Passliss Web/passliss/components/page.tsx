@@ -31,7 +31,7 @@ export function PageContent({ children, page }: PageProps) {
                                 <div className="p-1 rounded-lg bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
                                     <Home20Filled className="text-white" />
                                 </div>
-                                <p className="ml-2">{t("home")}</p>
+                                <p className="font-bold ml-2">{t("home")}</p>
                             </Link>
 
                             <Link className={buttonVariants({
@@ -42,7 +42,7 @@ export function PageContent({ children, page }: PageProps) {
                                 <div className="p-1 rounded-lg bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
                                     <History20Filled className="text-white" />
                                 </div>
-                                <p className="ml-2">{t("activity")}</p>
+                                <p className="font-bold ml-2">{t("activity")}</p>
                             </Link>
 
                             <Link className={buttonVariants({
@@ -53,7 +53,7 @@ export function PageContent({ children, page }: PageProps) {
                                 <div className="p-1 rounded-lg bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
                                     <Settings20Filled className="text-white" />
                                 </div>
-                                <p className="ml-2">{t("settings")}</p>
+                                <p className="font-bold ml-2">{t("settings")}</p>
                             </Link>
                             <h3 className="font-bold m-2 text-xs">{t("tools")}</h3>
                             <Link className={buttonVariants({
@@ -63,7 +63,7 @@ export function PageContent({ children, page }: PageProps) {
                             })} href={"/generate"}>
                                 <LockClosed20Regular className="text-[#0088FF]" />
 
-                                <p className="ml-2">{t("generate")}</p>
+                                <p className="font-bold ml-2">{t("generate")}</p>
                             </Link>
                             <Link className={buttonVariants({
                                 size: "nav",
@@ -73,7 +73,7 @@ export function PageContent({ children, page }: PageProps) {
                                 <Shield20Regular
                                     className="text-[#0088FF]" />
 
-                                <p className="ml-2">{t("strength")}</p>
+                                <p className="font-bold ml-2">{t("strength")}</p>
                             </Link>
                             <Link className={buttonVariants({
                                 size: "nav",
@@ -82,7 +82,7 @@ export function PageContent({ children, page }: PageProps) {
                             })} href={"/encryption"}>
                                 <Translate20Regular className="text-[#0088FF]" />
 
-                                <p className="ml-2">{t("encryption")}</p>
+                                <p className="font-bold ml-2">{t("encryption")}</p>
                             </Link>
                         </nav>
                     </SheetContent>
@@ -103,7 +103,7 @@ export function PageContent({ children, page }: PageProps) {
                         <div className="p-[5px] rounded-md bg-gradient-to-br from-[#0088FF] to-[#2153E0]">
                             <Home20Filled className="text-white" />
                         </div>
-                        <p className="ml-2">{t("home")}</p>
+                        <p className="font-bold ml-2">{t("home")}</p>
                     </Link>
 
                     <Link className={buttonVariants({
@@ -114,7 +114,7 @@ export function PageContent({ children, page }: PageProps) {
                         <div className="p-[5px] rounded-md bg-gradient-to-br from-[#6F00FF] to-[#9A21E0]">
                             <History20Filled className="text-white" />
                         </div>
-                        <p className="ml-2">{t("activity")}</p>
+                        <p className="font-bold ml-2">{t("activity")}</p>
                     </Link>
 
                     <Link className={buttonVariants({
@@ -125,7 +125,7 @@ export function PageContent({ children, page }: PageProps) {
                         <div className="p-[5px] rounded-md bg-gradient-to-br from-[#B1B1B1] to-[#343C51]">
                             <Settings20Filled className="text-white" />
                         </div>
-                        <p className="ml-2">{t("settings")}</p>
+                        <p className="font-bold ml-2">{t("settings")}</p>
                     </Link>
                     <h3 className="font-bold m-2 text-xs">{t("tools")}</h3>
                     <Link className={buttonVariants({
@@ -135,7 +135,7 @@ export function PageContent({ children, page }: PageProps) {
                     })} href={"/generate"}>
                         <LockClosed20Regular className="text-[#0088FF]" />
 
-                        <p className="ml-2">{t("generate")}</p>
+                        <p className="font-bold ml-2">{t("generate")}</p>
                     </Link>
                     <Link className={buttonVariants({
                         size: "nav",
@@ -145,7 +145,7 @@ export function PageContent({ children, page }: PageProps) {
                         <Shield20Regular
                             className="text-[#0088FF]" />
 
-                        <p className="ml-2">{t("strength")}</p>
+                        <p className="font-bold ml-2">{t("strength")}</p>
                     </Link>
                     <Link className={buttonVariants({
                         size: "nav",
@@ -154,7 +154,7 @@ export function PageContent({ children, page }: PageProps) {
                     })} href={"/encryption"}>
                         <Translate20Regular className="text-[#0088FF]" />
 
-                        <p className="ml-2">{t("encryption")}</p>
+                        <p className="font-bold ml-2">{t("encryption")}</p>
                     </Link>
                 </nav>
                 <div className="md:col-start-2 col-span-5 p-2">{children}</div>

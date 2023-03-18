@@ -23,7 +23,7 @@ export default function StrengthPage() {
                 <div className="flex space-x-2 items-center mb-2">
                     <Shield20Regular primaryFill="#0088FF" className="text-white" />
 
-                    <p className="ml-2">{t("strength")}</p>
+                    <p className="font-bold ml-2">{t("strength")}</p>
                 </div>
             </PageContent>
         </Layout>

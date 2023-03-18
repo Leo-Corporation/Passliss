@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Hauora";
+    src: url(../public/fonts/Hauora-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Hauora";
+    src: url(../public/fonts/Hauora-ExtraBold.ttf);
+    font-weight: bold;
+}
