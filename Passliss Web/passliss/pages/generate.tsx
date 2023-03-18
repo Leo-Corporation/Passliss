@@ -165,7 +165,7 @@ export default function IndexPage() {
                                     </DialogContent>
                                 </Dialog>
                             </div>
-                            <div className="grid grid-cols-2 grid-rows-4 m-5">
+                            <div className="grid md:grid-cols-2 grid-rows-4 m-5">
                                 <div className="col-end-1 flex items-center space-x-2">
                                     <Switch id="LowerChk" defaultChecked={true} />
                                     <Label htmlFor="LowerChk">{t("lowercases")}</Label>
