@@ -22,5 +22,9 @@
     "specialchars": "Special characters",
     "nbrs": "Numbers",
     "length": "Length",
-    "customchars": "Custom characters"
+    "customchars": "Custom characters",
+    "amount": "Amount",
+    "multipasswords": "Multiple passwords",
+    "multipasswords-desc": "Generate multiple passwords.",
+    "results": "Results"
 }

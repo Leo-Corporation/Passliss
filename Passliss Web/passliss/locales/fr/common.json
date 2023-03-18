@@ -22,5 +22,9 @@
     "specialchars": "Caractères spéciaux",
     "nbrs": "Nombres",
     "length": "Longueur",
-    "customchars": "Caractères personnalisés"
+    "customchars": "Caractères personnalisés",
+    "amount": "Nombre",
+    "multipasswords": "Plusieurs mots de passe",
+    "multipasswords-desc": "Générer plusieurs mots de passe.",
+    "results": "Résultats"
 }

@@ -7,12 +7,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useTranslation from 'next-translate/useTranslation'
 import { Slider } from "@/components/ui/slider"
 import { GeneratePassword, GeneratePasswordByStrength } from "@/lib/password-gen"
-import { CheckmarkCircleFilled, CheckmarkStarburstFilled, DismissCircle24Filled, DismissCircleFilled, WarningFilled } from "@fluentui/react-icons"
+import { CheckmarkCircleFilled, CheckmarkStarburstFilled, DismissCircle24Filled, DismissCircleFilled, Password20Regular, Password24Regular, WarningFilled } from "@fluentui/react-icons"
 import ReactDOM from "react-dom"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useEffect } from "react"
+import { DialogHeader, DialogFooter } from "@/components/ui/dialog"
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Textarea } from "@/components/ui/textarea"
+
 
 export default function IndexPage() {
     const { t } = useTranslation("common") // default namespace (optional)
@@ -25,6 +29,24 @@ export default function IndexPage() {
     function CopyBtn() {
         let txt = document.getElementById("PasswordTxt");
         navigator.clipboard.writeText(txt.innerHTML);
+    }
+
+    function MultiplePasswordClick() {
+        let amount: number = parseInt((document.getElementById("AmountTxt") as HTMLInputElement).value);
+        let text = document.getElementById("TextArea") as HTMLTextAreaElement
+
+        text.value = ""; // clear
+
+        let lower = document.getElementById("LowerChk").getAttribute("aria-checked") == "true";
+        let upper = document.getElementById("UpperChk").getAttribute("aria-checked") == "true";
+        let nbr = document.getElementById("NbrChk").getAttribute("aria-checked") == "true";
+        let special = document.getElementById("SpecialChk").getAttribute("aria-checked") == "true";
+        let length = (document.getElementById("LengthTxt") as HTMLInputElement).value;
+
+
+        for (let i = 0; i < amount; i++) {
+            text.value += GeneratePassword(lower, upper, nbr, special, +length) + "\n";
+        }
     }
 
     function NewBtnAdvancedClick() {
@@ -99,10 +121,39 @@ export default function IndexPage() {
                     </TabsContent>
                     <TabsContent className="border-none" value="advanced">
                         <div className="flex flex-col items-center w-full">
-                            <p className="text-xl font-bold m-5" id="APasswordTxt">{GeneratePasswordByStrength(2)}</p>
+                            <div className="max-w-full overflow-auto">
+                                <p className="text-xl font-bold m-5" id="APasswordTxt">{GeneratePasswordByStrength(2)}</p>
+                            </div>
                             <div className="flex space-x-2">
                                 <Button className="py-1 px-2 h-auto" onClick={NewBtnAdvancedClick}>New</Button>
                                 <Button className="py-1 px-2 h-auto" variant="outline" onClick={CopyAdvancedBtn}>Copy</Button>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button className="py-1 px-2 h-auto" variant="outline">
+                                            <Password20Regular className="m-0 p-0" />
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="sm:max-w-[425px]">
+                                        <DialogHeader>
+                                            <DialogTitle>{t("multipasswords")}</DialogTitle>
+                                            <DialogDescription>
+                                                {t("multipasswords-desc")}
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="py-4">
+                                            <div className="flex space-x-2 items-center">
+                                                <Label htmlFor="AmountTxt">{t("amount")}</Label>
+                                                <Input defaultValue={12} type="number" className="h-auto px-2 py-1" id="AmountTxt" />
+                                                <Button className="py-1 px-2 h-auto" onClick={MultiplePasswordClick}>{t("generate")}</Button>
+
+                                            </div>
+                                            <div className="flex-col flex space-x-2 ">
+                                                <Label htmlFor="TextArea">{t("results")}</Label>
+                                                <Textarea className="mt-2 px-2 py-1" id="TextArea" />
+                                            </div>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                             <div className="grid grid-cols-2 grid-rows-4 m-5">
                                 <div className="col-end-1 flex items-center space-x-2">
