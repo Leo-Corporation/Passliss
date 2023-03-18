@@ -10,5 +10,11 @@
     "pinned": "Pinned",
     "tools": "Tools",
     "simple": "Simple",
-    "advanced": "Advanced"
+    "advanced": "Advanced",
+    "new": "New",
+    "copy": "Copy",
+    "strength-low": "The strength of the password is low",
+    "strength-medium": "The strength of the password is medium",
+    "strength-good": "The strength of the password is good",
+    "strength-excellent": "The strength of the password is excellent"
 }

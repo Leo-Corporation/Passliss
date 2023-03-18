@@ -1,6 +1,5 @@
 import useTranslation from 'next-translate/useTranslation'
 import Link from "next/link"
-import { LayoutProps } from "./layout"
 import { buttonVariants } from "./ui/button"
 import { Home24Filled, Settings24Filled, History24Filled, LockClosed24Regular, Shield24Regular, Translate24Regular } from '@fluentui/react-icons';
 
@@ -82,7 +81,7 @@ export function PageContent({ children, page }: PageProps) {
                         <p className="ml-2">{t("encryption")}</p>
                     </Link>
                 </nav>
-                <div className="col-start-2">{children}</div>
+                <div className="col-start-2 col-span-5">{children}</div>
             </section>
         </>
     )

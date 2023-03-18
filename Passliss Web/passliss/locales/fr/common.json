@@ -10,5 +10,11 @@
     "pinned": "Épinglé",
     "tools": "Outils",
     "simple": "Simple",
-    "advanced": "Avancé"
+    "advanced": "Avancé",
+    "new": "Nouveau",
+    "copy": "Copier",
+    "strength-low": "La force du mot de passe est faible",
+    "strength-medium": "La force du mot de passe est médiocre",
+    "strength-good": "La force du mot de passe est bonne",
+    "strength-excellent": "La force du mot de passe est excellente"
 }
