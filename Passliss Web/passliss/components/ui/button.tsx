@@ -9,11 +9,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "justify-center bg-slate-900 text-white hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900",
+          "font-bold justify-center bg-[#0088FF] text-white hover:bg-[#003666]",
         destructive:
           "justify-center bg-red-500 text-white hover:bg-red-600 dark:hover:bg-red-600",
         outline:
-          "justify-center bg-transparent border border-slate-200 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-100",
+          "font-bold justify-center bg-transparent border border-slate-200 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-100",
         subtle:
           "justify-center bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100",
         navselect:
