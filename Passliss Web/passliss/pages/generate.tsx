@@ -6,9 +6,13 @@ import { PageContent } from "@/components/page"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useTranslation from 'next-translate/useTranslation'
 import { Slider } from "@/components/ui/slider"
-import { GeneratePasswordByStrength } from "@/lib/password-gen"
+import { GeneratePassword, GeneratePasswordByStrength } from "@/lib/password-gen"
 import { CheckmarkCircleFilled, CheckmarkStarburstFilled, DismissCircle24Filled, DismissCircleFilled, WarningFilled } from "@fluentui/react-icons"
 import ReactDOM from "react-dom"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+import { useEffect } from "react"
 
 export default function IndexPage() {
     const { t } = useTranslation("common") // default namespace (optional)
@@ -20,6 +24,22 @@ export default function IndexPage() {
 
     function CopyBtn() {
         let txt = document.getElementById("PasswordTxt");
+        navigator.clipboard.writeText(txt.innerHTML);
+    }
+
+    function NewBtnAdvancedClick() {
+        let txt = document.getElementById("APasswordTxt");
+        let lower = document.getElementById("LowerChk").getAttribute("aria-checked") == "true";
+        let upper = document.getElementById("UpperChk").getAttribute("aria-checked") == "true";
+        let nbr = document.getElementById("NbrChk").getAttribute("aria-checked") == "true";
+        let special = document.getElementById("SpecialChk").getAttribute("aria-checked") == "true";
+        let length = (document.getElementById("LengthTxt") as HTMLInputElement).value;
+
+        txt.innerHTML = GeneratePassword(lower, upper, nbr, special, +length);
+    }
+
+    function CopyAdvancedBtn() {
+        let txt = document.getElementById("APasswordTxt");
         navigator.clipboard.writeText(txt.innerHTML);
     }
 
@@ -68,20 +88,46 @@ export default function IndexPage() {
                     </TabsList>
                     <TabsContent className="border-none flex justify-center" value="simple">
                         <div className="flex flex-col items-center w-full">
-                            <p className="text-xl font-bold m-5" id="PasswordTxt"></p>
+                            <p className="text-xl font-bold m-5" id="PasswordTxt">{GeneratePasswordByStrength(2)}</p>
                             <div className="flex space-x-2">
                                 <Button className="py-1 px-2 h-auto" onClick={NewBtnClick}>New</Button>
                                 <Button className="py-1 px-2 h-auto" variant="outline" onClick={CopyBtn}>Copy</Button>
                             </div>
                             <Slider id="StrengthSlider" onValueChange={SliderChange} defaultValue={[2]} max={3} step={1} className="m-5 sm:w-[50%]" />
-                            <div id="StrengthTxt"></div>
+                            <div id="StrengthTxt">{t("strength-good")}</div>
                         </div>
                     </TabsContent>
                     <TabsContent className="border-none" value="advanced">
-                        <p className="text-sm text-slate-500 dark:text-slate-400">
-                            Advanced
-                        </p>
+                        <div className="flex flex-col items-center w-full">
+                            <p className="text-xl font-bold m-5" id="APasswordTxt">{GeneratePasswordByStrength(2)}</p>
+                            <div className="flex space-x-2">
+                                <Button className="py-1 px-2 h-auto" onClick={NewBtnAdvancedClick}>New</Button>
+                                <Button className="py-1 px-2 h-auto" variant="outline" onClick={CopyAdvancedBtn}>Copy</Button>
+                            </div>
+                            <div className="grid grid-cols-2 grid-rows-4 m-5">
+                                <div className="col-end-1 flex items-center space-x-2">
+                                    <Switch id="LowerChk" defaultChecked={true} />
+                                    <Label htmlFor="LowerChk">{t("lowercases")}</Label>
+                                </div>
+                                <div className="col-start-2 flex space-x-2 items-center">
+                                    <Label htmlFor="LengthTxt">{t("length")}</Label>
+                                    <Input defaultValue={12} type="number" className="h-auto px-2 py-1" id="LengthTxt" />
+                                </div>
+                                <div className="col-end-1 flex items-center space-x-2">
+                                    <Switch defaultChecked={true} id="UpperChk" />
+                                    <Label htmlFor="UpperChk">{t("uppercases")}</Label>
+                                </div>
+                                <div className="col-end-1 flex items-center space-x-2">
+                                    <Switch defaultChecked={true} id="NbrChk" />
+                                    <Label htmlFor="NbrChk">{t("nbrs")}</Label>
+                                </div>
+                                <div className="col-end-1 flex items-center space-x-2">
+                                    <Switch id="SpecialChk" />
+                                    <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                                </div>
 
+                            </div>
+                        </div>
                     </TabsContent>
                 </Tabs>
             </PageContent>

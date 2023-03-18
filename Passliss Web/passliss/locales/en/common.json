@@ -16,5 +16,11 @@
     "strength-low": "The strength of the password is low",
     "strength-medium": "The strength of the password is medium",
     "strength-good": "The strength of the password is good",
-    "strength-excellent": "The strength of the password is excellent"
+    "strength-excellent": "The strength of the password is excellent",
+    "lowercases": "Lowercases",
+    "uppercases": "Uppercases",
+    "specialchars": "Special characters",
+    "nbrs": "Numbers",
+    "length": "Length",
+    "customchars": "Custom characters"
 }
