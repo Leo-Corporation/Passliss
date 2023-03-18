@@ -7,13 +7,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useTranslation from 'next-translate/useTranslation'
 import { Slider } from "@/components/ui/slider"
 import { GeneratePassword, GeneratePasswordByStrength } from "@/lib/password-gen"
-import { CheckmarkCircleFilled, CheckmarkStarburstFilled, DismissCircle24Filled, DismissCircleFilled, Password20Regular, Password24Regular, WarningFilled } from "@fluentui/react-icons"
-import ReactDOM from "react-dom"
+import { Password20Regular } from "@fluentui/react-icons"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { useEffect } from "react"
-import { DialogHeader, DialogFooter } from "@/components/ui/dialog"
+import { DialogHeader } from "@/components/ui/dialog"
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 
@@ -31,7 +29,17 @@ export default function IndexPage() {
         navigator.clipboard.writeText(txt.innerHTML);
     }
 
+    function AreOptionsChecked() {
+        let lower = document.getElementById("LowerChk").getAttribute("aria-checked") == "true";
+        let upper = document.getElementById("UpperChk").getAttribute("aria-checked") == "true";
+        let nbr = document.getElementById("NbrChk").getAttribute("aria-checked") == "true";
+        let special = document.getElementById("SpecialChk").getAttribute("aria-checked") == "true";
+        return lower || upper || nbr || special;
+    }
+
     function MultiplePasswordClick() {
+        if (!AreOptionsChecked()) return;
+
         let amount: number = parseInt((document.getElementById("AmountTxt") as HTMLInputElement).value);
         let text = document.getElementById("TextArea") as HTMLTextAreaElement
 
@@ -50,6 +58,8 @@ export default function IndexPage() {
     }
 
     function NewBtnAdvancedClick() {
+        if (!AreOptionsChecked()) return;
+
         let txt = document.getElementById("APasswordTxt");
         let lower = document.getElementById("LowerChk").getAttribute("aria-checked") == "true";
         let upper = document.getElementById("UpperChk").getAttribute("aria-checked") == "true";
