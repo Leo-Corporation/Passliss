@@ -77,26 +77,37 @@ export default function IndexPage() {
 
     function SliderChange(newValue) {
         let p = document.getElementById("StrengthTxt");
+        let icon = document.getElementById("StrengthIconTxt");
         let txt = document.getElementById("PasswordTxt");
+
         txt.innerHTML = GeneratePasswordByStrength(newValue[0]);
         sliderVal = newValue[0];
+
         switch (newValue[0]) {
             case 0:
                 p.innerHTML = t("strength-low");
+                icon.innerHTML = "\uF36E";
+                icon.style.color = "red"
                 break;
             case 1:
                 p.innerHTML = t("strength-medium");
-
+                icon.innerHTML = "\uF882";
+                icon.style.color = "#FF7B00";
                 break;
             case 2:
                 p.innerHTML = t("strength-good");
-
+                icon.innerHTML = "\uF299";
+                icon.style.color = "#68EA00";
                 break;
             case 3:
                 p.innerHTML = t("strength-excellent");
-
+                icon.innerHTML = "\uF6EA";
+                icon.style.color = "#00BF07";
                 break;
             default:
+                p.innerHTML = t("enterpwrstrength");
+                icon.innerHTML = "\uF4AB";
+                icon.style.color = "#FFFFFFA0";
                 break;
         }
     }
@@ -131,7 +142,8 @@ export default function IndexPage() {
                                 <Button className="py-1 px-2 h-auto" variant="outline" onClick={CopyBtn}>Copy</Button>
                             </div>
                             <Slider id="StrengthSlider" onValueChange={SliderChange} defaultValue={[2]} max={3} step={1} className="m-5 sm:w-[50%]" />
-                            <div id="StrengthTxt">{t("strength-good")}</div>
+                            <p className="m-2 icon-f text-6xl text-[#68EA00]" id="StrengthIconTxt">{"\uF299"}</p>
+                            <p id="StrengthTxt">{t("strength-good")}</p>
                         </div>
                     </TabsContent>
                     <TabsContent className="border-none" value="advanced">
