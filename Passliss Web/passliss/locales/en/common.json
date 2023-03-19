@@ -40,5 +40,9 @@
     "encrypted-text": "Encrypted text",
     "decrypted-text": "Decrypted text",
     "algorithm": "Algorithm",
-    "generate-key": "Generate a random key"
+    "generate-key": "Generate a random key",
+    "generate-desc": "Create strong and random passwords with a single click.",
+    "strength-desc": "Check how secure your existing passwords are.",
+    "encryption-desc": "Encrypt and decrypt your secrets using AES or Triple-DES encryption algorithms.",
+    "recommended": "Recommended"
 }

@@ -40,5 +40,9 @@
     "encrypted-text": "Texte encrypté",
     "decrypted-text": "Texte décrypté",
     "algorithm": "Algorithme",
-    "generate-key": "Générer une clé aléatoire"
+    "generate-key": "Générer une clé aléatoire",
+    "generate-desc": "Créez des mots de passe forts et aléatoires en un seul clic.",
+    "strength-desc": "Vérifiez le degré de sécurité de vos mots de passe existants.",
+    "encryption-desc": "Cryptez et décryptez vos secrets à l'aide des algorithmes de cryptage AES ou Triple-DES.",
+    "recommended": "Recommandé"
 }
