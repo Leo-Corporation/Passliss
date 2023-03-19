@@ -110,7 +110,7 @@ export function PageContent({ children, page }: PageProps) {
             </header>
             <section className="grid grid-cols-4 xl:grid-cols-5">
                 <nav className='hidden md:block m-2'>
-                    <h3 className="font-bold m-2 text-xs">{t("pinned")}</h3>
+                    <h3 className="font-bold m-2 mt-0 text-xs">{t("pinned")}</h3>
                     <Link className={buttonVariants({
                         size: "sm",
                         variant: page == "home" ? "navselect" : "nav",
