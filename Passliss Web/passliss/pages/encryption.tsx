@@ -3,12 +3,14 @@ import Head from "next/head"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import useTranslation from 'next-translate/useTranslation'
-import { Translate20Regular } from "@fluentui/react-icons"
+import { Key20Regular, Translate20Regular } from "@fluentui/react-icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { GeneratePasswordByStrength } from "@/lib/password-gen"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 var CryptoJS = require("crypto-js");
 
 
@@ -62,6 +64,11 @@ export default function EncryptionPage() {
         return str;
     }
 
+    function GenKey() {
+        let keyTxt = document.getElementById("EncryptKeyInput") as HTMLInputElement;
+        keyTxt.value = GeneratePasswordByStrength(2);
+    }
+
     return (
         <Layout>
             <Head>
@@ -99,6 +106,19 @@ export default function EncryptionPage() {
                                 <label htmlFor="EncryptKeyInput">{t("key")}</label>
                                 <Input id="EncryptKeyInput" />
                                 <Button id="EncryptBtn" onClick={Encrypt}>{t("encrypt")}</Button>
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button variant="outline" id="GenKeyBtn" onClick={GenKey}>
+                                                <Key20Regular />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>{t("generate-key")}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
+
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="ToEncrypt">{t("text-to-encrypt")}</label>
