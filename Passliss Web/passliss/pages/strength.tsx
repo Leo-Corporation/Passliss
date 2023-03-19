@@ -133,8 +133,8 @@ export default function StrengthPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2">
                     <div className="flex flex-col items-center m-5">
                         <Input placeholder={t("password")} onChange={GetStrength} id="PasswordTxt" />
-                        <p className="m-2 icon-f text-6xl" id="StrengthIconTxt"></p>
-                        <p className="font-bold text-center" id="PasswordStrengthTxt"></p>
+                        <p className="m-2 icon-f text-6xl" id="StrengthIconTxt">{"\uF4AB"}</p>
+                        <p className="font-bold text-center" id="PasswordStrengthTxt">{t("enterpwrstrength")}</p>
                     </div>
                     <div className="sm:col-start-2 bg-slate-200 dark:bg-slate-800 p-5 rounded-lg m-5">
                         <p className="text-xl font-bold text-center" id="PasswordContainer"></p>
