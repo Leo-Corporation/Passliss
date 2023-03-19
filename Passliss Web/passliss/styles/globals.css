@@ -30,3 +30,15 @@
 .icon-f {
     font-family: "FluentSystemIcons-Filled";
 }
+
+body {
+    background: url(../public/white.png);
+    background-size: cover;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: url(../public/dark.png);
+        background-size: cover;
+    }
+}
