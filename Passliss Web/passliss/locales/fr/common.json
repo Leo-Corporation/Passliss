@@ -29,5 +29,7 @@
     "amount": "Nombre",
     "multipasswords": "Plusieurs mots de passe",
     "multipasswords-desc": "Générer plusieurs mots de passe.",
-    "results": "Résultats"
+    "results": "Résultats",
+    "enterpwrstrength": "Entrez un mot de passe pour connaître sa force",
+    "password": "Mot de passe"
 }

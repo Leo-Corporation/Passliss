@@ -29,5 +29,7 @@
     "amount": "Amount",
     "multipasswords": "Multiple passwords",
     "multipasswords-desc": "Generate multiple passwords.",
-    "results": "Results"
+    "results": "Results",
+    "enterpwrstrength": "Enter a password to see its strength",
+    "password": "Password"
 }
