@@ -12,3 +12,21 @@
     src: url(../public/fonts/Hauora-ExtraBold.ttf);
     font-weight: bold;
 }
+
+@font-face {
+    font-family: "FluentSystemIcons-Regular";
+    src: url(../public/fonts/FluentSystemIcons-Regular.ttf);
+}
+
+@font-face {
+    font-family: "FluentSystemIcons-Filled";
+    src: url(../public/fonts/FluentSystemIcons-Filled.ttf);
+}
+
+.icon {
+    font-family: "FluentSystemIcons-Regular";
+}
+
+.icon-f {
+    font-family: "FluentSystemIcons-Filled";
+}
