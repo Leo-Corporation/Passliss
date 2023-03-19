@@ -91,7 +91,7 @@ export default function EncryptionPage() {
                         <TabsTrigger value="encrypt">{t("encrypt")}</TabsTrigger>
                         <TabsTrigger value="decrypt">{t("decrypt")}</TabsTrigger>
                         <Select defaultValue="aes" onValueChange={SelectChanged}>
-                            <SelectTrigger className="h-auto">
+                            <SelectTrigger className="h-auto mx-1 py-1 px-2">
                                 <SelectValue placeholder={t("algorithm")} />
                             </SelectTrigger>
                             <SelectContent>
@@ -104,12 +104,12 @@ export default function EncryptionPage() {
                         <div className="w-full space-y-2">
                             <div className="flex items-center space-x-3">
                                 <label htmlFor="EncryptKeyInput">{t("key")}</label>
-                                <Input id="EncryptKeyInput" />
-                                <Button id="EncryptBtn" onClick={Encrypt}>{t("encrypt")}</Button>
+                                <Input className="h-auto px-2 py-1" id="EncryptKeyInput" />
+                                <Button className="h-auto px-2 py-1" id="EncryptBtn" onClick={Encrypt}>{t("encrypt")}</Button>
                                 <TooltipProvider>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <Button variant="outline" id="GenKeyBtn" onClick={GenKey}>
+                                            <Button variant="outline" className="h-auto px-2 py-1" id="GenKeyBtn" onClick={GenKey}>
                                                 <Key20Regular />
                                             </Button>
                                         </TooltipTrigger>
@@ -126,7 +126,7 @@ export default function EncryptionPage() {
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="Encrypted">{t("encrypted-text")}</label>
-                                <Textarea id="Encrypted" />
+                                <Textarea readOnly={true} id="Encrypted" />
                             </div>
                         </div>
                     </TabsContent>
@@ -134,8 +134,8 @@ export default function EncryptionPage() {
                         <div className="w-full space-y-2">
                             <div className="flex items-center space-x-3">
                                 <label htmlFor="DecryptKeyInput">{t("key")}</label>
-                                <Input id="DecryptKeyInput" />
-                                <Button id="DecryptBtn" onClick={Decrypt}>{t("decrypt")}</Button>
+                                <Input className="h-auto px-2 py-1" id="DecryptKeyInput" />
+                                <Button className="h-auto px-2 py-1" id="DecryptBtn" onClick={Decrypt}>{t("decrypt")}</Button>
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="ToDecrypt">{t("text-to-decrypt")}</label>
@@ -143,7 +143,7 @@ export default function EncryptionPage() {
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="Decrypted">{t("decrypted-text")}</label>
-                                <Textarea id="Decrypted" />
+                                <Textarea readOnly={true} id="Decrypted" />
                             </div>
                         </div>
                     </TabsContent>
