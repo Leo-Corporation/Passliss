@@ -31,5 +31,14 @@
     "multipasswords-desc": "Generate multiple passwords.",
     "results": "Results",
     "enterpwrstrength": "Enter a password to see its strength",
-    "password": "Password"
+    "password": "Password",
+    "encrypt": "Encrypt",
+    "decrypt": "Decrypt",
+    "key": "Key",
+    "text-to-encrypt": "Text to encrypt",
+    "text-to-decrypt": "Text to decrypt",
+    "encrypted-text": "Encrypted text",
+    "decrypted-text": "Decrypted text",
+    "algorithm": "Algorithm",
+    "generate-key": "Generate a random key"
 }

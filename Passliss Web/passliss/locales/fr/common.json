@@ -31,5 +31,14 @@
     "multipasswords-desc": "Générer plusieurs mots de passe.",
     "results": "Résultats",
     "enterpwrstrength": "Entrez un mot de passe pour connaître sa force",
-    "password": "Mot de passe"
+    "password": "Mot de passe",
+    "encrypt": "Encrypter",
+    "decrypt": "Decrypter",
+    "key": "Clé",
+    "text-to-encrypt": "Texte à encrypter",
+    "text-to-decrypt": "Texte à décrypter",
+    "encrypted-text": "Texte encrypté",
+    "decrypted-text": "Texte décrypté",
+    "algorithm": "Algorithme",
+    "generate-key": "Générer une clé aléatoire"
 }
