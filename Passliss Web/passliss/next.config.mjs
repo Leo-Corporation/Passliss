@@ -1,4 +1,12 @@
 import nextTranslate from "next-translate-plugin"
+import withPWA from "next-pwa";
+
+const pwa = withPWA({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,4 +21,4 @@ const nextConfig = {
   },
 }
 
-export default nextTranslate(nextConfig)
+export default pwa(nextTranslate(nextConfig))

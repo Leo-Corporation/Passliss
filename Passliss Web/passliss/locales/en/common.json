@@ -43,6 +43,9 @@
     "generate-key": "Generate a random key",
     "generate-desc": "Create strong and random passwords with a single click.",
     "strength-desc": "Check how secure your existing passwords are.",
-    "encryption-desc": "Encrypt and decrypt your secrets using AES or Triple-DES encryption algorithms.",
-    "recommended": "Recommended"
+    "encryption-desc": "Encrypt and decrypt your secrets using encryption algorithms.",
+    "recommended": "Recommended",
+    "desc": "Power up your security.",
+    "install": "Install",
+    "launch": "Launch"
 }
