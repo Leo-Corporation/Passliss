@@ -140,15 +140,15 @@ export default function StrengthPage() {
                         <p className="text-xl font-bold text-center" id="PasswordContainer"></p>
                         <div className="grid grid-cols-2">
                             <p className="text-[#FF2929] font-bold">{t("uppercases")}</p>
-                            <p className="text-[#FF2929] font-bold" id="UppercaseTxt"></p>
+                            <p className="text-[#FF2929] font-bold" id="UppercaseTxt">0</p>
                             <p className="text-[#3B8AFF] font-bold">{t("lowercases")}</p>
-                            <p className="text-[#3B8AFF] font-bold" id="LowercaseTxt"></p>
+                            <p className="text-[#3B8AFF] font-bold" id="LowercaseTxt">0</p>
                             <p className="text-[#007F5F] font-bold">{t("nbrs")}</p>
-                            <p className="text-[#007F5F] font-bold" id="NumbersTxt"></p>
+                            <p className="text-[#007F5F] font-bold" id="NumbersTxt">0</p>
                             <p className="text-[#9F2CF9] font-bold">{t("specialchars")}</p>
-                            <p className="text-[#9F2CF9] font-bold" id="SpecialTxt"></p>
+                            <p className="text-[#9F2CF9] font-bold" id="SpecialTxt">0</p>
                             <p className="font-bold">{t("length")}</p>
-                            <p className="font-bold" id="LengthTxt"></p>
+                            <p className="font-bold" id="LengthTxt">0</p>
                         </div>
                     </div>
                 </div>
