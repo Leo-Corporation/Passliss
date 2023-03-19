@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
-import useTranslation from 'next-translate/useTranslation'
+import useTranslation from "next-translate/useTranslation"
 
 import { siteConfig } from "@/config/site"
 import { Layout } from "@/components/layout"
@@ -22,7 +22,6 @@ export default function IndexPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="min-h-screen w-full flex flex-col justify-center items-center">
-
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
           {t("title")}
         </h1>
@@ -31,11 +30,15 @@ export default function IndexPage() {
         <div className="flex space-x-2 items-center">
           <InstallButton />
 
-          <Link href="/home"
-            className={buttonVariants({
-              variant: "outline",
-              size: "lg"
-            }) + " font-bold text-lg m-2"}>
+          <Link
+            href="/home"
+            className={
+              buttonVariants({
+                variant: "outline",
+                size: "lg",
+              }) + " font-bold text-lg m-2"
+            }
+          >
             {t("launch")}
           </Link>
         </div>

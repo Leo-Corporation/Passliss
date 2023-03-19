@@ -22,17 +22,15 @@ const buttonVariants = cva(
           "justify-start bg-[#CCE7FF] text-[#0088FF] hover:text-white hover:bg-[#0088FF] dark:bg-[#003666] dark:text-slate-100",
         ghost:
           "justify-center bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
-        nav:
-          "justify-start bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
-        nav2:
-          "justify-start bg-transparent hover:bg-[#CCE7FF] dark:hover:bg-[#003666] data-[state=open]:bg-transparent",
+        nav: "justify-start bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
+        nav2: "justify-start bg-transparent hover:bg-[#CCE7FF] dark:hover:bg-[#003666] data-[state=open]:bg-transparent",
         link: "justify-center bg-transparent dark:bg-transparent underline-offset-4 hover:underline text-slate-900 dark:text-slate-100 hover:bg-transparent dark:hover:bg-transparent",
       },
       size: {
         default: "h-10 py-2 px-4",
         sm: "h-9 px-2 rounded-md",
         lg: "h-11 px-8 rounded-md",
-        nav: "px-2 py-1"
+        nav: "px-2 py-1",
       },
     },
     defaultVariants: {
@@ -44,7 +42,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> { }
+    VariantProps<typeof buttonVariants> {}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
