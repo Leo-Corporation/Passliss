@@ -134,7 +134,7 @@ export default function IndexPage() {
                         <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
                         <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
                     </TabsList>
-                    <TabsContent className="border-none flex justify-center" value="simple">
+                    <TabsContent className="border-none data-[state=active]:flex justify-center" value="simple">
                         <div className="flex flex-col items-center w-full">
                             <p className="text-xl font-bold m-5" id="PasswordTxt">{GeneratePasswordByStrength(2)}</p>
                             <div className="flex space-x-2">
