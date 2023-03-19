@@ -175,14 +175,14 @@ export default function IndexPage() {
               </p>
               <div className="flex space-x-2">
                 <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
-                  New
+                  {t("new")}
                 </Button>
                 <Button
                   className="h-auto py-1 px-2"
                   variant="outline"
                   onClick={CopyBtn}
                 >
-                  Copy
+                  {t("copy")}
                 </Button>
               </div>
               <Slider
@@ -214,14 +214,14 @@ export default function IndexPage() {
                   className="h-auto py-1 px-2"
                   onClick={NewBtnAdvancedClick}
                 >
-                  New
+                  {t("new")}
                 </Button>
                 <Button
                   className="h-auto py-1 px-2"
                   variant="outline"
                   onClick={CopyAdvancedBtn}
                 >
-                  Copy
+                  {t("copy")}
                 </Button>
                 <Dialog>
                   <DialogTrigger asChild>
