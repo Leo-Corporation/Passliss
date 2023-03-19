@@ -96,17 +96,17 @@ export default function EncryptionPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="crypt">
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <Translate20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("encryption")}</p>
+          <p className="ml-2 font-bold">{t("encryption")}</p>
         </div>
         <Tabs defaultValue="encrypt">
           <TabsList>
             <TabsTrigger value="encrypt">{t("encrypt")}</TabsTrigger>
             <TabsTrigger value="decrypt">{t("decrypt")}</TabsTrigger>
             <Select defaultValue="aes" onValueChange={SelectChanged}>
-              <SelectTrigger className="h-auto mx-1 py-1 px-2">
+              <SelectTrigger className="mx-1 h-auto py-1 px-2">
                 <SelectValue placeholder={t("algorithm")} />
               </SelectTrigger>
               <SelectContent>
@@ -118,7 +118,7 @@ export default function EncryptionPage() {
             </Select>
           </TabsList>
           <TabsContent
-            className="border-none data-[state=active]:flex justify-center"
+            className="justify-center border-none data-[state=active]:flex"
             value="encrypt"
           >
             <div className="w-full space-y-2">

@@ -52,21 +52,21 @@ export default function EncryptionPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="home">
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <Home20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("home")}</p>
+          <p className="ml-2 font-bold">{t("home")}</p>
         </div>
-        <div className="flex flex-col items-center w-full">
-          <p className="text-xl font-bold m-5" id="PasswordTxt">
+        <div className="flex w-full flex-col items-center">
+          <p className="m-5 text-xl font-bold" id="PasswordTxt">
             {GeneratePasswordByStrength(2)}
           </p>
           <div className="flex space-x-2">
-            <Button className="py-1 px-2 h-auto" onClick={NewBtnClick}>
+            <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
               New
             </Button>
             <Button
-              className="py-1 px-2 h-auto"
+              className="h-auto py-1 px-2"
               variant="outline"
               onClick={CopyBtn}
             >
@@ -74,10 +74,10 @@ export default function EncryptionPage() {
             </Button>
           </div>
         </div>
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <Lightbulb20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("recommended")}</p>
+          <p className="ml-2 font-bold">{t("recommended")}</p>
         </div>
         <div className="flex flex-wrap items-center justify-center">
           {cards.map((el) => {

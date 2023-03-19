@@ -19,10 +19,10 @@ export default function EncryptionPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="activity">
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <History20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("activity")}</p>
+          <p className="ml-2 font-bold">{t("activity")}</p>
         </div>
       </PageContent>
     </Layout>

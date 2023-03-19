@@ -21,13 +21,13 @@ export default function IndexPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="min-h-screen w-full flex flex-col justify-center items-center">
+      <section className="flex min-h-screen w-full flex-col items-center justify-center">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
           {t("title")}
         </h1>
         <p className="m-2">{t("desc")}</p>
 
-        <div className="flex space-x-2 items-center">
+        <div className="flex items-center space-x-2">
           <InstallButton />
 
           <Link
@@ -36,7 +36,7 @@ export default function IndexPage() {
               buttonVariants({
                 variant: "outline",
                 size: "lg",
-              }) + " font-bold text-lg m-2"
+              }) + " m-2 text-lg font-bold"
             }
           >
             {t("launch")}

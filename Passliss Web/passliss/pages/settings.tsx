@@ -19,10 +19,10 @@ export default function EncryptionPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="settings">
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <Settings20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("settings")}</p>
+          <p className="ml-2 font-bold">{t("settings")}</p>
         </div>
       </PageContent>
     </Layout>

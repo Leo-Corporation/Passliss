@@ -175,45 +175,45 @@ export default function StrengthPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="strength">
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <Shield20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("strength")}</p>
+          <p className="ml-2 font-bold">{t("strength")}</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2">
-          <div className="flex flex-col items-center m-5">
+          <div className="m-5 flex flex-col items-center">
             <Input
               placeholder={t("password")}
               onChange={GetStrength}
               id="PasswordTxt"
             />
-            <p className="m-2 icon-f text-6xl" id="StrengthIconTxt">
+            <p className="icon-f m-2 text-6xl" id="StrengthIconTxt">
               {"\uF4AB"}
             </p>
-            <p className="font-bold text-center" id="PasswordStrengthTxt">
+            <p className="text-center font-bold" id="PasswordStrengthTxt">
               {t("enterpwrstrength")}
             </p>
           </div>
-          <div className="sm:col-start-2 bg-white shadow-md dark:shadow-none dark:bg-slate-800 p-5 rounded-lg m-5">
+          <div className="m-5 rounded-lg bg-white p-5 shadow-md dark:bg-slate-800 dark:shadow-none sm:col-start-2">
             <p
-              className="text-xl font-bold text-center"
+              className="text-center text-xl font-bold"
               id="PasswordContainer"
             ></p>
             <div className="grid grid-cols-2">
-              <p className="text-[#FF2929] font-bold">{t("uppercases")}</p>
-              <p className="text-[#FF2929] font-bold" id="UppercaseTxt">
+              <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
+              <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
                 0
               </p>
-              <p className="text-[#3B8AFF] font-bold">{t("lowercases")}</p>
-              <p className="text-[#3B8AFF] font-bold" id="LowercaseTxt">
+              <p className="font-bold text-[#3B8AFF]">{t("lowercases")}</p>
+              <p className="font-bold text-[#3B8AFF]" id="LowercaseTxt">
                 0
               </p>
-              <p className="text-[#007F5F] font-bold">{t("nbrs")}</p>
-              <p className="text-[#007F5F] font-bold" id="NumbersTxt">
+              <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
+              <p className="font-bold text-[#007F5F]" id="NumbersTxt">
                 0
               </p>
-              <p className="text-[#9F2CF9] font-bold">{t("specialchars")}</p>
-              <p className="text-[#9F2CF9] font-bold" id="SpecialTxt">
+              <p className="font-bold text-[#9F2CF9]">{t("specialchars")}</p>
+              <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
                 0
               </p>
               <p className="font-bold">{t("length")}</p>

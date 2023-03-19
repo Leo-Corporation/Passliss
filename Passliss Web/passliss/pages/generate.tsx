@@ -155,10 +155,10 @@ export default function IndexPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="generate">
-        <div className="flex space-x-2 items-center mb-2">
+        <div className="mb-2 flex items-center space-x-2">
           <LockClosed20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="font-bold ml-2">{t("generate")}</p>
+          <p className="ml-2 font-bold">{t("generate")}</p>
         </div>
         <Tabs defaultValue="simple">
           <TabsList>
@@ -166,19 +166,19 @@ export default function IndexPage() {
             <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
           </TabsList>
           <TabsContent
-            className="border-none data-[state=active]:flex justify-center"
+            className="justify-center border-none data-[state=active]:flex"
             value="simple"
           >
-            <div className="flex flex-col items-center w-full">
-              <p className="text-xl font-bold m-5" id="PasswordTxt">
+            <div className="flex w-full flex-col items-center">
+              <p className="m-5 text-xl font-bold" id="PasswordTxt">
                 {GeneratePasswordByStrength(2)}
               </p>
               <div className="flex space-x-2">
-                <Button className="py-1 px-2 h-auto" onClick={NewBtnClick}>
+                <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
                   New
                 </Button>
                 <Button
-                  className="py-1 px-2 h-auto"
+                  className="h-auto py-1 px-2"
                   variant="outline"
                   onClick={CopyBtn}
                 >
@@ -194,7 +194,7 @@ export default function IndexPage() {
                 className="m-5 sm:w-[50%]"
               />
               <p
-                className="m-2 icon-f text-6xl text-[#68EA00]"
+                className="icon-f m-2 text-6xl text-[#68EA00]"
                 id="StrengthIconTxt"
               >
                 {"\uF299"}
@@ -203,21 +203,21 @@ export default function IndexPage() {
             </div>
           </TabsContent>
           <TabsContent className="border-none" value="advanced">
-            <div className="flex flex-col items-center w-full">
+            <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
-                <p className="text-xl font-bold m-5" id="APasswordTxt">
+                <p className="m-5 text-xl font-bold" id="APasswordTxt">
                   {GeneratePasswordByStrength(2)}
                 </p>
               </div>
               <div className="flex space-x-2">
                 <Button
-                  className="py-1 px-2 h-auto"
+                  className="h-auto py-1 px-2"
                   onClick={NewBtnAdvancedClick}
                 >
                   New
                 </Button>
                 <Button
-                  className="py-1 px-2 h-auto"
+                  className="h-auto py-1 px-2"
                   variant="outline"
                   onClick={CopyAdvancedBtn}
                 >
@@ -225,7 +225,7 @@ export default function IndexPage() {
                 </Button>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="py-1 px-2 h-auto" variant="outline">
+                    <Button className="h-auto py-1 px-2" variant="outline">
                       <Password20Regular className="m-0 p-0" />
                     </Button>
                   </DialogTrigger>
@@ -237,7 +237,7 @@ export default function IndexPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
-                      <div className="flex space-x-2 items-center">
+                      <div className="flex items-center space-x-2">
                         <Label htmlFor="AmountTxt">{t("amount")}</Label>
                         <Input
                           defaultValue={12}
@@ -246,13 +246,13 @@ export default function IndexPage() {
                           id="AmountTxt"
                         />
                         <Button
-                          className="py-1 px-2 h-auto"
+                          className="h-auto py-1 px-2"
                           onClick={MultiplePasswordClick}
                         >
                           {t("generate")}
                         </Button>
                       </div>
-                      <div className="flex-col flex space-x-2 ">
+                      <div className="flex flex-col space-x-2 ">
                         <Label htmlFor="TextArea">{t("results")}</Label>
                         <Textarea className="mt-2 px-2 py-1" id="TextArea" />
                       </div>
@@ -260,12 +260,12 @@ export default function IndexPage() {
                   </DialogContent>
                 </Dialog>
               </div>
-              <div className="grid md:grid-cols-2 grid-rows-4 m-5">
+              <div className="m-5 grid grid-rows-4 md:grid-cols-2">
                 <div className="col-end-1 flex items-center space-x-2">
                   <Switch id="LowerChk" defaultChecked={true} />
                   <Label htmlFor="LowerChk">{t("lowercases")}</Label>
                 </div>
-                <div className="col-start-2 flex space-x-2 items-center">
+                <div className="col-start-2 flex items-center space-x-2">
                   <Label htmlFor="LengthTxt">{t("length")}</Label>
                   <Input
                     defaultValue={12}

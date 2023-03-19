@@ -9,7 +9,7 @@ export default function DashboardCard(props: CardProps) {
   return (
     <a
       href={props.link}
-      className="m-3 p-5 rounded-lg bg-white dark:bg-slate-800 shadow-md text-black dark:text-white flex space-x-2 w-[350px] items-center hover:-translate-y-1 hover:shadow-lg transition-all"
+      className="m-3 flex w-[350px] items-center space-x-2 rounded-lg bg-white p-5 text-black shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800 dark:text-white"
     >
       <p className="icon-f text-4xl text-[#0088FF]">{props.icon}</p>
       <div>
