@@ -78,7 +78,7 @@ export function PageContent({ children, page }: PageProps) {
                                 variant: page == "generate" ? "navselect2" : "nav2",
                                 className: "text-[#0088FF] w-full mx-2 my-1",
                             })} href={"/generate"}>
-                                <LockClosed20Regular className="text-[#0088FF]" />
+                                <LockClosed20Regular />
 
                                 <p className="font-bold ml-2">{t("generate")}</p>
                             </Link>
@@ -87,8 +87,7 @@ export function PageContent({ children, page }: PageProps) {
                                 variant: page == "strength" ? "navselect2" : "nav2",
                                 className: "text-[#0088FF] w-full mx-2 my-1",
                             })} href={"/strength"}>
-                                <Shield20Regular
-                                    className="text-[#0088FF]" />
+                                <Shield20Regular />
 
                                 <p className="font-bold ml-2">{t("strength")}</p>
                             </Link>
@@ -97,7 +96,7 @@ export function PageContent({ children, page }: PageProps) {
                                 variant: page == "crypt" ? "navselect2" : "nav2",
                                 className: "text-[#0088FF] w-full mx-2 my-1",
                             })} href={"/encryption"}>
-                                <Translate20Regular className="text-[#0088FF]" />
+                                <Translate20Regular />
 
                                 <p className="font-bold ml-2">{t("encryption")}</p>
                             </Link>
@@ -150,7 +149,7 @@ export function PageContent({ children, page }: PageProps) {
                         variant: page == "generate" ? "navselect2" : "nav2",
                         className: "text-[#0088FF] w-full mx-2 my-1",
                     })} href={"/generate"}>
-                        <LockClosed20Regular className="text-[#0088FF]" />
+                        <LockClosed20Regular />
 
                         <p className="font-bold ml-2">{t("generate")}</p>
                     </Link>
@@ -159,8 +158,7 @@ export function PageContent({ children, page }: PageProps) {
                         variant: page == "strength" ? "navselect2" : "nav2",
                         className: "text-[#0088FF] w-full mx-2 my-1",
                     })} href={"/strength"}>
-                        <Shield20Regular
-                            className="text-[#0088FF]" />
+                        <Shield20Regular />
 
                         <p className="font-bold ml-2">{t("strength")}</p>
                     </Link>
@@ -169,7 +167,7 @@ export function PageContent({ children, page }: PageProps) {
                         variant: page == "crypt" ? "navselect2" : "nav2",
                         className: "text-[#0088FF] w-full mx-2 my-1",
                     })} href={"/encryption"}>
-                        <Translate20Regular className="text-[#0088FF]" />
+                        <Translate20Regular />
 
                         <p className="font-bold ml-2">{t("encryption")}</p>
                     </Link>

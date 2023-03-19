@@ -19,13 +19,13 @@ const buttonVariants = cva(
         navselect:
           "justify-start bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100",
         navselect2:
-          "justify-start bg-[#99CFFF] text-white hover:bg-[#003666] dark:bg-[#003666] dark:text-slate-100",
+          "justify-start bg-[#CCE7FF] text-[#0088FF] hover:text-white hover:bg-[#0088FF] dark:bg-[#003666] dark:text-slate-100",
         ghost:
           "justify-center bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
         nav:
           "justify-start bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
         nav2:
-          "justify-start bg-transparent hover:bg-[#99CFFF] dark:hover:bg-[#003666] data-[state=open]:bg-transparent",
+          "justify-start bg-transparent hover:bg-[#CCE7FF] dark:hover:bg-[#003666] data-[state=open]:bg-transparent",
         link: "justify-center bg-transparent dark:bg-transparent underline-offset-4 hover:underline text-slate-900 dark:text-slate-100 hover:bg-transparent dark:hover:bg-transparent",
       },
       size: {

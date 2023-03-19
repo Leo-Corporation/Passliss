@@ -51,7 +51,7 @@ export default function StrengthPage() {
             default:
                 p.innerHTML = t("enterpwrstrength");
                 icon.innerHTML = "\uF4AB";
-                icon.style.color = "#FFFFFFA0";
+                icon.style.color = "#E2E8F0";
                 break;
         }
 
@@ -136,7 +136,7 @@ export default function StrengthPage() {
                         <p className="m-2 icon-f text-6xl" id="StrengthIconTxt">{"\uF4AB"}</p>
                         <p className="font-bold text-center" id="PasswordStrengthTxt">{t("enterpwrstrength")}</p>
                     </div>
-                    <div className="sm:col-start-2 bg-slate-200 dark:bg-slate-800 p-5 rounded-lg m-5">
+                    <div className="sm:col-start-2 bg-white shadow-md dark:shadow-none dark:bg-slate-800 p-5 rounded-lg m-5">
                         <p className="text-xl font-bold text-center" id="PasswordContainer"></p>
                         <div className="grid grid-cols-2">
                             <p className="text-[#FF2929] font-bold">{t("uppercases")}</p>
