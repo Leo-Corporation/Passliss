@@ -2,11 +2,19 @@ import Head from "next/head"
 import { History20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
+import { Activity } from "@/types/activity"
+import { GetActivity, SortActivities } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
+import Timeline from "@/components/timeline"
 
-export default function EncryptionPage() {
+export default function ActivityPage() {
   const { t } = useTranslation("common") // default namespace (optional)
+  let items: Activity[][] = [[]]
+  function LoadActivities() {
+    items = SortActivities(GetActivity())
+  }
+  LoadActivities()
   return (
     <Layout>
       <Head>
@@ -23,6 +31,11 @@ export default function EncryptionPage() {
           <History20Regular primaryFill="#0088FF" className="text-white" />
 
           <p className="ml-2 font-bold">{t("activity")}</p>
+        </div>
+        <div>
+          {items.map(
+            (el, i) => el.length > 0 && <Timeline date={i} items={el} />
+          )}
         </div>
       </PageContent>
     </Layout>
