@@ -50,3 +50,9 @@ body {
 .h-scroll {
   height: var(--content-h);
 }
+
+@media (min-width: 768px) {
+  .md\:h-scroll {
+    height: var(--content-h);
+  }
+}
