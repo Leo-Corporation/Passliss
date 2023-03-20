@@ -15,19 +15,19 @@ export default function HomePage() {
       title: t("generate"),
       description: t("generate-desc"),
       icon: "\uF5A8",
-      link: "/generate",
+      link: "./generate",
     },
     {
       title: t("strength"),
       description: t("strength-desc"),
       icon: "\uF50D",
-      link: "/strength",
+      link: "./strength",
     },
     {
       title: t("encryption"),
       description: t("encryption-desc"),
       icon: "\uF4C1",
-      link: "/encryption",
+      link: "./encryption",
     },
   ]
   function NewBtnClick() {
