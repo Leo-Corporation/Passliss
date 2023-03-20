@@ -56,5 +56,7 @@
   "medium": "Médiocre",
   "good": "Bon",
   "excellent": "Excellent",
-  "app": "Obtenir l'appli"
+  "app": "Obtenir l'appli",
+  "no-activity": "Rien à afficher pour le moment.",
+  "no-activity-desc": "Utilisez Passliss en générant des mots de passe pour les voir apparaître ici."
 }

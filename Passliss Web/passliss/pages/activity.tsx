@@ -33,8 +33,19 @@ export default function ActivityPage() {
           <p className="ml-2 font-bold">{t("activity")}</p>
         </div>
         <div>
-          {items.map(
-            (el, i) => el.length > 0 && <Timeline date={i} items={el} />
+          {items[0].length > 0 ||
+          items[1].length > 0 ||
+          items[2].length > 0 ||
+          items[3].length > 0 ? (
+            items.map(
+              (el, i) => el.length > 0 && <Timeline date={i} items={el} />
+            )
+          ) : (
+            <div className="mt-10 flex w-full flex-col items-center justify-center text-center">
+              <p className="icon text-7xl">{"\uF47F"}</p>
+              <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+              <p>{t("no-activity-desc")}</p>
+            </div>
           )}
         </div>
       </PageContent>

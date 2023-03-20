@@ -56,5 +56,7 @@
   "medium": "Medium",
   "good": "Good",
   "excellent": "Excellent",
-  "app": "Get the App"
+  "app": "Get the App",
+  "no-activity": "Nothing to show yet.",
+  "no-activity-desc": "Use Passliss by generating passwords to see them appear here."
 }
