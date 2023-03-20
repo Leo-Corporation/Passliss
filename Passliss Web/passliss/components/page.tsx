@@ -42,7 +42,10 @@ export function PageContent({ children, page }: PageProps) {
 
   function SetHeight() {
     if (typeof document !== "undefined") {
-      let headerHeight = document.querySelector("header").clientHeight
+      let header = document.querySelector("header")
+      if (!header) return
+
+      let headerHeight = header.clientHeight
       let height = document.documentElement.clientHeight
       document.documentElement.style.setProperty(
         "--content-h",
