@@ -2,7 +2,7 @@ import { Activities, Activity } from "@/types/activity"
 
 export function GetActivity() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("activity"))
+    return JSON.parse(localStorage.getItem("activity")) || { items: [] }
   }
   return { items: [] }
 }
