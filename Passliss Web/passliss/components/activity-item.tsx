@@ -54,7 +54,7 @@ function GetStrength(password) {
   switch (strength) {
     case 0:
       return (
-        <p className="text-red border-red m-1 w-auto rounded-full border px-2 text-center font-semibold">
+        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
           {t("low")}
         </p>
       )
@@ -79,7 +79,7 @@ function GetStrength(password) {
 
     default:
       return (
-        <p className="text-red border-red m-1 w-auto rounded-full border px-2 text-center font-semibold">
+        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
           {t("low")}
         </p>
       )
