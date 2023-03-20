@@ -50,17 +50,21 @@ export function PageContent({ children, page }: PageProps) {
   }
 
   function SetHeight() {
-    let headerHeight = document.querySelector("header").clientHeight
-    let height = document.documentElement.clientHeight
-    document.documentElement.style.setProperty(
-      "--content-h",
-      `${height - headerHeight}px`
-    )
+    if (typeof document !== "undefined") {
+      let headerHeight = document.querySelector("header").clientHeight
+      let height = document.documentElement.clientHeight
+      document.documentElement.style.setProperty(
+        "--content-h",
+        `${height - headerHeight}px`
+      )
+    }
   }
   SetHeight()
 
-  onresize = (event) => {
-    SetHeight()
+  if (typeof document !== "undefined") {
+    onresize = () => {
+      SetHeight()
+    }
   }
 
   return (
