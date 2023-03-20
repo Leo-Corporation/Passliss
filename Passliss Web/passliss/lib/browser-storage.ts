@@ -1,7 +1,10 @@
 import { Activities, Activity } from "@/types/activity"
 
 export function GetActivity() {
-  return JSON.parse(localStorage.getItem("activity"))
+  if (typeof window !== "undefined") {
+    return JSON.parse(localStorage.getItem("activity"))
+  }
+  return { items: [] }
 }
 
 export function AddActivity(activity: Activity) {
