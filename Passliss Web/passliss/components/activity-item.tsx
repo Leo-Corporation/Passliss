@@ -54,32 +54,32 @@ function GetStrength(password) {
   switch (strength) {
     case 0:
       return (
-        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
+        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center text-sm font-semibold text-[red]">
           {t("low")}
         </p>
       )
     case 1:
       return (
-        <p className="m-1 w-auto rounded-full border border-[#FF7B00] px-2 font-semibold text-[#FF7B00]">
+        <p className="m-1 w-auto rounded-full border border-[#FF7B00] px-2 text-sm font-semibold text-[#FF7B00]">
           {t("medium")}
         </p>
       )
     case 2:
       return (
-        <p className="m-1 w-auto rounded-full border border-[#68EA00] px-2 text-center font-semibold text-[#68EA00]">
+        <p className="m-1 w-auto rounded-full border border-[#68EA00] px-2 text-center text-sm font-semibold text-[#68EA00]">
           {t("good")}
         </p>
       )
     case 3:
       return (
-        <p className="m-1 w-auto rounded-full border border-[#00BF07] px-2 text-center font-semibold text-[#00BF07]">
+        <p className="m-1 w-auto rounded-full border border-[#00BF07] px-2 text-center text-sm font-semibold text-[#00BF07]">
           {t("excellent")}
         </p>
       )
 
     default:
       return (
-        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
+        <p className="text-md m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
           {t("low")}
         </p>
       )
