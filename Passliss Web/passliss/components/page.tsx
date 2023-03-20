@@ -3,26 +3,17 @@ import {
   History20Filled,
   Home20Filled,
   LockClosed20Regular,
-  LockClosed24Regular,
   Navigation24Regular,
   Settings20Filled,
   Shield20Regular,
-  Shield24Regular,
   Translate20Regular,
-  Translate24Regular,
 } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
+import InstallSection from "./install-app"
 import { Button, buttonVariants } from "./ui/button"
 import { ScrollArea } from "./ui/scroll-area"
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 
 export interface PageProps {
   children: React.ReactNode
@@ -160,6 +151,7 @@ export function PageContent({ children, page }: PageProps) {
 
                 <p className="ml-2 font-bold">{t("encryption")}</p>
               </Link>
+              <InstallSection />
             </nav>
           </SheetContent>
         </Sheet>
@@ -248,6 +240,7 @@ export function PageContent({ children, page }: PageProps) {
               <Translate20Regular />
               <p className="ml-2 font-bold">{t("encryption")}</p>
             </Link>
+            <InstallSection />
           </nav>
         </ScrollArea>
         <ScrollArea className="h-scroll col-span-5 p-2 md:col-start-2">
