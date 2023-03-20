@@ -165,7 +165,7 @@ export function PageContent({ children, page }: PageProps) {
       </header>
       <section className="grid grid-cols-4 xl:grid-cols-5">
         <ScrollArea className="md:h-scroll">
-          <nav className="m-2 hidden md:block">
+          <nav className="m-2 mr-10 hidden md:block">
             <h3 className="m-2 mt-0 text-xs font-bold">{t("pinned")}</h3>
             <Link
               className={buttonVariants({
