@@ -63,14 +63,14 @@ export default function HomePage() {
           </p>
           <div className="flex space-x-2">
             <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
-              New
+              {t("new")}
             </Button>
             <Button
               className="h-auto py-1 px-2"
               variant="outline"
               onClick={CopyBtn}
             >
-              Copy
+              {t("copy")}
             </Button>
           </div>
         </div>
