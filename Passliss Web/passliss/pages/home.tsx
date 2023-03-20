@@ -2,6 +2,7 @@ import Head from "next/head"
 import { Home20Regular, Lightbulb20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
+import { AddActivity } from "@/lib/browser-storage"
 import { GeneratePasswordByStrength } from "@/lib/password-gen"
 import DashboardCard, { CardProps } from "@/components/card"
 import { Layout } from "@/components/layout"
@@ -32,7 +33,10 @@ export default function HomePage() {
   ]
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
-    txt.innerHTML = GeneratePasswordByStrength(2)
+
+    let pwr = GeneratePasswordByStrength(2)
+    txt.innerHTML = pwr
+    AddActivity({ date: new Date(), content: pwr })
   }
 
   function CopyBtn() {

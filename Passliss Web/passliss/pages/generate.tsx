@@ -115,7 +115,10 @@ export default function IndexPage() {
     let icon = document.getElementById("StrengthIconTxt")
     let txt = document.getElementById("PasswordTxt")
 
-    txt.innerHTML = GeneratePasswordByStrength(newValue[0])
+    let pwr = GeneratePasswordByStrength(newValue[0])
+    txt.innerHTML = pwr
+    AddActivity({ date: new Date(), content: pwr })
+
     sliderVal = newValue[0]
 
     switch (newValue[0]) {
