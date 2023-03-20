@@ -14,6 +14,7 @@ import {
 import useTranslation from "next-translate/useTranslation"
 
 import { Button, buttonVariants } from "./ui/button"
+import { ScrollArea } from "./ui/scroll-area"
 import {
   Sheet,
   SheetContent,
@@ -47,8 +48,23 @@ export function PageContent({ children, page }: PageProps) {
       return t("evening") // Return the correct value
     }
   }
+
+  function SetHeight() {
+    let headerHeight = document.querySelector("header").clientHeight
+    let height = document.documentElement.clientHeight
+    document.documentElement.style.setProperty(
+      "--content-h",
+      `${height - headerHeight}px`
+    )
+  }
+  SetHeight()
+
+  onresize = (event) => {
+    SetHeight()
+  }
+
   return (
-    <>
+    <div className="h-screen overflow-hidden">
       <header className="flex space-x-2 p-2 pt-5">
         <Sheet>
           <SheetTrigger>
@@ -233,8 +249,10 @@ export function PageContent({ children, page }: PageProps) {
             <p className="ml-2 font-bold">{t("encryption")}</p>
           </Link>
         </nav>
-        <div className="col-span-5 p-2 md:col-start-2">{children}</div>
+        <ScrollArea className="h-scroll col-span-5 p-2 md:col-start-2">
+          {children}
+        </ScrollArea>
       </section>
-    </>
+    </div>
   )
 }

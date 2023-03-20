@@ -2,43 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Hauora";
-    src: url(../public/fonts/Hauora-Regular.ttf);
+:root {
+  --content-h: 100vh;
 }
 
 @font-face {
-    font-family: "Hauora";
-    src: url(../public/fonts/Hauora-ExtraBold.ttf);
-    font-weight: bold;
+  font-family: "Hauora";
+  src: url(../public/fonts/Hauora-Regular.ttf);
 }
 
 @font-face {
-    font-family: "FluentSystemIcons-Regular";
-    src: url(../public/fonts/FluentSystemIcons-Regular.ttf);
+  font-family: "Hauora";
+  src: url(../public/fonts/Hauora-ExtraBold.ttf);
+  font-weight: bold;
 }
 
 @font-face {
-    font-family: "FluentSystemIcons-Filled";
-    src: url(../public/fonts/FluentSystemIcons-Filled.ttf);
+  font-family: "FluentSystemIcons-Regular";
+  src: url(../public/fonts/FluentSystemIcons-Regular.ttf);
+}
+
+@font-face {
+  font-family: "FluentSystemIcons-Filled";
+  src: url(../public/fonts/FluentSystemIcons-Filled.ttf);
 }
 
 .icon {
-    font-family: "FluentSystemIcons-Regular";
+  font-family: "FluentSystemIcons-Regular";
 }
 
 .icon-f {
-    font-family: "FluentSystemIcons-Filled";
+  font-family: "FluentSystemIcons-Filled";
 }
 
 body {
-    background: url(../public/white.png);
-    background-size: cover;
+  background: url(../public/white.png);
+  background-size: cover;
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background: url(../public/dark.png);
-        background-size: cover;
-    }
+  body {
+    background: url(../public/dark.png);
+    background-size: cover;
+  }
+}
+
+.h-scroll {
+  height: var(--content-h);
 }
