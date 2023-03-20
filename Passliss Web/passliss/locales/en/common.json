@@ -58,5 +58,11 @@
   "excellent": "Excellent",
   "app": "Get the App",
   "no-activity": "Nothing to show yet.",
-  "no-activity-desc": "Use Passliss by generating passwords to see them appear here."
+  "no-activity-desc": "Use Passliss by generating passwords to see them appear here.",
+  "activity-delete": "Delete all",
+  "activity-delete-confirm": "Are you sure you want to delete all activity? This operation cannot be canceled.",
+  "continue": "Continue",
+  "yes": "Yes",
+  "no": "No",
+  "cancel": "Cancel"
 }

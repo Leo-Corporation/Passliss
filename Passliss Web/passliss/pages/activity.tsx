@@ -1,3 +1,4 @@
+import { Router } from "next/dist/client/router"
 import Head from "next/head"
 import { History20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
@@ -7,6 +8,18 @@ import { GetActivity, SortActivities } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import Timeline from "@/components/timeline"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 
 export default function ActivityPage() {
   const { t } = useTranslation("common") // default namespace (optional)
@@ -15,6 +28,12 @@ export default function ActivityPage() {
     items = SortActivities(GetActivity())
   }
   LoadActivities()
+
+  function RemoveActivity() {
+    localStorage.removeItem("activity")
+    Router.prototype.reload()
+  }
+
   return (
     <Layout>
       <Head>
@@ -31,6 +50,35 @@ export default function ActivityPage() {
           <History20Regular primaryFill="#0088FF" className="text-white" />
 
           <p className="ml-2 font-bold">{t("activity")}</p>
+          {(items[0].length > 0 ||
+            items[1].length > 0 ||
+            items[2].length > 0 ||
+            items[3].length > 0) && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  className="h-auto px-2 py-1 font-bold"
+                  variant="destructiveghost"
+                >
+                  {t("activity-delete")}
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{t("activity")}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {t("activity-delete-confirm")}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogAction onClick={RemoveActivity}>
+                    {t("yes")}
+                  </AlertDialogAction>
+                  <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
         </div>
         <div>
           {items[0].length > 0 ||

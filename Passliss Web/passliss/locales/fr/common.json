@@ -58,5 +58,11 @@
   "excellent": "Excellent",
   "app": "Obtenir l'appli",
   "no-activity": "Rien à afficher pour le moment.",
-  "no-activity-desc": "Utilisez Passliss en générant des mots de passe pour les voir apparaître ici."
+  "no-activity-desc": "Utilisez Passliss en générant des mots de passe pour les voir apparaître ici.",
+  "activity-delete": "Effacer tout",
+  "activity-delete-confirm": "Êtes-vous sür de vouloir supprimer toute l'activité ? Cette opération est irreversible.",
+  "continue": "Continuer",
+  "yes": "Oui",
+  "no": "Non",
+  "cancel": "Annuler"
 }
