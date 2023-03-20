@@ -25,12 +25,12 @@ export function SortActivities(activities: Activities): Activity[][] {
     if (new Date(element.date).toDateString() == new Date().toDateString()) {
       sorted[0].push(element)
     } else if (
-      (new Date(element.date).getTime() - new Date().getTime()) / 86400000 <
+      (new Date().getTime() - new Date(element.date).getTime()) / 86400000 <
       7
     ) {
       sorted[1].push(element)
     } else if (
-      (new Date(element.date).getTime() - new Date().getTime()) / 86400000 <
+      (new Date().getTime() - new Date(element.date).getTime()) / 86400000 <
       31
     ) {
       sorted[2].push(element)
