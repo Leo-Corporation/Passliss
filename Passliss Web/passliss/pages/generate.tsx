@@ -7,6 +7,7 @@ import {
 } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
+import { AddActivity } from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
@@ -34,7 +35,9 @@ export default function IndexPage() {
   let sliderVal = 2
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
-    txt.innerHTML = GeneratePasswordByStrength(sliderVal)
+    let pwr = GeneratePasswordByStrength(sliderVal)
+    txt.innerHTML = pwr
+    AddActivity({ date: new Date(), content: pwr })
   }
 
   function CopyBtn() {
@@ -97,8 +100,9 @@ export default function IndexPage() {
       "true"
     let length = (document.getElementById("LengthTxt") as HTMLInputElement)
       .value
-
-    txt.innerHTML = GeneratePassword(lower, upper, nbr, special, +length)
+    let pwr = GeneratePassword(lower, upper, nbr, special, +length)
+    txt.innerHTML = pwr
+    AddActivity({ date: new Date(), content: pwr })
   }
 
   function CopyAdvancedBtn() {
