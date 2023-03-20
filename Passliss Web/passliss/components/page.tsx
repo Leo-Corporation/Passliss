@@ -165,90 +165,87 @@ export function PageContent({ children, page }: PageProps) {
         </div>
       </header>
       <section className="grid grid-cols-4 xl:grid-cols-5">
-        <nav className="m-2 hidden md:block">
-          <h3 className="m-2 mt-0 text-xs font-bold">{t("pinned")}</h3>
-          <Link
-            className={buttonVariants({
-              size: "sm",
-              variant: page == "home" ? "navselect" : "nav",
-              className:
-                "my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
-            })}
-            href={"/home"}
-          >
-            <div className="rounded-md bg-gradient-to-br from-[#0088FF] to-[#2153E0] p-[5px]">
-              <Home20Filled className="text-white" />
-            </div>
-            <p className="ml-2 font-bold">{t("home")}</p>
-          </Link>
-
-          <Link
-            className={buttonVariants({
-              size: "sm",
-              variant: page == "activity" ? "navselect" : "nav",
-              className:
-                " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
-            })}
-            href={"/activity"}
-          >
-            <div className="rounded-md bg-gradient-to-br from-[#6F00FF] to-[#9A21E0] p-[5px]">
-              <History20Filled className="text-white" />
-            </div>
-            <p className="ml-2 font-bold">{t("activity")}</p>
-          </Link>
-
-          <Link
-            className={buttonVariants({
-              size: "sm",
-              variant: page == "settings" ? "navselect" : "nav",
-              className:
-                " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
-            })}
-            href={"/settings"}
-          >
-            <div className="rounded-md bg-gradient-to-br from-[#B1B1B1] to-[#343C51] p-[5px]">
-              <Settings20Filled className="text-white" />
-            </div>
-            <p className="ml-2 font-bold">{t("settings")}</p>
-          </Link>
-          <h3 className="m-2 text-xs font-bold">{t("tools")}</h3>
-          <Link
-            className={buttonVariants({
-              size: "nav",
-              variant: page == "generate" ? "navselect2" : "nav2",
-              className: "mx-2 my-1 w-full text-[#0088FF]",
-            })}
-            href={"/generate"}
-          >
-            <LockClosed20Regular />
-
-            <p className="ml-2 font-bold">{t("generate")}</p>
-          </Link>
-          <Link
-            className={buttonVariants({
-              size: "nav",
-              variant: page == "strength" ? "navselect2" : "nav2",
-              className: "mx-2 my-1 w-full text-[#0088FF]",
-            })}
-            href={"/strength"}
-          >
-            <Shield20Regular />
-
-            <p className="ml-2 font-bold">{t("strength")}</p>
-          </Link>
-          <Link
-            className={buttonVariants({
-              size: "nav",
-              variant: page == "crypt" ? "navselect2" : "nav2",
-              className: "mx-2 my-1 w-full text-[#0088FF]",
-            })}
-            href={"/encryption"}
-          >
-            <Translate20Regular />
-
-            <p className="ml-2 font-bold">{t("encryption")}</p>
-          </Link>
-        </nav>
+        <ScrollArea className="md:h-scroll">
+          <nav className="m-2 hidden md:block">
+            <h3 className="m-2 mt-0 text-xs font-bold">{t("pinned")}</h3>
+            <Link
+              className={buttonVariants({
+                size: "sm",
+                variant: page == "home" ? "navselect" : "nav",
+                className:
+                  "my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+              })}
+              href={"/home"}
+            >
+              <div className="rounded-md bg-gradient-to-br from-[#0088FF] to-[#2153E0] p-[5px]">
+                <Home20Filled className="text-white" />
+              </div>
+              <p className="ml-2 font-bold">{t("home")}</p>
+            </Link>
+            <Link
+              className={buttonVariants({
+                size: "sm",
+                variant: page == "activity" ? "navselect" : "nav",
+                className:
+                  " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+              })}
+              href={"/activity"}
+            >
+              <div className="rounded-md bg-gradient-to-br from-[#6F00FF] to-[#9A21E0] p-[5px]">
+                <History20Filled className="text-white" />
+              </div>
+              <p className="ml-2 font-bold">{t("activity")}</p>
+            </Link>
+            <Link
+              className={buttonVariants({
+                size: "sm",
+                variant: page == "settings" ? "navselect" : "nav",
+                className:
+                  " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+              })}
+              href={"/settings"}
+            >
+              <div className="rounded-md bg-gradient-to-br from-[#B1B1B1] to-[#343C51] p-[5px]">
+                <Settings20Filled className="text-white" />
+              </div>
+              <p className="ml-2 font-bold">{t("settings")}</p>
+            </Link>
+            <h3 className="m-2 text-xs font-bold">{t("tools")}</h3>
+            <Link
+              className={buttonVariants({
+                size: "nav",
+                variant: page == "generate" ? "navselect2" : "nav2",
+                className: "mx-2 my-1 w-full text-[#0088FF]",
+              })}
+              href={"/generate"}
+            >
+              <LockClosed20Regular />
+              <p className="ml-2 font-bold">{t("generate")}</p>
+            </Link>
+            <Link
+              className={buttonVariants({
+                size: "nav",
+                variant: page == "strength" ? "navselect2" : "nav2",
+                className: "mx-2 my-1 w-full text-[#0088FF]",
+              })}
+              href={"/strength"}
+            >
+              <Shield20Regular />
+              <p className="ml-2 font-bold">{t("strength")}</p>
+            </Link>
+            <Link
+              className={buttonVariants({
+                size: "nav",
+                variant: page == "crypt" ? "navselect2" : "nav2",
+                className: "mx-2 my-1 w-full text-[#0088FF]",
+              })}
+              href={"/encryption"}
+            >
+              <Translate20Regular />
+              <p className="ml-2 font-bold">{t("encryption")}</p>
+            </Link>
+          </nav>
+        </ScrollArea>
         <ScrollArea className="h-scroll col-span-5 p-2 md:col-start-2">
           {children}
         </ScrollArea>
