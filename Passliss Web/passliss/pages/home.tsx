@@ -8,7 +8,7 @@ import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import { Button } from "@/components/ui/button"
 
-export default function EncryptionPage() {
+export default function HomePage() {
   const { t } = useTranslation("common") // default namespace (optional)
   const cards: CardProps[] = [
     {

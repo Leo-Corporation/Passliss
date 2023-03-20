@@ -5,7 +5,7 @@ import useTranslation from "next-translate/useTranslation"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 
-export default function EncryptionPage() {
+export default function SettingsPage() {
   const { t } = useTranslation("common") // default namespace (optional)
   return (
     <Layout>
