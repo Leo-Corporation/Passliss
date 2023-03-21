@@ -85,5 +85,6 @@
   "manage-data": "Gérer vos données.",
   "import-settings": "Importer les paramètres",
   "export-settings": "Exporter les paramètres",
-  "reset-settings": "Réinitialiser les paramètres"
+  "reset-settings": "Réinitialiser les paramètres",
+  "reset-setting-msg": "Êtes-vous sûr de vouloir réinitialiser tous les réglages ? Cette opération ne peut pas être annulée."
 }

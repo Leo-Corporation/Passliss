@@ -17,6 +17,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -397,6 +408,52 @@ export default function SettingsPage() {
                     className="hidden"
                     onChange={Import}
                   ></Input>
+
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        className="h-auto px-2 py-1 font-bold"
+                        variant="destructiveghost"
+                      >
+                        {t("reset-settings")}
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          {t("reset-settings")}
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          {t("reset-settings-msg")}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogAction
+                          onClick={() => {
+                            setTheme("system")
+                            localStorage.setItem(
+                              "settings",
+                              JSON.stringify({
+                                // default object
+                                passwordLengthOne: 12,
+                                passwordLengthTwo: 19,
+                                encryptAlgo: "aes",
+                                customChars: {
+                                  lowerCases: "abcdefghijklmnopqrstuvwxyz",
+                                  upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                                  numbers: "01234567889",
+                                  special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+                                },
+                              })
+                            )
+                          }}
+                        >
+                          {t("continue")}
+                        </AlertDialogAction>
+                        <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
               </AccordionContent>
             </AccordionItem>

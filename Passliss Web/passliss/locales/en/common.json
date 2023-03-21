@@ -85,5 +85,6 @@
   "manage-data": "Manage your data.",
   "import-settings": "Import settings",
   "export-settings": "Export settings",
-  "reset-settings": "Reset settings"
+  "reset-settings": "Reset settings",
+  "reset-settings-msg": "Are you sure you want to reset all settings? This operation cannot be canceled."
 }
