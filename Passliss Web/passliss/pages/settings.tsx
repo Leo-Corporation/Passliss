@@ -232,9 +232,9 @@ export default function SettingsPage() {
                 <br />
                 <h5 className="font-bold">{t("custom-chars")}</h5>
                 <p>{t("uppercases")}</p>
-                <Textarea
+                <Input
                   defaultValue={settings.customChars.upperCases}
-                  className="mt-2 px-2 py-1"
+                  className="mt-2 h-auto px-2 py-1"
                   id="UpperTextArea"
                   onChange={() => {
                     settings.customChars.upperCases = (
@@ -248,9 +248,9 @@ export default function SettingsPage() {
                 />
 
                 <p>{t("lowercases")}</p>
-                <Textarea
+                <Input
                   defaultValue={settings.customChars.lowerCases}
-                  className="mt-2 px-2 py-1"
+                  className="mt-2 h-auto px-2 py-1"
                   id="LowerTextArea"
                   onChange={() => {
                     settings.customChars.lowerCases = (
@@ -264,9 +264,9 @@ export default function SettingsPage() {
                 />
 
                 <p>{t("nbrs")}</p>
-                <Textarea
+                <Input
                   defaultValue={settings.customChars.numbers}
-                  className="mt-2 px-2 py-1"
+                  className="mt-2 h-auto px-2 py-1"
                   id="NumbersTextArea"
                   onChange={() => {
                     settings.customChars.numbers = (
@@ -280,9 +280,9 @@ export default function SettingsPage() {
                 />
 
                 <p>{t("specialchars")}</p>
-                <Textarea
+                <Input
                   defaultValue={settings.customChars.special}
-                  className="mt-2 px-2 py-1"
+                  className="mt-2 h-auto px-2 py-1"
                   id="SpecialTextArea"
                   onChange={() => {
                     settings.customChars.special = (
