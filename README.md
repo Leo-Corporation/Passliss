@@ -48,7 +48,7 @@ In conclusion, Passliss for the Web is more than just a password generator. It i
 
 ## Features
 
-**Top Features of ColorPicker Max:**
+**Top Features of Passliss Web:**
 
 1. **Quick generation:** You can generate a password when loading the page or by clicking a button.
 
