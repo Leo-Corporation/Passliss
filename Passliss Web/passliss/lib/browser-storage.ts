@@ -1,4 +1,5 @@
 import { Activities, Activity } from "@/types/activity"
+import { Settings } from "@/types/settings"
 
 export function GetActivity() {
   if (typeof window !== "undefined") {
@@ -42,4 +43,39 @@ export function SortActivities(activities: Activities): Activity[][] {
     }
   })
   return sorted
+}
+
+export function GetSettings(): Settings {
+  if (typeof window !== "undefined") {
+    return (
+      JSON.parse(localStorage.getItem("settings")) || {
+        // default object
+        passwordLengthOne: 12,
+        passwordLengthTwo: 19,
+        encryptAlgo: "aes",
+        customChars: {
+          lowerCases: "abcdefghijklmnopqrstuvwxyz",
+          upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          numbers: "01234567889",
+          special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+        },
+      }
+    )
+  }
+  return {
+    // default object
+    passwordLengthOne: 12,
+    passwordLengthTwo: 19,
+    encryptAlgo: "aes",
+    customChars: {
+      lowerCases: "abcdefghijklmnopqrstuvwxyz",
+      upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      numbers: "01234567889",
+      special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+    },
+  }
+}
+
+export function SetSettings(settings: Settings) {
+  localStorage.setItem("settings", JSON.stringify(settings))
 }
