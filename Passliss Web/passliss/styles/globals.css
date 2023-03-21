@@ -40,13 +40,10 @@ body {
   background-size: cover;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: url(../public/dark.png);
-    background-size: cover;
-  }
+.dark body {
+  background: url(../public/dark.png);
+  background-size: cover;
 }
-
 .h-scroll {
   height: var(--content-h);
 }
