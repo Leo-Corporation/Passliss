@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link"
 import { Settings20Regular } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { Label } from "@radix-ui/react-dropdown-menu"
@@ -16,7 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -51,6 +52,31 @@ export default function SettingsPage() {
     await setLanguage(val)
   }
   LoadSettings()
+
+  function isSettings(object: any): object is Settings {
+    return (
+      typeof object === "object" &&
+      typeof object.passwordLengthOne === "number" &&
+      typeof object.passwordLengthTwo === "number" &&
+      typeof object.encryptAlgo === "string"
+    )
+  }
+
+  function Import(event) {
+    let file = event.target.files[0] // get the selected file
+    let reader = new FileReader() // create a FileReader object
+    reader.onload = function (event) {
+      let text: string = event.target.result as string // get the file content as text
+      let json: Settings = JSON.parse(text) // parse the text as JSON
+      if (!isSettings(json)) {
+        alert("Invalid file")
+        return
+      }
+      localStorage.setItem("settings", JSON.stringify(json)) // store the JSON in localstorage
+    }
+    reader.readAsText(file) // read the file as text
+  }
+
   return (
     <Layout>
       <Head>
@@ -322,6 +348,58 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
+
+            <AccordionItem value="data">
+              <AccordionTrigger>
+                <div>
+                  <h4 className="text-left text-lg">{t("data")}</h4>
+                  <p className="text-left text-sm font-normal">
+                    {t("manage-data")}
+                  </p>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="flex space-x-2">
+                  <Link
+                    className={buttonVariants({
+                      variant: "default",
+                      size: "nav",
+                    })}
+                    href={
+                      "data:text/plain;charset=UTF-8," +
+                      encodeURIComponent(
+                        typeof window !== "undefined"
+                          ? localStorage.getItem("settings")
+                          : "{msg: 'an error occurred'}"
+                      )
+                    }
+                    download={"settings.json"}
+                  >
+                    {t("export-settings")}
+                  </Link>
+                  <Button
+                    variant="outline"
+                    size="nav"
+                    onClick={() =>
+                      (
+                        document.getElementById(
+                          "FileSelector"
+                        ) as HTMLInputElement
+                      ).click()
+                    }
+                  >
+                    {t("import-settings")}
+                  </Button>
+                  <Input
+                    type="file"
+                    id="FileSelector"
+                    accept="application/json"
+                    className="hidden"
+                    onChange={Import}
+                  ></Input>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </section>
       </PageContent>
