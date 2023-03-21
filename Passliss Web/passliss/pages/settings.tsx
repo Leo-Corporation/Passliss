@@ -151,11 +151,16 @@ export default function SettingsPage() {
           <Accordion type="single" collapsible>
             <AccordionItem value="theme">
               <AccordionTrigger>
-                <div>
-                  <h4 className="text-left text-lg">{t("theme")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("change-theme")}
+                <div className="grid grid-cols-[auto,1fr] items-center">
+                  <p className="icon my-2 mr-2 text-3xl font-normal">
+                    {"\uF33C"}
                   </p>
+                  <div>
+                    <h4 className="text-left text-lg">{t("theme")}</h4>
+                    <p className="text-left text-sm font-normal">
+                      {t("change-theme")}
+                    </p>
+                  </div>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
@@ -204,11 +209,16 @@ export default function SettingsPage() {
             </AccordionItem>
 
             <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
-              <div>
-                <h4 className="text-left text-lg">{t("language")}</h4>
-                <p className="text-left text-sm font-normal">
-                  {t("change-language")}
+              <div className="grid grid-cols-[auto,1fr] items-center">
+                <p className="icon my-2 mr-2 text-3xl font-normal">
+                  {"\uF4F4"}
                 </p>
+                <div>
+                  <h4 className="text-left text-lg">{t("language")}</h4>
+                  <p className="text-left text-sm font-normal">
+                    {t("change-language")}
+                  </p>
+                </div>
               </div>
               <Select defaultValue={lang} onValueChange={SelectChanged}>
                 <SelectTrigger className="mx-1 h-auto w-[200px] py-1 px-2 sm:justify-self-end">
@@ -225,13 +235,18 @@ export default function SettingsPage() {
 
             <AccordionItem value="password">
               <AccordionTrigger>
-                <div>
-                  <h4 className="text-left text-lg">
-                    {t("password-settings")}
-                  </h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("password-settings-desc")}
+                <div className="grid grid-cols-[auto,1fr] items-center">
+                  <p className="icon my-2 mr-2 text-3xl font-normal">
+                    {"\uF59E"}
                   </p>
+                  <div>
+                    <h4 className="text-left text-lg">
+                      {t("password-settings")}
+                    </h4>
+                    <p className="text-left text-sm font-normal">
+                      {t("password-settings-desc")}
+                    </p>
+                  </div>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
@@ -335,11 +350,16 @@ export default function SettingsPage() {
             </AccordionItem>
 
             <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
-              <div>
-                <h4 className="text-left text-lg">{t("encryption")}</h4>
-                <p className="text-left text-sm font-normal">
-                  {t("default-encryption-algo")}
+              <div className="grid grid-cols-[auto,1fr] items-center">
+                <p className="icon my-2 mr-2 text-3xl font-normal">
+                  {"\uF4B7"}
                 </p>
+                <div>
+                  <h4 className="text-left text-lg">{t("encryption")}</h4>
+                  <p className="text-left text-sm font-normal">
+                    {t("default-encryption-algo")}
+                  </p>
+                </div>
               </div>
               <Select
                 defaultValue={settings.encryptAlgo}
@@ -362,11 +382,16 @@ export default function SettingsPage() {
 
             <AccordionItem value="data">
               <AccordionTrigger>
-                <div>
-                  <h4 className="text-left text-lg">{t("data")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("manage-data")}
+                <div className="grid grid-cols-[auto,1fr] items-center">
+                  <p className="icon my-2 mr-2 text-3xl font-normal">
+                    {"\uF4AB"}
                   </p>
+                  <div>
+                    <h4 className="text-left text-lg">{t("data")}</h4>
+                    <p className="text-left text-sm font-normal">
+                      {t("manage-data")}
+                    </p>
+                  </div>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
