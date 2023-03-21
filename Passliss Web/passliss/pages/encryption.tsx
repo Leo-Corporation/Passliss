@@ -2,6 +2,8 @@ import Head from "next/head"
 import { Key20Regular, Translate20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
+import { Settings } from "@/types/settings"
+import { GetSettings } from "@/lib/browser-storage"
 import { GeneratePasswordByStrength } from "@/lib/password-gen"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
@@ -27,7 +29,14 @@ var CryptoJS = require("crypto-js")
 
 export default function EncryptionPage() {
   const { t } = useTranslation("common") // default namespace (optional)
-  let algo = "aes"
+
+  let settings: Settings = undefined
+  function LoadSettings() {
+    settings = GetSettings()
+  }
+  LoadSettings()
+
+  let algo = settings.encryptAlgo
 
   function SelectChanged(val) {
     algo = val
@@ -110,7 +119,10 @@ export default function EncryptionPage() {
           <TabsList>
             <TabsTrigger value="encrypt">{t("encrypt")}</TabsTrigger>
             <TabsTrigger value="decrypt">{t("decrypt")}</TabsTrigger>
-            <Select defaultValue="aes" onValueChange={SelectChanged}>
+            <Select
+              defaultValue={settings.encryptAlgo}
+              onValueChange={SelectChanged}
+            >
               <SelectTrigger className="mx-1 h-auto py-1 px-2">
                 <SelectValue placeholder={t("algorithm")} />
               </SelectTrigger>

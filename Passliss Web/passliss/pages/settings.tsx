@@ -175,7 +175,7 @@ export default function SettingsPage() {
               </div>
               <Select defaultValue={lang} onValueChange={SelectChanged}>
                 <SelectTrigger className="mx-1 h-auto w-[200px] justify-self-end py-1 px-2">
-                  <SelectValue placeholder={t("algorithm")} />
+                  <SelectValue placeholder={t("language")} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem defaultChecked={true} value="en">
@@ -296,6 +296,32 @@ export default function SettingsPage() {
                 />
               </AccordionContent>
             </AccordionItem>
+
+            <div className="mx-2 mt-2 grid grid-cols-2 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 ">
+              <div>
+                <h4 className="text-left text-lg">{t("encryption")}</h4>
+                <p className="text-left text-sm font-normal">
+                  {t("default-encryption-algo")}
+                </p>
+              </div>
+              <Select
+                defaultValue={settings.encryptAlgo}
+                onValueChange={(val) => {
+                  settings.encryptAlgo = val
+                  SetSettings(settings)
+                }}
+              >
+                <SelectTrigger className="mx-1 h-auto w-[200px] justify-self-end py-1 px-2">
+                  <SelectValue placeholder={t("algorithm")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem defaultChecked={true} value="aes">
+                    AES
+                  </SelectItem>
+                  <SelectItem value="3des">3DES</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </Accordion>
         </section>
       </PageContent>
