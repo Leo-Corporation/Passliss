@@ -105,48 +105,51 @@ export default function SettingsPage() {
 
           <p className="ml-2 font-bold">{t("settings")}</p>
         </div>
-        <section
-          id="about-section"
-          className="m-2 flex flex-col items-center justify-center rounded-lg bg-white p-2 dark:bg-slate-800"
-        >
-          <div className="m-3 flex items-center space-x-2">
-            <h2 className="text-4xl font-bold">{t("title")}</h2>
-            <span className="m-2 rounded-full bg-gradient-to-br from-[#0088FF] to-[#2153E0] px-2 font-bold text-white">
-              {t("web")}
-            </span>
-          </div>
-          <p className="font-bold">{`${t("version")} ${ver}`}</p>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button size="nav" variant="outline" className="mt-5 font-bold">
-                {t("see-licenses")}
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>{t("licenses")}</DialogTitle>
-              </DialogHeader>
-              <p>
-                NextJS - MIT License - © 2023 Vercel, Inc.
-                <br></br>
-                RadixUI - MIT License - © 2022 WorkOS
-                <br></br>
-                shadcn/ui - MIT License - © 2023 shadcn
-                <br></br>
-                Fluent System Icons - MIT License - © 2020 Microsoft Corporation
-                <br></br>
-                Passliss - MIT License - © 2023 Léo Corporation
-              </p>
-              <DialogFooter>
-                <DialogClose>
-                  <Button size="nav" type="submit">
-                    {t("ok")}
-                  </Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </section>
+        <div className="flex justify-center">
+          <section
+            id="about-section"
+            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white py-4 px-10 text-center shadow-lg dark:bg-slate-800"
+          >
+            <div className="m-3 flex items-center space-x-2">
+              <h2 className="text-4xl font-bold">{t("title")}</h2>
+              <span className="m-2 rounded-full bg-gradient-to-br from-[#0088FF] to-[#2153E0] px-2 font-bold text-white">
+                {t("web")}
+              </span>
+            </div>
+            <p className="text-sm">{`${t("version")} ${ver}`}</p>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="nav" variant="outline" className="mt-1 font-bold">
+                  {t("see-licenses")}
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>{t("licenses")}</DialogTitle>
+                </DialogHeader>
+                <p>
+                  NextJS - MIT License - © 2023 Vercel, Inc.
+                  <br></br>
+                  RadixUI - MIT License - © 2022 WorkOS
+                  <br></br>
+                  shadcn/ui - MIT License - © 2023 shadcn
+                  <br></br>
+                  Fluent System Icons - MIT License - © 2020 Microsoft
+                  Corporation
+                  <br></br>
+                  Passliss - MIT License - © 2023 Léo Corporation
+                </p>
+                <DialogFooter>
+                  <DialogClose>
+                    <Button size="nav" type="submit">
+                      {t("ok")}
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </section>
+        </div>
         <section id="settings-section">
           <Accordion type="single" collapsible>
             <AccordionItem value="theme">
