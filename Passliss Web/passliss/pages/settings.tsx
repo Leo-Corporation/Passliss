@@ -166,7 +166,7 @@ export default function SettingsPage() {
               </AccordionContent>
             </AccordionItem>
 
-            <div className="mx-2 mt-2 grid grid-cols-2 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 ">
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
               <div>
                 <h4 className="text-left text-lg">{t("language")}</h4>
                 <p className="text-left text-sm font-normal">
@@ -174,7 +174,7 @@ export default function SettingsPage() {
                 </p>
               </div>
               <Select defaultValue={lang} onValueChange={SelectChanged}>
-                <SelectTrigger className="mx-1 h-auto w-[200px] justify-self-end py-1 px-2">
+                <SelectTrigger className="mx-1 h-auto w-[200px] py-1 px-2 sm:justify-self-end">
                   <SelectValue placeholder={t("language")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -297,7 +297,7 @@ export default function SettingsPage() {
               </AccordionContent>
             </AccordionItem>
 
-            <div className="mx-2 mt-2 grid grid-cols-2 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 ">
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
               <div>
                 <h4 className="text-left text-lg">{t("encryption")}</h4>
                 <p className="text-left text-sm font-normal">
@@ -311,7 +311,7 @@ export default function SettingsPage() {
                   SetSettings(settings)
                 }}
               >
-                <SelectTrigger className="mx-1 h-auto w-[200px] justify-self-end py-1 px-2">
+                <SelectTrigger className="mx-1 h-auto w-[200px] py-1 px-2 sm:justify-self-end">
                   <SelectValue placeholder={t("algorithm")} />
                 </SelectTrigger>
                 <SelectContent>
