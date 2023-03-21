@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Image from "next/image"
 import Link from "next/link"
 import { Settings20Regular } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
@@ -172,10 +173,10 @@ export default function SettingsPage() {
                     onClick={() => setTheme("light")}
                     className="m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg bg-slate-100 pr-2 dark:bg-slate-700"
                   >
-                    <img
-                      src="LightTheme.png"
-                      height="50px"
-                      width="50px"
+                    <Image
+                      src="/LightTheme.png"
+                      height={50}
+                      width={50}
                       alt="Light theme image"
                       className="object-cover"
                     />
@@ -185,10 +186,10 @@ export default function SettingsPage() {
                     onClick={() => setTheme("dark")}
                     className="m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg bg-slate-100 pr-2 dark:bg-slate-700"
                   >
-                    <img
-                      src="DarkTheme.png"
-                      height="50px"
-                      width="50px"
+                    <Image
+                      src="/DarkTheme.png"
+                      height={50}
+                      width={50}
                       alt="Dark theme image"
                       className="object-cover"
                     />
@@ -198,10 +199,10 @@ export default function SettingsPage() {
                     onClick={() => setTheme("system")}
                     className="m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg bg-slate-100 pr-2 dark:bg-slate-700"
                   >
-                    <img
-                      src="SystemTheme.png"
-                      height="50px"
-                      width="50px"
+                    <Image
+                      src="/SystemTheme.png"
+                      height={50}
+                      width={50}
                       alt="System theme image"
                       className="object-cover"
                     />
