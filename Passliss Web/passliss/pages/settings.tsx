@@ -6,6 +6,8 @@ import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
 import useTranslation from "next-translate/useTranslation"
 
+import { Settings } from "@/types/settings"
+import { GetSettings, SetSettings } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import {
@@ -39,10 +41,15 @@ export default function SettingsPage() {
 
   let ver = "3.0.0.2303-final1"
 
+  let settings: Settings = undefined
+  function LoadSettings() {
+    settings = GetSettings()
+  }
+
   async function SelectChanged(val) {
     await setLanguage(val)
   }
-
+  LoadSettings()
   return (
     <Layout>
       <Head>
@@ -104,7 +111,7 @@ export default function SettingsPage() {
         </section>
         <section id="settings-section">
           <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
+            <AccordionItem value="theme">
               <AccordionTrigger>
                 <div>
                   <h4 className="text-left text-lg">{t("theme")}</h4>
@@ -157,6 +164,7 @@ export default function SettingsPage() {
                 </div>
               </AccordionContent>
             </AccordionItem>
+
             <div className="mx-2 mt-2 grid grid-cols-2 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 ">
               <div>
                 <h4 className="text-left text-lg">{t("language")}</h4>
@@ -176,6 +184,52 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
+
+            <AccordionItem value="password">
+              <AccordionTrigger>
+                <div>
+                  <h4 className="text-left text-lg">
+                    {t("password-settings")}
+                  </h4>
+                  <p className="text-left text-sm font-normal">
+                    {t("password-settings-desc")}
+                  </p>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="font-bold">{t("default-random-length")}</p>
+                <div className="flex items-center space-x-2">
+                  <p>{t("between")}</p>
+                  <Input
+                    defaultValue={settings.passwordLengthOne}
+                    type="number"
+                    className="h-auto w-auto px-2 py-1"
+                    id="Num1Txt"
+                    onChange={() => {
+                      settings.passwordLengthOne = parseInt(
+                        (document.getElementById("Num1Txt") as HTMLInputElement)
+                          .value
+                      )
+                      SetSettings(settings)
+                    }}
+                  />
+                  <p>{t("and")}</p>
+                  <Input
+                    defaultValue={settings.passwordLengthTwo}
+                    type="number"
+                    className="h-auto w-auto px-2 py-1"
+                    id="Num2Txt"
+                    onChange={() => {
+                      settings.passwordLengthTwo = parseInt(
+                        (document.getElementById("Num2Txt") as HTMLInputElement)
+                          .value
+                      )
+                      SetSettings(settings)
+                    }}
+                  />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </section>
       </PageContent>

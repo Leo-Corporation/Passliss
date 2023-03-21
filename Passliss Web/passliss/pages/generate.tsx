@@ -1,5 +1,6 @@
 import Head from "next/head"
 import {
+  Lightbulb20Regular,
   LockClosed12Regular,
   LockClosed20Regular,
   LockClosed24Regular,
@@ -7,7 +8,8 @@ import {
 } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
-import { AddActivity } from "@/lib/browser-storage"
+import { Settings } from "@/types/settings"
+import { AddActivity, GetSettings } from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
@@ -150,6 +152,20 @@ export default function IndexPage() {
     }
   }
 
+  let settings: Settings = undefined
+  function LoadSettings() {
+    settings = GetSettings()
+  }
+  LoadSettings()
+
+  function RandomLength() {
+    let min = settings.passwordLengthOne
+    let max = settings.passwordLengthTwo
+    ;(document.getElementById("LengthTxt") as HTMLInputElement).value = (
+      Math.floor(Math.random() * (max - min)) + min
+    ).toString()
+  }
+
   return (
     <Layout>
       <Head>
@@ -280,6 +296,13 @@ export default function IndexPage() {
                     className="h-auto px-2 py-1"
                     id="LengthTxt"
                   />
+                  <Button
+                    onClick={RandomLength}
+                    className="h-auto py-1 px-2"
+                    variant="outline"
+                  >
+                    <Lightbulb20Regular className="m-0 p-0" />
+                  </Button>
                 </div>
                 <div className="col-end-1 flex items-center space-x-2">
                   <Switch defaultChecked={true} id="UpperChk" />
