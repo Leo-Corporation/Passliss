@@ -3,6 +3,7 @@ import { Settings20Regular } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { useTheme } from "next-themes"
+import setLanguage from "next-translate/setLanguage"
 import useTranslation from "next-translate/useTranslation"
 
 import { Layout } from "@/components/layout"
@@ -24,12 +25,23 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export default function SettingsPage() {
-  const { t } = useTranslation("common") // default namespace (optional)
+  const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
   let ver = "3.0.0.2303-final1"
+
+  async function SelectChanged(val) {
+    await setLanguage(val)
+  }
 
   return (
     <Layout>
@@ -54,7 +66,7 @@ export default function SettingsPage() {
         >
           <div className="m-3 flex items-center space-x-2">
             <h2 className="text-4xl font-bold">{t("title")}</h2>
-            <span className="m-2 rounded-full bg-gradient-to-br from-[#0088FF] to-[#2153E0] px-2 font-bold">
+            <span className="m-2 rounded-full bg-gradient-to-br from-[#0088FF] to-[#2153E0] px-2 font-bold text-white">
               {t("web")}
             </span>
           </div>
@@ -145,6 +157,25 @@ export default function SettingsPage() {
                 </div>
               </AccordionContent>
             </AccordionItem>
+            <div className="mx-2 mt-2 grid grid-cols-2 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 ">
+              <div>
+                <h4 className="text-left text-lg">{t("language")}</h4>
+                <p className="text-left text-sm font-normal">
+                  {t("change-language")}
+                </p>
+              </div>
+              <Select defaultValue={lang} onValueChange={SelectChanged}>
+                <SelectTrigger className="mx-1 h-auto w-[200px] justify-self-end py-1 px-2">
+                  <SelectValue placeholder={t("algorithm")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem defaultChecked={true} value="en">
+                    English (United States)
+                  </SelectItem>
+                  <SelectItem value="fr">Français (France)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </Accordion>
         </section>
       </PageContent>
