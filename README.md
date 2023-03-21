@@ -7,17 +7,15 @@
 
 <br />
 <p align="center">
-  <strong>⚠️ Warning: Passliss is going through a major evolution. ⚠️<br><a href="https://github.com/Leo-Corporation/Passliss/blob/main/ROADMAP.md">Learn more</a></strong>
-  <br>
   <a href="https://github.com/Leo-Corporation/Passliss">
     <img src=".github/images/logo.png" alt="Logo" width="80" height="80">
   </a>
   <h1 align="center">Passliss</h1>
 
   <p align="center">
-    A modern password generator for Windows.
+    Passliss is a web application that allows you to generate secure passwords, test the strength of exiting ones and more.
     <br />
-    <a href="https://github.com/Leo-Corporation/Passliss/releases"><strong>Download »</strong></a>
+    <a href="https://passliss.leocorporation.dev"><strong>Launch »</strong></a>
     <br />
     <a href="https://github.com/Leo-Corporation/Passliss/issues/new?assignees=&labels=bug&template=bug-report.yml&title=%5BBug%5D+">Report Bug</a>
     ·
@@ -28,43 +26,77 @@
   </p>
 </p>
 
-## Introducing Passliss for the Web
-We are working on the next major iteration of Passliss: Passliss for the Web. We are committed to bring Passliss to more devices with this change.
-[Learn more](https://github.com/Leo-Corporation/Passliss/blob/main/ROADMAP.md).
-
 ## What is it?
-Passliss is a modern password generation Windows application that allows you to generate passwords within a click. Passliss is written in C# .NET 6 using WPF.
+
+![Banner](https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Images/Passliss%20Banner.png)
+
+Introducing Passliss for the Web - the next major evolution of Passliss, a simple yet modern password generator. Passliss for the Web is built using NextJS React Framework and TypeScript, making it one of the most powerful password generators on the market. With a sleek and modern design, this app is perfect for those who need to generate secure passwords quickly and easily.
+
+One of the best features of Passliss for the Web is the Home Dashboard. This dashboard allows you to generate passwords quickly, and explore different recommended features. These recommended features are displayed as cards, with an icon, a title, and a short description, making it easy for you to find the perfect feature for your needs.
+
+In addition to the Home Dashboard, Passliss for the Web has an Activity page that allows you to see your recently generated passwords and their strength. The Generate page is also packed with features, including the ability to customize password characters, choose the length of the password, and generate multiple passwords at once.
+
+For those who want to know the strength of their passwords, Passliss for the Web has a Strength page that allows you to enter a password and get its strength. The Encryption page also allows you to encrypt and decrypt strings using different encryption algorithms.
+
+Finally, the Settings page allows you to customize the app to your liking, including setting the theme, language, and default encryption algorithm. With the ability to export and import settings, Passliss for the Web is the perfect password generator for those who want total control over their passwords.
+
+Passliss for the Web is also available as a Progressive Web Application, making it accessible on desktop and mobile devices. With a responsive UI, Passliss for the Web is perfect for anyone who needs to generate secure passwords quickly and easily.
+
+In conclusion, Passliss for the Web is more than just a password generator. It is also a password strength checker, a string encryption tool. It is a web application that you can access from any device, anywhere. It is a product that will make your online security easier and more convenient. Don’t miss this opportunity to get Passliss for the Web today and enjoy its amazing features. Click the button below and start generating secure passwords now!
+
+[Launch »](https://passliss.leocorporation.dev)
 
 ## Features
-- Generate powerful passwords in a single click
-- Test the strength of existing passwords
-- Encrypt and decrypt your secrets using AES or Triple-DES encryption algorithms
-- Customizable password generation system
-- Dark theme
-- Multiple languages available:
-  - English (US)
-  - French (France)
-  - Simplified Chinese (PRC)
 
-*And more...*
+**Top Features of ColorPicker Max:**
 
-## Download
-- [Download](https://tinyurl.com/Passliss)
-- [Latest Release](https://github.com/Leo-Corporation/Passliss/releases)
+1. **Quick generation:** You can generate a password when loading the page or by clicking a button.
+
+2. **Recommended features:** You can explore different features that are displayed as cards, with an icon, a title, and a short description.
+
+3. **Activity:** You can see your recently generated passwords and their strength.
+
+4. **Generate page:** You can customize your password characters, choose the length of the password, and generate multiple passwords at once.
+
+5. **Strength page:** You can enter a password and get its strength, with a detailed view and a reminder message.
+
+6. **Encryption page:** You can encrypt and decrypt strings using different encryption algorithms. (AES or Triple-DES)
+
+7. **Settings page:** You can set the theme, language, default random length, default encryption algorithm, and more. You can also export and import settings or reset them to default.
+
+8. **User Interface:** You have a big title with the name of the app at the top, a description text with a greeting message to the user, and a navigation panel on the left side. The UI is responsive for mobile devices.
+
+9. **Progressive Web Application:** You can access Passliss for the Web from any device, online or offline. You can also install it on your desktop or mobile device as an app.
+
+10. **NextJS React Framework and TypeScript:** Passliss for the Web is built using these technologies, making it one of the most powerful password generators on the market. It is fast, secure, and reliable.
+
+_And more..._
 
 ## Contribute
+
 To contribute to the project, you'll need:
-- Visual Studio 2022 (or 2019) v17.0 or higher
-  - .NET Desktop Development
+
+- Visual Studio Code
   - Git
-- .NET 5 and 6
-- (*optional*) Inno Setup v6.1 or higher
+- NodeJS & npm
 
 [Click here](https://github.com/Leo-Corporation/Passliss/blob/main/CONTRIBUTING.md) to see the full guidelines.
+
+## Branches
+
+This Git repo has always two branches:
+
+|  Name   |                                                                    Release                                                                     |             Description             |
+| :-----: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------: |
+| `main`  |                      ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Leo-Corporation/Passliss)                      |           Stable versions           |
+| `vNext` | ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/Leo-Corporation/Passliss?include_prereleases) | Next version of Passliss (unstable) |
+
 ## License
+
 This project is under the [MIT License](https://github.com/Leo-Corporation/Passliss/blob/main/LICENSE).
 
 ## Translations Credits
+
 Special thanks to:
 
 - [@wcxu21](https://github.com/wcxu21) for Simplified Chinese
