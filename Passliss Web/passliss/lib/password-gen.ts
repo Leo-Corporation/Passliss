@@ -1,3 +1,5 @@
+import { CustomCharacters } from "@/types/settings"
+
 export enum PasswordStrength {
   Low,
   Medium,
@@ -11,12 +13,13 @@ export function GeneratePassword(
   upper: boolean,
   numbers: boolean,
   special: boolean,
-  length: number
+  length: number,
+  chars: CustomCharacters
 ): string {
-  const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz"
-  const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  const nbrs = "01234567889"
-  const specialChars = ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨"
+  const lowerCaseLetters = chars.lowerCases
+  const upperCaseLetters = chars.upperCases
+  const nbrs = chars.numbers
+  const specialChars = chars.special
 
   let final = ""
   if (lower) final += lowerCaseLetters
@@ -31,17 +34,20 @@ export function GeneratePassword(
   return finalPassword
 }
 
-export function GeneratePasswordByStrength(strength: PasswordStrength): string {
+export function GeneratePasswordByStrength(
+  strength: PasswordStrength,
+  chars: CustomCharacters
+): string {
   switch (strength) {
     case PasswordStrength.Low:
-      return GeneratePassword(true, true, false, false, 9)
+      return GeneratePassword(true, true, false, false, 9, chars)
     case PasswordStrength.Medium:
-      return GeneratePassword(true, true, true, false, 12)
+      return GeneratePassword(true, true, true, false, 12, chars)
     case PasswordStrength.Good:
-      return GeneratePassword(true, true, true, false, 19)
+      return GeneratePassword(true, true, true, false, 19, chars)
     case PasswordStrength.VeryGood:
-      return GeneratePassword(true, true, true, true, 20)
+      return GeneratePassword(true, true, true, true, 20, chars)
     default:
-      return GeneratePassword(true, true, false, false, 9)
+      return GeneratePassword(true, true, false, false, 9, chars)
   }
 }

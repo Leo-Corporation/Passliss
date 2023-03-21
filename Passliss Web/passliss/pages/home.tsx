@@ -2,7 +2,8 @@ import Head from "next/head"
 import { Home20Regular, Lightbulb20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
-import { AddActivity } from "@/lib/browser-storage"
+import { Settings } from "@/types/settings"
+import { AddActivity, GetSettings } from "@/lib/browser-storage"
 import { GeneratePasswordByStrength } from "@/lib/password-gen"
 import DashboardCard, { CardProps } from "@/components/card"
 import { Layout } from "@/components/layout"
@@ -34,7 +35,7 @@ export default function HomePage() {
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
 
-    let pwr = GeneratePasswordByStrength(2)
+    let pwr = GeneratePasswordByStrength(2, settings.customChars)
     txt.innerHTML = pwr
     AddActivity({ date: new Date(), content: pwr })
   }
@@ -43,6 +44,12 @@ export default function HomePage() {
     let txt = document.getElementById("PasswordTxt")
     navigator.clipboard.writeText(txt.innerHTML)
   }
+
+  let settings: Settings = undefined
+  function LoadSettings() {
+    settings = GetSettings()
+  }
+  LoadSettings()
 
   return (
     <Layout>
@@ -63,7 +70,7 @@ export default function HomePage() {
         </div>
         <div className="flex w-full flex-col items-center">
           <p className="m-5 text-xl font-bold" id="PasswordTxt">
-            {GeneratePasswordByStrength(2)}
+            {GeneratePasswordByStrength(2, settings.customChars)}
           </p>
           <div className="flex space-x-2">
             <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>

@@ -34,6 +34,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
@@ -197,7 +198,7 @@ export default function SettingsPage() {
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <p className="font-bold">{t("default-random-length")}</p>
+                <h5 className="font-bold">{t("default-random-length")}</h5>
                 <div className="flex items-center space-x-2">
                   <p>{t("between")}</p>
                   <Input
@@ -228,6 +229,71 @@ export default function SettingsPage() {
                     }}
                   />
                 </div>
+                <br />
+                <h5 className="font-bold">{t("custom-chars")}</h5>
+                <p>{t("uppercases")}</p>
+                <Textarea
+                  defaultValue={settings.customChars.upperCases}
+                  className="mt-2 px-2 py-1"
+                  id="UpperTextArea"
+                  onChange={() => {
+                    settings.customChars.upperCases = (
+                      document.getElementById(
+                        "UpperTextArea"
+                      ) as HTMLInputElement
+                    ).value
+
+                    SetSettings(settings)
+                  }}
+                />
+
+                <p>{t("lowercases")}</p>
+                <Textarea
+                  defaultValue={settings.customChars.lowerCases}
+                  className="mt-2 px-2 py-1"
+                  id="LowerTextArea"
+                  onChange={() => {
+                    settings.customChars.lowerCases = (
+                      document.getElementById(
+                        "LowerTextArea"
+                      ) as HTMLInputElement
+                    ).value
+
+                    SetSettings(settings)
+                  }}
+                />
+
+                <p>{t("nbrs")}</p>
+                <Textarea
+                  defaultValue={settings.customChars.numbers}
+                  className="mt-2 px-2 py-1"
+                  id="NumbersTextArea"
+                  onChange={() => {
+                    settings.customChars.numbers = (
+                      document.getElementById(
+                        "NumbersTextArea"
+                      ) as HTMLInputElement
+                    ).value
+
+                    SetSettings(settings)
+                  }}
+                />
+
+                <p>{t("specialchars")}</p>
+                <Textarea
+                  defaultValue={settings.customChars.special}
+                  className="mt-2 px-2 py-1"
+                  id="SpecialTextArea"
+                  onChange={() => {
+                    settings.customChars.special = (
+                      document.getElementById(
+                        "SpecialTextArea"
+                      ) as HTMLInputElement
+                    ).value
+
+                    SetSettings(settings)
+                  }}
+                />
               </AccordionContent>
             </AccordionItem>
           </Accordion>

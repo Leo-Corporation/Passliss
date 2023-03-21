@@ -37,7 +37,7 @@ export default function IndexPage() {
   let sliderVal = 2
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
-    let pwr = GeneratePasswordByStrength(sliderVal)
+    let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
     txt.innerHTML = pwr
     AddActivity({ date: new Date(), content: pwr })
   }
@@ -83,7 +83,15 @@ export default function IndexPage() {
       .value
 
     for (let i = 0; i < amount; i++) {
-      text.value += GeneratePassword(lower, upper, nbr, special, +length) + "\n"
+      text.value +=
+        GeneratePassword(
+          lower,
+          upper,
+          nbr,
+          special,
+          +length,
+          settings.customChars
+        ) + "\n"
     }
   }
 
@@ -102,7 +110,14 @@ export default function IndexPage() {
       "true"
     let length = (document.getElementById("LengthTxt") as HTMLInputElement)
       .value
-    let pwr = GeneratePassword(lower, upper, nbr, special, +length)
+    let pwr = GeneratePassword(
+      lower,
+      upper,
+      nbr,
+      special,
+      +length,
+      settings.customChars
+    )
     txt.innerHTML = pwr
     AddActivity({ date: new Date(), content: pwr })
   }
@@ -117,7 +132,7 @@ export default function IndexPage() {
     let icon = document.getElementById("StrengthIconTxt")
     let txt = document.getElementById("PasswordTxt")
 
-    let pwr = GeneratePasswordByStrength(newValue[0])
+    let pwr = GeneratePasswordByStrength(newValue[0], settings.customChars)
     txt.innerHTML = pwr
     AddActivity({ date: new Date(), content: pwr })
 
@@ -194,7 +209,7 @@ export default function IndexPage() {
           >
             <div className="flex w-full flex-col items-center">
               <p className="m-5 text-xl font-bold" id="PasswordTxt">
-                {GeneratePasswordByStrength(2)}
+                {GeneratePasswordByStrength(2, settings.customChars)}
               </p>
               <div className="flex space-x-2">
                 <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
@@ -229,7 +244,7 @@ export default function IndexPage() {
             <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
                 <p className="m-5 text-xl font-bold" id="APasswordTxt">
-                  {GeneratePasswordByStrength(2)}
+                  {GeneratePasswordByStrength(2, settings.customChars)}
                 </p>
               </div>
               <div className="flex space-x-2">

@@ -81,7 +81,12 @@ export default function EncryptionPage() {
 
   function GenKey() {
     let keyTxt = document.getElementById("EncryptKeyInput") as HTMLInputElement
-    keyTxt.value = GeneratePasswordByStrength(2)
+    keyTxt.value = GeneratePasswordByStrength(2, {
+      lowerCases: "abcdefghijklmnopqrstuvwxyz",
+      upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      numbers: "01234567889",
+      special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+    })
   }
 
   return (
