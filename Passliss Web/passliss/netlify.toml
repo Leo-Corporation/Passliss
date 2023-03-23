@@ -1,6 +1,5 @@
 [build]
   command = "npm run build"
-  publish = "Passliss Web/passliss/.next"
   base = "Passliss Web/passliss"
 
 [[plugins]]
