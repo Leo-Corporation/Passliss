@@ -1,6 +1,0 @@
-[build]
-  command = "npm run build"
-  base = "Passliss Web/passliss"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
