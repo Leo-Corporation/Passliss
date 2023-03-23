@@ -4,8 +4,5 @@
   base = "Passliss Web/passliss"
   environment = { NODE_VERSION = "18" }
 
-[build.environment]
-  NETLIFY_BUILD_IMAGE = "xenial"
-
 [[plugins]]
   package = "@netlify/plugin-nextjs"
