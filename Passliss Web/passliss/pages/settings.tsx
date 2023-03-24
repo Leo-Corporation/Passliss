@@ -53,15 +53,18 @@ export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
-  let ver = "3.0.0.2303"
+  let ver = "3.0.1.2303"
 
   let settings: Settings = undefined
   function LoadSettings() {
     settings = GetSettings()
   }
-
   async function SelectChanged(val) {
     await setLanguage(val)
+    const date = new Date()
+    const expireMs = 100 * 24 * 60 * 60 * 1000 // 100 days
+    date.setTime(date.getTime() + expireMs)
+    document.cookie = `NEXT_LOCALE=${val};expires=${date.toUTCString()};path=/`
   }
   LoadSettings()
 
@@ -260,7 +263,7 @@ export default function SettingsPage() {
                   <Input
                     defaultValue={settings.passwordLengthOne}
                     type="number"
-                    className="h-auto w-auto px-2 py-1"
+                    className="h-auto w-14 px-2 py-1"
                     id="Num1Txt"
                     onChange={() => {
                       settings.passwordLengthOne = parseInt(
@@ -274,7 +277,7 @@ export default function SettingsPage() {
                   <Input
                     defaultValue={settings.passwordLengthTwo}
                     type="number"
-                    className="h-auto w-auto px-2 py-1"
+                    className="h-auto w-14 px-2 py-1"
                     id="Num2Txt"
                     onChange={() => {
                       settings.passwordLengthTwo = parseInt(
@@ -404,6 +407,7 @@ export default function SettingsPage() {
                     className={buttonVariants({
                       variant: "default",
                       size: "nav",
+                      className: "text-center",
                     })}
                     href={
                       "data:text/plain;charset=UTF-8," +

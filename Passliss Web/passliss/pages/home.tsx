@@ -88,9 +88,9 @@ export default function HomePage() {
         <div className="mb-2 flex items-center space-x-2">
           <Lightbulb20Regular primaryFill="#0088FF" className="text-white" />
 
-          <p className="ml-2 font-bold">{t("recommended")}</p>
+          <p className="ml-2 mt-2 font-bold">{t("recommended")}</p>
         </div>
-        <div className="flex flex-wrap items-center justify-center">
+        <div className="flex flex-wrap items-center">
           {cards.map((el) => {
             return (
               <DashboardCard

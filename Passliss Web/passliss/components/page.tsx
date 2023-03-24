@@ -25,7 +25,7 @@ export function PageContent({ children, page }: PageProps) {
 
   function GetWelcomeMessage(): string {
     let hour = new Date().getHours() // Get the current hour
-    if (hour >= 21 || hour <= 7) {
+    if (hour >= 21 || hour < 7) {
       // If between 9PM & 7AM
       return t("night") // Return the correct value
     } else if (hour >= 7 && hour <= 12) {
