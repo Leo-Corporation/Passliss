@@ -59,9 +59,12 @@ export default function SettingsPage() {
   function LoadSettings() {
     settings = GetSettings()
   }
-
   async function SelectChanged(val) {
     await setLanguage(val)
+    const date = new Date()
+    const expireMs = 100 * 24 * 60 * 60 * 1000 // 100 days
+    date.setTime(date.getTime() + expireMs)
+    document.cookie = `NEXT_LOCALE=${val};expires=${date.toUTCString()};path=/`
   }
   LoadSettings()
 

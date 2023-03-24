@@ -86,5 +86,6 @@
   "import-settings": "Importer les paramètres",
   "export-settings": "Exporter les paramètres",
   "reset-settings": "Réinitialiser les paramètres",
-  "reset-settings-msg": "Êtes-vous sûr de vouloir réinitialiser tous les réglages ? Cette opération ne peut pas être annulée."
+  "reset-settings-msg": "Êtes-vous sûr de vouloir réinitialiser tous les réglages ? Cette opération ne peut pas être annulée.",
+  "default": "Par défaut"
 }
