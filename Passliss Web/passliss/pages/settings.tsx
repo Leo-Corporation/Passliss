@@ -260,7 +260,7 @@ export default function SettingsPage() {
                   <Input
                     defaultValue={settings.passwordLengthOne}
                     type="number"
-                    className="h-auto w-auto px-2 py-1"
+                    className="h-auto w-14 px-2 py-1"
                     id="Num1Txt"
                     onChange={() => {
                       settings.passwordLengthOne = parseInt(
@@ -274,7 +274,7 @@ export default function SettingsPage() {
                   <Input
                     defaultValue={settings.passwordLengthTwo}
                     type="number"
-                    className="h-auto w-auto px-2 py-1"
+                    className="h-auto w-14 px-2 py-1"
                     id="Num2Txt"
                     onChange={() => {
                       settings.passwordLengthTwo = parseInt(
@@ -404,6 +404,7 @@ export default function SettingsPage() {
                     className={buttonVariants({
                       variant: "default",
                       size: "nav",
+                      className: "text-center",
                     })}
                     href={
                       "data:text/plain;charset=UTF-8," +
