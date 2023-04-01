@@ -55,10 +55,7 @@ export default function HomePage() {
     <Layout>
       <Head>
         <title>Passliss</title>
-        <meta
-          name="description"
-          content="Passliss is a simple yet modern password generator."
-        />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
