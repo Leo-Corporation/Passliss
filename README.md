@@ -76,9 +76,9 @@ _And more..._
 
 To contribute to the project, you'll need:
 
-- Visual Studio Code
-  - Git
-- NodeJS & npm
+- Microsoft Visual Studio Code
+- Node.js and `npm`.
+- Git
 
 [Click here](https://github.com/Leo-Corporation/Passliss/blob/main/CONTRIBUTING.md) to see the full guidelines.
 
