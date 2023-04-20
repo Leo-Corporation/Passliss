@@ -18,11 +18,11 @@ To contribute to this project, you will need to have some prerequisites:
 
 You will also need to have the following tools:
 
-- Microsoft Visual Studio 2019
-  - .NET Desktop Developpement
-  - Microsoft Blend
+- Microsoft Visual Studio Code
+- Node.js and `npm`.
 - Git
-- (_optionnal_) Microsoft Visual Studio Code
+
+_Note: You will need to install the `npm` dependencies as well._
 
 ## Writing code
 
