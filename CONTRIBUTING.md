@@ -1,9 +1,13 @@
 # Contribution
+
 ## Summary
+
 - [Knowledge](#knowledge)
 - [Tools](#tools)
 - [Writing code](#writing-code)
+
 ## Knowledge
+
 To contribute to this project, you will need to have some prerequisites:
 
 - A basic knowledge of C# (this project is written in C# 9)
@@ -11,109 +15,193 @@ To contribute to this project, you will need to have some prerequisites:
 - A basic knowledge of Visual Studio
 
 ## Tools
+
 You will also need to have the following tools:
 
 - Microsoft Visual Studio 2019
   - .NET Desktop Developpement
   - Microsoft Blend
 - Git
-- (*optionnal*) Microsoft Visual Studio Code
+- (_optionnal_) Microsoft Visual Studio Code
 
 ## Writing code
-Make you follow the following guidelines:
 
-1) Use Tabs: To format your code, use tabs intead of spaces:
-~~~ cs
-class Car
-{
-    /// <summary>
-    /// The maximum speed of the car.
-    /// </summary>
-    public int MaxSpeed { get; set; }
-    
-    /// <summary>
-    /// This method does stuff.
-    /// </summary>
-    public void DoStuff()
-    {
-        Console.WriteLine("DoStuff"); // Print text
-    }
-}
-~~~
-2) Put your code between `{ }`:
-~~~ cs
-// Do this
-int x = 12; // Define a number
-int y = 45; // Define another number
+Make sure you follow the following guidelines:
 
-if (x < y) // If y is bigger than x
-{
-    Console.WriteLine("y is bigger than x"); // Print text
+1. Use a consistent coding style and formatting throughout the codebase:
+
+```ts
+// Use consistent indentation and whitespace
+function calculateSum(numbers: number[]): number {
+  let sum = 0;
+  for (const num of numbers) {
+    sum += num;
+  }
+  return sum;
 }
 
-// Dont do this
-if (x < y) // If y is bigger than x
-    Console.WriteLine("y is bigger than x"); // Print text
-~~~
-3) Comment your code:
-~~~ cs
-int a = 10; // Define a number
-int b = 15; // Define another number
-
-if (a > b) // If a is bigger than b
-{
-    //TODO
+// Use consistent naming conventions
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
 }
-else
-{
-    //TODO
+
+function getUserFullName(user: User): string {
+  return `${user.firstName} ${user.lastName}`;
 }
-~~~
-4) Use XML Documentation for ``public`` and ``internal`` methods, fields and properties:
-~~~ cs
-/// <summary>
-/// This method does stuff.
-/// </summary>
-internal void DoStuff()
-{
-    Thread.Sleep(2000); // Do nothing for 2 seconds
+```
+
+2. Use descriptive names for variables, functions, classes, and other entities:
+
+```ts
+// Use descriptive names for variables
+const shoppingCartItems: string[] = ["apples", "bananas", "oranges"];
+
+// Use descriptive names for functions
+function calculateTotalPrice(items: number[], taxRate: number): number {
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
 }
-~~~
-5) Do not forget to put the [license](https://github.com/Leo-Corporation/Gavilya/blob/master/LICENSE) header on each `.cs` files:
-~~~ cs
 
-/*
-MIT License
+// Use descriptive names for classes
+class User {
+  constructor(
+    private firstName: string,
+    private lastName: string,
+    private email: string
+  ) {}
 
-Copyright (c) Léo Corporation
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE. 
-*/
-~~~
-6) Use camel case for variables and pascal case for properties and method:
-~~~ cs
-int myInt = 0; // Declare an int
-private int MyInt { get; set; } // Declare an int property
-
-private void DoStuff()
-{
-    myInt = 2; // Set myInt to 2
+  public getFullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
 }
-~~~
-That's pretty much all you need right now. Keep in mind this document can be updated at any time, so make sure to keep checking these guidelines.
+```
+
+3. Use camelCase for naming variables and functions, and PascalCase for naming classes and components:
+
+```ts
+const firstName: string = "John";
+const lastName: string = "Doe";
+
+function calculateSum(numbers: number[]): number {
+  let sum = 0;
+  for (const num of numbers) {
+    sum += num;
+  }
+  return sum;
+}
+
+interface Props {
+  firstName: string;
+  lastName: string;
+}
+
+function FullName({ firstName, lastName }: Props) {
+  return <h1>{`${firstName} ${lastName}`}</h1>;
+}
+```
+
+4. Use interfaces to define the shape of objects and data types used in the application:
+
+```ts
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface ShoppingCartItem {
+  product: Product;
+  quantity: number;
+}
+```
+
+5. Use enums to define a set of related constants:
+
+```ts
+enum PaymentMethod {
+  CreditCard = "credit-card",
+  PayPal = "paypal",
+  Venmo = "venmo",
+}
+
+const paymentMethod: PaymentMethod = PaymentMethod.CreditCard;
+```
+
+6. Use type aliases to define custom types that are used throughout the application:
+
+```ts
+type UserId = number;
+type Email = string;
+
+interface User {
+  id: UserId;
+  firstName: string;
+  lastName: string;
+  email: Email;
+}
+```
+
+7. Use generics to write reusable functions and classes:
+
+```ts
+function toArray<T>(value: T): T[] {
+  return [value];
+}
+
+class Stack<T> {
+  private items: T[] = [];
+
+  public push(item: T): void {
+    this.items.push(item);
+  }
+
+  public pop(): T | undefined {
+    return this.items.pop();
+  }
+}
+```
+
+8. Avoid using any as much as possible, and instead use specific types that accurately describe the data:
+
+```ts
+// Bad example: using any
+function calculateTotalPrice(items: any[], taxRate: any): any {
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
+}
+
+// Good example: using specific types
+function calculateTotalPrice(items: number[], taxRate: number): number {
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
+}
+```
+
+9. Use comments to provide context and explain complex or non-obvious code:
+
+```ts
+interface User {
+  id: number; // Unique identifier for the user
+  firstName: string; // First name of the user
+  lastName: string; // Last name of the user
+  email: string; // Email address of the user
+}
+
+function calculateTotalPrice(items: number[], taxRate: number): number {
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax; // Return the total price including tax
+}
+```
