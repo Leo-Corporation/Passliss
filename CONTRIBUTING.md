@@ -10,9 +10,9 @@
 
 To contribute to this project, you will need to have some prerequisites:
 
-- A basic knowledge of C# (this project is written in C# 9)
-- A basic knowledge of XAML
-- A basic knowledge of Visual Studio
+- A basic knowledge of React and Next.js
+- A basic knowledge of TypeScript, JSX/TSX
+- A basic knowledge of Visual Studio Code
 
 ## Tools
 
