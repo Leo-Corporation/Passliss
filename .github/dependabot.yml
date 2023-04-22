@@ -9,3 +9,4 @@ updates:
     - Leo-Peyronnet
     assignees:
     - Leo-Peyronnet
+    open-pull-requests-limit: 10
