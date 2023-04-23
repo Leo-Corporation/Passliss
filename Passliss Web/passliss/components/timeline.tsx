@@ -6,6 +6,7 @@ import ActivityItem from "./activity-item"
 export interface TimelineProps {
   date: number
   items: Activity[]
+  hide: boolean
 }
 
 export default function Timeline(props: TimelineProps) {
@@ -34,7 +35,7 @@ export default function Timeline(props: TimelineProps) {
       <h3 className="text-xl font-bold">{title}</h3>
       <div className="border-l border-slate-400 dark:border-slate-600">
         {props.items.map((el) => (
-          <ActivityItem activity={el} />
+          <ActivityItem activity={el} hide={props.hide} />
         ))}
       </div>
     </section>

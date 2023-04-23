@@ -13,6 +13,7 @@ import {
 
 export interface ActivityProps {
   activity: Activity
+  hide: boolean
 }
 
 export default function ActivityItem(props: ActivityProps) {
@@ -20,14 +21,24 @@ export default function ActivityItem(props: ActivityProps) {
     navigator.clipboard.writeText(props.activity.content)
   }
   const { t } = useTranslation("common") // default namespace (optional)
-
+  function GetHiddenPassword(password: string): string {
+    let final: string = ""
+    for (let i = 0; i < password.length; i++) {
+      final += "•"
+    }
+    return final
+  }
   return (
     <div
       onClick={Copy}
       className="m-3 grid cursor-pointer grid-cols-1 rounded-lg border border-slate-400 p-3 hover:bg-slate-200 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default sm:grid-cols-2"
     >
       <div className="grid grid-cols-[1fr,auto] items-center justify-items-start">
-        <p className="font-bold">{props.activity.content}</p>
+        <p className="font-bold">
+          {props.hide
+            ? GetHiddenPassword(props.activity.content)
+            : props.activity.content}
+        </p>
         {GetStrength(props.activity.content)}
       </div>
       <div className="hidden grid-cols-1 justify-items-end sm:grid">
