@@ -138,7 +138,11 @@ export default function EncryptionPage() {
             <div className="w-full space-y-2">
               <div className="flex items-center space-x-3">
                 <label htmlFor="EncryptKeyInput">{t("key")}</label>
-                <Input className="h-auto px-2 py-1" id="EncryptKeyInput" />
+                <Input
+                  type="password"
+                  className="h-auto px-2 py-1"
+                  id="EncryptKeyInput"
+                />
                 <Button
                   className="h-auto px-2 py-1"
                   id="EncryptBtn"
@@ -178,7 +182,11 @@ export default function EncryptionPage() {
             <div className="w-full space-y-2">
               <div className="flex items-center space-x-3">
                 <label htmlFor="DecryptKeyInput">{t("key")}</label>
-                <Input className="h-auto px-2 py-1" id="DecryptKeyInput" />
+                <Input
+                  type="password"
+                  className="h-auto px-2 py-1"
+                  id="DecryptKeyInput"
+                />
                 <Button
                   className="h-auto px-2 py-1"
                   id="DecryptBtn"

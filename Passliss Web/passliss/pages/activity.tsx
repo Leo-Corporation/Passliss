@@ -4,7 +4,8 @@ import { History20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
 import { Activity } from "@/types/activity"
-import { GetActivity, SortActivities } from "@/lib/browser-storage"
+import { Settings } from "@/types/settings"
+import { GetActivity, GetSettings, SortActivities } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import Timeline from "@/components/timeline"
@@ -22,6 +23,14 @@ import {
 import { Button } from "@/components/ui/button"
 
 export default function ActivityPage() {
+  let settings: Settings = undefined
+  function LoadSettings() {
+    settings = GetSettings()
+    if (settings.hidePassword == null || settings.hidePassword == undefined) {
+      settings.hidePassword = false
+    }
+  }
+  LoadSettings()
   const { t } = useTranslation("common") // default namespace (optional)
   let items: Activity[][] = [[]]
   function LoadActivities() {
@@ -83,7 +92,19 @@ export default function ActivityPage() {
           items[2].length > 0 ||
           items[3].length > 0 ? (
             items.map(
-              (el, i) => el.length > 0 && <Timeline date={i} items={el} />
+              (el, i) =>
+                el.length > 0 && (
+                  <Timeline
+                    date={i}
+                    items={el}
+                    hide={
+                      settings.hidePassword != null &&
+                      settings.hidePassword != undefined
+                        ? settings.hidePassword
+                        : false
+                    }
+                  />
+                )
             )
           ) : (
             <div className="mt-10 flex w-full flex-col items-center justify-center text-center">

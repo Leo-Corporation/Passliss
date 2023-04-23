@@ -3,6 +3,7 @@ export interface Settings {
   passwordLengthTwo: number
   customChars: CustomCharacters
   encryptAlgo: string
+  hidePassword?: boolean
 }
 
 export interface CustomCharacters {

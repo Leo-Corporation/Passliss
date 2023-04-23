@@ -87,5 +87,7 @@
   "export-settings": "Export settings",
   "reset-settings": "Reset settings",
   "reset-settings-msg": "Are you sure you want to reset all settings? This operation cannot be canceled.",
-  "default": "Default"
+  "default": "Default",
+  "password-security": "Password security",
+  "hide-password": "Hide generated passwords."
 }

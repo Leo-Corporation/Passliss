@@ -87,7 +87,7 @@ export default function HomePage() {
 
           <p className="ml-2 mt-2 font-bold">{t("recommended")}</p>
         </div>
-        <div className="flex flex-wrap items-center">
+        <div className="flex flex-wrap items-center justify-center md:justify-start">
           {cards.map((el) => {
             return (
               <DashboardCard
