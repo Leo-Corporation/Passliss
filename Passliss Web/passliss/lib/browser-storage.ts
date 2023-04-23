@@ -59,6 +59,7 @@ export function GetSettings(): Settings {
           numbers: "01234567889",
           special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
         },
+        hidePassword: false,
       }
     )
   }
@@ -73,6 +74,7 @@ export function GetSettings(): Settings {
       numbers: "01234567889",
       special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
     },
+    hidePassword: false,
   }
 }
 

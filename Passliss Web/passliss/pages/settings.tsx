@@ -58,6 +58,9 @@ export default function SettingsPage() {
   let settings: Settings = undefined
   function LoadSettings() {
     settings = GetSettings()
+    if (settings.hidePassword == null || settings.hidePassword == undefined) {
+      settings.hidePassword = false
+    }
   }
   async function SelectChanged(val) {
     await setLanguage(val)
