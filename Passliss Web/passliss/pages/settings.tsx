@@ -47,7 +47,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+import { Switch } from "@/components/ui/switch"
 
 export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
@@ -93,6 +93,12 @@ export default function SettingsPage() {
       localStorage.setItem("settings", JSON.stringify(json)) // store the JSON in localstorage
     }
     reader.readAsText(file) // read the file as text
+  }
+
+  function switchClick() {
+    settings.hidePassword =
+      document.getElementById("hide_pwr").ariaChecked != "true"
+    SetSettings(settings)
   }
 
   return (
@@ -355,6 +361,33 @@ export default function SettingsPage() {
                 />
               </AccordionContent>
             </AccordionItem>
+
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
+              <div className="grid grid-cols-[auto,1fr] items-center">
+                <p className="icon my-2 mr-2 text-3xl font-normal">
+                  {"\uF503"}
+                </p>
+                <div>
+                  <h4 className="text-left text-lg">
+                    {t("password-security")}
+                  </h4>
+                  <p className="text-left text-sm font-normal">
+                    {t("hide-password")}
+                  </p>
+                </div>
+              </div>
+              <Switch
+                onClick={switchClick}
+                defaultChecked={
+                  settings.hidePassword != null &&
+                  settings.hidePassword != undefined
+                    ? settings.hidePassword
+                    : false
+                }
+                className="sm:justify-self-end"
+                id="hide_pwr"
+              />
+            </div>
 
             <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
               <div className="grid grid-cols-[auto,1fr] items-center">
