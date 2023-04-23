@@ -87,5 +87,7 @@
   "export-settings": "Exporter les paramètres",
   "reset-settings": "Réinitialiser les paramètres",
   "reset-settings-msg": "Êtes-vous sûr de vouloir réinitialiser tous les réglages ? Cette opération ne peut pas être annulée.",
-  "default": "Par défaut"
+  "default": "Par défaut",
+  "password-security": "Sécurité du mot de passe",
+  "hide-password": "Cacher les mots de passe générés."
 }
