@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Head from "next/head"
 import {
   Lightbulb20Regular,
@@ -34,7 +35,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 export default function IndexPage() {
   const { t } = useTranslation("common") // default namespace (optional)
-  let sliderVal = 2
+  const [sliderVal, setSliderVal] = useState(2)
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -136,34 +137,41 @@ export default function IndexPage() {
     txt.innerHTML = pwr
     AddActivity({ date: new Date(), content: pwr })
 
-    sliderVal = newValue[0]
+    setSliderVal(newValue[0])
+    let info = getSliderUiInfo(newValue[0])
+    p.innerHTML = info.text
+    icon.innerHTML = info.icon
+    icon.style.color = info.color
+  }
 
-    switch (newValue[0]) {
+  function getSliderUiInfo(val: number): {
+    text: string
+    icon: string
+    color: string
+  } {
+    switch (val) {
       case 0:
-        p.innerHTML = t("strength-low")
-        icon.innerHTML = "\uF36E"
-        icon.style.color = "red"
-        break
+        return { text: t("strength-low"), icon: "\uF36E", color: "red" }
+
       case 1:
-        p.innerHTML = t("strength-medium")
-        icon.innerHTML = "\uF882"
-        icon.style.color = "#FF7B00"
-        break
+        return { text: t("strength-medium"), icon: "\uF882", color: "#FF7B00" }
+
       case 2:
-        p.innerHTML = t("strength-good")
-        icon.innerHTML = "\uF299"
-        icon.style.color = "#68EA00"
-        break
+        return { text: t("strength-good"), icon: "\uF299", color: "#68EA00" }
+
       case 3:
-        p.innerHTML = t("strength-excellent")
-        icon.innerHTML = "\uF6EA"
-        icon.style.color = "#00BF07"
-        break
+        return {
+          text: t("strength-excellent"),
+          icon: "\uF6EA",
+          color: "#00BF07",
+        }
+
       default:
-        p.innerHTML = t("enterpwrstrength")
-        icon.innerHTML = "\uF4AB"
-        icon.style.color = "#FFFFFFA0"
-        break
+        return {
+          text: t("enterpwrstrength"),
+          icon: "\uF4AB",
+          color: "#FFFFFFA0",
+        }
     }
   }
 
@@ -209,11 +217,11 @@ export default function IndexPage() {
                 {GeneratePasswordByStrength(2, settings.customChars)}
               </p>
               <div className="flex space-x-2">
-                <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
+                <Button className="h-auto px-2 py-1" onClick={NewBtnClick}>
                   {t("new")}
                 </Button>
                 <Button
-                  className="h-auto py-1 px-2"
+                  className="h-auto px-2 py-1"
                   variant="outline"
                   onClick={CopyBtn}
                 >
@@ -223,18 +231,19 @@ export default function IndexPage() {
               <Slider
                 id="StrengthSlider"
                 onValueChange={SliderChange}
-                defaultValue={[2]}
+                defaultValue={[sliderVal]}
                 max={3}
                 step={1}
                 className="m-5 sm:w-[50%]"
               />
               <p
-                className="icon-f m-2 text-6xl text-[#68EA00]"
+                className="icon-f m-2 text-6xl"
+                style={{ color: getSliderUiInfo(sliderVal).color }}
                 id="StrengthIconTxt"
               >
-                {"\uF299"}
+                {getSliderUiInfo(sliderVal).icon}
               </p>
-              <p id="StrengthTxt">{t("strength-good")}</p>
+              <p id="StrengthTxt">{getSliderUiInfo(sliderVal).text}</p>
             </div>
           </TabsContent>
           <TabsContent className="border-none" value="advanced">
@@ -246,13 +255,13 @@ export default function IndexPage() {
               </div>
               <div className="flex space-x-2">
                 <Button
-                  className="h-auto py-1 px-2"
+                  className="h-auto px-2 py-1"
                   onClick={NewBtnAdvancedClick}
                 >
                   {t("new")}
                 </Button>
                 <Button
-                  className="h-auto py-1 px-2"
+                  className="h-auto px-2 py-1"
                   variant="outline"
                   onClick={CopyAdvancedBtn}
                 >
@@ -260,7 +269,7 @@ export default function IndexPage() {
                 </Button>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="h-auto py-1 px-2" variant="outline">
+                    <Button className="h-auto px-2 py-1" variant="outline">
                       <Password20Regular className="m-0 p-0" />
                     </Button>
                   </DialogTrigger>
@@ -281,7 +290,7 @@ export default function IndexPage() {
                           id="AmountTxt"
                         />
                         <Button
-                          className="h-auto py-1 px-2"
+                          className="h-auto px-2 py-1"
                           onClick={MultiplePasswordClick}
                         >
                           {t("generate")}
@@ -310,7 +319,7 @@ export default function IndexPage() {
                   />
                   <Button
                     onClick={RandomLength}
-                    className="h-auto py-1 px-2"
+                    className="h-auto px-2 py-1"
                     variant="outline"
                   >
                     <Lightbulb20Regular className="m-0 p-0" />
