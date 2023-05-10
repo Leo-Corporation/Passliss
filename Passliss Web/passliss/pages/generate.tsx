@@ -36,6 +36,12 @@ import { Textarea } from "@/components/ui/textarea"
 export default function IndexPage() {
   const { t } = useTranslation("common") // default namespace (optional)
   const [sliderVal, setSliderVal] = useState(2)
+  const [hasUpper, setHasUpper] = useState(true)
+  const [hasLower, setHasLower] = useState(true)
+  const [hasNumber, setHasNumber] = useState(true)
+  const [hasChars, setHasChars] = useState(false)
+  const [length, setLength] = useState(12)
+
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -49,16 +55,7 @@ export default function IndexPage() {
   }
 
   function AreOptionsChecked() {
-    let lower =
-      document.getElementById("LowerChk").getAttribute("aria-checked") == "true"
-    let upper =
-      document.getElementById("UpperChk").getAttribute("aria-checked") == "true"
-    let nbr =
-      document.getElementById("NbrChk").getAttribute("aria-checked") == "true"
-    let special =
-      document.getElementById("SpecialChk").getAttribute("aria-checked") ==
-      "true"
-    return lower || upper || nbr || special
+    return hasLower || hasUpper || hasNumber || hasChars
   }
 
   function MultiplePasswordClick() {
@@ -71,25 +68,13 @@ export default function IndexPage() {
 
     text.value = "" // clear
 
-    let lower =
-      document.getElementById("LowerChk").getAttribute("aria-checked") == "true"
-    let upper =
-      document.getElementById("UpperChk").getAttribute("aria-checked") == "true"
-    let nbr =
-      document.getElementById("NbrChk").getAttribute("aria-checked") == "true"
-    let special =
-      document.getElementById("SpecialChk").getAttribute("aria-checked") ==
-      "true"
-    let length = (document.getElementById("LengthTxt") as HTMLInputElement)
-      .value
-
     for (let i = 0; i < amount; i++) {
       text.value +=
         GeneratePassword(
-          lower,
-          upper,
-          nbr,
-          special,
+          hasLower,
+          hasUpper,
+          hasNumber,
+          hasChars,
           +length,
           settings.customChars
         ) + "\n"
@@ -100,22 +85,12 @@ export default function IndexPage() {
     if (!AreOptionsChecked()) return
 
     let txt = document.getElementById("APasswordTxt")
-    let lower =
-      document.getElementById("LowerChk").getAttribute("aria-checked") == "true"
-    let upper =
-      document.getElementById("UpperChk").getAttribute("aria-checked") == "true"
-    let nbr =
-      document.getElementById("NbrChk").getAttribute("aria-checked") == "true"
-    let special =
-      document.getElementById("SpecialChk").getAttribute("aria-checked") ==
-      "true"
-    let length = (document.getElementById("LengthTxt") as HTMLInputElement)
-      .value
+
     let pwr = GeneratePassword(
-      lower,
-      upper,
-      nbr,
-      special,
+      hasLower,
+      hasUpper,
+      hasNumber,
+      hasChars,
       +length,
       settings.customChars
     )
@@ -184,9 +159,9 @@ export default function IndexPage() {
   function RandomLength() {
     let min = settings.passwordLengthOne
     let max = settings.passwordLengthTwo
-    ;(document.getElementById("LengthTxt") as HTMLInputElement).value = (
-      Math.floor(Math.random() * (max - min)) + min
-    ).toString()
+    setLength(Math.floor(Math.random() * (max - min)) + min)
+    ;(document.getElementById("LengthTxt") as HTMLInputElement).value =
+      length.toString()
   }
 
   return (
@@ -306,13 +281,26 @@ export default function IndexPage() {
               </div>
               <div className="m-5 grid grid-rows-4 md:grid-cols-2">
                 <div className="col-end-1 flex items-center space-x-2">
-                  <Switch id="LowerChk" defaultChecked={true} />
+                  <Switch
+                    id="LowerChk"
+                    onCheckedChange={setHasLower}
+                    defaultChecked={hasLower}
+                  />
                   <Label htmlFor="LowerChk">{t("lowercases")}</Label>
                 </div>
                 <div className="col-start-2 flex items-center space-x-2">
                   <Label htmlFor="LengthTxt">{t("length")}</Label>
                   <Input
-                    defaultValue={12}
+                    defaultValue={length}
+                    onChange={() =>
+                      setLength(
+                        +(
+                          document.getElementById(
+                            "LengthTxt"
+                          ) as HTMLInputElement
+                        ).value
+                      )
+                    }
                     type="number"
                     className="h-auto px-2 py-1"
                     id="LengthTxt"
@@ -326,15 +314,27 @@ export default function IndexPage() {
                   </Button>
                 </div>
                 <div className="col-end-1 flex items-center space-x-2">
-                  <Switch defaultChecked={true} id="UpperChk" />
+                  <Switch
+                    onCheckedChange={setHasUpper}
+                    defaultChecked={hasUpper}
+                    id="UpperChk"
+                  />
                   <Label htmlFor="UpperChk">{t("uppercases")}</Label>
                 </div>
                 <div className="col-end-1 flex items-center space-x-2">
-                  <Switch defaultChecked={true} id="NbrChk" />
+                  <Switch
+                    onCheckedChange={setHasNumber}
+                    defaultChecked={hasNumber}
+                    id="NbrChk"
+                  />
                   <Label htmlFor="NbrChk">{t("nbrs")}</Label>
                 </div>
                 <div className="col-end-1 flex items-center space-x-2">
-                  <Switch id="SpecialChk" />
+                  <Switch
+                    id="SpecialChk"
+                    onCheckedChange={setHasChars}
+                    defaultChecked={hasChars}
+                  />
                   <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
                 </div>
               </div>
