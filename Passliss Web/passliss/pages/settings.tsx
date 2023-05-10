@@ -118,7 +118,7 @@ export default function SettingsPage() {
         <div className="flex justify-center">
           <section
             id="about-section"
-            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white py-4 px-10 text-center shadow-lg dark:bg-slate-800"
+            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white px-10 py-4 text-center shadow-lg dark:bg-slate-800"
           >
             <div className="m-3 flex items-center space-x-2">
               <h2 className="text-4xl font-bold">{t("title")}</h2>
@@ -234,7 +234,7 @@ export default function SettingsPage() {
                 </div>
               </div>
               <Select defaultValue={lang} onValueChange={SelectChanged}>
-                <SelectTrigger className="mx-1 h-auto w-[200px] py-1 px-2 sm:justify-self-end">
+                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
                   <SelectValue placeholder={t("language")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -408,7 +408,7 @@ export default function SettingsPage() {
                   SetSettings(settings)
                 }}
               >
-                <SelectTrigger className="mx-1 h-auto w-[200px] py-1 px-2 sm:justify-self-end">
+                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
                   <SelectValue placeholder={t("algorithm")} />
                 </SelectTrigger>
                 <SelectContent>
