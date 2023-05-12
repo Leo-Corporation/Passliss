@@ -89,5 +89,7 @@
   "reset-settings-msg": "Êtes-vous sûr de vouloir réinitialiser tous les réglages ? Cette opération ne peut pas être annulée.",
   "default": "Par défaut",
   "password-security": "Sécurité du mot de passe",
-  "hide-password": "Cacher les mots de passe générés."
+  "hide-password": "Cacher les mots de passe générés.",
+  "password-config": "Configuration du mot de passe",
+  "password-default": "Configuration du mot de passe par défaut."
 }

@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Settings20Regular } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
-import { Label } from "@radix-ui/react-dropdown-menu"
 import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
 import useTranslation from "next-translate/useTranslation"
@@ -40,6 +39,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
@@ -60,6 +60,18 @@ export default function SettingsPage() {
     settings = GetSettings()
     if (settings.hidePassword == null || settings.hidePassword == undefined) {
       settings.hidePassword = false
+    }
+
+    if (
+      settings.defaultPasswordConfig == null ||
+      settings.defaultPasswordConfig == undefined
+    ) {
+      settings.defaultPasswordConfig = {
+        upperCases: true,
+        lowerCases: true,
+        numbers: true,
+        special: false,
+      }
     }
   }
   async function SelectChanged(val) {
@@ -359,6 +371,76 @@ export default function SettingsPage() {
                     SetSettings(settings)
                   }}
                 />
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="password-defaults">
+              <AccordionTrigger>
+                <div className="grid grid-cols-[auto,1fr] items-center">
+                  <p className="icon my-2 mr-2 text-3xl font-normal">
+                    {"\uF6C6"}
+                  </p>
+                  <div>
+                    <h4 className="text-left text-lg">
+                      {t("password-config")}
+                    </h4>
+                    <p className="text-left text-sm font-normal">
+                      {t("password-default")}
+                    </p>
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="m-5 grid grid-rows-4 md:grid-cols-2">
+                  <div className="col-end-1 mb-2 flex items-center space-x-2">
+                    <Switch
+                      id="LowerChk"
+                      onCheckedChange={() => {
+                        settings.defaultPasswordConfig.lowerCases =
+                          !settings.defaultPasswordConfig.lowerCases
+                        SetSettings(settings)
+                      }}
+                      defaultChecked={settings.defaultPasswordConfig.lowerCases}
+                    />
+                    <Label htmlFor="LowerChk">{t("lowercases")}</Label>
+                  </div>
+                  <div className="col-end-1 mb-2 flex items-center space-x-2">
+                    <Switch
+                      onCheckedChange={() => {
+                        settings.defaultPasswordConfig.upperCases =
+                          !settings.defaultPasswordConfig.upperCases
+                        SetSettings(settings)
+                      }}
+                      defaultChecked={settings.defaultPasswordConfig.upperCases}
+                      id="UpperChk"
+                    />
+                    <Label htmlFor="UpperChk">{t("uppercases")}</Label>
+                  </div>
+                  <div className="col-end-1 mb-2 flex items-center space-x-2">
+                    <Switch
+                      onCheckedChange={() => {
+                        settings.defaultPasswordConfig.numbers =
+                          !settings.defaultPasswordConfig.numbers
+                        SetSettings(settings)
+                      }}
+                      defaultChecked={settings.defaultPasswordConfig.numbers}
+                      id="NbrChk"
+                    />
+                    <Label htmlFor="NbrChk">{t("nbrs")}</Label>
+                  </div>
+                  <div className="col-end-1 mb-2 flex items-center space-x-2">
+                    <Switch
+                      id="SpecialChk"
+                      onCheckedChange={() => {
+                        settings.defaultPasswordConfig.special =
+                          !settings.defaultPasswordConfig.special
+                        SetSettings(settings)
+                      }}
+                      defaultChecked={settings.defaultPasswordConfig.special}
+                    />
+                    <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                  </div>
+                </div>
               </AccordionContent>
             </AccordionItem>
 

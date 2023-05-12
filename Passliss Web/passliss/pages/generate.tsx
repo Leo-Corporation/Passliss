@@ -34,12 +34,41 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 
 export default function IndexPage() {
+  let settings: Settings = undefined
+  function LoadSettings() {
+    settings = GetSettings()
+    if (settings.hidePassword == null || settings.hidePassword == undefined) {
+      settings.hidePassword = false
+    }
+
+    if (
+      settings.defaultPasswordConfig == null ||
+      settings.defaultPasswordConfig == undefined
+    ) {
+      settings.defaultPasswordConfig = {
+        upperCases: true,
+        lowerCases: true,
+        numbers: true,
+        special: false,
+      }
+    }
+  }
+  LoadSettings()
+
   const { t } = useTranslation("common") // default namespace (optional)
   const [sliderVal, setSliderVal] = useState(2)
-  const [hasUpper, setHasUpper] = useState(true)
-  const [hasLower, setHasLower] = useState(true)
-  const [hasNumber, setHasNumber] = useState(true)
-  const [hasChars, setHasChars] = useState(false)
+  const [hasUpper, setHasUpper] = useState(
+    settings.defaultPasswordConfig.upperCases
+  )
+  const [hasLower, setHasLower] = useState(
+    settings.defaultPasswordConfig.lowerCases
+  )
+  const [hasNumber, setHasNumber] = useState(
+    settings.defaultPasswordConfig.numbers
+  )
+  const [hasChars, setHasChars] = useState(
+    settings.defaultPasswordConfig.special
+  )
   const [length, setLength] = useState(12)
 
   function NewBtnClick() {
@@ -149,12 +178,6 @@ export default function IndexPage() {
         }
     }
   }
-
-  let settings: Settings = undefined
-  function LoadSettings() {
-    settings = GetSettings()
-  }
-  LoadSettings()
 
   function RandomLength() {
     let min = settings.passwordLengthOne
