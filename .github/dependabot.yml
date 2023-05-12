@@ -1,12 +1,12 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/Passliss Web/passliss" # Location of package manifests
+    directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
     target-branch: vNext
     reviewers:
-    - Leo-Peyronnet
+      - Leo-Peyronnet
     assignees:
-    - Leo-Peyronnet
+      - Leo-Peyronnet
     open-pull-requests-limit: 25
