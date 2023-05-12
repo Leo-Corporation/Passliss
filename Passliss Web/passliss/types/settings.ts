@@ -4,6 +4,7 @@ export interface Settings {
   customChars: CustomCharacters
   encryptAlgo: string
   hidePassword?: boolean
+  defaultPasswordConfig?: DefaultPasswordConfig
 }
 
 export interface CustomCharacters {
@@ -11,4 +12,11 @@ export interface CustomCharacters {
   upperCases: string
   numbers: string
   special: string
+}
+
+export interface DefaultPasswordConfig {
+  lowerCases: boolean
+  upperCases: boolean
+  numbers: boolean
+  special: boolean
 }

@@ -1,6 +1,6 @@
 name: Build Next.js Site
 on:
-  push:
+  [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest

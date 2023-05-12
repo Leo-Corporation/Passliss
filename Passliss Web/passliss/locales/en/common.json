@@ -89,5 +89,7 @@
   "reset-settings-msg": "Are you sure you want to reset all settings? This operation cannot be canceled.",
   "default": "Default",
   "password-security": "Password security",
-  "hide-password": "Hide generated passwords."
+  "hide-password": "Hide generated passwords.",
+  "password-config": "Password Configuration",
+  "password-default": "Default password configuration."
 }

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Head from "next/head"
 import { Key20Regular, Translate20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
@@ -42,19 +43,19 @@ export default function EncryptionPage() {
     algo = val
   }
 
+  const [text, setText] = useState("")
+  const [key, setKey] = useState("")
+  const [encrypted, setEncrypted] = useState("")
+  const [d_text, setD_Text] = useState("")
+  const [d_key, setD_Key] = useState("")
+  const [d_encrypted, setD_Encrypted] = useState("")
   function Encrypt() {
-    let text = (document.getElementById("ToEncrypt") as HTMLInputElement).value
-    let key = (
-      document.getElementById("EncryptKeyInput") as HTMLTextAreaElement
-    ).value
-    let result = document.getElementById("Encrypted") as HTMLTextAreaElement
-
     switch (algo) {
       case "aes":
-        result.value = CryptoJS.AES.encrypt(text, key)
+        setEncrypted(CryptoJS.AES.encrypt(text, key))
         break
       case "3des":
-        result.value = CryptoJS.TripleDES.encrypt(text, key)
+        setEncrypted(CryptoJS.TripleDES.encrypt(text, key))
 
       default:
         break
@@ -62,18 +63,14 @@ export default function EncryptionPage() {
   }
 
   function Decrypt() {
-    let text = (document.getElementById("ToDecrypt") as HTMLInputElement).value
-    let key = (
-      document.getElementById("DecryptKeyInput") as HTMLTextAreaElement
-    ).value
-    let result = document.getElementById("Decrypted") as HTMLTextAreaElement
-
     switch (algo) {
       case "aes":
-        result.value = hex2a(CryptoJS.AES.decrypt(text, key).toString())
+        setD_Encrypted(hex2a(CryptoJS.AES.decrypt(d_text, d_key).toString()))
         break
       case "3des":
-        result.value = hex2a(CryptoJS.TripleDES.decrypt(text, key).toString())
+        setD_Encrypted(
+          hex2a(CryptoJS.TripleDES.decrypt(d_text, d_key).toString())
+        )
 
       default:
         break
@@ -120,7 +117,7 @@ export default function EncryptionPage() {
               defaultValue={settings.encryptAlgo}
               onValueChange={SelectChanged}
             >
-              <SelectTrigger className="mx-1 h-auto py-1 px-2">
+              <SelectTrigger className="mx-1 h-auto px-2 py-1">
                 <SelectValue placeholder={t("algorithm")} />
               </SelectTrigger>
               <SelectContent>
@@ -142,6 +139,16 @@ export default function EncryptionPage() {
                   type="password"
                   className="h-auto px-2 py-1"
                   id="EncryptKeyInput"
+                  defaultValue={key}
+                  onChange={() =>
+                    setKey(
+                      (
+                        document.getElementById(
+                          "EncryptKeyInput"
+                        ) as HTMLTextAreaElement
+                      ).value
+                    )
+                  }
                 />
                 <Button
                   className="h-auto px-2 py-1"
@@ -170,11 +177,20 @@ export default function EncryptionPage() {
               </div>
               <div className="space-y-2">
                 <label htmlFor="ToEncrypt">{t("text-to-encrypt")}</label>
-                <Textarea id="ToEncrypt" />
+                <Textarea
+                  id="ToEncrypt"
+                  defaultValue={text}
+                  onChange={() =>
+                    setText(
+                      (document.getElementById("ToEncrypt") as HTMLInputElement)
+                        .value
+                    )
+                  }
+                />
               </div>
               <div className="space-y-2">
                 <label htmlFor="Encrypted">{t("encrypted-text")}</label>
-                <Textarea readOnly={true} id="Encrypted" />
+                <Textarea readOnly={true} id="Encrypted" value={encrypted} />
               </div>
             </div>
           </TabsContent>
@@ -186,6 +202,16 @@ export default function EncryptionPage() {
                   type="password"
                   className="h-auto px-2 py-1"
                   id="DecryptKeyInput"
+                  defaultValue={d_key}
+                  onChange={() =>
+                    setD_Key(
+                      (
+                        document.getElementById(
+                          "DecryptKeyInput"
+                        ) as HTMLInputElement
+                      ).value
+                    )
+                  }
                 />
                 <Button
                   className="h-auto px-2 py-1"
@@ -197,11 +223,20 @@ export default function EncryptionPage() {
               </div>
               <div className="space-y-2">
                 <label htmlFor="ToDecrypt">{t("text-to-decrypt")}</label>
-                <Textarea id="ToDecrypt" />
+                <Textarea
+                  id="ToDecrypt"
+                  defaultValue={d_text}
+                  onChange={() =>
+                    setD_Text(
+                      (document.getElementById("ToDecrypt") as HTMLInputElement)
+                        .value
+                    )
+                  }
+                />
               </div>
               <div className="space-y-2">
                 <label htmlFor="Decrypted">{t("decrypted-text")}</label>
-                <Textarea readOnly={true} id="Decrypted" />
+                <Textarea readOnly={true} id="Decrypted" value={d_encrypted} />
               </div>
             </div>
           </TabsContent>

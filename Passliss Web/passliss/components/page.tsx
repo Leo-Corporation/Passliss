@@ -78,7 +78,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "home" ? "navselect" : "nav",
                   className:
-                    "my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+                    "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
                 })}
                 href={"/home"}
               >
@@ -93,7 +93,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "activity" ? "navselect" : "nav",
                   className:
-                    " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+                    " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
                 })}
                 href={"/activity"}
               >
@@ -108,7 +108,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "settings" ? "navselect" : "nav",
                   className:
-                    " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+                    " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
                 })}
                 href={"/settings"}
               >
@@ -172,7 +172,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "home" ? "navselect" : "nav",
                 className:
-                  "my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+                  "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
               })}
               href={"/home"}
             >
@@ -186,7 +186,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "activity" ? "navselect" : "nav",
                 className:
-                  " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+                  " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
               })}
               href={"/activity"}
             >
@@ -200,7 +200,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "settings" ? "navselect" : "nav",
                 className:
-                  " my-1 mx-2 h-auto w-full pr-3 pl-0 text-black dark:text-white",
+                  " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
               })}
               href={"/settings"}
             >

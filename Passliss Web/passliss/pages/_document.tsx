@@ -22,13 +22,13 @@ export default function Document() {
           name="twitter:description"
           content="Passliss is a web application that allows you to generate secure passwords, test the strength of exiting ones and more."
         />
-        <meta name="twitter:title" content="Léo Corporation" />
+        <meta name="twitter:title" content="Passliss" />
         <meta
           property="og:description"
           content="Passliss is a web application that allows you to generate secure passwords, test the strength of exiting ones and more."
         />
         <meta property="og:image" content="/images/social.png" />
-        <meta property="og:title" content="Léo Corporation" />
+        <meta property="og:title" content="Passliss" />
 
         <meta
           name="description"

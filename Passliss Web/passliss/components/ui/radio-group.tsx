@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { Circle16Filled } from "@fluentui/react-icons"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
-import { Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -34,7 +34,7 @@ const RadioGroupItem = React.forwardRef<
       {...props}
     >
       <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <Circle className="h-2.5 w-2.5 fill-slate-900 dark:fill-slate-50" />
+        <Circle16Filled className="h-2.5 w-2.5 fill-slate-900 dark:fill-slate-50" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )

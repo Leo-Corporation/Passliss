@@ -70,11 +70,11 @@ export default function HomePage() {
             {GeneratePasswordByStrength(2, settings.customChars)}
           </p>
           <div className="flex space-x-2">
-            <Button className="h-auto py-1 px-2" onClick={NewBtnClick}>
+            <Button className="h-auto px-2 py-1" onClick={NewBtnClick}>
               {t("new")}
             </Button>
             <Button
-              className="h-auto py-1 px-2"
+              className="h-auto px-2 py-1"
               variant="outline"
               onClick={CopyBtn}
             >
