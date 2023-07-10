@@ -91,5 +91,8 @@
   "password-security": "Sécurité du mot de passe",
   "hide-password": "Cacher les mots de passe générés.",
   "password-config": "Configuration du mot de passe",
-  "password-default": "Configuration du mot de passe par défaut."
+  "password-default": "Configuration du mot de passe par défaut.",
+  "generate-with-ai": "Générer des mots de passe avec l'IA",
+  "ai": "IA",
+  "enter-prompt": "Entrez une instruction pour générer un mot de passe."
 }

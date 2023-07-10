@@ -91,5 +91,8 @@
   "password-security": "Password security",
   "hide-password": "Hide generated passwords.",
   "password-config": "Password Configuration",
-  "password-default": "Default password configuration."
+  "password-default": "Default password configuration.",
+  "generate-with-ai": "Generate passwords with AI",
+  "ai": "AI",
+  "enter-prompt": "Enter a prompt to generate a password."
 }
