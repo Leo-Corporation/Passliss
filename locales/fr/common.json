@@ -94,5 +94,7 @@
   "password-default": "Configuration du mot de passe par défaut.",
   "generate-with-ai": "Générer des mots de passe avec l'IA",
   "ai": "IA",
-  "enter-prompt": "Entrez une instruction pour générer un mot de passe."
+  "enter-prompt": "Entrez une instruction pour générer un mot de passe.",
+  "api-key": "Clé d'API",
+  "set-api-key": "Définissez votre clé d'API."
 }

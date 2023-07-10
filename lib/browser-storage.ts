@@ -60,6 +60,7 @@ export function GetSettings(): Settings {
           special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
         },
         hidePassword: false,
+        openaiKey: "",
       }
     )
   }
@@ -75,6 +76,7 @@ export function GetSettings(): Settings {
       special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
     },
     hidePassword: false,
+    openaiKey: "",
   }
 }
 

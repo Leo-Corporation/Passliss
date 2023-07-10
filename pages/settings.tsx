@@ -1,7 +1,7 @@
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { Settings20Regular } from "@fluentui/react-icons"
+import { Save16Regular, Settings20Regular } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
@@ -60,6 +60,10 @@ export default function SettingsPage() {
     settings = GetSettings()
     if (settings.hidePassword == null || settings.hidePassword == undefined) {
       settings.hidePassword = false
+    }
+
+    if (settings.openaiKey == null || settings.openaiKey == undefined) {
+      settings.openaiKey = ""
     }
 
     if (
@@ -501,6 +505,44 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
+
+            <AccordionItem value="ai">
+              <AccordionTrigger>
+                <div className="grid grid-cols-[auto,1fr] items-center">
+                  <p className="icon my-2 mr-2 text-3xl font-normal">
+                    {"\uF4DB"}
+                  </p>
+                  <div>
+                    <h4 className="text-left text-lg">{t("ai")}</h4>
+                    <p className="text-left text-sm font-normal">
+                      {t("set-api-key")}
+                    </p>
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="flex items-center space-x-2">
+                  <p>{t("api-key")}</p>
+                  <Input
+                    type="password"
+                    id="api-key"
+                    className="h-auto max-w-[50%] px-2 py-1"
+                  />
+                  <Button
+                    onClick={() => {
+                      settings.openaiKey = (
+                        document.getElementById("api-key") as HTMLInputElement
+                      ).value
+
+                      SetSettings(settings)
+                    }}
+                    className="h-auto px-2 py-1"
+                  >
+                    <Save16Regular />
+                  </Button>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
 
             <AccordionItem value="data">
               <AccordionTrigger>

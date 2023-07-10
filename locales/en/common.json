@@ -94,5 +94,7 @@
   "password-default": "Default password configuration.",
   "generate-with-ai": "Generate passwords with AI",
   "ai": "AI",
-  "enter-prompt": "Enter a prompt to generate a password."
+  "enter-prompt": "Enter a prompt to generate a password.",
+  "api-key": "API key",
+  "set-api-key": "Set your OpenAI API key."
 }
