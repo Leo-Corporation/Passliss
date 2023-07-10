@@ -17,6 +17,7 @@ import {
 } from "@/lib/password-gen"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
+import PasswordItem from "@/components/password-item"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -187,6 +188,11 @@ export default function IndexPage() {
       length.toString()
   }
 
+  const [passwords, setPasswords] = useState([])
+
+  function GeneratePasswordAi() {
+    setPasswords(["pwr1", "pwr2", "pwr3"])
+  }
   return (
     <Layout>
       <Head>
@@ -205,6 +211,7 @@ export default function IndexPage() {
           <TabsList>
             <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
             <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
+            <TabsTrigger value="ai">{t("ai")}</TabsTrigger>
           </TabsList>
           <TabsContent
             className="justify-center border-none data-[state=active]:flex"
@@ -360,6 +367,29 @@ export default function IndexPage() {
                   />
                   <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
                 </div>
+              </div>
+            </div>
+          </TabsContent>
+          <TabsContent className="border-none" value="ai">
+            <div className="flex w-full flex-col items-center">
+              <div className="m-5 flex w-full space-x-2">
+                <Input
+                  type="text"
+                  id="prompt-txt"
+                  placeholder={t("enter-prompt")}
+                  className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
+                />
+                <Button
+                  className="h-auto px-2 py-1"
+                  onClick={GeneratePasswordAi}
+                >
+                  {t("generate")}
+                </Button>
+              </div>
+              <div id="result-items" className="w-full">
+                {passwords.map((password) => (
+                  <PasswordItem content={password} />
+                ))}
               </div>
             </div>
           </TabsContent>
