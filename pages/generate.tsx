@@ -8,6 +8,7 @@ import {
   Password20Regular,
 } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
+import { Configuration, OpenAIApi } from "openai"
 
 import { Settings } from "@/types/settings"
 import { AddActivity, GetSettings } from "@/lib/browser-storage"
@@ -190,8 +191,32 @@ export default function IndexPage() {
 
   const [passwords, setPasswords] = useState([])
 
-  function GeneratePasswordAi() {
-    setPasswords(["pwr1", "pwr2", "pwr3"])
+  async function GeneratePasswordAi() {
+    const config = new Configuration({
+      apiKey: settings.openaiKey,
+    })
+    let prompt = (document.getElementById("prompt-txt") as HTMLInputElement)
+      .value
+    const openai = new OpenAIApi(config)
+    try {
+      const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              'GOAL: Generate ONLY 3 complex passwords according to the user prompt.\nOUTPUT: Use the following format (JSON array):\n["pwr1", "pwr2", "pwr3"]',
+          },
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      })
+      let res = completion.data.choices[0].message.content
+      let obj = JSON.parse(res)
+      setPasswords(obj)
+    } catch {}
   }
   return (
     <Layout>
