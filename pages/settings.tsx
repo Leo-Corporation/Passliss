@@ -527,6 +527,7 @@ export default function SettingsPage() {
                     type="password"
                     id="api-key"
                     className="h-auto max-w-[50%] px-2 py-1"
+                    defaultValue={settings.openaiKey ?? ""}
                   />
                   <Button
                     onClick={() => {
