@@ -99,5 +99,6 @@
   "set-api-key": "Set your OpenAI API key.",
   "welcome-ai": "Welcome to AI password generation",
   "welcome-ai-desc": "Generate passwords that fits you using the power of AI.",
-  "save": "Save"
+  "save": "Save",
+  "ai-loading": "AI is generating your passwords..."
 }

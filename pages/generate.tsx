@@ -3,9 +3,7 @@ import Head from "next/head"
 import {
   Lightbulb20Regular,
   LightbulbFilament48Regular,
-  LockClosed12Regular,
   LockClosed20Regular,
-  LockClosed24Regular,
   Password20Regular,
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
@@ -28,7 +26,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -202,6 +199,7 @@ export default function IndexPage() {
       settings.openaiKey == ""
     )
   )
+  const [resVis, setResVis] = useState(true)
 
   async function GeneratePasswordAi() {
     const config = new Configuration({
@@ -210,6 +208,7 @@ export default function IndexPage() {
     let prompt = (document.getElementById("prompt-txt") as HTMLInputElement)
       .value
     const openai = new OpenAIApi(config)
+    setResVis(false)
     try {
       const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
@@ -228,6 +227,7 @@ export default function IndexPage() {
       let res = completion.data.choices[0].message.content
       let obj = JSON.parse(res)
       setPasswords(obj)
+      setResVis(true)
     } catch {}
   }
   return (
@@ -490,7 +490,15 @@ export default function IndexPage() {
                     <PromptItem prompt={prp} />
                   ))}
                 </div>
-                <div id="result-items" className="w-full">
+                <div
+                  className={resVis ? "hidden" : "flex flex-col items-center"}
+                >
+                  <p className="icon my-2 mr-2 animate-spin select-none text-6xl font-normal">
+                    {"\uF709"}
+                  </p>
+                  <p className="text-center font-bold">{t("ai-loading")}</p>
+                </div>
+                <div id="result-items" className={resVis ? "w-full" : "hidden"}>
                   {passwords.map((password) => (
                     <PasswordItem content={password} />
                   ))}
