@@ -5,6 +5,7 @@ export interface Settings {
   encryptAlgo: string
   hidePassword?: boolean
   defaultPasswordConfig?: DefaultPasswordConfig
+  openaiKey?: string
 }
 
 export interface CustomCharacters {

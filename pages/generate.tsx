@@ -2,21 +2,25 @@ import { useState } from "react"
 import Head from "next/head"
 import {
   Lightbulb20Regular,
-  LockClosed12Regular,
+  LightbulbFilament48Regular,
   LockClosed20Regular,
-  LockClosed24Regular,
   Password20Regular,
 } from "@fluentui/react-icons"
+import { DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
+import { Configuration, OpenAIApi } from "openai"
 
 import { Settings } from "@/types/settings"
-import { AddActivity, GetSettings } from "@/lib/browser-storage"
+import { AddActivity, GetSettings, SetSettings } from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
+  GetRandomPrompts,
 } from "@/lib/password-gen"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
+import PasswordItem from "@/components/password-item"
+import PromptItem from "@/components/prompt-item"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -187,6 +191,50 @@ export default function IndexPage() {
       length.toString()
   }
 
+  const [passwords, setPasswords] = useState([])
+  const [showAI, setShowAI] = useState(
+    !(
+      settings.openaiKey == null ||
+      settings.openaiKey == undefined ||
+      settings.openaiKey == ""
+    )
+  )
+  const [resVis, setResVis] = useState(true)
+
+  async function GeneratePasswordAi() {
+    const config = new Configuration({
+      apiKey: settings.openaiKey,
+    })
+    let prompt = (document.getElementById("prompt-txt") as HTMLInputElement)
+      .value
+    const openai = new OpenAIApi(config)
+    setResVis(false)
+    try {
+      const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              'GOAL: Generate ONLY 3 complex passwords according to the user prompt.\nOUTPUT: Use the following format (JSON array):\n["", "", ""]',
+          },
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      })
+      let res = completion.data.choices[0].message.content
+      let obj = JSON.parse(res)
+      if (!Array.isArray(obj)) {
+        setPasswords(["An error has occured, please try again"])
+        setResVis(true)
+        return
+      }
+      setPasswords(obj)
+      setResVis(true)
+    } catch {}
+  }
   return (
     <Layout>
       <Head>
@@ -205,6 +253,7 @@ export default function IndexPage() {
           <TabsList>
             <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
             <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
+            <TabsTrigger value="ai">{t("ai")}</TabsTrigger>
           </TabsList>
           <TabsContent
             className="justify-center border-none data-[state=active]:flex"
@@ -362,6 +411,105 @@ export default function IndexPage() {
                 </div>
               </div>
             </div>
+          </TabsContent>
+          <TabsContent className="border-none" value="ai">
+            {settings.openaiKey == null ||
+            settings.openaiKey == undefined ||
+            (settings.openaiKey == "" && !showAI) ? (
+              <div className="flex flex-col items-center">
+                <LightbulbFilament48Regular />
+                <h2 className="text-center text-3xl font-bold">
+                  {t("welcome-ai")}
+                </h2>
+                <p className="text-center">{t("welcome-ai-desc")}</p>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="m-2 h-auto px-2 py-1">
+                      {t("set-api-key")}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>{t("set-api-key")}</DialogTitle>
+                      <DialogDescription>
+                        {t("multipasswords-desc")}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4">
+                      <div className="flex items-center space-x-2">
+                        <Label htmlFor="AmountTxt">{t("api-key")}</Label>
+                        <Input
+                          type="password"
+                          id="api-key"
+                          className="h-auto max-w-[80%] px-2 py-1"
+                          defaultValue={settings.openaiKey ?? ""}
+                        />
+                      </div>
+                    </div>
+                    <DialogClose>
+                      <Button
+                        onClick={() => {
+                          settings.openaiKey = (
+                            document.getElementById(
+                              "api-key"
+                            ) as HTMLInputElement
+                          ).value
+                          setShowAI(
+                            !(
+                              settings.openaiKey == null ||
+                              settings.openaiKey == undefined ||
+                              settings.openaiKey == ""
+                            )
+                          )
+                          SetSettings(settings)
+                        }}
+                        className="h-auto px-2 py-1"
+                      >
+                        {t("save")}
+                      </Button>
+                    </DialogClose>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            ) : (
+              <div className="flex w-full flex-col items-center">
+                <div className="m-5 flex w-full space-x-2">
+                  <Input
+                    type="text"
+                    id="prompt-txt"
+                    placeholder={t("enter-prompt")}
+                    className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
+                  />
+                  <Button
+                    className="h-auto px-2 py-1"
+                    onClick={GeneratePasswordAi}
+                  >
+                    {t("generate")}
+                  </Button>
+                </div>
+                <div
+                  id="suggestions"
+                  className="flex w-full flex-wrap items-center"
+                >
+                  {GetRandomPrompts(3).map((prp) => (
+                    <PromptItem prompt={prp} />
+                  ))}
+                </div>
+                <div
+                  className={resVis ? "hidden" : "flex flex-col items-center"}
+                >
+                  <p className="icon my-2 mr-2 animate-spin select-none text-6xl font-normal">
+                    {"\uF709"}
+                  </p>
+                  <p className="text-center font-bold">{t("ai-loading")}</p>
+                </div>
+                <div id="result-items" className={resVis ? "w-full" : "hidden"}>
+                  {passwords.map((password) => (
+                    <PasswordItem content={password} />
+                  ))}
+                </div>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </PageContent>

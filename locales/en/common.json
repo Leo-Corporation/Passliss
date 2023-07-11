@@ -91,5 +91,14 @@
   "password-security": "Password security",
   "hide-password": "Hide generated passwords.",
   "password-config": "Password Configuration",
-  "password-default": "Default password configuration."
+  "password-default": "Default password configuration.",
+  "generate-with-ai": "Generate passwords with AI",
+  "ai": "AI",
+  "enter-prompt": "Enter a prompt to generate a password.",
+  "api-key": "API key",
+  "set-api-key": "Set your OpenAI API key.",
+  "welcome-ai": "Welcome to AI password generation",
+  "welcome-ai-desc": "Generate passwords that fits you using the power of AI.",
+  "save": "Save",
+  "ai-loading": "AI is generating your passwords..."
 }
