@@ -6,7 +6,7 @@ export default function PromptItem(props: { prompt: string }) {
   return (
     <p
       onClick={SetText}
-      className="my-2 ml-0 mr-4 cursor-pointer rounded-lg border border-blue-600 bg-blue-400 px-2 py-1 text-sm shadow-sm transition-all hover:translate-y-[-4px] dark:bg-blue-950"
+      className="my-2 ml-0 mr-4 cursor-pointer rounded-lg border border-blue-600 bg-white px-2 py-1 text-sm text-blue-600 shadow-sm transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
     >
       {props.prompt}
     </p>
