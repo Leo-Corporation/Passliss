@@ -51,3 +51,25 @@ export function GeneratePasswordByStrength(
       return GeneratePassword(true, true, false, false, 9, chars)
   }
 }
+
+export function GetRandomPrompts(numPrompts: number): string[] {
+  const prompts = [
+    "Secure password with lowercases",
+    "Easy to remember related to animals",
+    "Secure password with numbers",
+    "Easy to remember related to food",
+    "Secure password with special characters",
+    "Easy to remember related to music",
+    "Secure password with uppercase letters",
+    "Easy to remember related to movies",
+    "Secure password with symbols",
+    "Easy to remember related to sports",
+  ]
+  const randomPrompts = []
+  for (let i = 0; i < numPrompts; i++) {
+    const randomIndex = Math.floor(Math.random() * prompts.length)
+    randomPrompts.push(prompts[randomIndex])
+    prompts.splice(randomIndex, 1)
+  }
+  return randomPrompts
+}

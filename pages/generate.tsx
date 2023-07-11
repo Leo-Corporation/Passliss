@@ -15,10 +15,12 @@ import { AddActivity, GetSettings } from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
+  GetRandomPrompts,
 } from "@/lib/password-gen"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import PasswordItem from "@/components/password-item"
+import PromptItem from "@/components/prompt-item"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -205,7 +207,7 @@ export default function IndexPage() {
           {
             role: "system",
             content:
-              'GOAL: Generate ONLY 3 complex passwords according to the user prompt.\nOUTPUT: Use the following format (JSON array):\n["pwr1", "pwr2", "pwr3"]',
+              'GOAL: Generate ONLY 3 complex passwords according to the user prompt.\nOUTPUT: Use the following format (JSON array):\n["", "", ""]',
           },
           {
             role: "user",
@@ -410,6 +412,14 @@ export default function IndexPage() {
                 >
                   {t("generate")}
                 </Button>
+              </div>
+              <div
+                id="suggestions"
+                className="flex w-full flex-wrap items-center"
+              >
+                {GetRandomPrompts(3).map((prp) => (
+                  <PromptItem prompt={prp} />
+                ))}
               </div>
               <div id="result-items" className="w-full">
                 {passwords.map((password) => (
