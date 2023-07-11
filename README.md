@@ -50,7 +50,7 @@ In conclusion, Passliss for the Web is more than just a password generator. It i
 
 **Top Features of Passliss Web:**
 
-1. **Quick generation:** You can generate a password when loading the page or by clicking a button.
+1. **AI password generation:** You can use Artificial Intelligence to create unique, strong and secure passwords from a prompt.
 
 2. **Recommended features:** You can explore different features that are displayed as cards, with an icon, a title, and a short description.
 
