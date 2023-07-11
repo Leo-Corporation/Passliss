@@ -96,5 +96,8 @@
   "ai": "IA",
   "enter-prompt": "Entrez une instruction pour générer un mot de passe.",
   "api-key": "Clé d'API",
-  "set-api-key": "Définissez votre clé d'API."
+  "set-api-key": "Définissez votre clé d'API OpenAI.",
+  "welcome-ai": "Bienvenue à la génération de mots de passe AI",
+  "welcome-ai-desc": "Générez des mots de passe qui vous correspondent en utilisant la puissance de l'IA",
+  "save": "Enregistrer"
 }

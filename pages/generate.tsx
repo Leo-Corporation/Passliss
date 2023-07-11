@@ -2,16 +2,18 @@ import { useState } from "react"
 import Head from "next/head"
 import {
   Lightbulb20Regular,
+  LightbulbFilament48Regular,
   LockClosed12Regular,
   LockClosed20Regular,
   LockClosed24Regular,
   Password20Regular,
 } from "@fluentui/react-icons"
+import { DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
 import { Configuration, OpenAIApi } from "openai"
 
 import { Settings } from "@/types/settings"
-import { AddActivity, GetSettings } from "@/lib/browser-storage"
+import { AddActivity, GetSettings, SetSettings } from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
@@ -26,6 +28,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -192,6 +195,13 @@ export default function IndexPage() {
   }
 
   const [passwords, setPasswords] = useState([])
+  const [showAI, setShowAI] = useState(
+    !(
+      settings.openaiKey == null ||
+      settings.openaiKey == undefined ||
+      settings.openaiKey == ""
+    )
+  )
 
   async function GeneratePasswordAi() {
     const config = new Configuration({
@@ -398,35 +408,95 @@ export default function IndexPage() {
             </div>
           </TabsContent>
           <TabsContent className="border-none" value="ai">
-            <div className="flex w-full flex-col items-center">
-              <div className="m-5 flex w-full space-x-2">
-                <Input
-                  type="text"
-                  id="prompt-txt"
-                  placeholder={t("enter-prompt")}
-                  className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
-                />
-                <Button
-                  className="h-auto px-2 py-1"
-                  onClick={GeneratePasswordAi}
+            {settings.openaiKey == null ||
+            settings.openaiKey == undefined ||
+            (settings.openaiKey == "" && !showAI) ? (
+              <div className="flex flex-col items-center">
+                <LightbulbFilament48Regular />
+                <h2 className="text-center text-3xl font-bold">
+                  {t("welcome-ai")}
+                </h2>
+                <p className="text-center">{t("welcome-ai-desc")}</p>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="m-2 h-auto px-2 py-1">
+                      {t("set-api-key")}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>{t("set-api-key")}</DialogTitle>
+                      <DialogDescription>
+                        {t("multipasswords-desc")}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4">
+                      <div className="flex items-center space-x-2">
+                        <Label htmlFor="AmountTxt">{t("api-key")}</Label>
+                        <Input
+                          type="password"
+                          id="api-key"
+                          className="h-auto max-w-[80%] px-2 py-1"
+                          defaultValue={settings.openaiKey ?? ""}
+                        />
+                      </div>
+                    </div>
+                    <DialogClose>
+                      <Button
+                        onClick={() => {
+                          settings.openaiKey = (
+                            document.getElementById(
+                              "api-key"
+                            ) as HTMLInputElement
+                          ).value
+                          setShowAI(
+                            !(
+                              settings.openaiKey == null ||
+                              settings.openaiKey == undefined ||
+                              settings.openaiKey == ""
+                            )
+                          )
+                          SetSettings(settings)
+                        }}
+                        className="h-auto px-2 py-1"
+                      >
+                        {t("save")}
+                      </Button>
+                    </DialogClose>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            ) : (
+              <div className="flex w-full flex-col items-center">
+                <div className="m-5 flex w-full space-x-2">
+                  <Input
+                    type="text"
+                    id="prompt-txt"
+                    placeholder={t("enter-prompt")}
+                    className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
+                  />
+                  <Button
+                    className="h-auto px-2 py-1"
+                    onClick={GeneratePasswordAi}
+                  >
+                    {t("generate")}
+                  </Button>
+                </div>
+                <div
+                  id="suggestions"
+                  className="flex w-full flex-wrap items-center"
                 >
-                  {t("generate")}
-                </Button>
+                  {GetRandomPrompts(3).map((prp) => (
+                    <PromptItem prompt={prp} />
+                  ))}
+                </div>
+                <div id="result-items" className="w-full">
+                  {passwords.map((password) => (
+                    <PasswordItem content={password} />
+                  ))}
+                </div>
               </div>
-              <div
-                id="suggestions"
-                className="flex w-full flex-wrap items-center"
-              >
-                {GetRandomPrompts(3).map((prp) => (
-                  <PromptItem prompt={prp} />
-                ))}
-              </div>
-              <div id="result-items" className="w-full">
-                {passwords.map((password) => (
-                  <PasswordItem content={password} />
-                ))}
-              </div>
-            </div>
+            )}
           </TabsContent>
         </Tabs>
       </PageContent>
