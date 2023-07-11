@@ -226,6 +226,11 @@ export default function IndexPage() {
       })
       let res = completion.data.choices[0].message.content
       let obj = JSON.parse(res)
+      if (!Array.isArray(obj)) {
+        setPasswords(["An error has occured, please try again"])
+        setResVis(true)
+        return
+      }
       setPasswords(obj)
       setResVis(true)
     } catch {}
