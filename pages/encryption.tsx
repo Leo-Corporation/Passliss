@@ -59,7 +59,9 @@ export default function EncryptionPage() {
         break
       case "rabbit":
         setEncrypted(CryptoJS.Rabbit.encrypt(text, key))
-        alert(algo)
+        break
+      case "rc4":
+        setEncrypted(CryptoJS.RC4Drop.encrypt(text, key))
         break
       default:
         break
@@ -78,6 +80,11 @@ export default function EncryptionPage() {
         break
       case "rabbit":
         setD_Encrypted(hex2a(CryptoJS.Rabbit.decrypt(d_text, d_key).toString()))
+        break
+      case "rc4":
+        setD_Encrypted(
+          hex2a(CryptoJS.RC4Drop.decrypt(d_text, d_key).toString())
+        )
         break
       default:
         break
@@ -133,6 +140,7 @@ export default function EncryptionPage() {
                 </SelectItem>
                 <SelectItem value="3des">3DES</SelectItem>
                 <SelectItem value="rabbit">Rabbit</SelectItem>
+                <SelectItem value="rc4">RC4Drop</SelectItem>
               </SelectContent>
             </Select>
           </TabsList>
