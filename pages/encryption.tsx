@@ -37,10 +37,10 @@ export default function EncryptionPage() {
   }
   LoadSettings()
 
-  let algo = settings.encryptAlgo
+  const [algo, setAlgo] = useState(settings.encryptAlgo)
 
   function SelectChanged(val) {
-    algo = val
+    setAlgo(val)
   }
 
   const [text, setText] = useState("")
@@ -56,7 +56,11 @@ export default function EncryptionPage() {
         break
       case "3des":
         setEncrypted(CryptoJS.TripleDES.encrypt(text, key))
-
+        break
+      case "rabbit":
+        setEncrypted(CryptoJS.Rabbit.encrypt(text, key))
+        alert(algo)
+        break
       default:
         break
     }
@@ -71,7 +75,10 @@ export default function EncryptionPage() {
         setD_Encrypted(
           hex2a(CryptoJS.TripleDES.decrypt(d_text, d_key).toString())
         )
-
+        break
+      case "rabbit":
+        setD_Encrypted(hex2a(CryptoJS.Rabbit.decrypt(d_text, d_key).toString()))
+        break
       default:
         break
     }
@@ -125,6 +132,7 @@ export default function EncryptionPage() {
                   AES
                 </SelectItem>
                 <SelectItem value="3des">3DES</SelectItem>
+                <SelectItem value="rabbit">Rabbit</SelectItem>
               </SelectContent>
             </Select>
           </TabsList>
