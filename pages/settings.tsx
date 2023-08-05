@@ -502,6 +502,8 @@ export default function SettingsPage() {
                     AES
                   </SelectItem>
                   <SelectItem value="3des">3DES</SelectItem>
+                  <SelectItem value="rabbit">Rabbit</SelectItem>
+                  <SelectItem value="rc4">RC4Drop</SelectItem>
                 </SelectContent>
               </Select>
             </div>
