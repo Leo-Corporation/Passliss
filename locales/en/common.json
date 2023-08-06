@@ -100,5 +100,10 @@
   "welcome-ai": "Welcome to AI password generation",
   "welcome-ai-desc": "Generate passwords that fits you using the power of AI.",
   "save": "Save",
-  "ai-loading": "AI is generating your passwords..."
+  "ai-loading": "AI is generating your passwords...",
+  "hashing": "Hashing",
+  "hash": "Hash",
+  "hashed-text": "Hashed text",
+  "text-hash": "Text to hash",
+  "hashing-algo": "Hashing algorithm"
 }
