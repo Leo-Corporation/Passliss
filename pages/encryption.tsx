@@ -48,7 +48,12 @@ export default function EncryptionPage() {
   const [encrypted, setEncrypted] = useState("")
   const [d_text, setD_Text] = useState("")
   const [d_key, setD_Key] = useState("")
+  const [h_text, setH_Text] = useState("")
   const [d_encrypted, setD_Encrypted] = useState("")
+  const [hashedText, setHashedText] = useState("")
+  const [showCryptOptions, setShowCryptOptions] = useState(true)
+  const [hashAlgo, setHashAlgo] = useState("md5")
+
   function Encrypt() {
     switch (algo) {
       case "aes":
@@ -109,6 +114,17 @@ export default function EncryptionPage() {
     })
   }
 
+  function hashClick() {
+    switch (hashAlgo) {
+      case "md5":
+        setHashedText(CryptoJS.MD5(h_text))
+        break
+
+      default:
+        break
+    }
+  }
+
   return (
     <Layout>
       <Head>
@@ -123,15 +139,23 @@ export default function EncryptionPage() {
 
           <p className="ml-2 font-bold">{t("encryption")}</p>
         </div>
-        <Tabs defaultValue="encrypt">
+        <Tabs
+          onValueChange={(v) => setShowCryptOptions(v != "hashing")}
+          defaultValue="encrypt"
+        >
           <TabsList>
             <TabsTrigger value="encrypt">{t("encrypt")}</TabsTrigger>
             <TabsTrigger value="decrypt">{t("decrypt")}</TabsTrigger>
+            <TabsTrigger value="hashing">{t("hashing")}</TabsTrigger>
             <Select
               defaultValue={settings.encryptAlgo}
               onValueChange={SelectChanged}
             >
-              <SelectTrigger className="mx-1 h-auto px-2 py-1">
+              <SelectTrigger
+                className={
+                  !showCryptOptions ? "hidden" : "mx-1 h-auto px-2 py-1"
+                }
+              >
                 <SelectValue placeholder={t("algorithm")} />
               </SelectTrigger>
               <SelectContent>
@@ -141,6 +165,20 @@ export default function EncryptionPage() {
                 <SelectItem value="3des">3DES</SelectItem>
                 <SelectItem value="rabbit">Rabbit</SelectItem>
                 <SelectItem value="rc4">RC4Drop</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select onValueChange={(v) => setHashAlgo(v)} defaultValue="md5">
+              <SelectTrigger
+                className={
+                  showCryptOptions ? "hidden" : "mx-1 h-auto px-2 py-1"
+                }
+              >
+                <SelectValue placeholder={t("hashing-algo")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem defaultChecked={true} value="md5">
+                  MD5
+                </SelectItem>
               </SelectContent>
             </Select>
           </TabsList>
@@ -253,6 +291,36 @@ export default function EncryptionPage() {
               <div className="space-y-2">
                 <label htmlFor="Decrypted">{t("decrypted-text")}</label>
                 <Textarea readOnly={true} id="Decrypted" value={d_encrypted} />
+              </div>
+            </div>
+          </TabsContent>
+          <TabsContent value="hashing" className="border-none">
+            <div className="w-full space-y-2">
+              <div className="space-y-2">
+                <label htmlFor="ToHash">{t("text-hash")}</label>
+                <div className="flex items-center">
+                  <Textarea
+                    id="ToHash"
+                    defaultValue={d_text}
+                    onChange={() =>
+                      setH_Text(
+                        (document.getElementById("ToHash") as HTMLInputElement)
+                          .value
+                      )
+                    }
+                  />
+                  <Button
+                    className="ml-4 h-auto px-2 py-1"
+                    id="HashBtn"
+                    onClick={hashClick}
+                  >
+                    {t("hash")}
+                  </Button>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="Hashed">{t("hashed-text")}</label>
+                <Textarea readOnly={true} id="Hashed" value={hashedText} />
               </div>
             </div>
           </TabsContent>
