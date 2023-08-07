@@ -37,10 +37,14 @@ export default function EncryptionPage() {
   }
   LoadSettings()
 
-  let algo = settings.encryptAlgo
+  if (settings.hashAlgo == null || settings.hashAlgo == undefined) {
+    settings.hashAlgo = "md5"
+  }
+
+  const [algo, setAlgo] = useState(settings.encryptAlgo)
 
   function SelectChanged(val) {
-    algo = val
+    setAlgo(val)
   }
 
   const [text, setText] = useState("")
@@ -48,7 +52,12 @@ export default function EncryptionPage() {
   const [encrypted, setEncrypted] = useState("")
   const [d_text, setD_Text] = useState("")
   const [d_key, setD_Key] = useState("")
+  const [h_text, setH_Text] = useState("")
   const [d_encrypted, setD_Encrypted] = useState("")
+  const [hashedText, setHashedText] = useState("")
+  const [showCryptOptions, setShowCryptOptions] = useState(true)
+  const [hashAlgo, setHashAlgo] = useState(settings.hashAlgo)
+
   function Encrypt() {
     switch (algo) {
       case "aes":
@@ -56,7 +65,13 @@ export default function EncryptionPage() {
         break
       case "3des":
         setEncrypted(CryptoJS.TripleDES.encrypt(text, key))
-
+        break
+      case "rabbit":
+        setEncrypted(CryptoJS.Rabbit.encrypt(text, key))
+        break
+      case "rc4":
+        setEncrypted(CryptoJS.RC4Drop.encrypt(text, key))
+        break
       default:
         break
     }
@@ -71,7 +86,15 @@ export default function EncryptionPage() {
         setD_Encrypted(
           hex2a(CryptoJS.TripleDES.decrypt(d_text, d_key).toString())
         )
-
+        break
+      case "rabbit":
+        setD_Encrypted(hex2a(CryptoJS.Rabbit.decrypt(d_text, d_key).toString()))
+        break
+      case "rc4":
+        setD_Encrypted(
+          hex2a(CryptoJS.RC4Drop.decrypt(d_text, d_key).toString())
+        )
+        break
       default:
         break
     }
@@ -95,6 +118,22 @@ export default function EncryptionPage() {
     })
   }
 
+  function hashClick() {
+    switch (hashAlgo) {
+      case "md5":
+        setHashedText(CryptoJS.MD5(h_text))
+        break
+      case "sha-1":
+        setHashedText(CryptoJS.SHA1(h_text))
+        break
+      case "sha-256":
+        setHashedText(CryptoJS.SHA256(h_text))
+        break
+      default:
+        break
+    }
+  }
+
   return (
     <Layout>
       <Head>
@@ -109,15 +148,23 @@ export default function EncryptionPage() {
 
           <p className="ml-2 font-bold">{t("encryption")}</p>
         </div>
-        <Tabs defaultValue="encrypt">
+        <Tabs
+          onValueChange={(v) => setShowCryptOptions(v != "hashing")}
+          defaultValue="encrypt"
+        >
           <TabsList>
             <TabsTrigger value="encrypt">{t("encrypt")}</TabsTrigger>
             <TabsTrigger value="decrypt">{t("decrypt")}</TabsTrigger>
+            <TabsTrigger value="hashing">{t("hashing")}</TabsTrigger>
             <Select
               defaultValue={settings.encryptAlgo}
               onValueChange={SelectChanged}
             >
-              <SelectTrigger className="mx-1 h-auto px-2 py-1">
+              <SelectTrigger
+                className={
+                  !showCryptOptions ? "hidden" : "mx-1 h-auto px-2 py-1"
+                }
+              >
                 <SelectValue placeholder={t("algorithm")} />
               </SelectTrigger>
               <SelectContent>
@@ -125,6 +172,27 @@ export default function EncryptionPage() {
                   AES
                 </SelectItem>
                 <SelectItem value="3des">3DES</SelectItem>
+                <SelectItem value="rabbit">Rabbit</SelectItem>
+                <SelectItem value="rc4">RC4Drop</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              onValueChange={(v) => setHashAlgo(v)}
+              defaultValue={hashAlgo}
+            >
+              <SelectTrigger
+                className={
+                  showCryptOptions ? "hidden" : "mx-1 h-auto px-2 py-1"
+                }
+              >
+                <SelectValue placeholder={t("hashing-algo")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem defaultChecked={true} value="md5">
+                  MD5
+                </SelectItem>
+                <SelectItem value="sha-1">SHA-1</SelectItem>
+                <SelectItem value="sha-256">SHA-256</SelectItem>
               </SelectContent>
             </Select>
           </TabsList>
@@ -237,6 +305,36 @@ export default function EncryptionPage() {
               <div className="space-y-2">
                 <label htmlFor="Decrypted">{t("decrypted-text")}</label>
                 <Textarea readOnly={true} id="Decrypted" value={d_encrypted} />
+              </div>
+            </div>
+          </TabsContent>
+          <TabsContent value="hashing" className="border-none">
+            <div className="w-full space-y-2">
+              <div className="space-y-2">
+                <label htmlFor="ToHash">{t("text-hash")}</label>
+                <div className="flex items-center">
+                  <Textarea
+                    id="ToHash"
+                    defaultValue={d_text}
+                    onChange={() =>
+                      setH_Text(
+                        (document.getElementById("ToHash") as HTMLInputElement)
+                          .value
+                      )
+                    }
+                  />
+                  <Button
+                    className="ml-4 h-auto px-2 py-1"
+                    id="HashBtn"
+                    onClick={hashClick}
+                  >
+                    {t("hash")}
+                  </Button>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="Hashed">{t("hashed-text")}</label>
+                <Textarea readOnly={true} id="Hashed" value={hashedText} />
               </div>
             </div>
           </TabsContent>

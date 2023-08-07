@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
-  const ver = "3.3.1.2307"
+  const ver = "3.4.0.2308"
 
   let settings: Settings = undefined
   function LoadSettings() {
@@ -64,6 +64,10 @@ export default function SettingsPage() {
 
     if (settings.openaiKey == null || settings.openaiKey == undefined) {
       settings.openaiKey = ""
+    }
+
+    if (settings.hashAlgo == null || settings.hashAlgo == undefined) {
+      settings.hashAlgo = "md5"
     }
 
     if (
@@ -502,10 +506,42 @@ export default function SettingsPage() {
                     AES
                   </SelectItem>
                   <SelectItem value="3des">3DES</SelectItem>
+                  <SelectItem value="rabbit">Rabbit</SelectItem>
+                  <SelectItem value="rc4">RC4Drop</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
+              <div className="grid grid-cols-[auto,1fr] items-center">
+                <p className="icon my-2 mr-2 text-3xl font-normal">
+                  {"\uF57E"}
+                </p>
+                <div>
+                  <h4 className="text-left text-lg">{t("hashing")}</h4>
+                  <p className="text-left text-sm font-normal">
+                    {t("default-hashing-algo")}
+                  </p>
+                </div>
+              </div>
+              <Select
+                defaultValue={settings.hashAlgo}
+                onValueChange={(val) => {
+                  settings.hashAlgo = val
+                  SetSettings(settings)
+                }}
+              >
+                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
+                  <SelectValue placeholder={t("algorithm")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem defaultChecked={true} value="md5">
+                    MD5
+                  </SelectItem>
+                  <SelectItem value="sha-1">SHA-1</SelectItem>
+                  <SelectItem value="sha-256">SHA-256</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             <AccordionItem value="ai">
               <AccordionTrigger>
                 <div className="grid grid-cols-[auto,1fr] items-center">

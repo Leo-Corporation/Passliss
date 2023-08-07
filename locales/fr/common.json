@@ -100,5 +100,11 @@
   "welcome-ai": "Bienvenue à la génération de mots de passe AI",
   "welcome-ai-desc": "Générez des mots de passe qui vous correspondent en utilisant la puissance de l'IA",
   "save": "Enregistrer",
-  "ai-loading": "L'IA génère vos mots de passe..."
+  "ai-loading": "L'IA génère vos mots de passe...",
+  "hashing": "Hachage",
+  "hash": "Hacher",
+  "hashed-text": "Texte haché",
+  "text-hash": "Texte à hacher",
+  "hashing-algo": "Algorithme de hachage",
+  "default-hashing-algo": "Algorithme de hachage par défaut."
 }
