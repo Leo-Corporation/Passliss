@@ -119,7 +119,9 @@ export default function EncryptionPage() {
       case "md5":
         setHashedText(CryptoJS.MD5(h_text))
         break
-
+      case "sha-1":
+        setHashedText(CryptoJS.SHA1(h_text))
+        break
       default:
         break
     }
@@ -179,6 +181,7 @@ export default function EncryptionPage() {
                 <SelectItem defaultChecked={true} value="md5">
                   MD5
                 </SelectItem>
+                <SelectItem value="sha-1">SHA-1</SelectItem>
               </SelectContent>
             </Select>
           </TabsList>
