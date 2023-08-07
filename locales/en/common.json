@@ -105,5 +105,6 @@
   "hash": "Hash",
   "hashed-text": "Hashed text",
   "text-hash": "Text to hash",
-  "hashing-algo": "Hashing algorithm"
+  "hashing-algo": "Hashing algorithm",
+  "default-hashing-algo": "Default hashing algorithm."
 }

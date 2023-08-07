@@ -3,6 +3,7 @@ export interface Settings {
   passwordLengthTwo: number
   customChars: CustomCharacters
   encryptAlgo: string
+  hashAlgo?: string
   hidePassword?: boolean
   defaultPasswordConfig?: DefaultPasswordConfig
   openaiKey?: string

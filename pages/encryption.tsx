@@ -37,6 +37,10 @@ export default function EncryptionPage() {
   }
   LoadSettings()
 
+  if (settings.hashAlgo == null || settings.hashAlgo == undefined) {
+    settings.hashAlgo = "md5"
+  }
+
   const [algo, setAlgo] = useState(settings.encryptAlgo)
 
   function SelectChanged(val) {
@@ -52,7 +56,7 @@ export default function EncryptionPage() {
   const [d_encrypted, setD_Encrypted] = useState("")
   const [hashedText, setHashedText] = useState("")
   const [showCryptOptions, setShowCryptOptions] = useState(true)
-  const [hashAlgo, setHashAlgo] = useState("md5")
+  const [hashAlgo, setHashAlgo] = useState(settings.hashAlgo)
 
   function Encrypt() {
     switch (algo) {
@@ -172,7 +176,10 @@ export default function EncryptionPage() {
                 <SelectItem value="rc4">RC4Drop</SelectItem>
               </SelectContent>
             </Select>
-            <Select onValueChange={(v) => setHashAlgo(v)} defaultValue="md5">
+            <Select
+              onValueChange={(v) => setHashAlgo(v)}
+              defaultValue={hashAlgo}
+            >
               <SelectTrigger
                 className={
                   showCryptOptions ? "hidden" : "mx-1 h-auto px-2 py-1"

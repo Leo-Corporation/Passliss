@@ -105,5 +105,6 @@
   "hash": "Hacher",
   "hashed-text": "Texte haché",
   "text-hash": "Texte à hacher",
-  "hashing-algo": "Algorithme de hachage"
+  "hashing-algo": "Algorithme de hachage",
+  "default-hashing-algo": "Algorithme de hachage par défaut."
 }
