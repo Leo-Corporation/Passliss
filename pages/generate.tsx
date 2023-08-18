@@ -8,7 +8,7 @@ import {
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
-import { Configuration, OpenAIApi } from "openai"
+import OpenAI from "openai"
 
 import { Settings } from "@/types/settings"
 import { AddActivity, GetSettings, SetSettings } from "@/lib/browser-storage"
@@ -202,15 +202,15 @@ export default function IndexPage() {
   const [resVis, setResVis] = useState(true)
 
   async function GeneratePasswordAi() {
-    const config = new Configuration({
+    const openai = new OpenAI({
       apiKey: settings.openaiKey,
+      dangerouslyAllowBrowser: true,
     })
     let prompt = (document.getElementById("prompt-txt") as HTMLInputElement)
       .value
-    const openai = new OpenAIApi(config)
     setResVis(false)
     try {
-      const completion = await openai.createChatCompletion({
+      const completion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
           {
@@ -224,7 +224,7 @@ export default function IndexPage() {
           },
         ],
       })
-      let res = completion.data.choices[0].message.content
+      let res = completion.choices[0].message.content
       let obj = JSON.parse(res)
       if (!Array.isArray(obj)) {
         setPasswords(["An error has occured, please try again"])
