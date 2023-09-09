@@ -132,6 +132,9 @@ export default function EncryptionPage() {
       case "sha-512":
         setHashedText(CryptoJS.SHA512(h_text))
         break
+      case "sha-3":
+        setHashedText(CryptoJS.SHA3(h_text))
+        break
       default:
         break
     }
@@ -197,6 +200,7 @@ export default function EncryptionPage() {
                 <SelectItem value="sha-1">SHA-1</SelectItem>
                 <SelectItem value="sha-256">SHA-256</SelectItem>
                 <SelectItem value="sha-512">SHA-512</SelectItem>
+                <SelectItem value="sha-3">SHA-3</SelectItem>
               </SelectContent>
             </Select>
           </TabsList>
