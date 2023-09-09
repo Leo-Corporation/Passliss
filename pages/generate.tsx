@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Head from "next/head"
 import {
+  Info16Filled,
+  Info24Filled,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
@@ -432,7 +434,7 @@ export default function IndexPage() {
                     <DialogHeader>
                       <DialogTitle>{t("set-api-key")}</DialogTitle>
                       <DialogDescription>
-                        {t("multipasswords-desc")}
+                        {t("get-api-key-msg")}
                       </DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
@@ -472,41 +474,50 @@ export default function IndexPage() {
                 </Dialog>
               </div>
             ) : (
-              <div className="flex w-full flex-col items-center">
-                <div className="m-5 flex w-full space-x-2">
-                  <Input
-                    type="text"
-                    id="prompt-txt"
-                    placeholder={t("enter-prompt")}
-                    className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
-                  />
-                  <Button
-                    className="h-auto px-2 py-1"
-                    onClick={GeneratePasswordAi}
+              <div>
+                <div className="grid grid-cols-[16px,1fr] items-center space-x-2 rounded-lg border border-blue-600 bg-white p-2 text-blue-600 dark:bg-blue-950 dark:text-white">
+                  <Info16Filled />
+                  <p className="text-sm">{t("ai-disclaimer")}</p>
+                </div>
+                <div className="flex w-full flex-col items-center">
+                  <div className="m-5 flex w-full space-x-2">
+                    <Input
+                      type="text"
+                      id="prompt-txt"
+                      placeholder={t("enter-prompt")}
+                      className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
+                    />
+                    <Button
+                      className="h-auto px-2 py-1"
+                      onClick={GeneratePasswordAi}
+                    >
+                      {t("generate")}
+                    </Button>
+                  </div>
+                  <div
+                    id="suggestions"
+                    className="flex w-full flex-wrap items-center"
                   >
-                    {t("generate")}
-                  </Button>
-                </div>
-                <div
-                  id="suggestions"
-                  className="flex w-full flex-wrap items-center"
-                >
-                  {GetRandomPrompts(3).map((prp) => (
-                    <PromptItem prompt={prp} />
-                  ))}
-                </div>
-                <div
-                  className={resVis ? "hidden" : "flex flex-col items-center"}
-                >
-                  <p className="icon my-2 mr-2 animate-spin select-none text-6xl font-normal">
-                    {"\uF709"}
-                  </p>
-                  <p className="text-center font-bold">{t("ai-loading")}</p>
-                </div>
-                <div id="result-items" className={resVis ? "w-full" : "hidden"}>
-                  {passwords.map((password) => (
-                    <PasswordItem content={password} />
-                  ))}
+                    {GetRandomPrompts(3).map((prp) => (
+                      <PromptItem prompt={prp} />
+                    ))}
+                  </div>
+                  <div
+                    className={resVis ? "hidden" : "flex flex-col items-center"}
+                  >
+                    <p className="icon my-2 mr-2 animate-spin select-none text-6xl font-normal">
+                      {"\uF709"}
+                    </p>
+                    <p className="text-center font-bold">{t("ai-loading")}</p>
+                  </div>
+                  <div
+                    id="result-items"
+                    className={resVis ? "w-full" : "hidden"}
+                  >
+                    {passwords.map((password) => (
+                      <PasswordItem content={password} />
+                    ))}
+                  </div>
                 </div>
               </div>
             )}

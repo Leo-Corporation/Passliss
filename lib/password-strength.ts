@@ -51,6 +51,7 @@ let ForbidenCaracters: string[] = [
   "777",
   "888",
   "999",
+  "123456789",
 ]
 
 export function GetPasswordStrength(password: string): PasswordStrength {

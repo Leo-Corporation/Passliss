@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
-  const ver = "3.4.1.2308"
+  const ver = "3.5.0.2309"
 
   let settings: Settings = undefined
   function LoadSettings() {
@@ -539,6 +539,8 @@ export default function SettingsPage() {
                   </SelectItem>
                   <SelectItem value="sha-1">SHA-1</SelectItem>
                   <SelectItem value="sha-256">SHA-256</SelectItem>
+                  <SelectItem value="sha-512">SHA-512</SelectItem>
+                  <SelectItem value="sha-3">SHA-3</SelectItem>
                 </SelectContent>
               </Select>
             </div>
