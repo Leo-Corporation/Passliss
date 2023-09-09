@@ -539,6 +539,7 @@ export default function SettingsPage() {
                   </SelectItem>
                   <SelectItem value="sha-1">SHA-1</SelectItem>
                   <SelectItem value="sha-256">SHA-256</SelectItem>
+                  <SelectItem value="sha-512">SHA-512</SelectItem>
                 </SelectContent>
               </Select>
             </div>
