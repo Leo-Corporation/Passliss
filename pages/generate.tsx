@@ -432,7 +432,7 @@ export default function IndexPage() {
                     <DialogHeader>
                       <DialogTitle>{t("set-api-key")}</DialogTitle>
                       <DialogDescription>
-                        {t("multipasswords-desc")}
+                        {t("get-api-key-msg")}
                       </DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
