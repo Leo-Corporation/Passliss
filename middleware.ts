@@ -1,11 +1,10 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export function middleware(request) {
+export function middleware(request: NextRequest) {
   const localeCookie = request.cookies.get("NEXT_LOCALE")?.value
   if (localeCookie !== undefined && request.nextUrl.locale !== localeCookie) {
     console.log(
-      new URL(`/${localeCookie.value}/${request.nextUrl.pathname}`, request.url)
-        .href
+      new URL(`/${localeCookie}/${request.nextUrl.pathname}`, request.url).href
     )
     return NextResponse.redirect(
       new URL(
@@ -16,5 +15,5 @@ export function middleware(request) {
   }
 }
 export const config = {
-  matcher: ["/", "/home"], // paths on which middleware will work
+  matcher: ["/home"], // paths on which middleware will work
 }
