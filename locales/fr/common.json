@@ -108,5 +108,6 @@
   "hashing-algo": "Algorithme de hachage",
   "default-hashing-algo": "Algorithme de hachage par défaut.",
   "get-api-key-msg": "Vous pouvez obtenir une clé API OpenAI en allant sur le site web de la plateforme OpenAI à platform.openai.com avec un compte OpenAI.",
-  "ai-disclaimer": "La technologie de l'IA est encore expérimentale et peut produire des erreurs. Il convient de l'utiliser avec un jugement humain."
+  "ai-disclaimer": "La technologie de l'IA est encore expérimentale et peut produire des erreurs. Il convient de l'utiliser avec un jugement humain.",
+  "delete": "Supprimer"
 }

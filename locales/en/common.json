@@ -108,5 +108,6 @@
   "hashing-algo": "Hashing algorithm",
   "default-hashing-algo": "Default hashing algorithm.",
   "get-api-key-msg": "You can get an OpenAI API Key by going to the OpenAI Platform website at platform.openai.com with an OpenAI account.",
-  "ai-disclaimer": "AI technology is still experimental and may produce errors. Use it with human judgment."
+  "ai-disclaimer": "AI technology is still experimental and may produce errors. Use it with human judgment.",
+  "delete": "Delete"
 }
