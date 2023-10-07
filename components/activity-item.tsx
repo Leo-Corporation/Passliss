@@ -1,9 +1,15 @@
-import { Copy24Regular, Delete16Regular } from "@fluentui/react-icons"
+import {
+  Checkmark12Regular,
+  Checkmark16Regular,
+  Copy24Regular,
+  Delete16Regular,
+  Dismiss16Regular,
+} from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
 import { Activity } from "@/types/activity"
 import { GetActivity, SortActivities } from "@/lib/browser-storage"
-import { GetPasswordStrength } from "@/lib/password-strength"
+import { GetPasswordStrength, getStrengthInfo } from "@/lib/password-strength"
 import { Button } from "./ui/button"
 import {
   Tooltip,
@@ -60,7 +66,46 @@ export default function ActivityItem(props: ActivityProps) {
             ? GetHiddenPassword(props.activity.content)
             : props.activity.content}
         </p>
-        {GetStrength(props.activity.content)}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              {GetStrength(props.activity.content)}
+            </TooltipTrigger>
+            <TooltipContent className="grid grid-cols-[24px,1fr] items-center">
+              {getStrengthInfo(props.activity.content).lowercases > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("lowercases")}</p>
+
+              {getStrengthInfo(props.activity.content).uppercases > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("uppercases")}</p>
+
+              {getStrengthInfo(props.activity.content).numbers > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("nbrs")}</p>
+
+              {getStrengthInfo(props.activity.content).specialchars > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("specialchars")}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
       <div className="hidden justify-end space-x-1 sm:flex">
         <TooltipProvider>

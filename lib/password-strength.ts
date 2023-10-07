@@ -1,3 +1,4 @@
+import { StrengthInfo } from "@/types/strength-info"
 import { PasswordStrength } from "./password-gen"
 import { containsLowerCases, containsUpperCases } from "./string"
 
@@ -112,5 +113,26 @@ export function GetPasswordStrength(password: string): PasswordStrength {
     return PasswordStrength.VeryGood // Return excellent password strength
   } else {
     return PasswordStrength.Good // Return good password strength
+  }
+}
+export function getStrengthInfo(password: string): StrengthInfo {
+  const lowercaseRegex = /[a-z]/g
+  const uppercaseRegex = /[A-Z]/g
+  const numberRegex = /[0-9]/g
+
+  const l_matches = password.match(lowercaseRegex)
+  const u_matches = password.match(uppercaseRegex)
+  const n_matches = password.match(numberRegex)
+
+  const l_count = l_matches ? l_matches.length : 0
+  const u_count = u_matches ? u_matches.length : 0
+  const n_count = n_matches ? n_matches.length : 0
+  const s_count = password.length - l_count - u_count - n_count
+
+  return {
+    lowercases: l_count,
+    uppercases: u_count,
+    numbers: n_count,
+    specialchars: s_count,
   }
 }
