@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Router } from "next/dist/client/router"
 import Head from "next/head"
 import { History20Regular } from "@fluentui/react-icons"
@@ -37,12 +38,27 @@ export default function ActivityPage() {
     items = SortActivities(GetActivity())
   }
   LoadActivities()
+  const [hasItems, setHasItems] = useState(
+    items[0].length > 0 ||
+      items[1].length > 0 ||
+      items[2].length > 0 ||
+      items[3].length > 0
+  )
+
+  function refreshItems() {
+    LoadActivities()
+    setHasItems(
+      items[0].length > 0 ||
+        items[1].length > 0 ||
+        items[2].length > 0 ||
+        items[3].length > 0
+    )
+  }
 
   function RemoveActivity() {
     localStorage.removeItem("activity")
     Router.prototype.reload()
   }
-
   return (
     <Layout>
       <Head>
@@ -56,10 +72,7 @@ export default function ActivityPage() {
           <History20Regular primaryFill="#0088FF" className="text-white" />
 
           <p className="ml-2 font-bold">{t("activity")}</p>
-          {(items[0].length > 0 ||
-            items[1].length > 0 ||
-            items[2].length > 0 ||
-            items[3].length > 0) && (
+          {hasItems && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
@@ -87,14 +100,13 @@ export default function ActivityPage() {
           )}
         </div>
         <div>
-          {items[0].length > 0 ||
-          items[1].length > 0 ||
-          items[2].length > 0 ||
-          items[3].length > 0 ? (
+          {hasItems ? (
             items.map(
               (el, i) =>
                 el.length > 0 && (
                   <Timeline
+                    refreshEvent={refreshItems}
+                    index={i}
                     date={i}
                     items={el}
                     hide={
