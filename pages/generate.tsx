@@ -429,7 +429,7 @@ export default function IndexPage() {
                 className="text-center text-xl font-bold"
                 id="PasswordContainer"
               ></p>
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-[1fr,auto] sm:grid-cols-2">
                 <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
                 <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
                   {strengthInfo ? strengthInfo.uppercases : "0"}
