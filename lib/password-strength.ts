@@ -1,3 +1,4 @@
+import { StrengthInfo } from "@/types/strength-info"
 import { PasswordStrength } from "./password-gen"
 import { containsLowerCases, containsUpperCases } from "./string"
 
@@ -112,5 +113,78 @@ export function GetPasswordStrength(password: string): PasswordStrength {
     return PasswordStrength.VeryGood // Return excellent password strength
   } else {
     return PasswordStrength.Good // Return good password strength
+  }
+}
+export function getStrengthInfo(password: string): StrengthInfo {
+  let uC = 0
+  let lC = 0
+  let n = 0
+  let sC = 0
+
+  let specialChars = [
+    ";",
+    ":",
+    "!",
+    "/",
+    "§",
+    "ù",
+    "*",
+    "$",
+    "%",
+    "µ",
+    "£",
+    ")",
+    "=",
+    "+",
+    "*",
+    "-",
+    "&",
+    "é",
+    "'",
+    "(",
+    "-",
+    "è",
+    "_",
+    "ç",
+    "<",
+    ">",
+    "?",
+    "^",
+    "¨",
+  ]
+  let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+  for (let i = 0; i < password.length; i++) {
+    // Check if char is upper case
+    if (
+      password[i].toUpperCase() === password[i] &&
+      !specialChars.includes(password[i]) &&
+      !numbers.includes(password[i])
+    ) {
+      uC++
+    }
+    // Check if char is lower case
+    else if (
+      password[i].toLowerCase() === password[i] &&
+      !specialChars.includes(password[i]) &&
+      !numbers.includes(password[i])
+    ) {
+      lC++
+    }
+    // Check if char is number
+    else if (numbers.includes(password[i])) {
+      n++
+    }
+    // Check if char is contained in specialChars
+    else if (specialChars.includes(password[i])) {
+      sC++
+    }
+  }
+
+  return {
+    lowercases: lC,
+    uppercases: uC,
+    numbers: n,
+    specialchars: sC,
   }
 }

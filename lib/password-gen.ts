@@ -55,14 +55,14 @@ export function GeneratePasswordByStrength(
 export function GetRandomPrompts(numPrompts: number): string[] {
   const prompts = [
     "Secure password with lowercases",
-    "Easy to remember related to animals",
-    "Secure password with numbers",
-    "Easy to remember related to food",
-    "Secure password with special characters",
-    "Easy to remember related to music",
-    "Secure password with uppercase letters",
-    "Easy to remember related to movies",
-    "Secure password with symbols",
+    "Easy to pronounce password",
+    "Strong password about computers",
+    "Hard to crack password",
+    "Password containing special characters",
+    "Password ending with -ber",
+    "Original yet easy to remember password",
+    "Matrix themed password",
+    "Password with symbols but easy to remember",
     "Easy to remember related to sports",
   ]
   const randomPrompts = []

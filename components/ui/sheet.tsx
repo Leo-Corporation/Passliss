@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Dismiss16Regular } from "@fluentui/react-icons"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
-import { VariantProps, cva } from "class-variance-authority"
+import { cva, VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -29,11 +29,11 @@ interface SheetPortalProps
 
 const SheetPortal = ({
   position,
-  className,
+
   children,
   ...props
 }: SheetPortalProps) => (
-  <SheetPrimitive.Portal className={cn(className)} {...props}>
+  <SheetPrimitive.Portal {...props}>
     <div className={portalVariants({ position })}>{children}</div>
   </SheetPrimitive.Portal>
 )

@@ -1,8 +1,15 @@
-import { Copy24Regular } from "@fluentui/react-icons"
+import {
+  Checkmark12Regular,
+  Checkmark16Regular,
+  Copy24Regular,
+  Delete16Regular,
+  Dismiss16Regular,
+} from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
 import { Activity } from "@/types/activity"
-import { GetPasswordStrength } from "@/lib/password-strength"
+import { GetActivity, SortActivities } from "@/lib/browser-storage"
+import { GetPasswordStrength, getStrengthInfo } from "@/lib/password-strength"
 import { Button } from "./ui/button"
 import {
   Tooltip,
@@ -14,6 +21,9 @@ import {
 export interface ActivityProps {
   activity: Activity
   hide: boolean
+  index: number
+  timeline_index: number
+  deleteEvent: Function
 }
 
 export default function ActivityItem(props: ActivityProps) {
@@ -28,6 +38,23 @@ export default function ActivityItem(props: ActivityProps) {
     }
     return final
   }
+  let els: Activity[][] = [[]]
+  function LoadActivities() {
+    els = SortActivities(GetActivity())
+  }
+  function removeActivityItem() {
+    LoadActivities()
+    els[props.timeline_index].splice(props.index, 1)
+    let a: any[] = []
+    for (let i = 0; i < els.length; i++) {
+      for (let j = 0; j < els[i].length; j++) {
+        a.push(els[i][j])
+      }
+    }
+    console.log(a)
+    localStorage.setItem("activity", JSON.stringify({ items: a }))
+    props.deleteEvent()
+  }
   return (
     <div
       onClick={Copy}
@@ -39,9 +66,48 @@ export default function ActivityItem(props: ActivityProps) {
             ? GetHiddenPassword(props.activity.content)
             : props.activity.content}
         </p>
-        {GetStrength(props.activity.content)}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              {GetStrength(props.activity.content)}
+            </TooltipTrigger>
+            <TooltipContent className="grid grid-cols-[24px,1fr] items-center">
+              {getStrengthInfo(props.activity.content).lowercases > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("lowercases")}</p>
+
+              {getStrengthInfo(props.activity.content).uppercases > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("uppercases")}</p>
+
+              {getStrengthInfo(props.activity.content).numbers > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("nbrs")}</p>
+
+              {getStrengthInfo(props.activity.content).specialchars > 0 ? (
+                <Checkmark16Regular />
+              ) : (
+                <Dismiss16Regular />
+              )}
+
+              <p>{t("specialchars")}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
-      <div className="hidden grid-cols-1 justify-items-end sm:grid">
+      <div className="hidden justify-end space-x-1 sm:flex">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -51,6 +117,22 @@ export default function ActivityItem(props: ActivityProps) {
             </TooltipTrigger>
             <TooltipContent>
               <p>{t("copy")}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                onClick={removeActivityItem}
+                variant="outline"
+                className="w-[48px]"
+              >
+                <Delete16Regular />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{t("delete")}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
