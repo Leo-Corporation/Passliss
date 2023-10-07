@@ -3,8 +3,6 @@ import Head from "next/head"
 import {
   Info16Filled,
   Info20Regular,
-  Info24Filled,
-  Info24Regular,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
