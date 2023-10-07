@@ -116,23 +116,75 @@ export function GetPasswordStrength(password: string): PasswordStrength {
   }
 }
 export function getStrengthInfo(password: string): StrengthInfo {
-  const lowercaseRegex = /[a-z]/g
-  const uppercaseRegex = /[A-Z]/g
-  const numberRegex = /[0-9]/g
+  let uC = 0
+  let lC = 0
+  let n = 0
+  let sC = 0
 
-  const l_matches = password.match(lowercaseRegex)
-  const u_matches = password.match(uppercaseRegex)
-  const n_matches = password.match(numberRegex)
+  let specialChars = [
+    ";",
+    ":",
+    "!",
+    "/",
+    "§",
+    "ù",
+    "*",
+    "$",
+    "%",
+    "µ",
+    "£",
+    ")",
+    "=",
+    "+",
+    "*",
+    "-",
+    "&",
+    "é",
+    "'",
+    "(",
+    "-",
+    "è",
+    "_",
+    "ç",
+    "<",
+    ">",
+    "?",
+    "^",
+    "¨",
+  ]
+  let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-  const l_count = l_matches ? l_matches.length : 0
-  const u_count = u_matches ? u_matches.length : 0
-  const n_count = n_matches ? n_matches.length : 0
-  const s_count = password.length - l_count - u_count - n_count
+  for (let i = 0; i < password.length; i++) {
+    // Check if char is upper case
+    if (
+      password[i].toUpperCase() === password[i] &&
+      !specialChars.includes(password[i]) &&
+      !numbers.includes(password[i])
+    ) {
+      uC++
+    }
+    // Check if char is lower case
+    else if (
+      password[i].toLowerCase() === password[i] &&
+      !specialChars.includes(password[i]) &&
+      !numbers.includes(password[i])
+    ) {
+      lC++
+    }
+    // Check if char is number
+    else if (numbers.includes(password[i])) {
+      n++
+    }
+    // Check if char is contained in specialChars
+    else if (specialChars.includes(password[i])) {
+      sC++
+    }
+  }
 
   return {
-    lowercases: l_count,
-    uppercases: u_count,
-    numbers: n_count,
-    specialchars: s_count,
+    lowercases: lC,
+    uppercases: uC,
+    numbers: n,
+    specialchars: sC,
   }
 }

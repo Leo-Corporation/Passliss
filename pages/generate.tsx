@@ -2,7 +2,9 @@ import { useState } from "react"
 import Head from "next/head"
 import {
   Info16Filled,
+  Info20Regular,
   Info24Filled,
+  Info24Regular,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
@@ -13,12 +15,14 @@ import useTranslation from "next-translate/useTranslation"
 import OpenAI from "openai"
 
 import { Settings } from "@/types/settings"
+import { StrengthInfo } from "@/types/strength-info"
 import { AddActivity, GetSettings, SetSettings } from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
   GetRandomPrompts,
 } from "@/lib/password-gen"
+import { getStrengthInfo } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import PasswordItem from "@/components/password-item"
@@ -77,6 +81,7 @@ export default function IndexPage() {
   )
   const [length, setLength] = useState(12)
 
+  const [strengthInfo, setStrengthInfo] = useState<StrengthInfo>()
   function NewBtnClick() {
     let txt = document.getElementById("PasswordTxt")
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -131,6 +136,7 @@ export default function IndexPage() {
     )
     txt.innerHTML = pwr
     AddActivity({ date: new Date(), content: pwr })
+    setStrengthInfo(getStrengthInfo(pwr))
   }
 
   function CopyAdvancedBtn() {
@@ -411,6 +417,35 @@ export default function IndexPage() {
                   />
                   <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
                 </div>
+              </div>
+            </div>
+            <div className="-ml-6 mb-2 flex items-center space-x-2">
+              <Info20Regular primaryFill="#0088FF" className="text-white" />
+
+              <p className="font-bold">{t("details")}</p>
+            </div>
+            <div className="">
+              <p
+                className="text-center text-xl font-bold"
+                id="PasswordContainer"
+              ></p>
+              <div className="grid grid-cols-2">
+                <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
+                <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
+                  {strengthInfo ? strengthInfo.uppercases : "0"}
+                </p>
+                <p className="font-bold text-[#3B8AFF]">{t("lowercases")}</p>
+                <p className="font-bold text-[#3B8AFF]" id="LowercaseTxt">
+                  {strengthInfo ? strengthInfo.lowercases : "0"}
+                </p>
+                <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
+                <p className="font-bold text-[#007F5F]" id="NumbersTxt">
+                  {strengthInfo ? strengthInfo.numbers : "0"}
+                </p>
+                <p className="font-bold text-[#9F2CF9]">{t("specialchars")}</p>
+                <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
+                  {strengthInfo ? strengthInfo.specialchars : "0"}
+                </p>
               </div>
             </div>
           </TabsContent>
