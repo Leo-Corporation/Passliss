@@ -1,6 +1,6 @@
 {
   "name": "passliss",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,8 +13,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
-    "@fluentui/react-icons": "^2.0.218",
-    "@next/font": "^13.5.4",
+    "@fluentui/react-icons": "^2.0.221",
+    "@next/font": "^14.0.0",
     "@radix-ui/react-accessible-icon": "^1.0.3",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -46,12 +46,12 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "next": "13.4.19",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.2.1",
-    "next-translate-plugin": "^2.6.0",
-    "openai": "^4.11.1",
+    "next-translate-plugin": "^2.6.1",
+    "openai": "^4.14.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.32.6",
@@ -59,20 +59,20 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
-    "@types/node": "^20.8.2",
-    "@types/react": "^18.2.25",
-    "@types/react-dom": "^18.2.10",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.50.0",
-    "eslint-config-next": "13.5.4",
+    "eslint": "^8.52.0",
+    "eslint-config-next": "14.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.5",
-    "tailwindcss": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2"
   }
 }
