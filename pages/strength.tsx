@@ -1,12 +1,13 @@
 import { useState } from "react"
 import Head from "next/head"
-import { Shield20Regular } from "@fluentui/react-icons"
+import { Lightbulb20Regular, Shield20Regular } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
 import { GetPasswordStrength, getStrengthInfo } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import StrengthCharacter from "@/components/strength-character"
+import StrengthSuggestion from "@/components/strength-suggestion"
 import { Input } from "@/components/ui/input"
 
 export default function StrengthPage() {
@@ -22,6 +23,7 @@ export default function StrengthPage() {
   const [strengthTxt, setStrengthTxt] = useState(
     t("enterpwrstrength").toString()
   )
+  const [suggestions, setSuggestions] = useState([])
 
   function getStrength(password) {
     // Get the strength of the password and update the UI depending on the result
@@ -65,6 +67,19 @@ export default function StrengthPage() {
     setNbDigits(info.numbers)
     setNbSpecialChars(info.specialchars)
     setLength(password.length)
+
+    // Load the suggestions panel
+    let suggestions = []
+    if (info.lowercases < 2)
+      suggestions.push(t("strength-suggestion-lowercase"))
+    if (info.uppercases < 2)
+      suggestions.push(t("strength-suggestion-uppercase"))
+    if (info.numbers < 2) suggestions.push(t("strength-suggestion-digit"))
+    if (info.specialchars < 2)
+      suggestions.push(t("strength-suggestion-special"))
+    if (password.length < 10) suggestions.push(t("strength-suggestion-length"))
+    if (suggestions.length < 1) suggestions.push(t("strength-no-suggestions"))
+    setSuggestions(suggestions)
   }
 
   return (
@@ -133,6 +148,25 @@ export default function StrengthPage() {
             </div>
           </div>
         </div>
+        {password ? (
+          <>
+            <div className="mb-2 flex items-center space-x-2">
+              <Lightbulb20Regular
+                primaryFill="#0088FF"
+                className="text-white"
+              />
+
+              <p className="ml-2 font-bold">{t("strength-suggestions")}</p>
+            </div>
+            <div>
+              {suggestions.map((el, i) => (
+                <StrengthSuggestion content={el} key={i} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </PageContent>
     </Layout>
   )
