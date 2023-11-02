@@ -1,9 +1,10 @@
 import {
   Checkmark12Regular,
   Checkmark16Regular,
-  Copy24Regular,
+  Copy16Regular,
   Delete16Regular,
   Dismiss16Regular,
+  MoreHorizontal16Regular,
 } from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
@@ -11,6 +12,12 @@ import { Activity } from "@/types/activity"
 import { GetActivity, SortActivities } from "@/lib/browser-storage"
 import { GetPasswordStrength, getStrengthInfo } from "@/lib/password-strength"
 import { Button } from "./ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
@@ -58,7 +65,7 @@ export default function ActivityItem(props: ActivityProps) {
   return (
     <div
       onClick={Copy}
-      className="m-3 grid cursor-pointer grid-cols-1 rounded-lg border border-slate-400 p-3 hover:bg-slate-200 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default sm:grid-cols-2"
+      className="m-3 grid cursor-pointer grid-cols-2 rounded-lg border border-slate-400 p-3 hover:bg-slate-200 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default"
     >
       <div className="grid grid-cols-[1fr,auto] items-center justify-items-start">
         <p className="font-bold">
@@ -68,7 +75,7 @@ export default function ActivityItem(props: ActivityProps) {
         </p>
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger className="hidden sm:block">
               {GetStrength(props.activity.content)}
             </TooltipTrigger>
             <TooltipContent className="grid grid-cols-[24px,1fr] items-center">
@@ -107,12 +114,16 @@ export default function ActivityItem(props: ActivityProps) {
           </Tooltip>
         </TooltipProvider>
       </div>
-      <div className="hidden justify-end space-x-1 sm:flex">
+      <div className="flex justify-end space-x-1">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="outline" className="w-[48px]" onClick={Copy}>
-                <Copy24Regular />
+              <Button
+                variant="outline"
+                className="hidden w-[48px] sm:block"
+                onClick={Copy}
+              >
+                <Copy16Regular />
               </Button>
             </TooltipTrigger>
             <TooltipContent>
@@ -126,7 +137,7 @@ export default function ActivityItem(props: ActivityProps) {
               <Button
                 onClick={removeActivityItem}
                 variant="outline"
-                className="w-[48px]"
+                className="hidden w-[48px] sm:block"
               >
                 <Delete16Regular />
               </Button>
@@ -136,6 +147,27 @@ export default function ActivityItem(props: ActivityProps) {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button variant="outline" className="block w-[48px] sm:hidden">
+              <MoreHorizontal16Regular />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {GetStrength(props.activity.content)}
+            <DropdownMenuItem onClick={() => Copy()} className="flex space-x-1">
+              <Copy16Regular />
+              <p>{t("copy")}</p>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => removeActivityItem()}
+              className="flex space-x-1"
+            >
+              <Delete16Regular />
+              <p>{t("delete")}</p>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   )
