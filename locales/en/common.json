@@ -110,5 +110,12 @@
   "get-api-key-msg": "You can get an OpenAI API Key by going to the OpenAI Platform website at platform.openai.com with an OpenAI account.",
   "ai-disclaimer": "AI technology is still experimental and may produce errors. Use it with human judgment.",
   "delete": "Delete",
-  "details": "Details"
+  "details": "Details",
+  "strength-suggestions": "Suggestions",
+  "strength-suggestion-uppercase": "Add at least one uppercase to your password",
+  "strength-suggestion-lowercase": "Add at least one lowercase to your password",
+  "strength-suggestion-digit": "Two or more digits are recommended",
+  "strength-suggestion-special": "Add special characters to your password to make it stronger",
+  "strength-suggestion-length": "Make your password longer",
+  "strength-no-suggestions": "Your password is already very secured"
 }

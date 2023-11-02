@@ -80,34 +80,48 @@ export default function IndexPage() {
   const [length, setLength] = useState(12)
 
   const [strengthInfo, setStrengthInfo] = useState<StrengthInfo>()
-  function NewBtnClick() {
-    let txt = document.getElementById("PasswordTxt")
+
+  const [strengthTxt, setStrengthTxt] = useState(
+    getSliderUiInfo(sliderVal).text
+  )
+  const [strengthIconTxt, setStrengthIconTxt] = useState(
+    getSliderUiInfo(sliderVal).icon
+  )
+  const [strengthColor, setStrengthColor] = useState(
+    getSliderUiInfo(sliderVal).color
+  )
+  const [passwordTxt, setPasswordTxt] = useState(
+    GeneratePasswordByStrength(2, settings.customChars)
+  )
+  const [advancedPasswordTxt, setAdvancedPasswordTxt] = useState(
+    GeneratePasswordByStrength(2, settings.customChars)
+  )
+  const [passwordAmount, setPasswordAmount] = useState(10)
+  const [multiplePasswordsTxt, setMultiplePasswordsTxt] = useState("")
+  const [aiPrompt, setAiPrompt] = useState("")
+  const [apiKey, setApiKey] = useState("")
+
+  function newBtnClicked() {
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
-    txt.innerHTML = pwr
+    setPasswordTxt(pwr)
     AddActivity({ date: new Date(), content: pwr })
   }
 
-  function CopyBtn() {
-    let txt = document.getElementById("PasswordTxt")
-    navigator.clipboard.writeText(txt.innerHTML)
+  function copyBtnClicked() {
+    navigator.clipboard.writeText(passwordTxt)
   }
 
-  function AreOptionsChecked() {
+  function optionsChecked() {
     return hasLower || hasUpper || hasNumber || hasChars
   }
 
   function MultiplePasswordClick() {
-    if (!AreOptionsChecked()) return
+    if (!optionsChecked()) return
 
-    let amount: number = parseInt(
-      (document.getElementById("AmountTxt") as HTMLInputElement).value
-    )
-    let text = document.getElementById("TextArea") as HTMLTextAreaElement
+    let value = ""
 
-    text.value = "" // clear
-
-    for (let i = 0; i < amount; i++) {
-      text.value +=
+    for (let i = 0; i < passwordAmount; i++) {
+      value +=
         GeneratePassword(
           hasLower,
           hasUpper,
@@ -117,12 +131,11 @@ export default function IndexPage() {
           settings.customChars
         ) + "\n"
     }
+    setMultiplePasswordsTxt(value)
   }
 
-  function NewBtnAdvancedClick() {
-    if (!AreOptionsChecked()) return
-
-    let txt = document.getElementById("APasswordTxt")
+  function advancedNewBtnClicked() {
+    if (!optionsChecked()) return
 
     let pwr = GeneratePassword(
       hasLower,
@@ -132,30 +145,24 @@ export default function IndexPage() {
       +length,
       settings.customChars
     )
-    txt.innerHTML = pwr
+    setAdvancedPasswordTxt(pwr)
     AddActivity({ date: new Date(), content: pwr })
     setStrengthInfo(getStrengthInfo(pwr))
   }
 
-  function CopyAdvancedBtn() {
-    let txt = document.getElementById("APasswordTxt")
-    navigator.clipboard.writeText(txt.innerHTML)
+  function copyAdvancedBtnClicked() {
+    navigator.clipboard.writeText(advancedPasswordTxt)
   }
 
-  function SliderChange(newValue) {
-    let p = document.getElementById("StrengthTxt")
-    let icon = document.getElementById("StrengthIconTxt")
-    let txt = document.getElementById("PasswordTxt")
-
+  function onSliderChanged(newValue) {
     let pwr = GeneratePasswordByStrength(newValue[0], settings.customChars)
-    txt.innerHTML = pwr
-    AddActivity({ date: new Date(), content: pwr })
-
+    setPasswordTxt(pwr)
     setSliderVal(newValue[0])
+
     let info = getSliderUiInfo(newValue[0])
-    p.innerHTML = info.text
-    icon.innerHTML = info.icon
-    icon.style.color = info.color
+    setStrengthTxt(info.text)
+    setStrengthIconTxt(info.icon)
+    setStrengthColor(info.color)
   }
 
   function getSliderUiInfo(val: number): {
@@ -189,12 +196,10 @@ export default function IndexPage() {
     }
   }
 
-  function RandomLength() {
+  function getRandomLength() {
     let min = settings.passwordLengthOne
     let max = settings.passwordLengthTwo
     setLength(Math.floor(Math.random() * (max - min)) + min)
-    ;(document.getElementById("LengthTxt") as HTMLInputElement).value =
-      length.toString()
   }
 
   const [passwords, setPasswords] = useState([])
@@ -207,13 +212,11 @@ export default function IndexPage() {
   )
   const [resVis, setResVis] = useState(true)
 
-  async function GeneratePasswordAi() {
+  async function generateAiPassword() {
     const openai = new OpenAI({
       apiKey: settings.openaiKey,
       dangerouslyAllowBrowser: true,
     })
-    let prompt = (document.getElementById("prompt-txt") as HTMLInputElement)
-      .value
     setResVis(false)
     try {
       const completion = await openai.chat.completions.create({
@@ -226,14 +229,14 @@ export default function IndexPage() {
           },
           {
             role: "user",
-            content: prompt,
+            content: aiPrompt,
           },
         ],
       })
       let res = completion.choices[0].message.content
       let obj = JSON.parse(res)
       if (!Array.isArray(obj)) {
-        setPasswords(["An error has occured, please try again"])
+        setPasswords(["An error has occurred, please try again"])
         setResVis(true)
         return
       }
@@ -267,23 +270,23 @@ export default function IndexPage() {
           >
             <div className="flex w-full flex-col items-center">
               <p className="m-5 text-xl font-bold" id="PasswordTxt">
-                {GeneratePasswordByStrength(2, settings.customChars)}
+                {passwordTxt}
               </p>
               <div className="flex space-x-2">
-                <Button className="h-auto px-2 py-1" onClick={NewBtnClick}>
+                <Button className="h-auto px-2 py-1" onClick={newBtnClicked}>
                   {t("new")}
                 </Button>
                 <Button
                   className="h-auto px-2 py-1"
                   variant="outline"
-                  onClick={CopyBtn}
+                  onClick={copyBtnClicked}
                 >
                   {t("copy")}
                 </Button>
               </div>
               <Slider
                 id="StrengthSlider"
-                onValueChange={SliderChange}
+                onValueChange={onSliderChanged}
                 defaultValue={[sliderVal]}
                 max={3}
                 step={1}
@@ -291,32 +294,32 @@ export default function IndexPage() {
               />
               <p
                 className="icon-f m-2 text-6xl"
-                style={{ color: getSliderUiInfo(sliderVal).color }}
+                style={{ color: strengthColor }}
                 id="StrengthIconTxt"
               >
-                {getSliderUiInfo(sliderVal).icon}
+                {strengthIconTxt}
               </p>
-              <p id="StrengthTxt">{getSliderUiInfo(sliderVal).text}</p>
+              <p id="StrengthTxt">{strengthTxt}</p>
             </div>
           </TabsContent>
           <TabsContent className="border-none" value="advanced">
             <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
                 <p className="m-5 text-xl font-bold" id="APasswordTxt">
-                  {GeneratePasswordByStrength(2, settings.customChars)}
+                  {advancedPasswordTxt}
                 </p>
               </div>
               <div className="flex space-x-2">
                 <Button
                   className="h-auto px-2 py-1"
-                  onClick={NewBtnAdvancedClick}
+                  onClick={advancedNewBtnClicked}
                 >
                   {t("new")}
                 </Button>
                 <Button
                   className="h-auto px-2 py-1"
                   variant="outline"
-                  onClick={CopyAdvancedBtn}
+                  onClick={copyAdvancedBtnClicked}
                 >
                   {t("copy")}
                 </Button>
@@ -337,8 +340,11 @@ export default function IndexPage() {
                       <div className="flex items-center space-x-2">
                         <Label htmlFor="AmountTxt">{t("amount")}</Label>
                         <Input
-                          defaultValue={12}
+                          defaultValue={passwordAmount}
                           type="number"
+                          onChange={(e) =>
+                            setPasswordAmount(parseInt(e.target.value))
+                          }
                           className="h-auto px-2 py-1"
                           id="AmountTxt"
                         />
@@ -351,7 +357,11 @@ export default function IndexPage() {
                       </div>
                       <div className="flex flex-col space-x-2 ">
                         <Label htmlFor="TextArea">{t("results")}</Label>
-                        <Textarea className="mt-2 px-2 py-1" id="TextArea" />
+                        <Textarea
+                          className="mt-2 px-2 py-1"
+                          value={multiplePasswordsTxt}
+                          id="TextArea"
+                        />
                       </div>
                     </div>
                   </DialogContent>
@@ -370,21 +380,14 @@ export default function IndexPage() {
                   <Label htmlFor="LengthTxt">{t("length")}</Label>
                   <Input
                     defaultValue={length}
-                    onChange={() =>
-                      setLength(
-                        +(
-                          document.getElementById(
-                            "LengthTxt"
-                          ) as HTMLInputElement
-                        ).value
-                      )
-                    }
+                    onChange={(e) => setLength(parseInt(e.target.value))}
+                    value={length}
                     type="number"
                     className="h-auto px-2 py-1"
                     id="LengthTxt"
                   />
                   <Button
-                    onClick={RandomLength}
+                    onClick={getRandomLength}
                     className="h-auto px-2 py-1"
                     variant="outline"
                   >
@@ -476,6 +479,8 @@ export default function IndexPage() {
                         <Input
                           type="password"
                           id="api-key"
+                          value={apiKey}
+                          onChange={(e) => setApiKey(e.target.value)}
                           className="h-auto max-w-[80%] px-2 py-1"
                           defaultValue={settings.openaiKey ?? ""}
                         />
@@ -484,11 +489,7 @@ export default function IndexPage() {
                     <DialogClose>
                       <Button
                         onClick={() => {
-                          settings.openaiKey = (
-                            document.getElementById(
-                              "api-key"
-                            ) as HTMLInputElement
-                          ).value
+                          settings.openaiKey = apiKey
                           setShowAI(
                             !(
                               settings.openaiKey == null ||
@@ -518,11 +519,13 @@ export default function IndexPage() {
                       type="text"
                       id="prompt-txt"
                       placeholder={t("enter-prompt")}
+                      value={aiPrompt}
+                      onChange={(e) => setAiPrompt(e.target.value)}
                       className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
                     />
                     <Button
                       className="h-auto px-2 py-1"
-                      onClick={GeneratePasswordAi}
+                      onClick={generateAiPassword}
                     >
                       {t("generate")}
                     </Button>
