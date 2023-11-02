@@ -110,5 +110,12 @@
   "get-api-key-msg": "Vous pouvez obtenir une clé API OpenAI en allant sur le site web de la plateforme OpenAI à platform.openai.com avec un compte OpenAI.",
   "ai-disclaimer": "La technologie de l'IA est encore expérimentale et peut produire des erreurs. Il convient de l'utiliser avec un jugement humain.",
   "delete": "Supprimer",
-  "details": "Détails"
+  "details": "Détails",
+  "strength-suggestions": "Suggestions",
+  "strength-suggestion-uppercase": "Ajoutez au moins une majuscule à votre mot de passe",
+  "strength-suggestion-lowercase": "Ajoutez au moins une minuscule à votre mot de passe",
+  "strength-suggestion-digit": "Deux chiffres ou plus sont recommandés",
+  "strength-suggestion-special": "Ajoutez des caractères spéciaux à votre mot de passe pour le rendre plus fort",
+  "strength-suggestion-length": "Allongez votre mot de passe",
+  "strength-no-suggestions": "Votre mot de passe est déjà très sécurisé"
 }
