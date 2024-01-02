@@ -21,6 +21,16 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/drawer"
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -229,27 +239,72 @@ export default function ActivityItem(props: ActivityProps) {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <DropdownMenu>
-          <DropdownMenuTrigger>
+        <Drawer>
+          <DrawerTrigger>
             <Button variant="outline" className="block w-[48px] sm:hidden">
               <MoreHorizontal16Regular />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            {GetStrength(props.activity.content)}
-            <DropdownMenuItem onClick={() => Copy()} className="flex space-x-1">
-              <Copy16Regular />
-              <p>{t("copy")}</p>
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => removeActivityItem()}
-              className="flex space-x-1"
-            >
-              <Delete16Regular />
-              <p>{t("delete")}</p>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>
+                <span className="flex justify-center">
+                  {GetStrength(props.activity.content)}
+                </span>
+              </DrawerTitle>
+            </DrawerHeader>
+            <div className="p-5">
+              <p
+                className="text-center text-xl font-bold"
+                id="PasswordContainer"
+              >
+                {props.activity.content.split("").map((el, i) => (
+                  <StrengthCharacter char={el} key={i} />
+                ))}
+              </p>
+              <div className="grid grid-cols-2">
+                <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
+                <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
+                  {getStrengthInfo(props.activity.content).uppercases}
+                </p>
+                <p className="font-bold text-[#3B8AFF]">{t("lowercases")}</p>
+                <p className="font-bold text-[#3B8AFF]" id="LowercaseTxt">
+                  {getStrengthInfo(props.activity.content).lowercases}
+                </p>
+                <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
+                <p className="font-bold text-[#007F5F]" id="NumbersTxt">
+                  {getStrengthInfo(props.activity.content).numbers}
+                </p>
+                <p className="font-bold text-[#9F2CF9]">{t("specialchars")}</p>
+                <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
+                  {getStrengthInfo(props.activity.content).specialchars}
+                </p>
+                <p className="font-bold">{t("length")}</p>
+                <p className="font-bold" id="LengthTxt">
+                  {props.activity.content.length}
+                </p>
+              </div>
+            </div>
+            <DrawerFooter>
+              <Button onClick={Copy}>{t("copy")}</Button>
+              <div className="grid grid-cols-[1fr,auto] space-x-2">
+                <DrawerClose>
+                  <Button className="w-full" variant="outline">
+                    {t("close")}
+                  </Button>
+                </DrawerClose>
+                <DrawerClose>
+                  <Button
+                    variant="outline"
+                    onClick={() => removeActivityItem()}
+                  >
+                    <Delete16Regular />
+                  </Button>
+                </DrawerClose>
+              </div>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
   )
