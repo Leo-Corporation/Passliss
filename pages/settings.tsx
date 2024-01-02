@@ -167,7 +167,7 @@ export default function SettingsPage() {
                   Fluent System Icons - MIT License - © 2020 Microsoft
                   Corporation
                   <br></br>
-                  Passliss - MIT License - © 2023 Léo Corporation
+                  Passliss - MIT License - © 2021-2024 Léo Corporation
                 </p>
                 <DialogFooter>
                   <DialogClose>
