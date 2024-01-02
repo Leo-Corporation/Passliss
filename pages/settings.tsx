@@ -142,7 +142,7 @@ export default function SettingsPage() {
           >
             <div className="m-3 flex items-center space-x-2">
               <h2 className="text-4xl font-bold">{t("title")}</h2>
-              <span className="m-2 rounded-full bg-gradient-to-br from-[#0088FF] to-[#2153E0] px-2 font-bold text-white">
+              <span className="from-accent m-2 rounded-full bg-gradient-to-br to-[#2153E0] px-2 font-bold text-white">
                 {t("web")}
               </span>
             </div>

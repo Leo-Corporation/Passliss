@@ -82,7 +82,7 @@ export function PageContent({ children, page }: PageProps) {
                 })}
                 href={"/home"}
               >
-                <div className="rounded-lg bg-gradient-to-br from-[#0088FF] to-[#2153E0] p-1">
+                <div className="from-accent rounded-lg bg-gradient-to-br to-[#2153E0] p-1">
                   <Home20Filled className="text-white" />
                 </div>
                 <p className="ml-2 font-bold">{t("home")}</p>
@@ -122,7 +122,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "generate" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-[#0088FF]",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/generate"}
               >
@@ -134,7 +134,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "strength" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-[#0088FF]",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/strength"}
               >
@@ -146,7 +146,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "crypt" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-[#0088FF]",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/encryption"}
               >
@@ -176,7 +176,7 @@ export function PageContent({ children, page }: PageProps) {
               })}
               href={"/home"}
             >
-              <div className="rounded-md bg-gradient-to-br from-[#0088FF] to-[#2153E0] p-[5px]">
+              <div className="from-accent rounded-md bg-gradient-to-br to-[#2153E0] p-[5px]">
                 <Home20Filled className="text-white" />
               </div>
               <p className="ml-2 font-bold">{t("home")}</p>
@@ -214,7 +214,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "generate" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-[#0088FF]",
+                className: "text-accent mx-2 my-1 w-full",
               })}
               href={"/generate"}
             >
@@ -225,7 +225,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "strength" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-[#0088FF]",
+                className: "text-accent mx-2 my-1 w-full",
               })}
               href={"/strength"}
             >
@@ -236,7 +236,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "crypt" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-[#0088FF]",
+                className: "text-accent mx-2 my-1 w-full",
               })}
               href={"/encryption"}
             >
