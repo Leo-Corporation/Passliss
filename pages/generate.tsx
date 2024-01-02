@@ -220,12 +220,13 @@ export default function IndexPage() {
     setResVis(false)
     try {
       const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-1106",
+        response_format: { type: "json_object" },
         messages: [
           {
             role: "system",
             content:
-              'GOAL: Generate ONLY 3 complex passwords according to the user prompt.\nOUTPUT: Use the following format (JSON array):\n["", "", ""]',
+              'GOAL: Generate ONLY 3 complex passwords according to the user prompt.\nOUTPUT: Use the following format (JSON array):\n{"passwords": ["", "", ""]}',
           },
           {
             role: "user",
@@ -235,12 +236,12 @@ export default function IndexPage() {
       })
       let res = completion.choices[0].message.content
       let obj = JSON.parse(res)
-      if (!Array.isArray(obj)) {
+      if (!Array.isArray(obj.passwords)) {
         setPasswords(["An error has occurred, please try again"])
         setResVis(true)
         return
       }
-      setPasswords(obj)
+      setPasswords(obj.passwords)
       setResVis(true)
     } catch {}
   }

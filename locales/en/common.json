@@ -117,5 +117,6 @@
   "strength-suggestion-digit": "Two or more digits are recommended",
   "strength-suggestion-special": "Add special characters to your password to make it stronger",
   "strength-suggestion-length": "Make your password longer",
-  "strength-no-suggestions": "Your password is already very secured"
+  "strength-no-suggestions": "Your password is already very secured",
+  "close": "Close"
 }

@@ -117,5 +117,6 @@
   "strength-suggestion-digit": "Deux chiffres ou plus sont recommandés",
   "strength-suggestion-special": "Ajoutez des caractères spéciaux à votre mot de passe pour le rendre plus fort",
   "strength-suggestion-length": "Allongez votre mot de passe",
-  "strength-no-suggestions": "Votre mot de passe est déjà très sécurisé"
+  "strength-no-suggestions": "Votre mot de passe est déjà très sécurisé",
+  "close": "Fermer"
 }
