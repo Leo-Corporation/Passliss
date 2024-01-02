@@ -73,7 +73,7 @@ export default function ActivityItem(props: ActivityProps) {
             ? GetHiddenPassword(props.activity.content)
             : props.activity.content}
         </p>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger className="hidden sm:block">
               {GetStrength(props.activity.content)}
@@ -115,7 +115,7 @@ export default function ActivityItem(props: ActivityProps) {
         </TooltipProvider>
       </div>
       <div className="flex justify-end space-x-1">
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -131,7 +131,7 @@ export default function ActivityItem(props: ActivityProps) {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
