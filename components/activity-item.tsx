@@ -1,17 +1,25 @@
 import {
-  Checkmark12Regular,
   Checkmark16Regular,
   Copy16Regular,
   Delete16Regular,
   Dismiss16Regular,
   MoreHorizontal16Regular,
 } from "@fluentui/react-icons"
+import { DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
 
 import { Activity } from "@/types/activity"
 import { GetActivity, SortActivities } from "@/lib/browser-storage"
 import { GetPasswordStrength, getStrengthInfo } from "@/lib/password-strength"
+import StrengthCharacter from "./strength-character"
 import { Button } from "./ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -76,7 +84,81 @@ export default function ActivityItem(props: ActivityProps) {
         <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger className="hidden sm:block">
-              {GetStrength(props.activity.content)}
+              <Dialog>
+                <DialogTrigger>
+                  {GetStrength(props.activity.content)}
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>
+                      <span className="flex">
+                        {GetStrength(props.activity.content)}
+                      </span>
+                    </DialogTitle>
+                    <div>
+                      <p
+                        className="text-center text-xl font-bold"
+                        id="PasswordContainer"
+                      >
+                        {props.activity.content.split("").map((el, i) => (
+                          <StrengthCharacter char={el} key={i} />
+                        ))}
+                      </p>
+                      <div className="grid grid-cols-2">
+                        <p className="font-bold text-[#FF2929]">
+                          {t("uppercases")}
+                        </p>
+                        <p
+                          className="font-bold text-[#FF2929]"
+                          id="UppercaseTxt"
+                        >
+                          {getStrengthInfo(props.activity.content).uppercases}
+                        </p>
+                        <p className="font-bold text-[#3B8AFF]">
+                          {t("lowercases")}
+                        </p>
+                        <p
+                          className="font-bold text-[#3B8AFF]"
+                          id="LowercaseTxt"
+                        >
+                          {getStrengthInfo(props.activity.content).lowercases}
+                        </p>
+                        <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
+                        <p className="font-bold text-[#007F5F]" id="NumbersTxt">
+                          {getStrengthInfo(props.activity.content).numbers}
+                        </p>
+                        <p className="font-bold text-[#9F2CF9]">
+                          {t("specialchars")}
+                        </p>
+                        <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
+                          {getStrengthInfo(props.activity.content).specialchars}
+                        </p>
+                        <p className="font-bold">{t("length")}</p>
+                        <p className="font-bold" id="LengthTxt">
+                          {props.activity.content.length}
+                        </p>
+                      </div>
+                      <div className="mt-4 flex items-center justify-center space-x-2">
+                        <Button
+                          onClick={Copy}
+                          className="h-auto px-2 py-1"
+                          variant="default"
+                        >
+                          {t("copy")}
+                        </Button>
+                        <DialogClose>
+                          <Button
+                            className="h-auto px-2 py-1"
+                            variant="outline"
+                          >
+                            {t("close")}
+                          </Button>
+                        </DialogClose>
+                      </div>
+                    </div>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </TooltipTrigger>
             <TooltipContent className="grid grid-cols-[24px,1fr] items-center">
               {getStrengthInfo(props.activity.content).lowercases > 0 ? (
