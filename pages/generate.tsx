@@ -367,7 +367,7 @@ export default function IndexPage() {
                         {t("multipasswords-desc")}
                       </DialogDescription>
                     </DialogHeader>
-                    <div className="py-4">
+                    <div className="pt-4">
                       <div className="flex items-center space-x-2">
                         <Label htmlFor="AmountTxt">{t("amount")}</Label>
                         <Input
@@ -394,7 +394,7 @@ export default function IndexPage() {
                           id="TextArea"
                         />
                       </div>
-                      <div className="m-2 flex flex-row justify-center space-x-2">
+                      <div className="m-2 mb-0 flex flex-row justify-center space-x-2">
                         <Button
                           className="h-auto px-2 py-1"
                           onClick={() =>
