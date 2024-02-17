@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
-  const ver = "3.8.0.2401"
+  const ver = "3.9.0.2402"
 
   let settings: Settings = undefined
   function LoadSettings() {
@@ -142,7 +142,7 @@ export default function SettingsPage() {
           >
             <div className="m-3 flex items-center space-x-2">
               <h2 className="text-4xl font-bold">{t("title")}</h2>
-              <span className="from-accent m-2 rounded-full bg-gradient-to-br to-[#2153E0] px-2 font-bold text-white">
+              <span className="m-2 rounded-full bg-gradient-to-br from-accent to-[#2153E0] px-2 font-bold text-white">
                 {t("web")}
               </span>
             </div>

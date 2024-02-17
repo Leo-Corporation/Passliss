@@ -15,7 +15,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={cn(
-      "flex h-full w-full flex-col overflow-hidden rounded-lg bg-white dark:bg-slate-800",
+      "flex size-full flex-col overflow-hidden rounded-lg bg-white dark:bg-slate-800",
       className
     )}
     {...props}
@@ -45,7 +45,7 @@ const CommandInput = React.forwardRef<
     className="flex items-center border-b border-b-slate-100 px-4 dark:border-b-slate-700"
     cmdk-input-wrapper=""
   >
-    <Search16Regular className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+    <Search16Regular className="mr-2 size-4 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(

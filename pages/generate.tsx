@@ -1,12 +1,21 @@
 import { useState } from "react"
 import Head from "next/head"
+import Link from "next/link"
 import {
+  ArrowDownload20Regular,
+  BrainCircuit20Regular,
+  CheckmarkCircle20Filled,
+  CheckmarkCircle20Regular,
+  CheckmarkStarburst20Filled,
+  DismissCircle20Filled,
   Info16Filled,
   Info20Regular,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
   Password20Regular,
+  Settings20Regular,
+  Warning20Filled,
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
@@ -261,9 +270,24 @@ export default function IndexPage() {
         </div>
         <Tabs defaultValue="simple">
           <TabsList>
-            <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
-            <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
-            <TabsTrigger value="ai">{t("ai")}</TabsTrigger>
+            <TabsTrigger value="simple">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <CheckmarkCircle20Regular />
+                <span>{t("simple")}</span>
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="advanced">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <Settings20Regular />
+                <span>{t("advanced")}</span>
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="ai">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <BrainCircuit20Regular />
+                <span>{t("ai")}</span>
+              </span>
+            </TabsTrigger>
           </TabsList>
           <TabsContent
             className="justify-center border-none data-[state=active]:flex"
@@ -293,6 +317,14 @@ export default function IndexPage() {
                 step={1}
                 className="m-5 sm:w-[50%]"
               />
+              <div className="w-full sm:w-[50%]">
+                <div className="grid grid-cols-[1fr,1fr,1fr,auto]">
+                  <DismissCircle20Filled color="red" />
+                  <Warning20Filled color="#FF7B00" />
+                  <CheckmarkCircle20Filled color="#68EA00" />
+                  <CheckmarkStarburst20Filled color="#00BF07" />
+                </div>
+              </div>
               <p
                 className="icon-f m-2 text-6xl"
                 style={{ color: strengthColor }}
@@ -337,7 +369,7 @@ export default function IndexPage() {
                         {t("multipasswords-desc")}
                       </DialogDescription>
                     </DialogHeader>
-                    <div className="py-4">
+                    <div className="pt-4">
                       <div className="flex items-center space-x-2">
                         <Label htmlFor="AmountTxt">{t("amount")}</Label>
                         <Input
@@ -356,13 +388,39 @@ export default function IndexPage() {
                           {t("generate")}
                         </Button>
                       </div>
-                      <div className="flex flex-col space-x-2 ">
+                      <div className="my-2 flex flex-col">
                         <Label htmlFor="TextArea">{t("results")}</Label>
                         <Textarea
                           className="mt-2 px-2 py-1"
                           value={multiplePasswordsTxt}
                           id="TextArea"
                         />
+                      </div>
+                      <div className="m-2 mb-0 flex flex-row justify-center space-x-2">
+                        <Button
+                          className="h-auto px-2 py-1"
+                          onClick={() =>
+                            navigator.clipboard.writeText(multiplePasswordsTxt)
+                          }
+                        >
+                          {t("copy")}
+                        </Button>
+                        <Link
+                          download="passwords.csv"
+                          href={
+                            "data:text/plain;charset=utf-8," +
+                            encodeURIComponent(
+                              multiplePasswordsTxt.replaceAll("\n", ",")
+                            )
+                          }
+                        >
+                          <Button
+                            variant="outline"
+                            className="h-auto px-2 py-1"
+                          >
+                            <ArrowDownload20Regular />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </DialogContent>
