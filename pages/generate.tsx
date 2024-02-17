@@ -1,7 +1,9 @@
 import { useState } from "react"
 import Head from "next/head"
 import {
+  BrainCircuit20Regular,
   CheckmarkCircle20Filled,
+  CheckmarkCircle20Regular,
   CheckmarkStarburst20Filled,
   DismissCircle20Filled,
   Info16Filled,
@@ -10,6 +12,7 @@ import {
   LightbulbFilament48Regular,
   LockClosed20Regular,
   Password20Regular,
+  Settings20Regular,
   Warning20Filled,
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
@@ -265,9 +268,24 @@ export default function IndexPage() {
         </div>
         <Tabs defaultValue="simple">
           <TabsList>
-            <TabsTrigger value="simple">{t("simple")}</TabsTrigger>
-            <TabsTrigger value="advanced">{t("advanced")}</TabsTrigger>
-            <TabsTrigger value="ai">{t("ai")}</TabsTrigger>
+            <TabsTrigger value="simple">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <CheckmarkCircle20Regular />
+                <span>{t("simple")}</span>
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="advanced">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <Settings20Regular />
+                <span>{t("advanced")}</span>
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="ai">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <BrainCircuit20Regular />
+                <span>{t("ai")}</span>
+              </span>
+            </TabsTrigger>
           </TabsList>
           <TabsContent
             className="justify-center border-none data-[state=active]:flex"
