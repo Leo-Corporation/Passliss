@@ -386,13 +386,23 @@ export default function IndexPage() {
                           {t("generate")}
                         </Button>
                       </div>
-                      <div className="flex flex-col space-x-2 ">
+                      <div className="my-2 flex flex-col">
                         <Label htmlFor="TextArea">{t("results")}</Label>
                         <Textarea
                           className="mt-2 px-2 py-1"
                           value={multiplePasswordsTxt}
                           id="TextArea"
                         />
+                      </div>
+                      <div className="m-2 flex flex-row justify-center space-x-2">
+                        <Button
+                          className="h-auto px-2 py-1"
+                          onClick={() =>
+                            navigator.clipboard.writeText(multiplePasswordsTxt)
+                          }
+                        >
+                          {t("copy")}
+                        </Button>
                       </div>
                     </div>
                   </DialogContent>
