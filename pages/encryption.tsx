@@ -1,6 +1,11 @@
 import { useState } from "react"
 import Head from "next/head"
-import { Key20Regular, Translate20Regular } from "@fluentui/react-icons"
+import {
+  Key20Regular,
+  NumberSymbol20Regular,
+  Password20Regular,
+  Translate20Regular,
+} from "@fluentui/react-icons"
 import useTranslation from "next-translate/useTranslation"
 
 import { Settings } from "@/types/settings"
@@ -159,9 +164,24 @@ export default function EncryptionPage() {
           defaultValue="encrypt"
         >
           <TabsList>
-            <TabsTrigger value="encrypt">{t("encrypt")}</TabsTrigger>
-            <TabsTrigger value="decrypt">{t("decrypt")}</TabsTrigger>
-            <TabsTrigger value="hashing">{t("hashing")}</TabsTrigger>
+            <TabsTrigger value="encrypt">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <Password20Regular />
+                <span>{t("encrypt")}</span>
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="decrypt">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <Translate20Regular />
+                <span>{t("decrypt")}</span>
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="hashing">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
+                <NumberSymbol20Regular />
+                <span>{t("hashing")}</span>
+              </span>
+            </TabsTrigger>
             <Select
               defaultValue={settings.encryptAlgo}
               onValueChange={SelectChanged}
