@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Head from "next/head"
+import Link from "next/link"
 import {
+  ArrowDownload20Regular,
   BrainCircuit20Regular,
   CheckmarkCircle20Filled,
   CheckmarkCircle20Regular,
@@ -403,6 +405,22 @@ export default function IndexPage() {
                         >
                           {t("copy")}
                         </Button>
+                        <Link
+                          download="passwords.csv"
+                          href={
+                            "data:text/plain;charset=utf-8," +
+                            encodeURIComponent(
+                              multiplePasswordsTxt.replaceAll("\n", ",")
+                            )
+                          }
+                        >
+                          <Button
+                            variant="outline"
+                            className="h-auto px-2 py-1"
+                          >
+                            <ArrowDownload20Regular />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </DialogContent>
