@@ -1,12 +1,16 @@
 import { useState } from "react"
 import Head from "next/head"
 import {
+  CheckmarkCircle20Filled,
+  CheckmarkStarburst20Filled,
+  DismissCircle20Filled,
   Info16Filled,
   Info20Regular,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
   Password20Regular,
+  Warning20Filled,
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
@@ -293,6 +297,14 @@ export default function IndexPage() {
                 step={1}
                 className="m-5 sm:w-[50%]"
               />
+              <div className="w-full sm:w-[50%]">
+                <div className="grid grid-cols-[1fr,1fr,1fr,auto]">
+                  <DismissCircle20Filled color="red" />
+                  <Warning20Filled color="#FF7B00" />
+                  <CheckmarkCircle20Filled color="#68EA00" />
+                  <CheckmarkStarburst20Filled color="#00BF07" />
+                </div>
+              </div>
               <p
                 className="icon-f m-2 text-6xl"
                 style={{ color: strengthColor }}
