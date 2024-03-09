@@ -2,6 +2,7 @@ import Link from "next/link"
 import {
   History20Filled,
   Home20Filled,
+  List20Regular,
   LockClosed20Regular,
   Navigation24Regular,
   Settings20Filled,
@@ -133,6 +134,18 @@ export function PageContent({ children, page }: PageProps) {
               <Link
                 className={buttonVariants({
                   size: "nav",
+                  variant: page == "presets" ? "navselect2" : "nav2",
+                  className: "mx-2 my-1 w-full text-accent",
+                })}
+                href={"/presets"}
+              >
+                <List20Regular />
+
+                <p className="ml-2 font-bold">{t("presets")}</p>
+              </Link>
+              <Link
+                className={buttonVariants({
+                  size: "nav",
                   variant: page == "strength" ? "navselect2" : "nav2",
                   className: "mx-2 my-1 w-full text-accent",
                 })}
@@ -220,6 +233,17 @@ export function PageContent({ children, page }: PageProps) {
             >
               <LockClosed20Regular />
               <p className="ml-2 font-bold">{t("generate")}</p>
+            </Link>
+            <Link
+              className={buttonVariants({
+                size: "nav",
+                variant: page == "presets" ? "navselect2" : "nav2",
+                className: "mx-2 my-1 w-full text-accent",
+              })}
+              href={"/presets"}
+            >
+              <List20Regular />
+              <p className="ml-2 font-bold">{t("presets")}</p>
             </Link>
             <Link
               className={buttonVariants({
