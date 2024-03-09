@@ -127,5 +127,6 @@
   "use-range": "Use range",
   "min": "Min",
   "max": "Max",
-  "name": "Name"
+  "name": "Name",
+  "no-presets-desc": "When you create presets, they will appear here."
 }

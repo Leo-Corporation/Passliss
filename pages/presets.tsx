@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Head from "next/head"
 import {
+  Add16Regular,
   Delete16Regular,
   List20Regular,
   ListBar20Regular,
@@ -69,7 +70,10 @@ export default function PresetsPage() {
         <div>
           <Dialog>
             <DialogTrigger>
-              <Button>{t("create-preset")}</Button>
+              <Button className="my-2 space-x-2 font-bold">
+                <Add16Regular />
+                <span>{t("create-preset")}</span>
+              </Button>
             </DialogTrigger>
             <DialogContent className="gap-1">
               <DialogHeader>
@@ -331,6 +335,13 @@ export default function PresetsPage() {
           <p className="ml-2 font-bold">{t("my-presets")}</p>
         </div>
         <div>
+          {presets && presets.length === 0 && (
+            <div className="mt-10 flex w-full flex-col items-center justify-center text-center">
+              <p className="icon text-7xl">{"\uFD81"}</p>
+              <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+              <p>{t("no-presets-desc")}</p>
+            </div>
+          )}
           {presets.map((el, i) => (
             <div
               key={i}

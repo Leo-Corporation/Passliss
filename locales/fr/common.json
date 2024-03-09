@@ -127,5 +127,6 @@
   "use-range": "Utiliser une fourchette",
   "min": "Min",
   "max": "Max",
-  "name": "Nom"
+  "name": "Nom",
+  "no-presets-desc": "Lorsque vous créerez des préréglages, ils apparaîtront ici."
 }
