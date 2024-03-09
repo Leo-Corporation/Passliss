@@ -128,5 +128,8 @@
   "min": "Min",
   "max": "Max",
   "name": "Name",
-  "no-presets-desc": "When you create presets, they will appear here."
+  "no-presets-desc": "When you create presets, they will appear here.",
+  "preset-selected-msg": "You cannot edit your password when a preset is selected.",
+  "select-preset": "Select a preset",
+  "use-preset": "Use a preset"
 }

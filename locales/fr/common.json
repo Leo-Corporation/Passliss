@@ -128,5 +128,8 @@
   "min": "Min",
   "max": "Max",
   "name": "Nom",
-  "no-presets-desc": "Lorsque vous créerez des préréglages, ils apparaîtront ici."
+  "no-presets-desc": "Lorsque vous créerez des préréglages, ils apparaîtront ici.",
+  "preset-selected-msg": "Vous ne pouvez pas modifier votre mot de passe lorsqu'un préréglage est sélectionné",
+  "select-preset": "Sélectionner un préréglage",
+  "use-preset": "Utiliser un préréglage"
 }
