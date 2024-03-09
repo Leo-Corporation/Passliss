@@ -8,6 +8,7 @@ import {
   CheckmarkCircle20Filled,
   CheckmarkCircle20Regular,
   CheckmarkStarburst20Filled,
+  Dismiss16Regular,
   DismissCircle20Filled,
   Info16Filled,
   Info16Regular,
@@ -375,6 +376,16 @@ export default function IndexPage() {
                 </DialogHeader>
               </DialogContent>
             </Dialog>
+            {selectedPreset && (
+              <Button
+                onClick={() => setSelectedPreset(null)}
+                variant="link"
+                className="space-x-2 decoration-red-500"
+              >
+                <Dismiss16Regular color="#ef4444" />
+                <span className="text-red-500">{t("remove-preset")}</span>
+              </Button>
+            )}
             <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
                 <p className="m-5 text-xl font-bold" id="APasswordTxt">
