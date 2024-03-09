@@ -118,5 +118,13 @@
   "strength-suggestion-special": "Add special characters to your password to make it stronger",
   "strength-suggestion-length": "Make your password longer",
   "strength-no-suggestions": "Your password is already very secured",
-  "close": "Close"
+  "close": "Close",
+  "create": "Create",
+  "presets": "Presets",
+  "new-preset": "New preset",
+  "create-preset": "Create a new preset",
+  "my-presets": "My presets",
+  "use-range": "Use range",
+  "min": "Min",
+  "max": "Max"
 }

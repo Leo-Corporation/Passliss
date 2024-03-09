@@ -118,5 +118,13 @@
   "strength-suggestion-special": "Ajoutez des caractères spéciaux à votre mot de passe pour le rendre plus fort",
   "strength-suggestion-length": "Allongez votre mot de passe",
   "strength-no-suggestions": "Votre mot de passe est déjà très sécurisé",
-  "close": "Fermer"
+  "close": "Fermer",
+  "create": "Créer",
+  "presets": "Préréglages",
+  "new-preset": "Nouveau préréglage",
+  "create-preset": "Créer un nouveau préréglage",
+  "my-presets": "Mes préréglages",
+  "use-range": "Utiliser une fourchette",
+  "min": "Min",
+  "max": "Max"
 }
