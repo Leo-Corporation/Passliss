@@ -143,15 +143,16 @@ export default function IndexPage() {
     let value = ""
 
     for (let i = 0; i < passwordAmount; i++) {
-      value +=
-        GeneratePassword(
-          hasLower,
-          hasUpper,
-          hasNumber,
-          hasChars,
-          +length,
-          settings.customChars
-        ) + "\n"
+      value += selectedPreset
+        ? generatePasswordUsingPreset(selectedPreset) + "\n"
+        : GeneratePassword(
+            hasLower,
+            hasUpper,
+            hasNumber,
+            hasChars,
+            +length,
+            settings.customChars
+          ) + "\n"
     }
     setMultiplePasswordsTxt(value)
   }
