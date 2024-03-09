@@ -126,5 +126,6 @@
   "my-presets": "My presets",
   "use-range": "Use range",
   "min": "Min",
-  "max": "Max"
+  "max": "Max",
+  "name": "Name"
 }

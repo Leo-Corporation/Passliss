@@ -126,5 +126,6 @@
   "my-presets": "Mes préréglages",
   "use-range": "Utiliser une fourchette",
   "min": "Min",
-  "max": "Max"
+  "max": "Max",
+  "name": "Nom"
 }

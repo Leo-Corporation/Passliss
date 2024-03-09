@@ -1,9 +1,14 @@
 import { useState } from "react"
 import Head from "next/head"
-import { List20Regular, ListBar20Regular } from "@fluentui/react-icons"
+import {
+  Delete16Regular,
+  List20Regular,
+  ListBar20Regular,
+} from "@fluentui/react-icons"
 import { Close } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
 
+import { GetPresets, SavePresets } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import { Button } from "@/components/ui/button"
@@ -11,7 +16,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -44,6 +48,10 @@ export default function PresetsPage() {
   const [minSpecial, setMinSpecial] = useState(0)
   const [maxSpecial, setMaxSpecial] = useState(10)
   const [useSpecialRange, setUseSpecialRange] = useState(false)
+
+  const [presetName, setPresetName] = useState("My preset")
+
+  const [presets, setPresets] = useState(GetPresets())
   return (
     <Layout>
       <Head>
@@ -66,9 +74,18 @@ export default function PresetsPage() {
             <DialogContent className="gap-1">
               <DialogHeader>
                 <DialogTitle>{t("new-preset")}</DialogTitle>
-              </DialogHeader>
-
-              <div className="space-y-2 rounded-md border border-slate-300 bg-slate-200 p-2 dark:border-slate-700 dark:bg-slate-800">
+              </DialogHeader>{" "}
+              <div className="flex items-center space-x-2">
+                <Label htmlFor="NameTxt">{t("name")}</Label>
+                <Input
+                  defaultValue={presetName}
+                  onChange={(e) => setPresetName(e.target.value)}
+                  value={presetName}
+                  className="h-auto px-2 py-1"
+                  id="NameTxt"
+                />
+              </div>
+              <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
                 <div className="flex items-center space-x-2 ">
                   <Switch
                     id="LowerChk"
@@ -111,8 +128,7 @@ export default function PresetsPage() {
                   <></>
                 )}
               </div>
-
-              <div className="rounded-md border border-slate-300 bg-slate-200 p-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
                 <div className="flex items-center space-x-2">
                   <Switch
                     onCheckedChange={setHasUpper}
@@ -155,7 +171,7 @@ export default function PresetsPage() {
                   <></>
                 )}
               </div>
-              <div className="rounded-md border border-slate-300 bg-slate-200 p-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
                 <div className="flex items-center space-x-2">
                   <Switch
                     onCheckedChange={setHasNumber}
@@ -200,7 +216,7 @@ export default function PresetsPage() {
                   <></>
                 )}
               </div>
-              <div className="rounded-md border border-slate-300 bg-slate-200 p-2 dark:border-slate-700 dark:bg-slate-800">
+              <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="SpecialChk"
@@ -261,7 +277,47 @@ export default function PresetsPage() {
                 />
               </div>
               <DialogFooter>
-                <Button>{t("create")}</Button>
+                <Close>
+                  <Button
+                    onClick={() => {
+                      const newPresets = [
+                        ...presets,
+                        {
+                          name: presetName,
+                          lowerCases: {
+                            included: hasLower,
+                            min: minLower,
+                            max: maxLower,
+                            useRange: useLowerRange,
+                          },
+                          upperCases: {
+                            included: hasUpper,
+                            min: minUpper,
+                            max: maxUpper,
+                            useRange: useUpperRange,
+                          },
+                          numbers: {
+                            included: hasNumber,
+                            min: minDigits,
+                            max: maxDigits,
+                            useRange: useDigitsRange,
+                          },
+                          special: {
+                            included: hasChars,
+                            min: minSpecial,
+                            max: maxSpecial,
+                            useRange: useSpecialRange,
+                          },
+                          length: length,
+                        },
+                      ]
+                      setPresets(newPresets)
+                      SavePresets(newPresets)
+                    }}
+                  >
+                    {t("create")}
+                  </Button>
+                </Close>
                 <Close>
                   <Button variant="outline">{t("cancel")}</Button>
                 </Close>
@@ -273,6 +329,26 @@ export default function PresetsPage() {
           <ListBar20Regular primaryFill="#0088FF" className="text-white" />
 
           <p className="ml-2 font-bold">{t("my-presets")}</p>
+        </div>
+        <div>
+          {presets.map((el, i) => (
+            <div
+              key={i}
+              className="my-2 grid grid-cols-[1fr,auto] items-center rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800"
+            >
+              <p className="font-semibold">{el.name}</p>
+              <Button
+                onClick={() => {
+                  presets.splice(i, 1)
+                  setPresets([...presets])
+                  SavePresets(presets)
+                }}
+                variant="ghost"
+              >
+                <Delete16Regular />
+              </Button>
+            </div>
+          ))}
         </div>
       </PageContent>
     </Layout>

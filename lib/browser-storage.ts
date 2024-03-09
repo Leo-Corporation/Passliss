@@ -1,5 +1,6 @@
 import { Activities, Activity } from "@/types/activity"
 import { Settings } from "@/types/settings"
+import { PasswordPreset } from "./password-preset"
 
 export function GetActivity() {
   if (typeof window !== "undefined") {
@@ -81,5 +82,28 @@ export function GetSettings(): Settings {
 }
 
 export function SetSettings(settings: Settings) {
-  localStorage.setItem("settings", JSON.stringify(settings))
+  if (typeof window !== "undefined") {
+    localStorage.setItem("settings", JSON.stringify(settings))
+  }
+}
+
+export function GetPresets(): PasswordPreset[] {
+  if (typeof window !== "undefined") {
+    return JSON.parse(localStorage.getItem("passliss-presets")) || []
+  }
+  return []
+}
+
+export function SavePresets(presets: PasswordPreset[]) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("passliss-presets", JSON.stringify(presets))
+  }
+}
+
+export function AddPreset(preset: PasswordPreset) {
+  if (typeof window !== "undefined") {
+    let presets = GetPresets()
+    presets.push(preset)
+    SavePresets(presets)
+  }
 }
