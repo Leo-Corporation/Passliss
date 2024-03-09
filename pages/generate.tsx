@@ -37,7 +37,10 @@ import {
   GeneratePasswordByStrength,
   GetRandomPrompts,
 } from "@/lib/password-gen"
-import { PasswordPreset } from "@/lib/password-preset"
+import {
+  generatePasswordUsingPreset,
+  PasswordPreset,
+} from "@/lib/password-preset"
 import { getStrengthInfo } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
@@ -156,14 +159,16 @@ export default function IndexPage() {
   function advancedNewBtnClicked() {
     if (!optionsChecked()) return
 
-    let pwr = GeneratePassword(
-      hasLower,
-      hasUpper,
-      hasNumber,
-      hasChars,
-      +length,
-      settings.customChars
-    )
+    let pwr = selectedPreset
+      ? generatePasswordUsingPreset(selectedPreset)
+      : GeneratePassword(
+          hasLower,
+          hasUpper,
+          hasNumber,
+          hasChars,
+          +length,
+          settings.customChars
+        )
     setAdvancedPasswordTxt(pwr)
     AddActivity({ date: new Date(), content: pwr })
     setStrengthInfo(getStrengthInfo(pwr))
