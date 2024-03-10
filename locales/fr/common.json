@@ -132,5 +132,6 @@
   "preset-selected-msg": "Vous ne pouvez pas modifier votre mot de passe lorsqu'un préréglage est sélectionné",
   "select-preset": "Sélectionner un préréglage",
   "use-preset": "Utiliser un préréglage",
-  "remove-preset": "Retirer le préréglage"
+  "remove-preset": "Retirer le préréglage",
+  "hour-msg": "Il est "
 }

@@ -22,7 +22,7 @@ export interface PageProps {
 }
 
 export function PageContent({ children, page }: PageProps) {
-  const { t } = useTranslation("common")
+  const { t, lang } = useTranslation("common")
 
   function GetWelcomeMessage(): string {
     let hour = new Date().getHours() // Get the current hour
@@ -173,7 +173,17 @@ export function PageContent({ children, page }: PageProps) {
         </Sheet>
         <div>
           <h1 className="text-4xl font-bold">{t("title")}</h1>
-          <p className="font-bold">{GetWelcomeMessage()}</p>
+          <p className="font-bold">
+            <span>{GetWelcomeMessage()} </span>
+            <span>
+              {t("hour-msg") +
+                new Date().toLocaleTimeString(lang, {
+                  hour: "numeric",
+                  minute: "2-digit",
+                })}
+            </span>
+            <span>.</span>
+          </p>
         </div>
       </header>
       <section className="grid grid-cols-4 xl:grid-cols-5">

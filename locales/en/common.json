@@ -1,5 +1,5 @@
 {
-  "hello": "Hello",
+  "hello": "Hello.",
   "afternoon": "Good afternoon.",
   "evening": "Good evening.",
   "night": "Good night.",
@@ -132,5 +132,6 @@
   "preset-selected-msg": "You cannot edit your password when a preset is selected.",
   "select-preset": "Select a preset",
   "use-preset": "Use a preset",
-  "remove-preset": "Remove preset"
+  "remove-preset": "Remove preset",
+  "hour-msg": "It is "
 }
