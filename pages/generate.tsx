@@ -144,7 +144,8 @@ export default function IndexPage() {
 
     for (let i = 0; i < passwordAmount; i++) {
       value += selectedPreset
-        ? generatePasswordUsingPreset(selectedPreset) + "\n"
+        ? generatePasswordUsingPreset(selectedPreset, settings.customChars) +
+          "\n"
         : GeneratePassword(
             hasLower,
             hasUpper,
@@ -161,7 +162,7 @@ export default function IndexPage() {
     if (!optionsChecked()) return
 
     let pwr = selectedPreset
-      ? generatePasswordUsingPreset(selectedPreset)
+      ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
       : GeneratePassword(
           hasLower,
           hasUpper,

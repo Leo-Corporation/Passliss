@@ -1,3 +1,5 @@
+import { CustomCharacters } from "@/types/settings"
+
 export interface PasswordPreset {
   name: string
   lowerCases: PasswordCharacterSettings
@@ -13,7 +15,10 @@ export interface PasswordCharacterSettings {
   max: number
 }
 
-export function generatePasswordUsingPreset(preset: PasswordPreset): string {
+export function generatePasswordUsingPreset(
+  preset: PasswordPreset,
+  customChars: CustomCharacters
+): string {
   let result = ""
   let remainingLength = preset.length
 
@@ -33,7 +38,7 @@ export function generatePasswordUsingPreset(preset: PasswordPreset): string {
 
   prioritizedTypes.forEach((type) => {
     if (type.settings.included) {
-      const availableChars = getAvailableChars(type.name)
+      const availableChars = getAvailableChars(type.name, customChars)
       const length = getRandomLength(
         type.settings.min,
         type.settings.max,
@@ -46,7 +51,7 @@ export function generatePasswordUsingPreset(preset: PasswordPreset): string {
 
   nonPrioritizedTypes.forEach((type) => {
     if (type.settings.included) {
-      const availableChars = getAvailableChars(type.name)
+      const availableChars = getAvailableChars(type.name, customChars)
       const length = getRandomLength(0, remainingLength, remainingLength)
       result += addChars(availableChars, length)
       remainingLength -= length
@@ -59,16 +64,16 @@ export function generatePasswordUsingPreset(preset: PasswordPreset): string {
   return result
 }
 
-function getAvailableChars(type: string): string {
+function getAvailableChars(type: string, chars: CustomCharacters): string {
   switch (type) {
     case "lowerCases":
-      return "abcdefghijklmnopqrstuvwxyz"
+      return chars.lowerCases
     case "upperCases":
-      return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      return chars.upperCases
     case "numbers":
-      return "0123456789"
+      return chars.numbers
     case "special":
-      return "!@#$%^&*()-_=+"
+      return chars.special
     default:
       return ""
   }
