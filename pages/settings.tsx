@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
-  const ver = "3.9.0.2402"
+  const ver = "4.0.0.2403"
 
   let settings: Settings = undefined
   function LoadSettings() {

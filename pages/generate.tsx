@@ -2,13 +2,16 @@ import { useState } from "react"
 import Head from "next/head"
 import Link from "next/link"
 import {
+  Add16Regular,
   ArrowDownload20Regular,
   BrainCircuit20Regular,
   CheckmarkCircle20Filled,
   CheckmarkCircle20Regular,
   CheckmarkStarburst20Filled,
+  Dismiss16Regular,
   DismissCircle20Filled,
   Info16Filled,
+  Info16Regular,
   Info20Regular,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
@@ -17,18 +20,27 @@ import {
   Settings20Regular,
   Warning20Filled,
 } from "@fluentui/react-icons"
-import { DialogClose } from "@radix-ui/react-dialog"
+import { Close, DialogClose } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
 import OpenAI from "openai"
 
 import { Settings } from "@/types/settings"
 import { StrengthInfo } from "@/types/strength-info"
-import { AddActivity, GetSettings, SetSettings } from "@/lib/browser-storage"
+import {
+  AddActivity,
+  GetPresets,
+  GetSettings,
+  SetSettings,
+} from "@/lib/browser-storage"
 import {
   GeneratePassword,
   GeneratePasswordByStrength,
   GetRandomPrompts,
 } from "@/lib/password-gen"
+import {
+  generatePasswordUsingPreset,
+  PasswordPreset,
+} from "@/lib/password-preset"
 import { getStrengthInfo } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
@@ -43,8 +55,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -130,15 +150,17 @@ export default function IndexPage() {
     let value = ""
 
     for (let i = 0; i < passwordAmount; i++) {
-      value +=
-        GeneratePassword(
-          hasLower,
-          hasUpper,
-          hasNumber,
-          hasChars,
-          +length,
-          settings.customChars
-        ) + "\n"
+      value += selectedPreset
+        ? generatePasswordUsingPreset(selectedPreset, settings.customChars) +
+          "\n"
+        : GeneratePassword(
+            hasLower,
+            hasUpper,
+            hasNumber,
+            hasChars,
+            +length,
+            settings.customChars
+          ) + "\n"
     }
     setMultiplePasswordsTxt(value)
   }
@@ -146,14 +168,16 @@ export default function IndexPage() {
   function advancedNewBtnClicked() {
     if (!optionsChecked()) return
 
-    let pwr = GeneratePassword(
-      hasLower,
-      hasUpper,
-      hasNumber,
-      hasChars,
-      +length,
-      settings.customChars
-    )
+    let pwr = selectedPreset
+      ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
+      : GeneratePassword(
+          hasLower,
+          hasUpper,
+          hasNumber,
+          hasChars,
+          +length,
+          settings.customChars
+        )
     setAdvancedPasswordTxt(pwr)
     AddActivity({ date: new Date(), content: pwr })
     setStrengthInfo(getStrengthInfo(pwr))
@@ -254,6 +278,8 @@ export default function IndexPage() {
       setResVis(true)
     } catch {}
   }
+  const [selectedPreset, setSelectedPreset] = useState<PasswordPreset>()
+  const [presets, setPresets] = useState(GetPresets())
   return (
     <Layout>
       <Head>
@@ -336,6 +362,88 @@ export default function IndexPage() {
             </div>
           </TabsContent>
           <TabsContent className="border-none" value="advanced">
+            <Dialog>
+              <DialogTrigger className="hidden sm:block">
+                <Button variant="link" className="space-x-2">
+                  <Add16Regular />
+                  <span>{t("use-preset")}</span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>{t("select-preset")}</DialogTitle>
+                </DialogHeader>
+                {presets && presets.length === 0 ? (
+                  <div className="flex w-full flex-col items-center justify-center text-center">
+                    <p className="icon text-7xl">{"\uFD81"}</p>
+                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+                    <p>{t("no-presets-desc")}</p>
+                  </div>
+                ) : (
+                  <ScrollArea className="h-[350px]">
+                    <div className="w-full">
+                      {presets.map((el, i) => (
+                        <Close key={i} className="w-full">
+                          <Button
+                            onClick={() => setSelectedPreset(el)}
+                            className="w-full font-semibold"
+                            variant="ghost"
+                          >
+                            {el.name}
+                          </Button>
+                        </Close>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                )}
+              </DialogContent>
+            </Dialog>
+            <Drawer>
+              <DrawerTrigger className="block sm:hidden">
+                <Button variant="link" className="space-x-2">
+                  <Add16Regular />
+                  <span>{t("use-preset")}</span>
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>{t("select-preset")}</DrawerTitle>
+                </DrawerHeader>
+                {presets && presets.length === 0 ? (
+                  <div className="my-10 flex w-full flex-col items-center justify-center text-center">
+                    <p className="icon text-7xl">{"\uFD81"}</p>
+                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+                    <p>{t("no-presets-desc")}</p>
+                  </div>
+                ) : (
+                  <ScrollArea className="h-[350px]">
+                    <div className="w-full">
+                      {presets.map((el, i) => (
+                        <Close key={i} className="w-full">
+                          <Button
+                            onClick={() => setSelectedPreset(el)}
+                            className="w-full font-semibold"
+                            variant="ghost"
+                          >
+                            {el.name}
+                          </Button>
+                        </Close>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                )}
+              </DrawerContent>
+            </Drawer>
+            {selectedPreset && (
+              <Button
+                onClick={() => setSelectedPreset(null)}
+                variant="link"
+                className="space-x-2 decoration-red-500"
+              >
+                <Dismiss16Regular color="#ef4444" />
+                <span className="text-red-500">{t("remove-preset")}</span>
+              </Button>
+            )}
             <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
                 <p className="m-5 text-xl font-bold" id="APasswordTxt">
@@ -426,59 +534,67 @@ export default function IndexPage() {
                   </DialogContent>
                 </Dialog>
               </div>
-              <div className="m-5 grid grid-rows-4 md:grid-cols-2">
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    id="LowerChk"
-                    onCheckedChange={setHasLower}
-                    defaultChecked={hasLower}
-                  />
-                  <Label htmlFor="LowerChk">{t("lowercases")}</Label>
+              {!selectedPreset && (
+                <div className="m-5 grid grid-rows-4 md:grid-cols-2">
+                  <div className="col-end-1 flex items-center space-x-2">
+                    <Switch
+                      id="LowerChk"
+                      onCheckedChange={setHasLower}
+                      defaultChecked={hasLower}
+                    />
+                    <Label htmlFor="LowerChk">{t("lowercases")}</Label>
+                  </div>
+                  <div className="col-start-2 flex items-center space-x-2">
+                    <Label htmlFor="LengthTxt">{t("length")}</Label>
+                    <Input
+                      defaultValue={length}
+                      onChange={(e) => setLength(parseInt(e.target.value))}
+                      value={length}
+                      type="number"
+                      className="h-auto px-2 py-1"
+                      id="LengthTxt"
+                    />
+                    <Button
+                      onClick={getRandomLength}
+                      className="h-auto px-2 py-1"
+                      variant="outline"
+                    >
+                      <Lightbulb20Regular className="m-0 p-0" />
+                    </Button>
+                  </div>
+                  <div className="col-end-1 flex items-center space-x-2">
+                    <Switch
+                      onCheckedChange={setHasUpper}
+                      defaultChecked={hasUpper}
+                      id="UpperChk"
+                    />
+                    <Label htmlFor="UpperChk">{t("uppercases")}</Label>
+                  </div>
+                  <div className="col-end-1 flex items-center space-x-2">
+                    <Switch
+                      onCheckedChange={setHasNumber}
+                      defaultChecked={hasNumber}
+                      id="NbrChk"
+                    />
+                    <Label htmlFor="NbrChk">{t("nbrs")}</Label>
+                  </div>
+                  <div className="col-end-1 flex items-center space-x-2">
+                    <Switch
+                      id="SpecialChk"
+                      onCheckedChange={setHasChars}
+                      defaultChecked={hasChars}
+                    />
+                    <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                  </div>
                 </div>
-                <div className="col-start-2 flex items-center space-x-2">
-                  <Label htmlFor="LengthTxt">{t("length")}</Label>
-                  <Input
-                    defaultValue={length}
-                    onChange={(e) => setLength(parseInt(e.target.value))}
-                    value={length}
-                    type="number"
-                    className="h-auto px-2 py-1"
-                    id="LengthTxt"
-                  />
-                  <Button
-                    onClick={getRandomLength}
-                    className="h-auto px-2 py-1"
-                    variant="outline"
-                  >
-                    <Lightbulb20Regular className="m-0 p-0" />
-                  </Button>
-                </div>
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    onCheckedChange={setHasUpper}
-                    defaultChecked={hasUpper}
-                    id="UpperChk"
-                  />
-                  <Label htmlFor="UpperChk">{t("uppercases")}</Label>
-                </div>
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    onCheckedChange={setHasNumber}
-                    defaultChecked={hasNumber}
-                    id="NbrChk"
-                  />
-                  <Label htmlFor="NbrChk">{t("nbrs")}</Label>
-                </div>
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    id="SpecialChk"
-                    onCheckedChange={setHasChars}
-                    defaultChecked={hasChars}
-                  />
-                  <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
-                </div>
-              </div>
+              )}
             </div>
+            {selectedPreset && (
+              <div className="m-2 flex items-center space-x-2 rounded-md border border-accent bg-accent/20 p-2 text-accent dark:text-white">
+                <Info16Regular />
+                <p>{t("preset-selected-msg")}</p>
+              </div>
+            )}
             <div className="-ml-6 mb-2 flex items-center space-x-2">
               <Info20Regular primaryFill="#0088FF" className="text-white" />
 

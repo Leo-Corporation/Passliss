@@ -1,5 +1,5 @@
 {
-  "hello": "Hello",
+  "hello": "Hello.",
   "afternoon": "Good afternoon.",
   "evening": "Good evening.",
   "night": "Good night.",
@@ -118,5 +118,20 @@
   "strength-suggestion-special": "Add special characters to your password to make it stronger",
   "strength-suggestion-length": "Make your password longer",
   "strength-no-suggestions": "Your password is already very secured",
-  "close": "Close"
+  "close": "Close",
+  "create": "Create",
+  "presets": "Presets",
+  "new-preset": "New preset",
+  "create-preset": "Create a new preset",
+  "my-presets": "My presets",
+  "use-range": "Use range",
+  "min": "Min",
+  "max": "Max",
+  "name": "Name",
+  "no-presets-desc": "When you create presets, they will appear here.",
+  "preset-selected-msg": "You cannot edit your password when a preset is selected.",
+  "select-preset": "Select a preset",
+  "use-preset": "Use a preset",
+  "remove-preset": "Remove preset",
+  "hour-msg": "It is "
 }
