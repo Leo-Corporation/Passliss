@@ -55,6 +55,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -356,7 +363,7 @@ export default function IndexPage() {
           </TabsContent>
           <TabsContent className="border-none" value="advanced">
             <Dialog>
-              <DialogTrigger>
+              <DialogTrigger className="hidden sm:block">
                 <Button variant="link" className="space-x-2">
                   <Add16Regular />
                   <span>{t("use-preset")}</span>
@@ -365,6 +372,14 @@ export default function IndexPage() {
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>{t("select-preset")}</DialogTitle>
+                </DialogHeader>
+                {presets && presets.length === 0 ? (
+                  <div className="flex w-full flex-col items-center justify-center text-center">
+                    <p className="icon text-7xl">{"\uFD81"}</p>
+                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+                    <p>{t("no-presets-desc")}</p>
+                  </div>
+                ) : (
                   <ScrollArea className="h-[350px]">
                     <div className="w-full">
                       {presets.map((el, i) => (
@@ -380,9 +395,45 @@ export default function IndexPage() {
                       ))}
                     </div>
                   </ScrollArea>
-                </DialogHeader>
+                )}
               </DialogContent>
             </Dialog>
+            <Drawer>
+              <DrawerTrigger className="block sm:hidden">
+                <Button variant="link" className="space-x-2">
+                  <Add16Regular />
+                  <span>{t("use-preset")}</span>
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>{t("select-preset")}</DrawerTitle>
+                </DrawerHeader>
+                {presets && presets.length === 0 ? (
+                  <div className="my-10 flex w-full flex-col items-center justify-center text-center">
+                    <p className="icon text-7xl">{"\uFD81"}</p>
+                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+                    <p>{t("no-presets-desc")}</p>
+                  </div>
+                ) : (
+                  <ScrollArea className="h-[350px]">
+                    <div className="w-full">
+                      {presets.map((el, i) => (
+                        <Close key={i} className="w-full">
+                          <Button
+                            onClick={() => setSelectedPreset(el)}
+                            className="w-full font-semibold"
+                            variant="ghost"
+                          >
+                            {el.name}
+                          </Button>
+                        </Close>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                )}
+              </DrawerContent>
+            </Drawer>
             {selectedPreset && (
               <Button
                 onClick={() => setSelectedPreset(null)}
