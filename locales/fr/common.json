@@ -133,5 +133,8 @@
   "select-preset": "Sélectionner un préréglage",
   "use-preset": "Utiliser un préréglage",
   "remove-preset": "Retirer le préréglage",
-  "hour-msg": "Il est "
+  "hour-msg": "Il est ",
+  "filter": "Filtrer",
+  "all": "Tout",
+  "apply": "Appliquer"
 }
