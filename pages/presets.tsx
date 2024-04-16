@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Head from "next/head"
+import Link from "next/link"
 import {
   Add16Regular,
   Delete16Regular,
@@ -14,7 +15,7 @@ import { PasswordPreset } from "@/lib/password-preset"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import PresetItem from "@/components/preset-item"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Dialog,
@@ -64,6 +65,20 @@ export default function PresetsPage() {
   const [presetName, setPresetName] = useState("My preset")
 
   const [presets, setPresets] = useState(GetPresets())
+
+  function importPresets(event) {
+    let file = event.target.files[0] // get the selected file
+    let reader = new FileReader() // create a FileReader object
+    reader.onload = function (event) {
+      let text: string = event.target.result as string // get the file content as text
+      let json: PasswordPreset[] = JSON.parse(text) // parse the text as JSON
+
+      let merge = [...presets, ...json]
+      setPresets(merge)
+      SavePresets(merge)
+    }
+    reader.readAsText(file) // read the file as text
+  }
   return (
     <Layout>
       <Head>
@@ -78,10 +93,10 @@ export default function PresetsPage() {
 
           <p className="ml-2 font-bold">{t("presets")}</p>
         </div>
-        <div>
+        <div className="flex items-center space-x-2">
           <Dialog>
             <DialogTrigger className="hidden sm:block">
-              <Button className="my-2 space-x-2 font-bold">
+              <Button className="my-2 h-auto space-x-2 px-2 py-1 font-bold">
                 <Add16Regular />
                 <span>{t("create-preset")}</span>
               </Button>
@@ -345,7 +360,7 @@ export default function PresetsPage() {
           <Drawer>
             <DrawerTrigger className="block sm:hidden">
               {" "}
-              <Button className="my-2 space-x-2 font-bold">
+              <Button className="my-2 h-auto space-x-2 px-2 py-1 font-bold">
                 <Add16Regular />
                 <span>{t("create-preset")}</span>
               </Button>
@@ -610,6 +625,42 @@ export default function PresetsPage() {
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
+          <Link
+            className={buttonVariants({
+              variant: "default",
+              size: "nav",
+              className: "text-center",
+            })}
+            href={
+              "data:text/plain;charset=UTF-8," +
+              encodeURIComponent(
+                typeof window !== "undefined"
+                  ? localStorage.getItem("passliss-presets")
+                  : "{msg: 'an error occurred'}"
+              )
+            }
+            download={"passliss-presets.json"}
+          >
+            {t("export")}
+          </Link>
+          <Button
+            variant="outline"
+            size="nav"
+            onClick={() =>
+              (
+                document.getElementById("FileSelector") as HTMLInputElement
+              ).click()
+            }
+          >
+            {t("import")}
+          </Button>
+          <Input
+            type="file"
+            id="FileSelector"
+            accept="application/json"
+            className="hidden"
+            onChange={importPresets}
+          ></Input>
         </div>
         <div className="mb-2 flex items-center space-x-2">
           <ListBar20Regular primaryFill="#0088FF" className="text-white" />

@@ -139,5 +139,7 @@
   "apply": "Apply",
   "edit": "Edit",
   "edit-presets": "Edit preset",
-  "info": "Information"
+  "info": "Information",
+  "import": "Import",
+  "export": "Export"
 }

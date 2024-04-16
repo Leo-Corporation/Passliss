@@ -139,5 +139,7 @@
   "apply": "Appliquer",
   "edit": "Modifier",
   "edit-presets": "Modifier le préréglage",
-  "info": "Informations"
+  "info": "Informations",
+  "import": "Importer",
+  "export": "Exporter"
 }
