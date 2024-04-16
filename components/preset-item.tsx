@@ -1,8 +1,11 @@
 import { useState } from "react"
 import {
   Add16Regular,
+  Check20Regular,
+  Checkmark16Regular,
   Delete16Regular,
   Edit16Regular,
+  Info16Regular,
 } from "@fluentui/react-icons"
 import { Close } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
@@ -75,14 +78,15 @@ export default function PresetItem(props: PresetItemProps) {
   return (
     <div
       key={props.id}
-      className="my-2 grid grid-cols-[1fr,auto] items-center rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800"
+      className="m-2 grid grid-cols-[1fr,auto] grid-rows-[auto,1fr] items-center rounded-md border border-accent bg-accent/10 px-4 py-2 hover:bg-accent-trans dark:bg-accent/10"
     >
-      <p className="font-semibold">{props.preset.name}</p>
-      <div className="flex items-center">
+      <p className="font-bold">{props.preset.name}</p>
+
+      <div className="flex">
         <div>
           <Dialog>
             <DialogTrigger className="hidden sm:block">
-              <Button variant="ghost" className="my-2 space-x-2 font-bold">
+              <Button variant="ghost" className="h-6 space-x-2 p-1 font-bold">
                 <Edit16Regular />
               </Button>
             </DialogTrigger>
@@ -339,8 +343,7 @@ export default function PresetItem(props: PresetItemProps) {
           </Dialog>
           <Drawer>
             <DrawerTrigger className="block sm:hidden">
-              {" "}
-              <Button variant="ghost" className="my-2 space-x-2 font-bold">
+              <Button variant="ghost" className="h-6 space-x-2 p-1 font-bold">
                 <Edit16Regular />
               </Button>
             </DrawerTrigger>
@@ -601,6 +604,7 @@ export default function PresetItem(props: PresetItemProps) {
           </Drawer>
         </div>
         <Button
+          className="h-6 p-1"
           onClick={() => {
             props.delete()
           }}
@@ -608,6 +612,51 @@ export default function PresetItem(props: PresetItemProps) {
         >
           <Delete16Regular />
         </Button>
+      </div>
+      <div className="text-sm">
+        <p className="flex items-center space-x-2  font-bold">
+          <Info16Regular />
+          <span>{t("info")}</span>
+        </p>
+        {hasUpper && (
+          <p className=" space-x-2 text-[#FF2929]">
+            <Checkmark16Regular />
+            <span>
+              {t("uppercases")} {useUpperRange && `(${minUpper}-${maxUpper})`}
+            </span>
+          </p>
+        )}
+        {hasLower && (
+          <p className="space-x-2 text-[#3B8AFF]">
+            <Checkmark16Regular />
+            <span>
+              {t("lowercases")} {useLowerRange && `(${minLower}-${maxLower})`}
+            </span>
+          </p>
+        )}
+        {hasNumber && (
+          <p className="space-x-2 text-[#007F5F]">
+            <Checkmark16Regular />
+            <span>
+              {t("nbrs")} {useDigitsRange && `(${minDigits}-${maxDigits})`}
+            </span>
+          </p>
+        )}
+        {hasChars && (
+          <p className="space-x-2 text-[#9F2CF9]">
+            <Checkmark16Regular />
+            <span>
+              {t("specialchars")}{" "}
+              {useSpecialRange && `(${minSpecial}-${maxSpecial})`}
+            </span>
+          </p>
+        )}
+        <p className="space-x-2">
+          <Checkmark16Regular />
+          <span>
+            {t("length")}: {length}
+          </span>
+        </p>
       </div>
     </div>
   )

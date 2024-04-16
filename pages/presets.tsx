@@ -616,7 +616,7 @@ export default function PresetsPage() {
 
           <p className="ml-2 font-bold">{t("my-presets")}</p>
         </div>
-        <div>
+        <div className="flex">
           {presets && presets.length === 0 && (
             <div className="mt-10 flex w-full flex-col items-center justify-center text-center">
               <p className="icon text-7xl">{"\uFD81"}</p>
