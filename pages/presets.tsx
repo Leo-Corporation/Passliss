@@ -627,7 +627,7 @@ export default function PresetsPage() {
           </Drawer>
           <Link
             className={buttonVariants({
-              variant: "default",
+              variant: "outline",
               size: "nav",
               className: "text-center",
             })}
