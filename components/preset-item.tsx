@@ -1,21 +1,18 @@
 import { useState } from "react"
-import Head from "next/head"
-import Link from "next/link"
 import {
   Add16Regular,
+  Check20Regular,
+  Checkmark16Regular,
   Delete16Regular,
-  List20Regular,
-  ListBar20Regular,
+  Edit16Regular,
+  Info16Regular,
 } from "@fluentui/react-icons"
 import { Close } from "@radix-ui/react-dialog"
 import useTranslation from "next-translate/useTranslation"
 
 import { GetPresets, SavePresets } from "@/lib/browser-storage"
 import { PasswordPreset } from "@/lib/password-preset"
-import { Layout } from "@/components/layout"
-import { PageContent } from "@/components/page"
-import PresetItem from "@/components/preset-item"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Dialog,
@@ -38,72 +35,64 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 
-export default function PresetsPage() {
+export interface PresetItemProps {
+  delete: Function
+  id: number
+  preset: PasswordPreset
+  edit: Function
+}
+
+export default function PresetItem(props: PresetItemProps) {
   const { t } = useTranslation("common") // default namespace (optional)
-  const [hasUpper, setHasUpper] = useState(false)
-  const [hasLower, setHasLower] = useState(false)
-  const [hasNumber, setHasNumber] = useState(false)
-  const [hasChars, setHasChars] = useState(false)
-  const [length, setLength] = useState(12)
+  const [hasUpper, setHasUpper] = useState(props.preset.upperCases.included)
+  const [hasLower, setHasLower] = useState(props.preset.lowerCases.included)
+  const [hasNumber, setHasNumber] = useState(props.preset.numbers.included)
+  const [hasChars, setHasChars] = useState(props.preset.special.included)
+  const [length, setLength] = useState(props.preset.length)
 
-  const [minLower, setMinLower] = useState(0)
-  const [maxLower, setMaxLower] = useState(10)
-  const [useLowerRange, setUseLowerRange] = useState(false)
+  const [minLower, setMinLower] = useState(props.preset.lowerCases.min)
+  const [maxLower, setMaxLower] = useState(props.preset.lowerCases.max)
+  const [useLowerRange, setUseLowerRange] = useState(
+    props.preset.lowerCases.useRange
+  )
 
-  const [minUpper, setMinUpper] = useState(0)
-  const [maxUpper, setMaxUpper] = useState(10)
-  const [useUpperRange, setUseUpperRange] = useState(false)
+  const [minUpper, setMinUpper] = useState(props.preset.upperCases.min)
+  const [maxUpper, setMaxUpper] = useState(props.preset.upperCases.max)
+  const [useUpperRange, setUseUpperRange] = useState(
+    props.preset.upperCases.useRange
+  )
 
-  const [minDigits, setMinDigits] = useState(0)
-  const [maxDigits, setMaxDigits] = useState(10)
-  const [useDigitsRange, setUseDigitsRange] = useState(false)
+  const [minDigits, setMinDigits] = useState(props.preset.numbers.min)
+  const [maxDigits, setMaxDigits] = useState(props.preset.numbers.max)
+  const [useDigitsRange, setUseDigitsRange] = useState(
+    props.preset.numbers.useRange
+  )
 
-  const [minSpecial, setMinSpecial] = useState(0)
-  const [maxSpecial, setMaxSpecial] = useState(10)
-  const [useSpecialRange, setUseSpecialRange] = useState(false)
+  const [minSpecial, setMinSpecial] = useState(props.preset.special.min)
+  const [maxSpecial, setMaxSpecial] = useState(props.preset.special.max)
+  const [useSpecialRange, setUseSpecialRange] = useState(
+    props.preset.special.useRange
+  )
 
-  const [presetName, setPresetName] = useState("My preset")
-
-  const [presets, setPresets] = useState(GetPresets())
-
-  function importPresets(event) {
-    let file = event.target.files[0] // get the selected file
-    let reader = new FileReader() // create a FileReader object
-    reader.onload = function (event) {
-      let text: string = event.target.result as string // get the file content as text
-      let json: PasswordPreset[] = JSON.parse(text) // parse the text as JSON
-
-      let merge = [...presets, ...json]
-      setPresets(merge)
-      SavePresets(merge)
-    }
-    reader.readAsText(file) // read the file as text
-  }
+  const [presetName, setPresetName] = useState(props.preset.name)
   return (
-    <Layout>
-      <Head>
-        <title>Passliss</title>
+    <div
+      key={props.id}
+      className="m-2 grid h-[170px] w-full grid-cols-[1fr,auto] grid-rows-[auto,1fr] items-center rounded-md border border-accent bg-accent/10 px-4 py-2 transition hover:bg-accent-trans dark:bg-accent/10 dark:hover:bg-accent-trans sm:h-auto sm:w-[300px]"
+    >
+      <p className="font-bold">{props.preset.name}</p>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <PageContent page="presets">
-        <div className="mb-2 flex items-center space-x-2">
-          <List20Regular primaryFill="#0088FF" className="text-white" />
-
-          <p className="ml-2 font-bold">{t("presets")}</p>
-        </div>
-        <div className="flex items-center space-x-2">
+      <div className="flex">
+        <div>
           <Dialog>
             <DialogTrigger className="hidden sm:block">
-              <Button className="my-2 h-auto space-x-2 px-2 py-1 font-bold">
-                <Add16Regular />
-                <span>{t("create-preset")}</span>
+              <Button variant="ghost" className="h-6 space-x-2 p-1 font-bold">
+                <Edit16Regular />
               </Button>
             </DialogTrigger>
             <DialogContent className="gap-1">
               <DialogHeader>
-                <DialogTitle>{t("new-preset")}</DialogTitle>
+                <DialogTitle>{t("edit-preset")}</DialogTitle>
               </DialogHeader>{" "}
               <div className="flex items-center space-x-2">
                 <Label htmlFor="NameTxt">{t("name")}</Label>
@@ -313,42 +302,37 @@ export default function PresetsPage() {
                     onClick={() => {
                       if (!hasChars && !hasLower && !hasUpper && !hasNumber)
                         return
-                      const newPresets = [
-                        ...presets,
-                        {
-                          name: presetName,
-                          lowerCases: {
-                            included: hasLower,
-                            min: minLower,
-                            max: maxLower,
-                            useRange: useLowerRange,
-                          },
-                          upperCases: {
-                            included: hasUpper,
-                            min: minUpper,
-                            max: maxUpper,
-                            useRange: useUpperRange,
-                          },
-                          numbers: {
-                            included: hasNumber,
-                            min: minDigits,
-                            max: maxDigits,
-                            useRange: useDigitsRange,
-                          },
-                          special: {
-                            included: hasChars,
-                            min: minSpecial,
-                            max: maxSpecial,
-                            useRange: useSpecialRange,
-                          },
-                          length: length,
+                      props.edit({
+                        name: presetName,
+                        lowerCases: {
+                          included: hasLower,
+                          min: minLower,
+                          max: maxLower,
+                          useRange: useLowerRange,
                         },
-                      ]
-                      setPresets(newPresets)
-                      SavePresets(newPresets)
+                        upperCases: {
+                          included: hasUpper,
+                          min: minUpper,
+                          max: maxUpper,
+                          useRange: useUpperRange,
+                        },
+                        numbers: {
+                          included: hasNumber,
+                          min: minDigits,
+                          max: maxDigits,
+                          useRange: useDigitsRange,
+                        },
+                        special: {
+                          included: hasChars,
+                          min: minSpecial,
+                          max: maxSpecial,
+                          useRange: useSpecialRange,
+                        },
+                        length: length,
+                      })
                     }}
                   >
-                    {t("create")}
+                    {t("edit")}
                   </Button>
                 </Close>
                 <Close>
@@ -359,15 +343,13 @@ export default function PresetsPage() {
           </Dialog>
           <Drawer>
             <DrawerTrigger className="block sm:hidden">
-              {" "}
-              <Button className="my-2 h-auto space-x-2 px-2 py-1 font-bold">
-                <Add16Regular />
-                <span>{t("create-preset")}</span>
+              <Button variant="ghost" className="h-6 space-x-2 p-1 font-bold">
+                <Edit16Regular />
               </Button>
             </DrawerTrigger>
             <DrawerContent className="space-y-2 px-2">
               <DrawerHeader>
-                <DrawerTitle>{t("new-preset")}</DrawerTitle>
+                <DrawerTitle>{t("edit-preset")}</DrawerTitle>
               </DrawerHeader>
               <div className="flex items-center space-x-2">
                 <Label htmlFor="NameTxt">{t("name")}</Label>
@@ -574,48 +556,43 @@ export default function PresetsPage() {
                 <div className="flex items-center justify-center space-x-2">
                   <DrawerClose>
                     <Button
-                      disabled={
-                        !hasChars && !hasLower && !hasUpper && !hasNumber
-                      }
                       onClick={() => {
                         if (!hasChars && !hasLower && !hasUpper && !hasNumber)
                           return
-                        const newPresets = [
-                          ...presets,
-                          {
-                            name: presetName,
-                            lowerCases: {
-                              included: hasLower,
-                              min: minLower,
-                              max: maxLower,
-                              useRange: useLowerRange,
-                            },
-                            upperCases: {
-                              included: hasUpper,
-                              min: minUpper,
-                              max: maxUpper,
-                              useRange: useUpperRange,
-                            },
-                            numbers: {
-                              included: hasNumber,
-                              min: minDigits,
-                              max: maxDigits,
-                              useRange: useDigitsRange,
-                            },
-                            special: {
-                              included: hasChars,
-                              min: minSpecial,
-                              max: maxSpecial,
-                              useRange: useSpecialRange,
-                            },
-                            length: length,
+                        props.edit({
+                          name: presetName,
+                          lowerCases: {
+                            included: hasLower,
+                            min: minLower,
+                            max: maxLower,
+                            useRange: useLowerRange,
                           },
-                        ]
-                        setPresets(newPresets)
-                        SavePresets(newPresets)
+                          upperCases: {
+                            included: hasUpper,
+                            min: minUpper,
+                            max: maxUpper,
+                            useRange: useUpperRange,
+                          },
+                          numbers: {
+                            included: hasNumber,
+                            min: minDigits,
+                            max: maxDigits,
+                            useRange: useDigitsRange,
+                          },
+                          special: {
+                            included: hasChars,
+                            min: minSpecial,
+                            max: maxSpecial,
+                            useRange: useSpecialRange,
+                          },
+                          length: length,
+                        })
                       }}
+                      disabled={
+                        !hasChars && !hasLower && !hasUpper && !hasNumber
+                      }
                     >
-                      {t("create")}
+                      {t("edit")}
                     </Button>
                   </DrawerClose>
                   <DrawerClose>
@@ -625,75 +602,62 @@ export default function PresetsPage() {
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
-          <Link
-            className={buttonVariants({
-              variant: "outline",
-              size: "nav",
-              className: "text-center",
-            })}
-            href={
-              "data:text/plain;charset=UTF-8," +
-              encodeURIComponent(
-                typeof window !== "undefined"
-                  ? localStorage.getItem("passliss-presets")
-                  : "{msg: 'an error occurred'}"
-              )
-            }
-            download={"passliss-presets.json"}
-          >
-            {t("export")}
-          </Link>
-          <Button
-            variant="outline"
-            size="nav"
-            onClick={() =>
-              (
-                document.getElementById("FileSelector") as HTMLInputElement
-              ).click()
-            }
-          >
-            {t("import")}
-          </Button>
-          <Input
-            type="file"
-            id="FileSelector"
-            accept="application/json"
-            className="hidden"
-            onChange={importPresets}
-          ></Input>
         </div>
-        <div className="mb-2 flex items-center space-x-2">
-          <ListBar20Regular primaryFill="#0088FF" className="text-white" />
-
-          <p className="ml-2 font-bold">{t("my-presets")}</p>
-        </div>
-        <div className="flex flex-wrap">
-          {presets && presets.length === 0 && (
-            <div className="mt-10 flex w-full flex-col items-center justify-center text-center">
-              <p className="icon text-7xl">{"\uFD81"}</p>
-              <h4 className="text-xl font-bold">{t("no-activity")}</h4>
-              <p>{t("no-presets-desc")}</p>
-            </div>
-          )}
-          {presets.map((el, i) => (
-            <PresetItem
-              id={i}
-              preset={el}
-              delete={() => {
-                presets.splice(i, 1)
-                setPresets([...presets])
-                SavePresets(presets)
-              }}
-              edit={(preset: PasswordPreset) => {
-                let p = presets
-                p[i] = preset
-                setPresets([...p])
-                SavePresets(p)
-              }}
-            />
-          ))}
-        </div>
-      </PageContent>
-    </Layout>
+        <Button
+          className="h-6 p-1"
+          onClick={() => {
+            props.delete()
+          }}
+          variant="ghost"
+        >
+          <Delete16Regular />
+        </Button>
+      </div>
+      <div className="h-full text-sm">
+        <p className="flex items-center space-x-2  font-bold">
+          <Info16Regular />
+          <span>{t("info")}</span>
+        </p>
+        {hasUpper && (
+          <p className=" space-x-2 text-[#FF2929]">
+            <Checkmark16Regular />
+            <span>
+              {t("uppercases")} {useUpperRange && `(${minUpper}-${maxUpper})`}
+            </span>
+          </p>
+        )}
+        {hasLower && (
+          <p className="space-x-2 text-[#3B8AFF]">
+            <Checkmark16Regular />
+            <span>
+              {t("lowercases")} {useLowerRange && `(${minLower}-${maxLower})`}
+            </span>
+          </p>
+        )}
+        {hasNumber && (
+          <p className="space-x-2 text-[#007F5F]">
+            <Checkmark16Regular />
+            <span>
+              {t("nbrs")} {useDigitsRange && `(${minDigits}-${maxDigits})`}
+            </span>
+          </p>
+        )}
+        {hasChars && (
+          <p className="space-x-2 text-[#9F2CF9]">
+            <Checkmark16Regular />
+            <span>
+              {t("specialchars")}{" "}
+              {useSpecialRange && `(${minSpecial}-${maxSpecial})`}
+            </span>
+          </p>
+        )}
+        <p className="space-x-2">
+          <Checkmark16Regular />
+          <span>
+            {t("length")}: {length}
+          </span>
+        </p>
+      </div>
+    </div>
   )
 }

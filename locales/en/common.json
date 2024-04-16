@@ -133,5 +133,13 @@
   "select-preset": "Select a preset",
   "use-preset": "Use a preset",
   "remove-preset": "Remove preset",
-  "hour-msg": "It is "
+  "hour-msg": "It is ",
+  "filter": "Filter",
+  "all": "All",
+  "apply": "Apply",
+  "edit": "Edit",
+  "edit-presets": "Edit preset",
+  "info": "Information",
+  "import": "Import",
+  "export": "Export"
 }

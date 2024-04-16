@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Router } from "next/dist/client/router"
 import Head from "next/head"
 import { History20Regular } from "@fluentui/react-icons"
+import { PopoverClose } from "@radix-ui/react-popover"
 import useTranslation from "next-translate/useTranslation"
 
 import { Activity } from "@/types/activity"
@@ -22,8 +23,21 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export default function ActivityPage() {
+  const [filter, setFilter] = useState("all")
   let settings: Settings = undefined
   function LoadSettings() {
     settings = GetSettings()
@@ -72,6 +86,32 @@ export default function ActivityPage() {
           <History20Regular primaryFill="#0088FF" className="text-white" />
 
           <p className="ml-2 font-bold">{t("activity")}</p>
+          <Popover>
+            <PopoverTrigger>
+              <Button variant="outline" className="h-auto px-2 py-1">
+                {t("filter")}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="flex items-center space-x-2">
+              <p>{t("filter")}</p>
+              <Select onValueChange={setFilter}>
+                <SelectTrigger defaultValue="all" className="h-auto w-[180px]">
+                  <SelectValue
+                    placeholder={t(
+                      filter === "verygood" ? "excellent" : filter
+                    )}
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t("all")}</SelectItem>
+                  <SelectItem value="low">{t("low")}</SelectItem>
+                  <SelectItem value="medium">{t("medium")}</SelectItem>
+                  <SelectItem value="good">{t("good")}</SelectItem>
+                  <SelectItem value="verygood">{t("excellent")}</SelectItem>
+                </SelectContent>
+              </Select>
+            </PopoverContent>
+          </Popover>
           {hasItems && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -105,6 +145,7 @@ export default function ActivityPage() {
               (el, i) =>
                 el.length > 0 && (
                   <Timeline
+                    filter={filter}
                     refreshEvent={refreshItems}
                     index={i}
                     date={i}
