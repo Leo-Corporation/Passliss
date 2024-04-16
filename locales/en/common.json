@@ -136,5 +136,7 @@
   "hour-msg": "It is ",
   "filter": "Filter",
   "all": "All",
-  "apply": "Apply"
+  "apply": "Apply",
+  "edit": "Edit",
+  "edit-presets": "Edit preset"
 }
