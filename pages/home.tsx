@@ -9,6 +9,7 @@ import { GeneratePasswordByStrength } from "@/lib/password-gen"
 import DashboardCard, { CardProps } from "@/components/card"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
+import PasswordVisionText from "@/components/password-vision"
 import { Button } from "@/components/ui/button"
 
 export default function HomePage() {
@@ -66,9 +67,7 @@ export default function HomePage() {
           <p className="ml-2 font-bold">{t("home")}</p>
         </div>
         <div className="flex w-full flex-col items-center">
-          <p className="m-5 text-xl font-bold" id="PasswordTxt">
-            {password}
-          </p>
+          <PasswordVisionText content={password} />
           <div className="flex space-x-2">
             <Button className="h-auto px-2 py-1" onClick={NewBtnClick}>
               {t("new")}
