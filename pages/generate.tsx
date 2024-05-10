@@ -547,14 +547,14 @@ export default function IndexPage() {
                             >
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="colon" id="colon" />
-                                <Label htmlFor="colon">","</Label>
+                                <Label htmlFor="colon">&quot;,&quot;</Label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem
                                   value="semicolon"
                                   id="semicolon"
                                 />
-                                <Label htmlFor="semicolon">";"</Label>
+                                <Label htmlFor="semicolon">&quot;;&quot;</Label>
                               </div>
                             </RadioGroup>
                             <Link
