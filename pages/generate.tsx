@@ -46,6 +46,7 @@ import { getStrengthInfo } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import PasswordItem from "@/components/password-item"
+import PasswordVisionText from "@/components/password-vision"
 import PromptItem from "@/components/prompt-item"
 import { Button } from "@/components/ui/button"
 import {
@@ -459,9 +460,7 @@ export default function IndexPage() {
             )}
             <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
-                <p className="m-5 text-xl font-bold" id="APasswordTxt">
-                  {advancedPasswordTxt}
-                </p>
+                <PasswordVisionText content={advancedPasswordTxt} />
               </div>
               <div className="flex space-x-2">
                 <Button
