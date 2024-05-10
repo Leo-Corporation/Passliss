@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import {
   Add16Regular,
+  ArrowDownload16Regular,
   ArrowDownload20Regular,
   BrainCircuit20Regular,
   CheckmarkCircle20Filled,
@@ -64,6 +65,7 @@ import {
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
@@ -129,6 +131,7 @@ export default function IndexPage() {
   const [multiplePasswordsTxt, setMultiplePasswordsTxt] = useState("")
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
+  const [csvSeparator, setCsvSeparator] = useState("colon")
 
   function newBtnClicked() {
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -523,22 +526,63 @@ export default function IndexPage() {
                         >
                           {t("copy")}
                         </Button>
-                        <Link
-                          download="passwords.csv"
-                          href={
-                            "data:text/plain;charset=utf-8," +
-                            encodeURIComponent(
-                              multiplePasswordsTxt.replaceAll("\n", ",")
-                            )
-                          }
-                        >
-                          <Button
-                            variant="outline"
-                            className="h-auto px-2 py-1"
-                          >
-                            <ArrowDownload20Regular />
-                          </Button>
-                        </Link>
+
+                        <Dialog>
+                          <DialogTrigger>
+                            <Button
+                              variant="outline"
+                              className="h-auto px-2 py-1"
+                            >
+                              <ArrowDownload20Regular />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>{t("export-csv")}</DialogTitle>
+                              <DialogDescription>
+                                {t("export-csv-desc")}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <p>{t("separator")}</p>
+                            <RadioGroup
+                              defaultValue={csvSeparator}
+                              onValueChange={(v) => setCsvSeparator(v)}
+                            >
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="colon" id="colon" />
+                                <Label htmlFor="colon">","</Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem
+                                  value="semicolon"
+                                  id="semicolon"
+                                />
+                                <Label htmlFor="semicolon">";"</Label>
+                              </div>
+                            </RadioGroup>
+                            <Link
+                              className="flex items-center justify-center"
+                              download="passwords.csv"
+                              href={
+                                "data:text/plain;charset=utf-8," +
+                                encodeURIComponent(
+                                  multiplePasswordsTxt.replaceAll(
+                                    "\n",
+                                    csvSeparator === "colon" ? "," : ";"
+                                  )
+                                )
+                              }
+                            >
+                              <Button
+                                variant="outline"
+                                className="m-2 flex space-x-2"
+                              >
+                                <ArrowDownload16Regular />
+                                <span>{t("export")}</span>
+                              </Button>
+                            </Link>
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     </div>
                   </DialogContent>
