@@ -141,5 +141,9 @@
   "edit-presets": "Edit preset",
   "info": "Information",
   "import": "Import",
-  "export": "Export"
+  "export": "Export",
+  "export-csv": "Export to CSV",
+  "export-csv-desc": "Select a CSV format option.",
+  "separator": "Separator",
+  "advanced-vision": "Advanced vision"
 }

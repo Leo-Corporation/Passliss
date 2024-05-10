@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import {
   Add16Regular,
+  ArrowDownload16Regular,
   ArrowDownload20Regular,
   BrainCircuit20Regular,
   CheckmarkCircle20Filled,
@@ -45,6 +46,7 @@ import { getStrengthInfo } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import PasswordItem from "@/components/password-item"
+import PasswordVisionText from "@/components/password-vision"
 import PromptItem from "@/components/prompt-item"
 import { Button } from "@/components/ui/button"
 import {
@@ -64,6 +66,7 @@ import {
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
@@ -129,6 +132,7 @@ export default function IndexPage() {
   const [multiplePasswordsTxt, setMultiplePasswordsTxt] = useState("")
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
+  const [csvSeparator, setCsvSeparator] = useState("colon")
 
   function newBtnClicked() {
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -320,9 +324,7 @@ export default function IndexPage() {
             value="simple"
           >
             <div className="flex w-full flex-col items-center">
-              <p className="m-5 text-xl font-bold" id="PasswordTxt">
-                {passwordTxt}
-              </p>
+              <PasswordVisionText content={passwordTxt} />
               <div className="flex space-x-2">
                 <Button className="h-auto px-2 py-1" onClick={newBtnClicked}>
                   {t("new")}
@@ -378,6 +380,11 @@ export default function IndexPage() {
                     <p className="icon text-7xl">{"\uFD81"}</p>
                     <h4 className="text-xl font-bold">{t("no-activity")}</h4>
                     <p>{t("no-presets-desc")}</p>
+                    <Link href="/presets">
+                      <Button className="m-2 h-auto" variant="outline">
+                        {t("create-preset")}
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
                   <ScrollArea className="h-[350px]">
@@ -414,6 +421,11 @@ export default function IndexPage() {
                     <p className="icon text-7xl">{"\uFD81"}</p>
                     <h4 className="text-xl font-bold">{t("no-activity")}</h4>
                     <p>{t("no-presets-desc")}</p>
+                    <Link href="/presets">
+                      <Button className="m-2 h-auto" variant="outline">
+                        {t("create-preset")}
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
                   <ScrollArea className="h-[350px]">
@@ -446,9 +458,7 @@ export default function IndexPage() {
             )}
             <div className="flex w-full flex-col items-center">
               <div className="max-w-full overflow-auto">
-                <p className="m-5 text-xl font-bold" id="APasswordTxt">
-                  {advancedPasswordTxt}
-                </p>
+                <PasswordVisionText content={advancedPasswordTxt} />
               </div>
               <div className="flex space-x-2">
                 <Button
@@ -513,22 +523,63 @@ export default function IndexPage() {
                         >
                           {t("copy")}
                         </Button>
-                        <Link
-                          download="passwords.csv"
-                          href={
-                            "data:text/plain;charset=utf-8," +
-                            encodeURIComponent(
-                              multiplePasswordsTxt.replaceAll("\n", ",")
-                            )
-                          }
-                        >
-                          <Button
-                            variant="outline"
-                            className="h-auto px-2 py-1"
-                          >
-                            <ArrowDownload20Regular />
-                          </Button>
-                        </Link>
+
+                        <Dialog>
+                          <DialogTrigger>
+                            <Button
+                              variant="outline"
+                              className="h-auto px-2 py-1"
+                            >
+                              <ArrowDownload20Regular />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>{t("export-csv")}</DialogTitle>
+                              <DialogDescription>
+                                {t("export-csv-desc")}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <p>{t("separator")}</p>
+                            <RadioGroup
+                              defaultValue={csvSeparator}
+                              onValueChange={(v) => setCsvSeparator(v)}
+                            >
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="colon" id="colon" />
+                                <Label htmlFor="colon">&quot;,&quot;</Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem
+                                  value="semicolon"
+                                  id="semicolon"
+                                />
+                                <Label htmlFor="semicolon">&quot;;&quot;</Label>
+                              </div>
+                            </RadioGroup>
+                            <Link
+                              className="flex items-center justify-center"
+                              download="passwords.csv"
+                              href={
+                                "data:text/plain;charset=utf-8," +
+                                encodeURIComponent(
+                                  multiplePasswordsTxt.replaceAll(
+                                    "\n",
+                                    csvSeparator === "colon" ? "," : ";"
+                                  )
+                                )
+                              }
+                            >
+                              <Button
+                                variant="outline"
+                                className="m-2 flex space-x-2"
+                              >
+                                <ArrowDownload16Regular />
+                                <span>{t("export")}</span>
+                              </Button>
+                            </Link>
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     </div>
                   </DialogContent>
