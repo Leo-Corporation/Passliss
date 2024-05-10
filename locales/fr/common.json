@@ -141,5 +141,8 @@
   "edit-presets": "Modifier le préréglage",
   "info": "Informations",
   "import": "Importer",
-  "export": "Exporter"
+  "export": "Exporter",
+  "export-csv": "Exporter au format CSV",
+  "export-csv-desc": "Sélectionner une option de format CSV.",
+  "separator": "Séparateur"
 }
