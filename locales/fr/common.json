@@ -144,5 +144,6 @@
   "export": "Exporter",
   "export-csv": "Exporter au format CSV",
   "export-csv-desc": "Sélectionner une option de format CSV.",
-  "separator": "Séparateur"
+  "separator": "Séparateur",
+  "advanced-vision": "Vision avancée"
 }
