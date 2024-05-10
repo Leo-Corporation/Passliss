@@ -378,6 +378,11 @@ export default function IndexPage() {
                     <p className="icon text-7xl">{"\uFD81"}</p>
                     <h4 className="text-xl font-bold">{t("no-activity")}</h4>
                     <p>{t("no-presets-desc")}</p>
+                    <Link href="/presets">
+                      <Button className="m-2 h-auto" variant="outline">
+                        {t("create-preset")}
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
                   <ScrollArea className="h-[350px]">
@@ -414,6 +419,11 @@ export default function IndexPage() {
                     <p className="icon text-7xl">{"\uFD81"}</p>
                     <h4 className="text-xl font-bold">{t("no-activity")}</h4>
                     <p>{t("no-presets-desc")}</p>
+                    <Link href="/presets">
+                      <Button className="m-2 h-auto" variant="outline">
+                        {t("create-preset")}
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
                   <ScrollArea className="h-[350px]">
