@@ -324,9 +324,7 @@ export default function IndexPage() {
             value="simple"
           >
             <div className="flex w-full flex-col items-center">
-              <p className="m-5 text-xl font-bold" id="PasswordTxt">
-                {passwordTxt}
-              </p>
+              <PasswordVisionText content={passwordTxt} />
               <div className="flex space-x-2">
                 <Button className="h-auto px-2 py-1" onClick={newBtnClicked}>
                   {t("new")}

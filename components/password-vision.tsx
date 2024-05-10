@@ -1,9 +1,5 @@
 import { useState } from "react"
-import {
-  Eye16Filled,
-  Eye16Regular,
-  EyeOff16Regular,
-} from "@fluentui/react-icons"
+import { Eye16Regular, EyeOff16Regular } from "@fluentui/react-icons"
 
 import StrengthCharacter from "./strength-character"
 import { Button } from "./ui/button"
