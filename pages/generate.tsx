@@ -345,9 +345,9 @@ export default function IndexPage() {
                 defaultValue={[sliderVal]}
                 max={3}
                 step={1}
-                className="m-5 sm:w-[50%]"
+                className="m-5 sm:w-1/2"
               />
-              <div className="w-full sm:w-[50%]">
+              <div className="w-full sm:w-1/2">
                 <div className="grid grid-cols-[1fr,1fr,1fr,auto]">
                   <DismissCircle20Filled color="red" />
                   <Warning20Filled color="#FF7B00" />
