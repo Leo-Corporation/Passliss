@@ -96,7 +96,7 @@ export default function IndexPage() {
   }
   LoadSettings()
 
-  const { t } = useTranslation("common") // default namespace (optional)
+  const { t, lang } = useTranslation("common") // default namespace (optional)
   const [sliderVal, setSliderVal] = useState(2)
   const [hasUpper, setHasUpper] = useState(
     settings.defaultPasswordConfig.upperCases
@@ -134,7 +134,7 @@ export default function IndexPage() {
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
   const [csvSeparator, setCsvSeparator] = useState("colon")
-  const [randomPrompts, setRandomPrompts] = useState(GetRandomPrompts(3))
+  const [randomPrompts, setRandomPrompts] = useState(GetRandomPrompts(3, lang))
 
   function newBtnClicked() {
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -764,7 +764,9 @@ export default function IndexPage() {
                   >
                     <Button
                       variant="ghost"
-                      onClick={() => setRandomPrompts(GetRandomPrompts(3))}
+                      onClick={() =>
+                        setRandomPrompts(GetRandomPrompts(3, lang))
+                      }
                       className="my-2 mr-2 h-auto cursor-pointer rounded-lg border border-blue-600 bg-white p-2 text-sm text-blue-600 shadow-sm transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
                     >
                       <ArrowClockwise12Regular />
