@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import {
   Add16Regular,
+  ArrowClockwise12Regular,
   ArrowDownload16Regular,
   ArrowDownload20Regular,
   BrainCircuit20Regular,
@@ -133,6 +134,7 @@ export default function IndexPage() {
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
   const [csvSeparator, setCsvSeparator] = useState("colon")
+  const [randomPrompts, setRandomPrompts] = useState(GetRandomPrompts(3))
 
   function newBtnClicked() {
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -760,7 +762,14 @@ export default function IndexPage() {
                     id="suggestions"
                     className="flex w-full flex-wrap items-center"
                   >
-                    {GetRandomPrompts(3).map((prp) => (
+                    <Button
+                      variant="ghost"
+                      onClick={() => setRandomPrompts(GetRandomPrompts(3))}
+                      className="my-2 mr-2 h-auto cursor-pointer rounded-lg border border-blue-600 bg-white p-2 text-sm text-blue-600 shadow-sm transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
+                    >
+                      <ArrowClockwise12Regular />
+                    </Button>
+                    {randomPrompts.map((prp) => (
                       <PromptItem prompt={prp} />
                     ))}
                   </div>
