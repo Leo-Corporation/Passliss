@@ -116,7 +116,7 @@ export default function PresetsPage() {
                 />
               </div>
               <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <Switch
                     id="LowerChk"
                     onCheckedChange={setHasLower}
@@ -380,7 +380,7 @@ export default function PresetsPage() {
                 />
               </div>
               <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <Switch
                     id="LowerChk"
                     onCheckedChange={setHasLower}
@@ -625,24 +625,26 @@ export default function PresetsPage() {
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
-          <Link
-            className={buttonVariants({
-              variant: "outline",
-              size: "nav",
-              className: "text-center",
-            })}
-            href={
-              "data:text/plain;charset=UTF-8," +
-              encodeURIComponent(
-                typeof window !== "undefined"
-                  ? localStorage.getItem("passliss-presets")
-                  : "{msg: 'an error occurred'}"
-              )
-            }
-            download={"passliss-presets.json"}
-          >
-            {t("export")}
-          </Link>
+          {presets.length > 0 && (
+            <Link
+              className={buttonVariants({
+                variant: "outline",
+                size: "nav",
+                className: "text-center",
+              })}
+              href={
+                "data:text/plain;charset=UTF-8," +
+                encodeURIComponent(
+                  typeof window !== "undefined"
+                    ? localStorage.getItem("passliss-presets")
+                    : "{msg: 'an error occurred'}"
+                )
+              }
+              download={"passliss-presets.json"}
+            >
+              {t("export")}
+            </Link>
+          )}
           <Button
             variant="outline"
             size="nav"
