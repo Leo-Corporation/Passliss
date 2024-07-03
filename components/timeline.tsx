@@ -14,6 +14,7 @@ export interface TimelineProps {
   index: number
   refreshEvent: Function
   filter: string
+  advancedVision: boolean
 }
 
 export default function Timeline(props: TimelineProps) {
@@ -69,6 +70,7 @@ export default function Timeline(props: TimelineProps) {
           <>
             {matchFilter(el.content) && (
               <ActivityItem
+                advancedVision={props.advancedVision}
                 timeline_index={props.index}
                 index={i}
                 key={i}

@@ -52,19 +52,33 @@ export function GeneratePasswordByStrength(
   }
 }
 
-export function GetRandomPrompts(numPrompts: number): string[] {
-  const prompts = [
-    "Secure password with lowercases",
-    "Easy to pronounce password",
-    "Strong password about computers",
-    "Hard to crack password",
-    "Password containing special characters",
-    "Password ending with -ber",
-    "Original yet easy to remember password",
-    "Matrix themed password",
-    "Password with symbols but easy to remember",
-    "Easy to remember related to sports",
-  ]
+export function GetRandomPrompts(numPrompts: number, lng: string): string[] {
+  const prompts =
+    lng === "fr"
+      ? [
+          "Mot de passe sécurisé avec des minuscules",
+          "Mot de passe facile à prononcer",
+          "Mot de passe fort sur le thème des ordinateurs",
+          "Mot de passe difficile à casser",
+          "Mot de passe contenant des caractères spéciaux",
+          "Mot de passe se terminant par -ber",
+          "Mot de passe original mais facile à retenir",
+          "Mot de passe sur le thème de Matrix",
+          "Mot de passe avec des symboles mais facile à retenir",
+          "Facile à retenir lié aux sports",
+        ]
+      : [
+          "Secure password with lowercases",
+          "Easy to pronounce password",
+          "Strong password about computers",
+          "Hard to crack password",
+          "Password containing special characters",
+          "Password ending with -ber",
+          "Original yet easy to remember password",
+          "Matrix themed password",
+          "Password with symbols but easy to remember",
+          "Easy to remember related to sports",
+        ]
   const randomPrompts = []
   for (let i = 0; i < numPrompts; i++) {
     const randomIndex = Math.floor(Math.random() * prompts.length)

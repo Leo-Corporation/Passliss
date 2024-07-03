@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import {
   Add16Regular,
+  ArrowClockwise12Regular,
   ArrowDownload16Regular,
   ArrowDownload20Regular,
   BrainCircuit20Regular,
@@ -95,7 +96,7 @@ export default function IndexPage() {
   }
   LoadSettings()
 
-  const { t } = useTranslation("common") // default namespace (optional)
+  const { t, lang } = useTranslation("common") // default namespace (optional)
   const [sliderVal, setSliderVal] = useState(2)
   const [hasUpper, setHasUpper] = useState(
     settings.defaultPasswordConfig.upperCases
@@ -133,6 +134,7 @@ export default function IndexPage() {
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
   const [csvSeparator, setCsvSeparator] = useState("colon")
+  const [randomPrompts, setRandomPrompts] = useState(GetRandomPrompts(3, lang))
 
   function newBtnClicked() {
     let pwr = GeneratePasswordByStrength(sliderVal, settings.customChars)
@@ -343,9 +345,9 @@ export default function IndexPage() {
                 defaultValue={[sliderVal]}
                 max={3}
                 step={1}
-                className="m-5 sm:w-[50%]"
+                className="m-5 sm:w-1/2"
               />
-              <div className="w-full sm:w-[50%]">
+              <div className="w-full sm:w-1/2">
                 <div className="grid grid-cols-[1fr,1fr,1fr,auto]">
                   <DismissCircle20Filled color="red" />
                   <Warning20Filled color="#FF7B00" />
@@ -760,7 +762,16 @@ export default function IndexPage() {
                     id="suggestions"
                     className="flex w-full flex-wrap items-center"
                   >
-                    {GetRandomPrompts(3).map((prp) => (
+                    <Button
+                      variant="ghost"
+                      onClick={() =>
+                        setRandomPrompts(GetRandomPrompts(3, lang))
+                      }
+                      className="my-2 mr-2 h-auto cursor-pointer rounded-lg border border-blue-600 bg-white p-2 text-sm text-blue-600 shadow-sm transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
+                    >
+                      <ArrowClockwise12Regular />
+                    </Button>
+                    {randomPrompts.map((prp) => (
                       <PromptItem prompt={prp} />
                     ))}
                   </div>

@@ -49,6 +49,7 @@ export interface ActivityProps {
   index: number
   timeline_index: number
   deleteEvent: Function
+  advancedVision: boolean
 }
 
 export default function ActivityItem(props: ActivityProps) {
@@ -87,9 +88,17 @@ export default function ActivityItem(props: ActivityProps) {
     >
       <div className="grid grid-cols-[1fr,auto] items-center justify-items-start">
         <p className="font-bold">
-          {props.hide
-            ? GetHiddenPassword(props.activity.content)
-            : props.activity.content}
+          {props.advancedVision ? (
+            <>
+              {props.activity.content.split("").map((c, i) => (
+                <StrengthCharacter char={c} key={i} />
+              ))}
+            </>
+          ) : props.hide ? (
+            GetHiddenPassword(props.activity.content)
+          ) : (
+            props.activity.content
+          )}
         </p>
         <TooltipProvider delayDuration={0}>
           <Tooltip>

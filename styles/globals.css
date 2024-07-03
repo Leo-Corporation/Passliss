@@ -35,14 +35,8 @@
   font-family: "FluentSystemIcons-Filled";
 }
 
-body {
-  background: url(../public/white.png);
-  background-size: cover;
-}
-
 .dark body {
-  background: url(../public/dark.png);
-  background-size: cover;
+  background: #000014;
 }
 .h-scroll {
   height: var(--content-h);

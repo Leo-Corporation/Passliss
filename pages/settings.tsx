@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme } = useTheme()
 
-  const ver = "4.2.0.2405"
+  const ver = "4.3.0.2407"
 
   let settings: Settings = undefined
   function LoadSettings() {
@@ -241,7 +241,7 @@ export default function SettingsPage() {
               </AccordionContent>
             </AccordionItem>
 
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
               <div className="grid grid-cols-[auto,1fr] items-center">
                 <p className="icon my-2 mr-2 text-3xl font-normal">
                   {"\uF4F4"}
@@ -452,7 +452,7 @@ export default function SettingsPage() {
               </AccordionContent>
             </AccordionItem>
 
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
               <div className="grid grid-cols-[auto,1fr] items-center">
                 <p className="icon my-2 mr-2 text-3xl font-normal">
                   {"\uF503"}
@@ -479,7 +479,7 @@ export default function SettingsPage() {
               />
             </div>
 
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
               <div className="grid grid-cols-[auto,1fr] items-center">
                 <p className="icon my-2 mr-2 text-3xl font-normal">
                   {"\uF4B7"}
@@ -511,7 +511,7 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2 ">
+            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
               <div className="grid grid-cols-[auto,1fr] items-center">
                 <p className="icon my-2 mr-2 text-3xl font-normal">
                   {"\uF57E"}

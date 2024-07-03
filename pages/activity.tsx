@@ -1,7 +1,11 @@
 import { useState } from "react"
 import { Router } from "next/dist/client/router"
 import Head from "next/head"
-import { History20Regular } from "@fluentui/react-icons"
+import {
+  Eye16Regular,
+  EyeOff16Regular,
+  History20Regular,
+} from "@fluentui/react-icons"
 import { PopoverClose } from "@radix-ui/react-popover"
 import useTranslation from "next-translate/useTranslation"
 
@@ -35,9 +39,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function ActivityPage() {
   const [filter, setFilter] = useState("all")
+  const [visionToggle, setVisionToggle] = useState(false)
   let settings: Settings = undefined
   function LoadSettings() {
     settings = GetSettings()
@@ -112,6 +123,24 @@ export default function ActivityPage() {
               </Select>
             </PopoverContent>
           </Popover>
+          <TooltipProvider delayDuration={0}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={() => {
+                    setVisionToggle(!visionToggle)
+                  }}
+                  variant="outline"
+                  className="h-[30px] px-2 py-1"
+                >
+                  {visionToggle ? <EyeOff16Regular /> : <Eye16Regular />}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{t("advanced-vision")}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           {hasItems && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -150,6 +179,7 @@ export default function ActivityPage() {
                     index={i}
                     date={i}
                     items={el}
+                    advancedVision={visionToggle}
                     hide={
                       settings.hidePassword != null &&
                       settings.hidePassword != undefined

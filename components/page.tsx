@@ -64,7 +64,7 @@ export function PageContent({ children, page }: PageProps) {
 
   return (
     <div className="h-screen overflow-hidden">
-      <header className="flex space-x-2 p-2 pt-5">
+      <header className="flex space-x-2 border-b border-slate-200 p-2 py-5 shadow-sm dark:border-slate-700 md:hidden">
         <Sheet>
           <SheetTrigger>
             <Button className="md:hidden" variant="ghost">
@@ -94,7 +94,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "activity" ? "navselect" : "nav",
                   className:
-                    " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                    "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
                 })}
                 href={"/activity"}
               >
@@ -109,7 +109,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "settings" ? "navselect" : "nav",
                   className:
-                    " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                    "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
                 })}
                 href={"/settings"}
               >
@@ -186,16 +186,30 @@ export function PageContent({ children, page }: PageProps) {
           </p>
         </div>
       </header>
-      <section className="grid grid-cols-4 xl:grid-cols-5">
-        <ScrollArea className="md:h-scroll">
-          <nav className="m-2 mr-10 hidden md:block">
+      <section className="grid resize grid-cols-4 xl:grid-cols-6">
+        <ScrollArea className="md:h-scroll border-r border-slate-200 bg-slate-100 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+          <div className="hidden border-b border-slate-200 p-4 pb-2 dark:border-slate-700 md:block">
+            <h1 className="text-3xl font-bold">{t("title")}</h1>
+            <p className="text-sm font-semibold">
+              <span>{GetWelcomeMessage()} </span>
+              <span>
+                {t("hour-msg") +
+                  new Date().toLocaleTimeString(lang, {
+                    hour: "numeric",
+                    minute: "2-digit",
+                  })}
+              </span>
+              <span>.</span>
+            </p>
+          </div>
+          <nav className="hidden flex-col p-2 md:flex">
             <h3 className="m-2 mt-0 text-xs font-bold">{t("pinned")}</h3>
             <Link
               className={buttonVariants({
                 size: "sm",
                 variant: page == "home" ? "navselect" : "nav",
                 className:
-                  "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                  "mx-2 my-1 h-auto pl-0 pr-3 text-black dark:text-white",
               })}
               href={"/home"}
             >
@@ -209,7 +223,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "activity" ? "navselect" : "nav",
                 className:
-                  " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                  "mx-2 my-1 h-auto pl-0 pr-3 text-black dark:text-white",
               })}
               href={"/activity"}
             >
@@ -223,7 +237,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "settings" ? "navselect" : "nav",
                 className:
-                  " mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                  "mx-2 my-1 h-auto pl-0 pr-3 text-black dark:text-white",
               })}
               href={"/settings"}
             >
@@ -237,7 +251,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "generate" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-accent",
+                className: "mx-2 my-1 text-accent",
               })}
               href={"/generate"}
             >
@@ -248,7 +262,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "presets" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-accent",
+                className: "mx-2 my-1 text-accent",
               })}
               href={"/presets"}
             >
@@ -259,7 +273,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "strength" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-accent",
+                className: "mx-2 my-1 text-accent",
               })}
               href={"/strength"}
             >
@@ -270,7 +284,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "crypt" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 w-full text-accent",
+                className: "mx-2 my-1 text-accent",
               })}
               href={"/encryption"}
             >
