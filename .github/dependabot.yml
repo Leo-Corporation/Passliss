@@ -4,9 +4,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    target-branch: vNext
+    target-branch: deps
     reviewers:
-      - Leo-Peyronnet
+      - lpeyr
     assignees:
-      - Leo-Peyronnet
+      - lpeyr
     open-pull-requests-limit: 25
