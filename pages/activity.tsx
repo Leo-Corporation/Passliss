@@ -133,7 +133,7 @@ export default function ActivityPage() {
           <p className="ml-2 font-bold">{t("overview")}</p>
         </div>
         <div className="flex flex-wrap gap-2 py-2">
-          <Card className="min-w-64">
+          <Card className="min-w-full sm:min-w-64">
             <CardHeader className="flex flex-row items-center pb-2">
               <CardTitle className="text-sm font-medium">
                 {t("total")}
@@ -143,7 +143,7 @@ export default function ActivityPage() {
               <p className="text-2xl font-bold">{total}</p>
             </CardContent>
           </Card>
-          <Card className="min-w-64">
+          <Card className="min-w-full sm:min-w-64">
             <CardHeader className="flex flex-row items-center pb-2">
               <CardTitle className="text-sm font-medium">{t("low")}</CardTitle>
             </CardHeader>
@@ -151,7 +151,7 @@ export default function ActivityPage() {
               <p className="text-2xl font-bold">{low}</p>
             </CardContent>
           </Card>
-          <Card className="min-w-64">
+          <Card className="min-w-full sm:min-w-64">
             <CardHeader className="flex flex-row items-center pb-2">
               <CardTitle className="text-sm font-medium">
                 {t("medium")}
@@ -161,7 +161,7 @@ export default function ActivityPage() {
               <p className="text-2xl font-bold">{medium}</p>
             </CardContent>
           </Card>
-          <Card className="min-w-64">
+          <Card className="min-w-full sm:min-w-64">
             <CardHeader className="flex flex-row items-center pb-2">
               <CardTitle className="text-sm font-medium">{t("good")}</CardTitle>
             </CardHeader>
@@ -169,7 +169,7 @@ export default function ActivityPage() {
               <p className="text-2xl font-bold">{good}</p>
             </CardContent>
           </Card>
-          <Card className="min-w-64">
+          <Card className="min-w-full sm:min-w-64">
             <CardHeader className="flex flex-row items-center pb-2">
               <CardTitle className="text-sm font-medium">
                 {t("excellent")}
