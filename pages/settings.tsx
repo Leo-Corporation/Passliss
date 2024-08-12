@@ -1,7 +1,13 @@
+import { useState } from "react"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { Save16Regular, Settings20Regular } from "@fluentui/react-icons"
+import {
+  Eye16Regular,
+  EyeOff16Regular,
+  Save16Regular,
+  Settings20Regular,
+} from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
@@ -52,6 +58,7 @@ import { Switch } from "@/components/ui/switch"
 export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme, theme } = useTheme()
+  const [keyVis, setKeyVis] = useState(false)
 
   const ver = "4.3.0.2407"
 
@@ -571,7 +578,7 @@ export default function SettingsPage() {
                 <div className="flex items-center space-x-2">
                   <p>{t("api-key")}</p>
                   <Input
-                    type="password"
+                    type={keyVis ? "text" : "password"}
                     id="api-key"
                     className="h-auto max-w-[50%] px-2 py-1"
                     defaultValue={settings.openaiKey ?? ""}
@@ -587,6 +594,13 @@ export default function SettingsPage() {
                     className="h-auto px-2 py-1"
                   >
                     <Save16Regular />
+                  </Button>
+                  <Button
+                    className="h-auto px-2 py-1"
+                    onClick={() => setKeyVis(!keyVis)}
+                    variant="outline"
+                  >
+                    {keyVis ? <Eye16Regular /> : <EyeOff16Regular />}
                   </Button>
                 </div>
               </AccordionContent>
