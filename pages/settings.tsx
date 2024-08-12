@@ -175,6 +175,15 @@ export default function SettingsPage() {
                       {t("ok")}
                     </Button>
                   </DialogClose>
+                  <Link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/Leo-Corporation/Passliss"
+                  >
+                    <Button variant="outline" size="nav">
+                      GitHub
+                    </Button>
+                  </Link>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
