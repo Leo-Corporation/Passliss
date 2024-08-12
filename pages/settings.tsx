@@ -51,7 +51,7 @@ import { Switch } from "@/components/ui/switch"
 
 export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   const ver = "4.3.0.2407"
 
@@ -200,7 +200,7 @@ export default function SettingsPage() {
                 <div className="flex flex-wrap">
                   <div
                     onClick={() => setTheme("light")}
-                    className="m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg bg-slate-100 pr-2 dark:bg-slate-700"
+                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "light" ? "border-accent" : "border-transparent"}`}
                   >
                     <Image
                       src="/LightTheme.png"
@@ -213,7 +213,7 @@ export default function SettingsPage() {
                   </div>
                   <div
                     onClick={() => setTheme("dark")}
-                    className="m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg bg-slate-100 pr-2 dark:bg-slate-700"
+                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
                   >
                     <Image
                       src="/DarkTheme.png"
@@ -226,7 +226,7 @@ export default function SettingsPage() {
                   </div>
                   <div
                     onClick={() => setTheme("system")}
-                    className="m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg bg-slate-100 pr-2 dark:bg-slate-700"
+                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "system" ? "border-accent" : "border-transparent"}`}
                   >
                     <Image
                       src="/SystemTheme.png"
