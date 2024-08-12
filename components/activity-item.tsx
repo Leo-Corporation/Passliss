@@ -84,7 +84,7 @@ export default function ActivityItem(props: ActivityProps) {
   return (
     <div
       onClick={Copy}
-      className="m-3 grid cursor-pointer grid-cols-2 rounded-lg border border-slate-400 p-3 hover:bg-slate-200 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default"
+      className="m-3 grid cursor-pointer grid-cols-2 rounded-lg border border-slate-200 p-3 shadow-sm hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default"
     >
       <div className="grid grid-cols-[1fr,auto] items-center justify-items-start">
         <p className="font-bold">

@@ -145,5 +145,7 @@
   "export-csv": "Export to CSV",
   "export-csv-desc": "Select a CSV format option.",
   "separator": "Separator",
-  "advanced-vision": "Advanced vision"
+  "advanced-vision": "Advanced vision",
+  "overview": "Overview",
+  "total": "Total"
 }

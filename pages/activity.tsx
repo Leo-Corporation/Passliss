@@ -5,13 +5,16 @@ import {
   Eye16Regular,
   EyeOff16Regular,
   History20Regular,
+  Info16Regular,
 } from "@fluentui/react-icons"
 import { PopoverClose } from "@radix-ui/react-popover"
 import useTranslation from "next-translate/useTranslation"
 
-import { Activity } from "@/types/activity"
+import { Activities, Activity } from "@/types/activity"
 import { Settings } from "@/types/settings"
 import { GetActivity, GetSettings, SortActivities } from "@/lib/browser-storage"
+import { PasswordStrength } from "@/lib/password-gen"
+import { GetPasswordStrength } from "@/lib/password-strength"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
 import Timeline from "@/components/timeline"
@@ -27,6 +30,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Popover,
   PopoverContent,
@@ -59,8 +63,30 @@ export default function ActivityPage() {
   LoadSettings()
   const { t } = useTranslation("common") // default namespace (optional)
   let items: Activity[][] = [[]]
+  let activity: Activities = GetActivity()
+  const [total, setTotal] = useState(activity.items.length)
+  const [low, setLow] = useState(getAmountByStrength(PasswordStrength.Low))
+  const [medium, setMedium] = useState(
+    getAmountByStrength(PasswordStrength.Medium)
+  )
+  const [good, setGood] = useState(getAmountByStrength(PasswordStrength.Good))
+  const [excellent, setExcellent] = useState(
+    getAmountByStrength(PasswordStrength.VeryGood)
+  )
+
+  function getAmountByStrength(strength: PasswordStrength) {
+    let amount = 0
+    for (let i = 0; i < activity.items.length; i++) {
+      if (GetPasswordStrength(activity.items[i].content) === strength) {
+        amount++
+      }
+    }
+    return amount
+  }
+
   function LoadActivities() {
-    items = SortActivities(GetActivity())
+    activity = GetActivity()
+    items = SortActivities(activity)
   }
   LoadActivities()
   const [hasItems, setHasItems] = useState(
@@ -78,10 +104,18 @@ export default function ActivityPage() {
         items[2].length > 0 ||
         items[3].length > 0
     )
+    activity = GetActivity()
+    setTotal(total - 1)
+    setLow(getAmountByStrength(PasswordStrength.Low))
+    setMedium(getAmountByStrength(PasswordStrength.Medium))
+    setGood(getAmountByStrength(PasswordStrength.Good))
+    setExcellent(getAmountByStrength(PasswordStrength.VeryGood))
   }
 
   function RemoveActivity() {
     localStorage.removeItem("activity")
+    activity = GetActivity()
+    setTotal(total - 1)
     Router.prototype.reload()
   }
   return (
@@ -93,6 +127,59 @@ export default function ActivityPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageContent page="activity">
+        <div className="mb-2 flex items-center space-x-2">
+          <Info16Regular primaryFill="#0088FF" className="text-white" />
+
+          <p className="ml-2 font-bold">{t("overview")}</p>
+        </div>
+        <div className="flex flex-wrap gap-2 py-2">
+          <Card className="min-w-full sm:min-w-64">
+            <CardHeader className="flex flex-row items-center pb-2">
+              <CardTitle className="text-sm font-medium">
+                {t("total")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{total}</p>
+            </CardContent>
+          </Card>
+          <Card className="min-w-full sm:min-w-64">
+            <CardHeader className="flex flex-row items-center pb-2">
+              <CardTitle className="text-sm font-medium">{t("low")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{low}</p>
+            </CardContent>
+          </Card>
+          <Card className="min-w-full sm:min-w-64">
+            <CardHeader className="flex flex-row items-center pb-2">
+              <CardTitle className="text-sm font-medium">
+                {t("medium")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{medium}</p>
+            </CardContent>
+          </Card>
+          <Card className="min-w-full sm:min-w-64">
+            <CardHeader className="flex flex-row items-center pb-2">
+              <CardTitle className="text-sm font-medium">{t("good")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{good}</p>
+            </CardContent>
+          </Card>
+          <Card className="min-w-full sm:min-w-64">
+            <CardHeader className="flex flex-row items-center pb-2">
+              <CardTitle className="text-sm font-medium">
+                {t("excellent")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{excellent}</p>
+            </CardContent>
+          </Card>
+        </div>
         <div className="mb-2 flex items-center space-x-2">
           <History20Regular primaryFill="#0088FF" className="text-white" />
 

@@ -65,7 +65,7 @@ export default function Timeline(props: TimelineProps) {
   return (
     <section>
       <h3 className="text-xl font-bold">{title}</h3>
-      <div className="border-l border-slate-400 dark:border-slate-600">
+      <div className="border-l border-slate-200 dark:border-slate-600">
         {els.map((el, i) => (
           <>
             {matchFilter(el.content) && (
