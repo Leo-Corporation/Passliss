@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Head from "next/head"
 import {
+  Eye20Regular,
+  EyeOff20Regular,
   Key20Regular,
   NumberSymbol20Regular,
   Password20Regular,
@@ -62,6 +64,7 @@ export default function EncryptionPage() {
   const [hashedText, setHashedText] = useState("")
   const [showCryptOptions, setShowCryptOptions] = useState(true)
   const [hashAlgo, setHashAlgo] = useState(settings.hashAlgo)
+  const [keyVis, setKeyVis] = useState(false)
 
   function Encrypt() {
     switch (algo) {
@@ -232,7 +235,7 @@ export default function EncryptionPage() {
               <div className="flex items-center space-x-3">
                 <label htmlFor="EncryptKeyInput">{t("key")}</label>
                 <Input
-                  type="password"
+                  type={keyVis ? "text" : "password"}
                   className="h-auto px-2 py-1"
                   id="EncryptKeyInput"
                   defaultValue={key}
@@ -246,6 +249,13 @@ export default function EncryptionPage() {
                     )
                   }
                 />
+                <Button
+                  className="h-auto px-2 py-1"
+                  variant="outline"
+                  onClick={() => setKeyVis(!keyVis)}
+                >
+                  {keyVis ? <EyeOff20Regular /> : <Eye20Regular />}
+                </Button>
                 <Button
                   className="h-auto px-2 py-1"
                   id="EncryptBtn"
@@ -295,7 +305,7 @@ export default function EncryptionPage() {
               <div className="flex items-center space-x-3">
                 <label htmlFor="DecryptKeyInput">{t("key")}</label>
                 <Input
-                  type="password"
+                  type={keyVis ? "text" : "password"}
                   className="h-auto px-2 py-1"
                   id="DecryptKeyInput"
                   defaultValue={d_key}
@@ -309,6 +319,13 @@ export default function EncryptionPage() {
                     )
                   }
                 />
+                <Button
+                  className="h-auto px-2 py-1"
+                  variant="outline"
+                  onClick={() => setKeyVis(!keyVis)}
+                >
+                  {keyVis ? <EyeOff20Regular /> : <Eye20Regular />}
+                </Button>
                 <Button
                   className="h-auto px-2 py-1"
                   id="DecryptBtn"
