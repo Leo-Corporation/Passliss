@@ -8,7 +8,7 @@ import {
   Save16Regular,
   Settings20Regular,
 } from "@fluentui/react-icons"
-import { DialogClose } from "@radix-ui/react-dialog"
+import { ExternalLink, Github } from "lucide-react"
 import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
 import useTranslation from "next-translate/useTranslation"
@@ -17,12 +17,6 @@ import { Settings } from "@/types/settings"
 import { GetSettings, SetSettings } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -36,14 +30,12 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -54,13 +46,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
   const { setTheme, theme } = useTheme()
   const [keyVis, setKeyVis] = useState(false)
 
-  const ver = "4.4.0.2408"
+  const ver = "4.5.0.2409"
 
   let settings: Settings = undefined
   function LoadSettings() {
@@ -142,165 +135,151 @@ export default function SettingsPage() {
 
           <p className="ml-2 font-bold">{t("settings")}</p>
         </div>
-        <div className="flex justify-center">
-          <section
-            id="about-section"
-            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white px-10 py-4 text-center shadow-lg dark:bg-slate-800"
-          >
-            <div className="m-3 flex items-center space-x-2">
-              <h2 className="text-4xl font-bold">{t("title")}</h2>
-              <span className="m-2 rounded-full bg-gradient-to-br from-accent to-[#2153E0] px-2 font-bold text-white">
-                {t("web")}
-              </span>
-            </div>
-            <p className="text-sm">{`${t("version")} ${ver}`}</p>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="nav" variant="outline" className="mt-1 font-bold">
-                  {t("see-licenses")}
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>{t("licenses")}</DialogTitle>
-                </DialogHeader>
-                <p>
-                  NextJS - MIT License - © 2023 Vercel, Inc.
-                  <br></br>
-                  RadixUI - MIT License - © 2022 WorkOS
-                  <br></br>
-                  shadcn/ui - MIT License - © 2023 shadcn
-                  <br></br>
-                  Fluent System Icons - MIT License - © 2020 Microsoft
-                  Corporation
-                  <br></br>
-                  Passliss - MIT License - © 2021-2024 Léo Corporation
-                </p>
-                <DialogFooter>
-                  <DialogClose>
-                    <Button size="nav" type="submit">
-                      {t("ok")}
-                    </Button>
-                  </DialogClose>
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/Leo-Corporation/Passliss"
-                  >
-                    <Button variant="outline" size="nav">
-                      GitHub
-                    </Button>
-                  </Link>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </section>
-        </div>
-        <section id="settings-section">
-          <Accordion type="single" collapsible>
-            <AccordionItem value="theme">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF33C"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">{t("theme")}</h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("change-theme")}
-                    </p>
+        <Tabs defaultValue="general" className="space-y-4">
+          <TabsList className="flex flex-wrap sm:block">
+            <TabsTrigger value="general">{t("general")}</TabsTrigger>
+            <TabsTrigger value="password">{t("password")}</TabsTrigger>
+            <TabsTrigger value="security">{t("security")}</TabsTrigger>
+            <TabsTrigger value="api">{t("ai")}</TabsTrigger>
+            <TabsTrigger value="about">{t("about")}</TabsTrigger>
+          </TabsList>
+          <TabsContent value="general" className="border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("general")}</CardTitle>
+                <CardDescription>{t("general-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label className="font-semibold" htmlFor="theme">
+                    {t("theme")}
+                  </Label>
+                  <div className="flex flex-wrap gap-2">
+                    <div
+                      onClick={() => setTheme("light")}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-800 ${theme === "light" ? "border-accent" : "border-transparent"}`}
+                    >
+                      <Image
+                        src="/LightTheme.png"
+                        height={50}
+                        width={50}
+                        alt="Light theme image"
+                        className="object-cover"
+                      />
+                      <p className="m-2 font-bold">{t("light")}</p>
+                    </div>
+                    <div
+                      onClick={() => setTheme("dark")}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-800 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
+                    >
+                      <Image
+                        src="/DarkTheme.png"
+                        height={50}
+                        width={50}
+                        alt="Dark theme image"
+                        className="object-cover"
+                      />
+                      <p className="m-2 font-bold">{t("dark")}</p>
+                    </div>
+                    <div
+                      onClick={() => setTheme("system")}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-800 ${theme === "system" ? "border-accent" : "border-transparent"}`}
+                    >
+                      <Image
+                        src="/SystemTheme.png"
+                        height={50}
+                        width={50}
+                        alt="System theme image"
+                        className="object-cover"
+                      />
+                      <p className="m-2 font-bold">{t("system")}</p>
+                    </div>
                   </div>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex flex-wrap">
-                  <div
-                    onClick={() => setTheme("light")}
-                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "light" ? "border-accent" : "border-transparent"}`}
-                  >
-                    <Image
-                      src="/LightTheme.png"
-                      height={50}
-                      width={50}
-                      alt="Light theme image"
-                      className="object-cover"
-                    />
-                    <p className="m-2 font-bold">Light</p>
-                  </div>
-                  <div
-                    onClick={() => setTheme("dark")}
-                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
-                  >
-                    <Image
-                      src="/DarkTheme.png"
-                      height={50}
-                      width={50}
-                      alt="Dark theme image"
-                      className="object-cover"
-                    />
-                    <p className="m-2 font-bold">Dark</p>
-                  </div>
-                  <div
-                    onClick={() => setTheme("system")}
-                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "system" ? "border-accent" : "border-transparent"}`}
-                  >
-                    <Image
-                      src="/SystemTheme.png"
-                      height={50}
-                      width={50}
-                      alt="System theme image"
-                      className="object-cover"
-                    />
-                    <p className="m-2 font-bold">System</p>
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="language" className="font-semibold">
+                    {t("language")}
+                  </Label>
+                  <Select defaultValue={lang} onValueChange={SelectChanged}>
+                    <SelectTrigger className="h-auto w-[200px] px-2 py-1 sm:justify-self-end">
+                      <SelectValue placeholder={t("language")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem defaultChecked={true} value="en">
+                        English (United States)
+                      </SelectItem>
+                      <SelectItem value="fr">Français (France)</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF4F4"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">{t("language")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("change-language")}
-                  </p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="password" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("password-config")}</CardTitle>
+                <CardDescription>{t("password-default")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    id="LowerChk"
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.lowerCases =
+                        !settings.defaultPasswordConfig.lowerCases
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.lowerCases}
+                  />
+                  <Label htmlFor="LowerChk">{t("lowercases")}</Label>
                 </div>
-              </div>
-              <Select defaultValue={lang} onValueChange={SelectChanged}>
-                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
-                  <SelectValue placeholder={t("language")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem defaultChecked={true} value="en">
-                    English (United States)
-                  </SelectItem>
-                  <SelectItem value="fr">Français (France)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <AccordionItem value="password">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF59E"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">
-                      {t("password-settings")}
-                    </h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("password-settings-desc")}
-                    </p>
-                  </div>
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.upperCases =
+                        !settings.defaultPasswordConfig.upperCases
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.upperCases}
+                    id="UpperChk"
+                  />
+                  <Label htmlFor="UpperChk">{t("uppercases")}</Label>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent>
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.numbers =
+                        !settings.defaultPasswordConfig.numbers
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.numbers}
+                    id="NbrChk"
+                  />
+                  <Label htmlFor="NbrChk">{t("nbrs")}</Label>
+                </div>
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    id="SpecialChk"
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.special =
+                        !settings.defaultPasswordConfig.special
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.special}
+                  />
+                  <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("password-settings")}</CardTitle>
+                <CardDescription>{t("password-settings-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm">
                 <h5 className="font-bold">{t("default-random-length")}</h5>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <p>{t("between")}</p>
                   <Input
                     defaultValue={settings.passwordLengthOne}
@@ -395,232 +374,168 @@ export default function SettingsPage() {
                     SetSettings(settings)
                   }}
                 />
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="password-defaults">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF6C6"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">
-                      {t("password-config")}
-                    </h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("password-default")}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="m-5 grid grid-rows-4 md:grid-cols-2">
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      id="LowerChk"
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.lowerCases =
-                          !settings.defaultPasswordConfig.lowerCases
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.lowerCases}
-                    />
-                    <Label htmlFor="LowerChk">{t("lowercases")}</Label>
-                  </div>
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.upperCases =
-                          !settings.defaultPasswordConfig.upperCases
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.upperCases}
-                      id="UpperChk"
-                    />
-                    <Label htmlFor="UpperChk">{t("uppercases")}</Label>
-                  </div>
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.numbers =
-                          !settings.defaultPasswordConfig.numbers
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.numbers}
-                      id="NbrChk"
-                    />
-                    <Label htmlFor="NbrChk">{t("nbrs")}</Label>
-                  </div>
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      id="SpecialChk"
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.special =
-                          !settings.defaultPasswordConfig.special
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.special}
-                    />
-                    <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF503"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">
-                    {t("password-security")}
-                  </h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("hide-password")}
-                  </p>
-                </div>
-              </div>
-              <Switch
-                onClick={switchClick}
-                defaultChecked={
-                  settings.hidePassword != null &&
-                  settings.hidePassword != undefined
-                    ? settings.hidePassword
-                    : false
-                }
-                className="sm:justify-self-end"
-                id="hide_pwr"
-              />
-            </div>
-
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF4B7"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">{t("encryption")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("default-encryption-algo")}
-                  </p>
-                </div>
-              </div>
-              <Select
-                defaultValue={settings.encryptAlgo}
-                onValueChange={(val) => {
-                  settings.encryptAlgo = val
-                  SetSettings(settings)
-                }}
-              >
-                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
-                  <SelectValue placeholder={t("algorithm")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem defaultChecked={true} value="aes">
-                    AES
-                  </SelectItem>
-                  <SelectItem value="3des">3DES</SelectItem>
-                  <SelectItem value="rabbit">Rabbit</SelectItem>
-                  <SelectItem value="rc4">RC4Drop</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF57E"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">{t("hashing")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("default-hashing-algo")}
-                  </p>
-                </div>
-              </div>
-              <Select
-                defaultValue={settings.hashAlgo}
-                onValueChange={(val) => {
-                  settings.hashAlgo = val
-                  SetSettings(settings)
-                }}
-              >
-                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
-                  <SelectValue placeholder={t("algorithm")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem defaultChecked={true} value="md5">
-                    MD5
-                  </SelectItem>
-                  <SelectItem value="sha-1">SHA-1</SelectItem>
-                  <SelectItem value="sha-256">SHA-256</SelectItem>
-                  <SelectItem value="sha-512">SHA-512</SelectItem>
-                  <SelectItem value="sha-3">SHA-3</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <AccordionItem value="ai">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF4DB"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">{t("ai")}</h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("set-api-key")}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="security" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("security")}</CardTitle>
+                <CardDescription>{t("security-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
                 <div className="flex items-center space-x-2">
-                  <p>{t("api-key")}</p>
-                  <Input
-                    type={keyVis ? "text" : "password"}
-                    id="api-key"
-                    className="h-auto max-w-[50%] px-2 py-1"
-                    defaultValue={settings.openaiKey ?? ""}
+                  <Label htmlFor="hide_pwr">{t("hide-password")}</Label>
+                  <Switch
+                    onClick={switchClick}
+                    defaultChecked={
+                      settings.hidePassword != null &&
+                      settings.hidePassword != undefined
+                        ? settings.hidePassword
+                        : false
+                    }
+                    className="sm:justify-self-end"
+                    id="hide_pwr"
                   />
-                  <Button
-                    onClick={() => {
-                      settings.openaiKey = (
-                        document.getElementById("api-key") as HTMLInputElement
-                      ).value
-
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="hashing"> {t("default-hashing-algo")}</Label>
+                  <Select
+                    defaultValue={settings.hashAlgo}
+                    onValueChange={(val) => {
+                      settings.hashAlgo = val
                       SetSettings(settings)
                     }}
-                    className="h-auto px-2 py-1"
                   >
-                    <Save16Regular />
-                  </Button>
-                  <Button
-                    className="h-auto px-2 py-1"
-                    onClick={() => setKeyVis(!keyVis)}
-                    variant="outline"
-                  >
-                    {keyVis ? <Eye16Regular /> : <EyeOff16Regular />}
-                  </Button>
+                    <SelectTrigger
+                      id="hashing"
+                      className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end"
+                    >
+                      <SelectValue placeholder={t("algorithm")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem defaultChecked={true} value="md5">
+                        MD5
+                      </SelectItem>
+                      <SelectItem value="sha-1">SHA-1</SelectItem>
+                      <SelectItem value="sha-256">SHA-256</SelectItem>
+                      <SelectItem value="sha-512">SHA-512</SelectItem>
+                      <SelectItem value="sha-3">SHA-3</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
+                <div className="space-y-2">
+                  <Label htmlFor="encryption">
+                    {t("default-encryption-algo")}
+                  </Label>
+                  <Select
+                    defaultValue={settings.encryptAlgo}
+                    onValueChange={(val) => {
+                      settings.encryptAlgo = val
+                      SetSettings(settings)
+                    }}
+                  >
+                    <SelectTrigger
+                      id="encryption"
+                      className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end"
+                    >
+                      <SelectValue placeholder={t("algorithm")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem defaultChecked={true} value="aes">
+                        AES
+                      </SelectItem>
+                      <SelectItem value="3des">3DES</SelectItem>
+                      <SelectItem value="rabbit">Rabbit</SelectItem>
+                      <SelectItem value="rc4">RC4Drop</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="api" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("ai")}</CardTitle>
+                <CardDescription>{t("ai-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex gap-2">
+                <Input
+                  type={keyVis ? "text" : "password"}
+                  id="api-key"
+                  className="h-auto max-w-[50%] px-2 py-1"
+                  defaultValue={settings.openaiKey ?? ""}
+                />
+                <Button
+                  onClick={() => {
+                    settings.openaiKey = (
+                      document.getElementById("api-key") as HTMLInputElement
+                    ).value
 
-            <AccordionItem value="data">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF4AB"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">{t("data")}</h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("manage-data")}
-                    </p>
-                  </div>
+                    SetSettings(settings)
+                  }}
+                  className="h-auto px-2 py-1"
+                >
+                  <Save16Regular />
+                </Button>
+                <Button
+                  className="h-auto px-2 py-1"
+                  onClick={() => setKeyVis(!keyVis)}
+                  variant="outline"
+                >
+                  {keyVis ? <Eye16Regular /> : <EyeOff16Regular />}
+                </Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="about" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("about")}</CardTitle>
+                <CardDescription>{t("about-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">{t("version")}</h3>
+                  <p>Passliss v{ver}</p>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">{t("repository")}</h3>
+                  <a
+                    href="https://github.com/Leo-Corporation/Passliss"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary flex items-center hover:underline"
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    {t("view-repository")}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">{t("licenses")}</h3>
+                  <p>
+                    NextJS - MIT License - © 2024 Vercel, Inc.
+                    <br></br>
+                    RadixUI - MIT License - © 2022 WorkOS
+                    <br></br>
+                    shadcn/ui - MIT License - © 2023 shadcn
+                    <br></br>
+                    Fluent System Icons - MIT License - © 2020 Microsoft
+                    Corporation
+                    <br></br>
+                    Passliss - MIT License - © 2021-2024 Léo Corporation
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>{t("data")}</CardTitle>
+                <CardDescription>{t("manage-data")}</CardDescription>
+              </CardHeader>
+              <CardContent>
                 <div className="flex space-x-2">
                   <Link
                     className={buttonVariants({
@@ -707,10 +622,10 @@ export default function SettingsPage() {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </PageContent>
     </Layout>
   )
