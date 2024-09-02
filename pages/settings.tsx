@@ -229,80 +229,69 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
           </TabsContent>
-        </Tabs>
-        <div className="flex justify-center">
-          <section
-            id="about-section"
-            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white px-10 py-4 text-center shadow-lg dark:bg-slate-800"
-          >
-            <div className="m-3 flex items-center space-x-2">
-              <h2 className="text-4xl font-bold">{t("title")}</h2>
-              <span className="m-2 rounded-full bg-gradient-to-br from-accent to-[#2153E0] px-2 font-bold text-white">
-                {t("web")}
-              </span>
-            </div>
-            <p className="text-sm">{`${t("version")} ${ver}`}</p>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="nav" variant="outline" className="mt-1 font-bold">
-                  {t("see-licenses")}
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>{t("licenses")}</DialogTitle>
-                </DialogHeader>
-                <p>
-                  NextJS - MIT License - © 2023 Vercel, Inc.
-                  <br></br>
-                  RadixUI - MIT License - © 2022 WorkOS
-                  <br></br>
-                  shadcn/ui - MIT License - © 2023 shadcn
-                  <br></br>
-                  Fluent System Icons - MIT License - © 2020 Microsoft
-                  Corporation
-                  <br></br>
-                  Passliss - MIT License - © 2021-2024 Léo Corporation
-                </p>
-                <DialogFooter>
-                  <DialogClose>
-                    <Button size="nav" type="submit">
-                      {t("ok")}
-                    </Button>
-                  </DialogClose>
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/Leo-Corporation/Passliss"
-                  >
-                    <Button variant="outline" size="nav">
-                      GitHub
-                    </Button>
-                  </Link>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </section>
-        </div>
-        <section id="settings-section">
-          <Accordion type="single" collapsible>
-            <AccordionItem value="password">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF59E"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">
-                      {t("password-settings")}
-                    </h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("password-settings-desc")}
-                    </p>
-                  </div>
+          <TabsContent value="password" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("password-config")}</CardTitle>
+                <CardDescription>{t("password-default")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    id="LowerChk"
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.lowerCases =
+                        !settings.defaultPasswordConfig.lowerCases
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.lowerCases}
+                  />
+                  <Label htmlFor="LowerChk">{t("lowercases")}</Label>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent>
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.upperCases =
+                        !settings.defaultPasswordConfig.upperCases
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.upperCases}
+                    id="UpperChk"
+                  />
+                  <Label htmlFor="UpperChk">{t("uppercases")}</Label>
+                </div>
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.numbers =
+                        !settings.defaultPasswordConfig.numbers
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.numbers}
+                    id="NbrChk"
+                  />
+                  <Label htmlFor="NbrChk">{t("nbrs")}</Label>
+                </div>
+                <div className="col-end-1 mb-2 flex items-center space-x-2">
+                  <Switch
+                    id="SpecialChk"
+                    onCheckedChange={() => {
+                      settings.defaultPasswordConfig.special =
+                        !settings.defaultPasswordConfig.special
+                      SetSettings(settings)
+                    }}
+                    defaultChecked={settings.defaultPasswordConfig.special}
+                  />
+                  <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("password-settings")}</CardTitle>
+                <CardDescription>{t("password-settings-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent>
                 <h5 className="font-bold">{t("default-random-length")}</h5>
                 <div className="flex items-center space-x-2">
                   <p>{t("between")}</p>
@@ -399,79 +388,66 @@ export default function SettingsPage() {
                     SetSettings(settings)
                   }}
                 />
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="password-defaults">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF6C6"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">
-                      {t("password-config")}
-                    </h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("password-default")}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="m-5 grid grid-rows-4 md:grid-cols-2">
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      id="LowerChk"
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.lowerCases =
-                          !settings.defaultPasswordConfig.lowerCases
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.lowerCases}
-                    />
-                    <Label htmlFor="LowerChk">{t("lowercases")}</Label>
-                  </div>
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.upperCases =
-                          !settings.defaultPasswordConfig.upperCases
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.upperCases}
-                      id="UpperChk"
-                    />
-                    <Label htmlFor="UpperChk">{t("uppercases")}</Label>
-                  </div>
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.numbers =
-                          !settings.defaultPasswordConfig.numbers
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.numbers}
-                      id="NbrChk"
-                    />
-                    <Label htmlFor="NbrChk">{t("nbrs")}</Label>
-                  </div>
-                  <div className="col-end-1 mb-2 flex items-center space-x-2">
-                    <Switch
-                      id="SpecialChk"
-                      onCheckedChange={() => {
-                        settings.defaultPasswordConfig.special =
-                          !settings.defaultPasswordConfig.special
-                        SetSettings(settings)
-                      }}
-                      defaultChecked={settings.defaultPasswordConfig.special}
-                    />
-                    <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+        <div className="flex justify-center">
+          <section
+            id="about-section"
+            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white px-10 py-4 text-center shadow-lg dark:bg-slate-800"
+          >
+            <div className="m-3 flex items-center space-x-2">
+              <h2 className="text-4xl font-bold">{t("title")}</h2>
+              <span className="m-2 rounded-full bg-gradient-to-br from-accent to-[#2153E0] px-2 font-bold text-white">
+                {t("web")}
+              </span>
+            </div>
+            <p className="text-sm">{`${t("version")} ${ver}`}</p>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="nav" variant="outline" className="mt-1 font-bold">
+                  {t("see-licenses")}
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>{t("licenses")}</DialogTitle>
+                </DialogHeader>
+                <p>
+                  NextJS - MIT License - © 2023 Vercel, Inc.
+                  <br></br>
+                  RadixUI - MIT License - © 2022 WorkOS
+                  <br></br>
+                  shadcn/ui - MIT License - © 2023 shadcn
+                  <br></br>
+                  Fluent System Icons - MIT License - © 2020 Microsoft
+                  Corporation
+                  <br></br>
+                  Passliss - MIT License - © 2021-2024 Léo Corporation
+                </p>
+                <DialogFooter>
+                  <DialogClose>
+                    <Button size="nav" type="submit">
+                      {t("ok")}
+                    </Button>
+                  </DialogClose>
+                  <Link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/Leo-Corporation/Passliss"
+                  >
+                    <Button variant="outline" size="nav">
+                      GitHub
+                    </Button>
+                  </Link>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </section>
+        </div>
+        <section id="settings-section">
+          <Accordion type="single" collapsible>
             <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
               <div className="grid grid-cols-[auto,1fr] items-center">
                 <p className="icon my-2 mr-2 text-3xl font-normal">
