@@ -8,8 +8,7 @@ import {
   Save16Regular,
   Settings20Regular,
 } from "@fluentui/react-icons"
-import { DialogClose } from "@radix-ui/react-dialog"
-import { ExternalLink, Github, Trash2 } from "lucide-react"
+import { ExternalLink, Github } from "lucide-react"
 import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
 import useTranslation from "next-translate/useTranslation"
@@ -18,12 +17,6 @@ import { Settings } from "@/types/settings"
 import { GetSettings, SetSettings } from "@/lib/browser-storage"
 import { Layout } from "@/components/layout"
 import { PageContent } from "@/components/page"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -43,14 +36,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -531,7 +516,7 @@ export default function SettingsPage() {
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold">{t("licenses")}</h3>
                   <p>
-                    NextJS - MIT License - © 2023 Vercel, Inc.
+                    NextJS - MIT License - © 2024 Vercel, Inc.
                     <br></br>
                     RadixUI - MIT License - © 2022 WorkOS
                     <br></br>
