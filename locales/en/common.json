@@ -153,5 +153,8 @@
   "about": "About",
   "general-desc": "Customize the app's appearance and language.",
   "security-desc": "Configure default hashing and encryption algorithms.",
-  "ai-desc": "Configure your OpenAI API key for advanced features."
+  "ai-desc": "Configure your OpenAI API key for advanced features.",
+  "light": "Light",
+  "dark:": "Dark",
+  "system": "System"
 }

@@ -153,5 +153,8 @@
   "about": "A propos",
   "general-desc": "Personnaliser l'apparence et la langue de l'application.",
   "security-desc": "Configurer les algorithmes de hachage et de cryptage par défaut.",
-  "ai-desc": "Configurez votre clé API OpenAI pour des fonctionnalités avancées."
+  "ai-desc": "Configurez votre clé API OpenAI pour des fonctionnalités avancées.",
+  "light": "Clair",
+  "dark:": "Sombre",
+  "system": "Système"
 }

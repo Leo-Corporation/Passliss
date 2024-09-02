@@ -180,7 +180,7 @@ export default function SettingsPage() {
                         alt="Light theme image"
                         className="object-cover"
                       />
-                      <p className="m-2 font-bold">Light</p>
+                      <p className="m-2 font-bold">{t("light")}</p>
                     </div>
                     <div
                       onClick={() => setTheme("dark")}
@@ -193,7 +193,7 @@ export default function SettingsPage() {
                         alt="Dark theme image"
                         className="object-cover"
                       />
-                      <p className="m-2 font-bold">Dark</p>
+                      <p className="m-2 font-bold">{t("dark")}</p>
                     </div>
                     <div
                       onClick={() => setTheme("system")}
@@ -206,7 +206,7 @@ export default function SettingsPage() {
                         alt="System theme image"
                         className="object-cover"
                       />
-                      <p className="m-2 font-bold">System</p>
+                      <p className="m-2 font-bold">{t("system")}</p>
                     </div>
                   </div>
                 </div>
