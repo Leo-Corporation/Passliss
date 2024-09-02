@@ -151,9 +151,9 @@ export default function SettingsPage() {
           <p className="ml-2 font-bold">{t("settings")}</p>
         </div>
         <Tabs defaultValue="general" className="space-y-4">
-          <TabsList>
+          <TabsList className="flex flex-wrap sm:block">
             <TabsTrigger value="general">{t("general")}</TabsTrigger>
-            <TabsTrigger value="password">{t("password-settings")}</TabsTrigger>
+            <TabsTrigger value="password">{t("password")}</TabsTrigger>
             <TabsTrigger value="security">{t("security")}</TabsTrigger>
             <TabsTrigger value="api">{t("ai")}</TabsTrigger>
             <TabsTrigger value="about">{t("about")}</TabsTrigger>
