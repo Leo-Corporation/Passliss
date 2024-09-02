@@ -147,5 +147,11 @@
   "separator": "Separator",
   "advanced-vision": "Advanced vision",
   "overview": "Overview",
-  "total": "Total"
+  "total": "Total",
+  "general": "General",
+  "security": "Security",
+  "about": "About",
+  "general-desc": "Customize the app's appearance and language.",
+  "security-desc": "Configure default hashing and encryption algorithms.",
+  "ai-desc": "Configure your OpenAI API key for advanced features."
 }

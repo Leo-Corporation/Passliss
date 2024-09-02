@@ -147,5 +147,11 @@
   "separator": "Séparateur",
   "advanced-vision": "Vision avancée",
   "overview": "Vue d'ensemble",
-  "total": "Total"
+  "total": "Total",
+  "general": "Général",
+  "security": "Sécurité",
+  "about": "A propos",
+  "general-desc": "Personnaliser l'apparence et la langue de l'application.",
+  "security-desc": "Configurer les algorithmes de hachage et de cryptage par défaut.",
+  "ai-desc": "Configurez votre clé API OpenAI pour des fonctionnalités avancées."
 }
