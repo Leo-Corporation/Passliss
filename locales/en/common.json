@@ -156,5 +156,8 @@
   "ai-desc": "Configure your OpenAI API key for advanced features.",
   "light": "Light",
   "dark:": "Dark",
-  "system": "System"
+  "system": "System",
+  "about-desc": "Information about the application and its development.",
+  "repository": "Repository",
+  "view-repository": "View Repository"
 }

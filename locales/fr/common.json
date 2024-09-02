@@ -156,5 +156,8 @@
   "ai-desc": "Configurez votre clé API OpenAI pour des fonctionnalités avancées.",
   "light": "Clair",
   "dark:": "Sombre",
-  "system": "Système"
+  "system": "Système",
+  "about-desc": "Informations sur l'application et son développement.",
+  "repository": "Dépôt GitHub",
+  "view-repository": "Voir le Dépôt"
 }

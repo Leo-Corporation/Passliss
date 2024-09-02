@@ -9,6 +9,7 @@ import {
   Settings20Regular,
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
+import { ExternalLink, Github, Trash2 } from "lucide-react"
 import { useTheme } from "next-themes"
 import setLanguage from "next-translate/setLanguage"
 import useTranslation from "next-translate/useTranslation"
@@ -503,78 +504,53 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
           </TabsContent>
-        </Tabs>
-        <div className="flex justify-center">
-          <section
-            id="about-section"
-            className="m-2 flex flex-col items-center justify-center rounded-lg bg-white px-10 py-4 text-center shadow-lg dark:bg-slate-800"
-          >
-            <div className="m-3 flex items-center space-x-2">
-              <h2 className="text-4xl font-bold">{t("title")}</h2>
-              <span className="m-2 rounded-full bg-gradient-to-br from-accent to-[#2153E0] px-2 font-bold text-white">
-                {t("web")}
-              </span>
-            </div>
-            <p className="text-sm">{`${t("version")} ${ver}`}</p>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="nav" variant="outline" className="mt-1 font-bold">
-                  {t("see-licenses")}
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>{t("licenses")}</DialogTitle>
-                </DialogHeader>
-                <p>
-                  NextJS - MIT License - © 2023 Vercel, Inc.
-                  <br></br>
-                  RadixUI - MIT License - © 2022 WorkOS
-                  <br></br>
-                  shadcn/ui - MIT License - © 2023 shadcn
-                  <br></br>
-                  Fluent System Icons - MIT License - © 2020 Microsoft
-                  Corporation
-                  <br></br>
-                  Passliss - MIT License - © 2021-2024 Léo Corporation
-                </p>
-                <DialogFooter>
-                  <DialogClose>
-                    <Button size="nav" type="submit">
-                      {t("ok")}
-                    </Button>
-                  </DialogClose>
-                  <Link
+          <TabsContent value="about" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("about")}</CardTitle>
+                <CardDescription>{t("about-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">{t("version")}</h3>
+                  <p>Passliss v{ver}</p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">{t("repository")}</h3>
+                  <a
+                    href="https://github.com/Leo-Corporation/Passliss"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/Leo-Corporation/Passliss"
+                    className="text-primary flex items-center hover:underline"
                   >
-                    <Button variant="outline" size="nav">
-                      GitHub
-                    </Button>
-                  </Link>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </section>
-        </div>
-        <section id="settings-section">
-          <Accordion type="single" collapsible>
-            <AccordionItem value="data">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF4AB"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">{t("data")}</h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("manage-data")}
-                    </p>
-                  </div>
+                    <Github className="mr-2 h-4 w-4" />
+                    {t("view-repository")}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">{t("licenses")}</h3>
+                  <p>
+                    NextJS - MIT License - © 2023 Vercel, Inc.
+                    <br></br>
+                    RadixUI - MIT License - © 2022 WorkOS
+                    <br></br>
+                    shadcn/ui - MIT License - © 2023 shadcn
+                    <br></br>
+                    Fluent System Icons - MIT License - © 2020 Microsoft
+                    Corporation
+                    <br></br>
+                    Passliss - MIT License - © 2021-2024 Léo Corporation
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>{t("data")}</CardTitle>
+                <CardDescription>{t("manage-data")}</CardDescription>
+              </CardHeader>
+              <CardContent>
                 <div className="flex space-x-2">
                   <Link
                     className={buttonVariants({
@@ -661,10 +637,10 @@ export default function SettingsPage() {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </PageContent>
     </Layout>
   )
