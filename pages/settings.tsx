@@ -291,9 +291,9 @@ export default function SettingsPage() {
                 <CardTitle>{t("password-settings")}</CardTitle>
                 <CardDescription>{t("password-settings-desc")}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-2 text-sm">
                 <h5 className="font-bold">{t("default-random-length")}</h5>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <p>{t("between")}</p>
                   <Input
                     defaultValue={settings.passwordLengthOne}
@@ -391,6 +391,83 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
           </TabsContent>
+          <TabsContent value="security" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("security")}</CardTitle>
+                <CardDescription>{t("security-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor="hide_pwr">{t("hide-password")}</Label>
+                  <Switch
+                    onClick={switchClick}
+                    defaultChecked={
+                      settings.hidePassword != null &&
+                      settings.hidePassword != undefined
+                        ? settings.hidePassword
+                        : false
+                    }
+                    className="sm:justify-self-end"
+                    id="hide_pwr"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="hashing"> {t("default-hashing-algo")}</Label>
+                  <Select
+                    defaultValue={settings.hashAlgo}
+                    onValueChange={(val) => {
+                      settings.hashAlgo = val
+                      SetSettings(settings)
+                    }}
+                  >
+                    <SelectTrigger
+                      id="hashing"
+                      className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end"
+                    >
+                      <SelectValue placeholder={t("algorithm")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem defaultChecked={true} value="md5">
+                        MD5
+                      </SelectItem>
+                      <SelectItem value="sha-1">SHA-1</SelectItem>
+                      <SelectItem value="sha-256">SHA-256</SelectItem>
+                      <SelectItem value="sha-512">SHA-512</SelectItem>
+                      <SelectItem value="sha-3">SHA-3</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="encryption">
+                    {t("default-encryption-algo")}
+                  </Label>
+                  <Select
+                    defaultValue={settings.encryptAlgo}
+                    onValueChange={(val) => {
+                      settings.encryptAlgo = val
+                      SetSettings(settings)
+                    }}
+                  >
+                    <SelectTrigger
+                      id="encryption"
+                      className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end"
+                    >
+                      <SelectValue placeholder={t("algorithm")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem defaultChecked={true} value="aes">
+                        AES
+                      </SelectItem>
+                      <SelectItem value="3des">3DES</SelectItem>
+                      <SelectItem value="rabbit">Rabbit</SelectItem>
+                      <SelectItem value="rc4">RC4Drop</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
         <div className="flex justify-center">
           <section
@@ -448,98 +525,6 @@ export default function SettingsPage() {
         </div>
         <section id="settings-section">
           <Accordion type="single" collapsible>
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF503"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">
-                    {t("password-security")}
-                  </h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("hide-password")}
-                  </p>
-                </div>
-              </div>
-              <Switch
-                onClick={switchClick}
-                defaultChecked={
-                  settings.hidePassword != null &&
-                  settings.hidePassword != undefined
-                    ? settings.hidePassword
-                    : false
-                }
-                className="sm:justify-self-end"
-                id="hide_pwr"
-              />
-            </div>
-
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF4B7"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">{t("encryption")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("default-encryption-algo")}
-                  </p>
-                </div>
-              </div>
-              <Select
-                defaultValue={settings.encryptAlgo}
-                onValueChange={(val) => {
-                  settings.encryptAlgo = val
-                  SetSettings(settings)
-                }}
-              >
-                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
-                  <SelectValue placeholder={t("algorithm")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem defaultChecked={true} value="aes">
-                    AES
-                  </SelectItem>
-                  <SelectItem value="3des">3DES</SelectItem>
-                  <SelectItem value="rabbit">Rabbit</SelectItem>
-                  <SelectItem value="rc4">RC4Drop</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF57E"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">{t("hashing")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("default-hashing-algo")}
-                  </p>
-                </div>
-              </div>
-              <Select
-                defaultValue={settings.hashAlgo}
-                onValueChange={(val) => {
-                  settings.hashAlgo = val
-                  SetSettings(settings)
-                }}
-              >
-                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
-                  <SelectValue placeholder={t("algorithm")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem defaultChecked={true} value="md5">
-                    MD5
-                  </SelectItem>
-                  <SelectItem value="sha-1">SHA-1</SelectItem>
-                  <SelectItem value="sha-256">SHA-256</SelectItem>
-                  <SelectItem value="sha-512">SHA-512</SelectItem>
-                  <SelectItem value="sha-3">SHA-3</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
             <AccordionItem value="ai">
               <AccordionTrigger>
                 <div className="grid grid-cols-[auto,1fr] items-center">
