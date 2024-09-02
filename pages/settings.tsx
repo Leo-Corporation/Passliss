@@ -36,9 +36,15 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -54,6 +60,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function SettingsPage() {
   const { t, lang } = useTranslation("common") // default namespace (optional)
@@ -142,6 +149,87 @@ export default function SettingsPage() {
 
           <p className="ml-2 font-bold">{t("settings")}</p>
         </div>
+        <Tabs defaultValue="general" className="space-y-4">
+          <TabsList>
+            <TabsTrigger value="general">{t("general")}</TabsTrigger>
+            <TabsTrigger value="password">{t("password-settings")}</TabsTrigger>
+            <TabsTrigger value="security">{t("security")}</TabsTrigger>
+            <TabsTrigger value="api">{t("ai")}</TabsTrigger>
+            <TabsTrigger value="about">{t("about")}</TabsTrigger>
+          </TabsList>
+          <TabsContent value="general" className="border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("general")}</CardTitle>
+                <CardDescription>{t("general-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label className="font-semibold" htmlFor="theme">
+                    {t("theme")}
+                  </Label>
+                  <div className="flex flex-wrap gap-2">
+                    <div
+                      onClick={() => setTheme("light")}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "light" ? "border-accent" : "border-transparent"}`}
+                    >
+                      <Image
+                        src="/LightTheme.png"
+                        height={50}
+                        width={50}
+                        alt="Light theme image"
+                        className="object-cover"
+                      />
+                      <p className="m-2 font-bold">Light</p>
+                    </div>
+                    <div
+                      onClick={() => setTheme("dark")}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
+                    >
+                      <Image
+                        src="/DarkTheme.png"
+                        height={50}
+                        width={50}
+                        alt="Dark theme image"
+                        className="object-cover"
+                      />
+                      <p className="m-2 font-bold">Dark</p>
+                    </div>
+                    <div
+                      onClick={() => setTheme("system")}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "system" ? "border-accent" : "border-transparent"}`}
+                    >
+                      <Image
+                        src="/SystemTheme.png"
+                        height={50}
+                        width={50}
+                        alt="System theme image"
+                        className="object-cover"
+                      />
+                      <p className="m-2 font-bold">System</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="language" className="font-semibold">
+                    {t("language")}
+                  </Label>
+                  <Select defaultValue={lang} onValueChange={SelectChanged}>
+                    <SelectTrigger className="h-auto w-[200px] px-2 py-1 sm:justify-self-end">
+                      <SelectValue placeholder={t("language")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem defaultChecked={true} value="en">
+                        English (United States)
+                      </SelectItem>
+                      <SelectItem value="fr">Français (France)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
         <div className="flex justify-center">
           <section
             id="about-section"
@@ -198,90 +286,6 @@ export default function SettingsPage() {
         </div>
         <section id="settings-section">
           <Accordion type="single" collapsible>
-            <AccordionItem value="theme">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF33C"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">{t("theme")}</h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("change-theme")}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex flex-wrap">
-                  <div
-                    onClick={() => setTheme("light")}
-                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "light" ? "border-accent" : "border-transparent"}`}
-                  >
-                    <Image
-                      src="/LightTheme.png"
-                      height={50}
-                      width={50}
-                      alt="Light theme image"
-                      className="object-cover"
-                    />
-                    <p className="m-2 font-bold">Light</p>
-                  </div>
-                  <div
-                    onClick={() => setTheme("dark")}
-                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
-                  >
-                    <Image
-                      src="/DarkTheme.png"
-                      height={50}
-                      width={50}
-                      alt="Dark theme image"
-                      className="object-cover"
-                    />
-                    <p className="m-2 font-bold">Dark</p>
-                  </div>
-                  <div
-                    onClick={() => setTheme("system")}
-                    className={`m-2 flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "system" ? "border-accent" : "border-transparent"}`}
-                  >
-                    <Image
-                      src="/SystemTheme.png"
-                      height={50}
-                      width={50}
-                      alt="System theme image"
-                      className="object-cover"
-                    />
-                    <p className="m-2 font-bold">System</p>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <div className="mx-2 mt-2 grid grid-cols-1 items-center rounded-lg bg-slate-100 p-4 font-bold dark:bg-slate-800 sm:grid-cols-2">
-              <div className="grid grid-cols-[auto,1fr] items-center">
-                <p className="icon my-2 mr-2 text-3xl font-normal">
-                  {"\uF4F4"}
-                </p>
-                <div>
-                  <h4 className="text-left text-lg">{t("language")}</h4>
-                  <p className="text-left text-sm font-normal">
-                    {t("change-language")}
-                  </p>
-                </div>
-              </div>
-              <Select defaultValue={lang} onValueChange={SelectChanged}>
-                <SelectTrigger className="mx-1 h-auto w-[200px] px-2 py-1 sm:justify-self-end">
-                  <SelectValue placeholder={t("language")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem defaultChecked={true} value="en">
-                    English (United States)
-                  </SelectItem>
-                  <SelectItem value="fr">Français (France)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
             <AccordionItem value="password">
               <AccordionTrigger>
                 <div className="grid grid-cols-[auto,1fr] items-center">
