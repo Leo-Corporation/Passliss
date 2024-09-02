@@ -172,7 +172,7 @@ export default function SettingsPage() {
                   <div className="flex flex-wrap gap-2">
                     <div
                       onClick={() => setTheme("light")}
-                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "light" ? "border-accent" : "border-transparent"}`}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-800 ${theme === "light" ? "border-accent" : "border-transparent"}`}
                     >
                       <Image
                         src="/LightTheme.png"
@@ -185,7 +185,7 @@ export default function SettingsPage() {
                     </div>
                     <div
                       onClick={() => setTheme("dark")}
-                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-800 ${theme === "dark" ? "border-accent" : "border-transparent"}`}
                     >
                       <Image
                         src="/DarkTheme.png"
@@ -198,7 +198,7 @@ export default function SettingsPage() {
                     </div>
                     <div
                       onClick={() => setTheme("system")}
-                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-700 ${theme === "system" ? "border-accent" : "border-transparent"}`}
+                      className={`flex cursor-pointer items-center space-x-2 overflow-hidden rounded-lg border-2 bg-slate-100 pr-2 dark:bg-slate-800 ${theme === "system" ? "border-accent" : "border-transparent"}`}
                     >
                       <Image
                         src="/SystemTheme.png"
