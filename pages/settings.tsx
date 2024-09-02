@@ -468,6 +468,41 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
           </TabsContent>
+          <TabsContent value="api" className="space-y-2 border-0 p-0">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("ai")}</CardTitle>
+                <CardDescription>{t("ai-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex gap-2">
+                <Input
+                  type={keyVis ? "text" : "password"}
+                  id="api-key"
+                  className="h-auto max-w-[50%] px-2 py-1"
+                  defaultValue={settings.openaiKey ?? ""}
+                />
+                <Button
+                  onClick={() => {
+                    settings.openaiKey = (
+                      document.getElementById("api-key") as HTMLInputElement
+                    ).value
+
+                    SetSettings(settings)
+                  }}
+                  className="h-auto px-2 py-1"
+                >
+                  <Save16Regular />
+                </Button>
+                <Button
+                  className="h-auto px-2 py-1"
+                  onClick={() => setKeyVis(!keyVis)}
+                  variant="outline"
+                >
+                  {keyVis ? <Eye16Regular /> : <EyeOff16Regular />}
+                </Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
         <div className="flex justify-center">
           <section
@@ -525,52 +560,6 @@ export default function SettingsPage() {
         </div>
         <section id="settings-section">
           <Accordion type="single" collapsible>
-            <AccordionItem value="ai">
-              <AccordionTrigger>
-                <div className="grid grid-cols-[auto,1fr] items-center">
-                  <p className="icon my-2 mr-2 text-3xl font-normal">
-                    {"\uF4DB"}
-                  </p>
-                  <div>
-                    <h4 className="text-left text-lg">{t("ai")}</h4>
-                    <p className="text-left text-sm font-normal">
-                      {t("set-api-key")}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex items-center space-x-2">
-                  <p>{t("api-key")}</p>
-                  <Input
-                    type={keyVis ? "text" : "password"}
-                    id="api-key"
-                    className="h-auto max-w-[50%] px-2 py-1"
-                    defaultValue={settings.openaiKey ?? ""}
-                  />
-                  <Button
-                    onClick={() => {
-                      settings.openaiKey = (
-                        document.getElementById("api-key") as HTMLInputElement
-                      ).value
-
-                      SetSettings(settings)
-                    }}
-                    className="h-auto px-2 py-1"
-                  >
-                    <Save16Regular />
-                  </Button>
-                  <Button
-                    className="h-auto px-2 py-1"
-                    onClick={() => setKeyVis(!keyVis)}
-                    variant="outline"
-                  >
-                    {keyVis ? <Eye16Regular /> : <EyeOff16Regular />}
-                  </Button>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
             <AccordionItem value="data">
               <AccordionTrigger>
                 <div className="grid grid-cols-[auto,1fr] items-center">
