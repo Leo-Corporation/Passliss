@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { setTheme, theme } = useTheme()
   const [keyVis, setKeyVis] = useState(false)
 
-  const ver = "4.5.1.2410"
+  const ver = "4.5.2.2411"
 
   let settings: Settings = undefined
   function LoadSettings() {
