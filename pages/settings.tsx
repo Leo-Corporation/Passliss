@@ -508,9 +508,9 @@ export default function SettingsPage() {
                     rel="noopener noreferrer"
                     className="text-primary flex items-center hover:underline"
                   >
-                    <Github className="mr-2 h-4 w-4" />
+                    <Github className="mr-2 size-4" />
                     {t("view-repository")}
-                    <ExternalLink className="ml-2 h-4 w-4" />
+                    <ExternalLink className="ml-2 size-4" />
                   </a>
                 </div>
                 <div className="space-y-2">
