@@ -155,7 +155,7 @@
   "security-desc": "Configure default hashing and encryption algorithms.",
   "ai-desc": "Configure your OpenAI API key for advanced features.",
   "light": "Light",
-  "dark:": "Dark",
+  "dark": "Dark",
   "system": "System",
   "about-desc": "Information about the application and its development.",
   "repository": "Repository",
