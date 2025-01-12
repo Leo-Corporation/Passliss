@@ -53,7 +53,7 @@ export default function SettingsPage() {
   const { setTheme, theme } = useTheme()
   const [keyVis, setKeyVis] = useState(false)
 
-  const ver = "4.5.3.2412"
+  const ver = "4.5.4.2501"
 
   let settings: Settings = undefined
   function LoadSettings() {
@@ -516,7 +516,7 @@ export default function SettingsPage() {
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold">{t("licenses")}</h3>
                   <p>
-                    NextJS - MIT License - © 2024 Vercel, Inc.
+                    NextJS - MIT License - © 2025 Vercel, Inc.
                     <br></br>
                     RadixUI - MIT License - © 2022 WorkOS
                     <br></br>
@@ -525,7 +525,8 @@ export default function SettingsPage() {
                     Fluent System Icons - MIT License - © 2020 Microsoft
                     Corporation
                     <br></br>
-                    Passliss - MIT License - © 2021-2024 Léo Corporation
+                    Passliss - MIT License - © 2021-{new Date().getFullYear()}{" "}
+                    Léo Corporation
                   </p>
                 </div>
               </CardContent>
