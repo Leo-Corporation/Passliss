@@ -155,7 +155,7 @@
   "security-desc": "Configurer les algorithmes de hachage et de cryptage par défaut.",
   "ai-desc": "Configurez votre clé API OpenAI pour des fonctionnalités avancées.",
   "light": "Clair",
-  "dark:": "Sombre",
+  "dark": "Sombre",
   "system": "Système",
   "about-desc": "Informations sur l'application et son développement.",
   "repository": "Dépôt GitHub",
