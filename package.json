@@ -70,7 +70,7 @@
     "eslint-config-next": "15.1.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.3",
-    "eslint-plugin-tailwindcss": "^3.17.5",
+    "eslint-plugin-tailwindcss": "^3.18.0",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
