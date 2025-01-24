@@ -64,7 +64,7 @@ export function PageContent({ children, page }: PageProps) {
 
   return (
     <div className="h-screen overflow-hidden">
-      <header className="flex space-x-2 border-b border-slate-200 p-2 py-5 shadow-xs dark:border-slate-700 md:hidden">
+      <header className="flex space-x-2 border-b border-slate-200 p-2 py-5 shadow-xs md:hidden dark:border-slate-700">
         <Sheet>
           <SheetTrigger>
             <Button className="md:hidden" variant="ghost">
@@ -79,11 +79,11 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "home" ? "navselect" : "nav",
                   className:
-                    "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                    "mx-2 my-1 h-auto w-full pr-3 pl-0 text-black dark:text-white",
                 })}
                 href={"/home"}
               >
-                <div className="rounded-lg bg-linear-to-br from-accent to-[#2153E0] p-1">
+                <div className="from-accent rounded-lg bg-linear-to-br to-[#2153E0] p-1">
                   <Home20Filled className="text-white" />
                 </div>
                 <p className="ml-2 font-bold">{t("home")}</p>
@@ -94,7 +94,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "activity" ? "navselect" : "nav",
                   className:
-                    "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                    "mx-2 my-1 h-auto w-full pr-3 pl-0 text-black dark:text-white",
                 })}
                 href={"/activity"}
               >
@@ -109,7 +109,7 @@ export function PageContent({ children, page }: PageProps) {
                   size: "sm",
                   variant: page == "settings" ? "navselect" : "nav",
                   className:
-                    "mx-2 my-1 h-auto w-full pl-0 pr-3 text-black dark:text-white",
+                    "mx-2 my-1 h-auto w-full pr-3 pl-0 text-black dark:text-white",
                 })}
                 href={"/settings"}
               >
@@ -123,7 +123,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "generate" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-accent",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/generate"}
               >
@@ -135,7 +135,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "presets" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-accent",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/presets"}
               >
@@ -147,7 +147,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "strength" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-accent",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/strength"}
               >
@@ -159,7 +159,7 @@ export function PageContent({ children, page }: PageProps) {
                 className={buttonVariants({
                   size: "nav",
                   variant: page == "crypt" ? "navselect2" : "nav2",
-                  className: "mx-2 my-1 w-full text-accent",
+                  className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/encryption"}
               >
@@ -188,7 +188,7 @@ export function PageContent({ children, page }: PageProps) {
       </header>
       <section className="grid resize grid-cols-4 xl:grid-cols-6">
         <ScrollArea className="md:h-scroll border-r border-slate-200 bg-slate-100 shadow-xs dark:border-slate-700 dark:bg-slate-900">
-          <div className="hidden border-b border-slate-200 p-4 pb-2 dark:border-slate-700 md:block">
+          <div className="hidden border-b border-slate-200 p-4 pb-2 md:block dark:border-slate-700">
             <h1 className="text-3xl font-bold">{t("title")}</h1>
             <p className="text-sm font-semibold">
               <span>{GetWelcomeMessage()} </span>
@@ -209,11 +209,11 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "home" ? "navselect" : "nav",
                 className:
-                  "mx-2 my-1 h-auto pl-0 pr-3 text-black dark:text-white",
+                  "mx-2 my-1 h-auto pr-3 pl-0 text-black dark:text-white",
               })}
               href={"/home"}
             >
-              <div className="rounded-md bg-linear-to-br from-accent to-[#2153E0] p-[5px]">
+              <div className="from-accent rounded-md bg-linear-to-br to-[#2153E0] p-[5px]">
                 <Home20Filled className="text-white" />
               </div>
               <p className="ml-2 font-bold">{t("home")}</p>
@@ -223,7 +223,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "activity" ? "navselect" : "nav",
                 className:
-                  "mx-2 my-1 h-auto pl-0 pr-3 text-black dark:text-white",
+                  "mx-2 my-1 h-auto pr-3 pl-0 text-black dark:text-white",
               })}
               href={"/activity"}
             >
@@ -237,7 +237,7 @@ export function PageContent({ children, page }: PageProps) {
                 size: "sm",
                 variant: page == "settings" ? "navselect" : "nav",
                 className:
-                  "mx-2 my-1 h-auto pl-0 pr-3 text-black dark:text-white",
+                  "mx-2 my-1 h-auto pr-3 pl-0 text-black dark:text-white",
               })}
               href={"/settings"}
             >
@@ -251,7 +251,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "generate" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 text-accent",
+                className: "text-accent mx-2 my-1",
               })}
               href={"/generate"}
             >
@@ -262,7 +262,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "presets" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 text-accent",
+                className: "text-accent mx-2 my-1",
               })}
               href={"/presets"}
             >
@@ -273,7 +273,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "strength" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 text-accent",
+                className: "text-accent mx-2 my-1",
               })}
               href={"/strength"}
             >
@@ -284,7 +284,7 @@ export function PageContent({ children, page }: PageProps) {
               className={buttonVariants({
                 size: "nav",
                 variant: page == "crypt" ? "navselect2" : "nav2",
-                className: "mx-2 my-1 text-accent",
+                className: "text-accent mx-2 my-1",
               })}
               href={"/encryption"}
             >

@@ -19,7 +19,7 @@ export default function IndexPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex min-h-screen w-full flex-col items-center justify-center">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
+        <h1 className="text-3xl leading-tight font-extrabold tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
           {t("title")}
         </h1>
         <p className="m-2">{t("desc")}</p>
