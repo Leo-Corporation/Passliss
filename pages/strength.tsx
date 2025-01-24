@@ -118,7 +118,7 @@ export default function StrengthPage() {
               {strengthTxt}
             </p>
           </div>
-          <div className="m-5 rounded-lg bg-white p-5 shadow-md sm:col-start-2 dark:bg-slate-800 dark:shadow-none">
+          <div className="m-5 rounded-lg bg-white p-5 shadow-md dark:bg-slate-800 dark:shadow-none sm:col-start-2">
             <p className="text-center text-xl font-bold" id="PasswordContainer">
               {password.split("").map((el, i) => (
                 <StrengthCharacter char={el} key={i} />

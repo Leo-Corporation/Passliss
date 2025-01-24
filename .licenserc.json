@@ -1,11 +1,16 @@
 {
-  "**/*.cs": ["/*", "MIT License", "", "Copyright (c) Léo Corporation"],
-  "ignore": [
-    "**/*.Designer.cs",
-    "Passliss/Properties/",
-    "Passliss/Ressources/",
-    "Xalyus Updater/Properties/",
-    "Xalyus Updater/Resources/",
-    "AssemblyInfo.cs"
-  ]
+    "**/*.cs": [
+        "/*",
+        "MIT License",
+        "",
+        "Copyright (c) Léo Corporation"
+    ],
+    "ignore": [
+        "**/*.Designer.cs",
+        "Passliss/Properties/",
+        "Passliss/Ressources/",
+        "Xalyus Updater/Properties/",
+        "Xalyus Updater/Resources/",
+        "AssemblyInfo.cs"
+    ]
 }

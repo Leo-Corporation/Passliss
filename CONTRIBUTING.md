@@ -33,22 +33,22 @@ Make sure you follow the following guidelines:
 ```ts
 // Use consistent indentation and whitespace
 function calculateSum(numbers: number[]): number {
-  let sum = 0
+  let sum = 0;
   for (const num of numbers) {
-    sum += num
+    sum += num;
   }
-  return sum
+  return sum;
 }
 
 // Use consistent naming conventions
 interface User {
-  firstName: string
-  lastName: string
-  email: string
+  firstName: string;
+  lastName: string;
+  email: string;
 }
 
 function getUserFullName(user: User): string {
-  return `${user.firstName} ${user.lastName}`
+  return `${user.firstName} ${user.lastName}`;
 }
 ```
 
@@ -56,13 +56,13 @@ function getUserFullName(user: User): string {
 
 ```ts
 // Use descriptive names for variables
-const shoppingCartItems: string[] = ["apples", "bananas", "oranges"]
+const shoppingCartItems: string[] = ["apples", "bananas", "oranges"];
 
 // Use descriptive names for functions
 function calculateTotalPrice(items: number[], taxRate: number): number {
-  const subtotal = items.reduce((acc, cur) => acc + cur)
-  const tax = subtotal * taxRate
-  return subtotal + tax
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
 }
 
 // Use descriptive names for classes
@@ -74,7 +74,7 @@ class User {
   ) {}
 
   public getFullName(): string {
-    return `${this.firstName} ${this.lastName}`
+    return `${this.firstName} ${this.lastName}`;
   }
 }
 ```
@@ -107,21 +107,21 @@ function FullName({ firstName, lastName }: Props) {
 
 ```ts
 interface User {
-  id: number
-  firstName: string
-  lastName: string
-  email: string
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
 }
 
 interface Product {
-  id: number
-  name: string
-  price: number
+  id: number;
+  name: string;
+  price: number;
 }
 
 interface ShoppingCartItem {
-  product: Product
-  quantity: number
+  product: Product;
+  quantity: number;
 }
 ```
 
@@ -134,20 +134,20 @@ enum PaymentMethod {
   Venmo = "venmo",
 }
 
-const paymentMethod: PaymentMethod = PaymentMethod.CreditCard
+const paymentMethod: PaymentMethod = PaymentMethod.CreditCard;
 ```
 
 6. Use type aliases to define custom types that are used throughout the application:
 
 ```ts
-type UserId = number
-type Email = string
+type UserId = number;
+type Email = string;
 
 interface User {
-  id: UserId
-  firstName: string
-  lastName: string
-  email: Email
+  id: UserId;
+  firstName: string;
+  lastName: string;
+  email: Email;
 }
 ```
 
@@ -155,18 +155,18 @@ interface User {
 
 ```ts
 function toArray<T>(value: T): T[] {
-  return [value]
+  return [value];
 }
 
 class Stack<T> {
-  private items: T[] = []
+  private items: T[] = [];
 
   public push(item: T): void {
-    this.items.push(item)
+    this.items.push(item);
   }
 
   public pop(): T | undefined {
-    return this.items.pop()
+    return this.items.pop();
   }
 }
 ```
@@ -176,16 +176,16 @@ class Stack<T> {
 ```ts
 // Bad example: using any
 function calculateTotalPrice(items: any[], taxRate: any): any {
-  const subtotal = items.reduce((acc, cur) => acc + cur)
-  const tax = subtotal * taxRate
-  return subtotal + tax
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
 }
 
 // Good example: using specific types
 function calculateTotalPrice(items: number[], taxRate: number): number {
-  const subtotal = items.reduce((acc, cur) => acc + cur)
-  const tax = subtotal * taxRate
-  return subtotal + tax
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
 }
 ```
 
@@ -193,15 +193,15 @@ function calculateTotalPrice(items: number[], taxRate: number): number {
 
 ```ts
 interface User {
-  id: number // Unique identifier for the user
-  firstName: string // First name of the user
-  lastName: string // Last name of the user
-  email: string // Email address of the user
+  id: number; // Unique identifier for the user
+  firstName: string; // First name of the user
+  lastName: string; // Last name of the user
+  email: string; // Email address of the user
 }
 
 function calculateTotalPrice(items: number[], taxRate: number): number {
-  const subtotal = items.reduce((acc, cur) => acc + cur)
-  const tax = subtotal * taxRate
-  return subtotal + tax // Return the total price including tax
+  const subtotal = items.reduce((acc, cur) => acc + cur);
+  const tax = subtotal * taxRate;
+  return subtotal + tax; // Return the total price including tax
 }
 ```

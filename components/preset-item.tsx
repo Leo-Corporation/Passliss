@@ -78,7 +78,7 @@ export default function PresetItem(props: PresetItemProps) {
   return (
     <div
       key={props.id}
-      className="border-accent bg-accent/10 hover:bg-accent-trans dark:bg-accent/10 dark:hover:bg-accent-trans m-2 grid h-[170px] w-full grid-cols-[1fr_auto] grid-rows-[auto_1fr] items-center rounded-md border px-4 py-2 transition sm:h-auto sm:w-[300px]"
+      className="m-2 grid h-[170px] w-full grid-cols-[1fr_auto] grid-rows-[auto_1fr] items-center rounded-md border border-accent bg-accent/10 px-4 py-2 transition hover:bg-accent-trans dark:bg-accent/10 dark:hover:bg-accent-trans sm:h-auto sm:w-[300px]"
     >
       <p className="font-bold">{props.preset.name}</p>
 
@@ -105,7 +105,7 @@ export default function PresetItem(props: PresetItemProps) {
                 />
               </div>
               <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 ">
                   <Switch
                     id="LowerChk"
                     onCheckedChange={setHasLower}
@@ -362,7 +362,7 @@ export default function PresetItem(props: PresetItemProps) {
                 />
               </div>
               <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 ">
                   <Switch
                     id="LowerChk"
                     onCheckedChange={setHasLower}
@@ -614,12 +614,12 @@ export default function PresetItem(props: PresetItemProps) {
         </Button>
       </div>
       <div className="h-full text-sm">
-        <p className="flex items-center space-x-2 font-bold">
+        <p className="flex items-center space-x-2  font-bold">
           <Info16Regular />
           <span>{t("info")}</span>
         </p>
         {hasUpper && (
-          <p className="space-x-2 text-[#FF2929]">
+          <p className=" space-x-2 text-[#FF2929]">
             <Checkmark16Regular />
             <span>
               {t("uppercases")} {useUpperRange && `(${minUpper}-${maxUpper})`}

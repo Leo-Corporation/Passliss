@@ -643,12 +643,12 @@ export default function IndexPage() {
               )}
             </div>
             {selectedPreset && (
-              <div className="border-accent bg-accent/20 text-accent m-2 flex items-center space-x-2 rounded-md border p-2 dark:text-white">
+              <div className="m-2 flex items-center space-x-2 rounded-md border border-accent bg-accent/20 p-2 text-accent dark:text-white">
                 <Info16Regular />
                 <p>{t("preset-selected-msg")}</p>
               </div>
             )}
-            <div className="mb-2 -ml-6 flex items-center space-x-2">
+            <div className="-ml-6 mb-2 flex items-center space-x-2">
               <Info20Regular primaryFill="#0088FF" className="text-white" />
 
               <p className="font-bold">{t("details")}</p>
@@ -778,7 +778,7 @@ export default function IndexPage() {
                   <div
                     className={resVis ? "hidden" : "flex flex-col items-center"}
                   >
-                    <p className="icon my-2 mr-2 animate-spin text-6xl font-normal select-none">
+                    <p className="icon my-2 mr-2 animate-spin select-none text-6xl font-normal">
                       {"\uF709"}
                     </p>
                     <p className="text-center font-bold">{t("ai-loading")}</p>
