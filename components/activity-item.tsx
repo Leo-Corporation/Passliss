@@ -84,9 +84,9 @@ export default function ActivityItem(props: ActivityProps) {
   return (
     <div
       onClick={Copy}
-      className="m-3 grid cursor-pointer grid-cols-2 rounded-lg border border-slate-200 p-3 shadow-sm hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default"
+      className="m-3 grid cursor-pointer grid-cols-2 rounded-lg border border-slate-200 p-3 shadow-xs hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-900 sm:cursor-default"
     >
-      <div className="grid grid-cols-[1fr,auto] items-center justify-items-start">
+      <div className="grid grid-cols-[1fr_auto] items-center justify-items-start">
         <p className="font-bold">
           {props.advancedVision ? (
             <>
@@ -179,7 +179,7 @@ export default function ActivityItem(props: ActivityProps) {
                 </DialogContent>
               </Dialog>
             </TooltipTrigger>
-            <TooltipContent className="grid grid-cols-[24px,1fr] items-center">
+            <TooltipContent className="grid grid-cols-[24px_1fr] items-center">
               {getStrengthInfo(props.activity.content).lowercases > 0 ? (
                 <Checkmark16Regular />
               ) : (
@@ -296,7 +296,7 @@ export default function ActivityItem(props: ActivityProps) {
             </div>
             <DrawerFooter>
               <Button onClick={Copy}>{t("copy")}</Button>
-              <div className="grid grid-cols-[1fr,auto] space-x-2">
+              <div className="grid grid-cols-[1fr_auto] space-x-2">
                 <DrawerClose>
                   <Button className="w-full" variant="outline">
                     {t("close")}

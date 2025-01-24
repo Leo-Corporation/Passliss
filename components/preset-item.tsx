@@ -78,7 +78,7 @@ export default function PresetItem(props: PresetItemProps) {
   return (
     <div
       key={props.id}
-      className="m-2 grid h-[170px] w-full grid-cols-[1fr,auto] grid-rows-[auto,1fr] items-center rounded-md border border-accent bg-accent/10 px-4 py-2 transition hover:bg-accent-trans dark:bg-accent/10 dark:hover:bg-accent-trans sm:h-auto sm:w-[300px]"
+      className="m-2 grid h-[170px] w-full grid-cols-[1fr_auto] grid-rows-[auto_1fr] items-center rounded-md border border-accent bg-accent/10 px-4 py-2 transition hover:bg-accent-trans dark:bg-accent/10 dark:hover:bg-accent-trans sm:h-auto sm:w-[300px]"
     >
       <p className="font-bold">{props.preset.name}</p>
 
