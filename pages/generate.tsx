@@ -303,19 +303,19 @@ export default function IndexPage() {
         <Tabs defaultValue="simple">
           <TabsList>
             <TabsTrigger value="simple">
-              <span className="grid grid-cols-[1fr_auto] gap-2">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
                 <CheckmarkCircle20Regular />
                 <span>{t("simple")}</span>
               </span>
             </TabsTrigger>
             <TabsTrigger value="advanced">
-              <span className="grid grid-cols-[1fr_auto] gap-2">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
                 <Settings20Regular />
                 <span>{t("advanced")}</span>
               </span>
             </TabsTrigger>
             <TabsTrigger value="ai">
-              <span className="grid grid-cols-[1fr_auto] gap-2">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
                 <BrainCircuit20Regular />
                 <span>{t("ai")}</span>
               </span>
@@ -348,7 +348,7 @@ export default function IndexPage() {
                 className="m-5 sm:w-1/2"
               />
               <div className="w-full sm:w-1/2">
-                <div className="grid grid-cols-[1fr_1fr_1fr_auto]">
+                <div className="grid grid-cols-[1fr,1fr,1fr,auto]">
                   <DismissCircle20Filled color="red" />
                   <Warning20Filled color="#FF7B00" />
                   <CheckmarkCircle20Filled color="#68EA00" />
@@ -658,7 +658,7 @@ export default function IndexPage() {
                 className="text-center text-xl font-bold"
                 id="PasswordContainer"
               ></p>
-              <div className="grid grid-cols-[1fr_auto] sm:grid-cols-2">
+              <div className="grid grid-cols-[1fr,auto] sm:grid-cols-2">
                 <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
                 <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
                   {strengthInfo ? strengthInfo.uppercases : "0"}
@@ -737,7 +737,7 @@ export default function IndexPage() {
               </div>
             ) : (
               <div>
-                <div className="grid grid-cols-[16px_1fr] items-center space-x-2 rounded-lg border border-blue-600 bg-white p-2 text-blue-600 dark:bg-blue-950 dark:text-white">
+                <div className="grid grid-cols-[16px,1fr] items-center space-x-2 rounded-lg border border-blue-600 bg-white p-2 text-blue-600 dark:bg-blue-950 dark:text-white">
                   <Info16Filled />
                   <p className="text-sm">{t("ai-disclaimer")}</p>
                 </div>
@@ -767,7 +767,7 @@ export default function IndexPage() {
                       onClick={() =>
                         setRandomPrompts(GetRandomPrompts(3, lang))
                       }
-                      className="my-2 mr-2 h-auto cursor-pointer rounded-lg border border-blue-600 bg-white p-2 text-sm text-blue-600 shadow-xs transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
+                      className="my-2 mr-2 h-auto cursor-pointer rounded-lg border border-blue-600 bg-white p-2 text-sm text-blue-600 shadow-sm transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
                     >
                       <ArrowClockwise12Regular />
                     </Button>

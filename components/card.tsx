@@ -11,7 +11,7 @@ export default function DashboardCard(props: CardProps) {
   return (
     <a
       href={props.link}
-      className="group m-3 grid w-[350px] grid-cols-[auto_1fr_24px] items-center space-x-2 rounded-lg border border-accent bg-white p-5 text-black shadow-md shadow-accent-trans transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-trans dark:bg-slate-900 dark:text-white"
+      className="group m-3 grid w-[350px] grid-cols-[auto,1fr,24px] items-center space-x-2 rounded-lg border border-accent bg-white p-5 text-black shadow-md shadow-accent-trans transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-trans dark:bg-slate-900 dark:text-white"
     >
       <p className="icon-f text-4xl text-accent">{props.icon}</p>
       <div>

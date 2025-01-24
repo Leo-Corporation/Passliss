@@ -168,19 +168,19 @@ export default function EncryptionPage() {
         >
           <TabsList>
             <TabsTrigger value="encrypt">
-              <span className="grid grid-cols-[1fr_auto] gap-2">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
                 <Password20Regular />
                 <span>{t("encrypt")}</span>
               </span>
             </TabsTrigger>
             <TabsTrigger value="decrypt">
-              <span className="grid grid-cols-[1fr_auto] gap-2">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
                 <Translate20Regular />
                 <span>{t("decrypt")}</span>
               </span>
             </TabsTrigger>
             <TabsTrigger value="hashing">
-              <span className="grid grid-cols-[1fr_auto] gap-2">
+              <span className="grid grid-cols-[1fr,auto] gap-2">
                 <NumberSymbol20Regular />
                 <span>{t("hashing")}</span>
               </span>
