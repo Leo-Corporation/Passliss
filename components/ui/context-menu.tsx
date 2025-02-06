@@ -30,7 +30,7 @@ const ContextMenuSubTrigger = React.forwardRef<
   <ContextMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm font-medium outline-none select-none focus:bg-slate-100 data-[state=open]:bg-slate-100 dark:focus:bg-slate-700 dark:data-[state=open]:bg-slate-700",
+      "flex cursor-default items-center rounded-xs px-2 py-1.5 text-sm font-medium outline-hidden select-none focus:bg-slate-100 data-[state=open]:bg-slate-100 dark:focus:bg-slate-700 dark:data-[state=open]:bg-slate-700",
       inset && "pl-8",
       className
     )}
@@ -83,7 +83,7 @@ const ContextMenuItem = React.forwardRef<
   <ContextMenuPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm font-medium outline-none select-none focus:bg-slate-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-700",
+      "relative flex cursor-default items-center rounded-xs px-2 py-1.5 text-sm font-medium outline-hidden select-none focus:bg-slate-100 data-disabled:pointer-events-none data-disabled:opacity-50 dark:focus:bg-slate-700",
       inset && "pl-8",
       className
     )}
@@ -99,7 +99,7 @@ const ContextMenuCheckboxItem = React.forwardRef<
   <ContextMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm font-medium outline-none select-none focus:bg-slate-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-700",
+      "relative flex cursor-default items-center rounded-xs py-1.5 pr-2 pl-8 text-sm font-medium outline-hidden select-none focus:bg-slate-100 data-disabled:pointer-events-none data-disabled:opacity-50 dark:focus:bg-slate-700",
       className
     )}
     checked={checked}
@@ -123,7 +123,7 @@ const ContextMenuRadioItem = React.forwardRef<
   <ContextMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm font-medium outline-none select-none focus:bg-slate-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-700",
+      "relative flex cursor-default items-center rounded-xs py-1.5 pr-2 pl-8 text-sm font-medium outline-hidden select-none focus:bg-slate-100 data-disabled:pointer-events-none data-disabled:opacity-50 dark:focus:bg-slate-700",
       className
     )}
     {...props}
