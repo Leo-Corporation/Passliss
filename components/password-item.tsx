@@ -40,7 +40,7 @@ export default function PasswordItem(props: { content: string }) {
   }, [])
 
   return (
-    <div className="my-2 grid h-auto min-w-[150px] grid-cols-[24px,1fr,24px] rounded-md border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800">
+    <div className="my-2 grid h-auto min-w-[150px] grid-cols-[24px_1fr_24px] rounded-md border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800">
       <p className="icon-f" style={{ color: color }}>
         {icon}
       </p>
