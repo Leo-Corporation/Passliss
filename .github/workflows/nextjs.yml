@@ -1,8 +1,6 @@
 name: Build Next.js Site
 on:
   push:
-    branches:
-      - "*"
   pull_request:
     branches:
       - main
