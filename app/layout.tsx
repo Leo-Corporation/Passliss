@@ -141,7 +141,7 @@ export default async function RootLayout({
                       })}
                       href={"/"}
                     >
-                      <div className="from-accent rounded-lg bg-linear-to-br to-[#2153E0] p-1">
+                      <div className="from-primary flex items-center rounded-lg bg-linear-to-br to-[#2153E0] p-1">
                         <Home20Filled className="text-white" />
                       </div>
                       <p className="ml-2 font-bold">{t("home")}</p>
@@ -156,7 +156,7 @@ export default async function RootLayout({
                       })}
                       href={"/activity"}
                     >
-                      <div className="rounded-lg bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-1">
+                      <div className="flex items-center rounded-lg bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-1">
                         <History20Filled className="text-white" />
                       </div>
                       <p className="ml-2 font-bold">{t("activity")}</p>
@@ -171,7 +171,7 @@ export default async function RootLayout({
                       })}
                       href={"/settings"}
                     >
-                      <div className="rounded-lg bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-1">
+                      <div className="flex items-center rounded-lg bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-1">
                         <Settings20Filled className="text-white" />
                       </div>
                       <p className="ml-2 font-bold">{t("settings")}</p>
@@ -271,7 +271,7 @@ export default async function RootLayout({
                     })}
                     href={"/"}
                   >
-                    <div className="from-accent rounded-md bg-linear-to-br to-[#2153E0] p-[5px]">
+                    <div className="from-primary flex items-center rounded-md bg-linear-to-br to-[#2153E0] p-[5px]">
                       <Home20Filled className="text-white" />
                     </div>
                     <p className="ml-2 font-bold">{t("home")}</p>
@@ -285,7 +285,7 @@ export default async function RootLayout({
                     })}
                     href={"/activity"}
                   >
-                    <div className="rounded-md bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-[5px]">
+                    <div className="flex items-center rounded-md bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-[5px]">
                       <History20Filled className="text-white" />
                     </div>
                     <p className="ml-2 font-bold">{t("activity")}</p>
@@ -299,7 +299,7 @@ export default async function RootLayout({
                     })}
                     href={"/settings"}
                   >
-                    <div className="rounded-md bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-[5px]">
+                    <div className="flex items-center rounded-md bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-[5px]">
                       <Settings20Filled className="text-white" />
                     </div>
                     <p className="ml-2 font-bold">{t("settings")}</p>
