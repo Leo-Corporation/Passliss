@@ -3,13 +3,15 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@fluentui/react-icons": "^2.0.292",
+    "@radix-ui/react-dialog": "^1.1.7",
+    "@radix-ui/react-scroll-area": "^1.2.4",
     "@radix-ui/react-slider": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-switch": "^1.1.3",
