@@ -38,7 +38,7 @@ export function getSettings(): Settings {
     openaiKey: "",
   }
   if (typeof window !== "undefined") {
-    let settings = localStorage.getItem("settings")
+    const settings = localStorage.getItem("settings")
     if (settings) {
       return JSON.parse(settings) || defaultSettings
     } else {
