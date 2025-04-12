@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Home20Regular, Lightbulb20Regular } from "@fluentui/react-icons"
 import { useTranslations } from "next-intl"
 
+import { generatePasswordByStrength } from "@/lib/password-gen"
+import { getSettings, Settings } from "@/lib/settings"
 import DashboardCard from "@/components/dash-card"
 import PasswordVisionText from "@/components/password-vision"
 import { Button } from "@/components/ui/button"
@@ -11,8 +13,26 @@ import { Button } from "@/components/ui/button"
 export default function Home() {
   const t = useTranslations()
 
+  let settings: Settings = {
+    passwordLengthOne: 12,
+    passwordLengthTwo: 19,
+    encryptAlgo: "aes",
+    customChars: {
+      lowerCases: "abcdefghijklmnopqrstuvwxyz",
+      upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      numbers: "01234567889",
+      special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+    },
+    hidePassword: false,
+    openaiKey: "",
+  }
+  function loadSettings() {
+    settings = getSettings()
+  }
+  loadSettings()
+
   const [password, setPassword] = useState(
-    "GeneratePasswordByStrength(2, settings.customChars)"
+    generatePasswordByStrength(2, settings.customChars)
   )
 
   const cards = [
@@ -37,7 +57,7 @@ export default function Home() {
   ]
 
   function NewBtnClick() {
-    setPassword("GeneratePasswordByStrength(2, settings.customChars)")
+    setPassword(generatePasswordByStrength(2, settings.customChars))
   }
 
   function CopyBtn() {
