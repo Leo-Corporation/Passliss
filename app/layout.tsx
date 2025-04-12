@@ -244,10 +244,7 @@ export default async function RootLayout({
                 </p>
               </div>
             </header>
-            <section
-              className="grid resize grid-cols-4 xl:grid-cols-6"
-              style={{ minHeight: "inherit" }}
-            >
+            <section className="navbar grid resize grid-cols-4 xl:grid-cols-6">
               <ScrollArea className="md:h-scroll border-r border-slate-200 bg-slate-100 shadow-xs dark:border-slate-700 dark:bg-slate-900">
                 <div className="hidden border-b border-slate-200 p-4 pb-2 md:block dark:border-slate-700">
                   <h1 className="text-3xl font-bold">{t("title")}</h1>

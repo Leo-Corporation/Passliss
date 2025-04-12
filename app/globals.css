@@ -201,6 +201,12 @@
   font-family: "FluentSystemIcons-Filled";
 }
 
+@media (min-width: 48rem) {
+  .navbar {
+    min-height: inherit;
+  }
+}
+
 body {
   font-family: "Hauora", sans-serif;
   min-height: 100vh;
