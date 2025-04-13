@@ -159,5 +159,6 @@
   "system": "System",
   "about-desc": "Information about the application and its development.",
   "repository": "Repository",
-  "view-repository": "View Repository"
+  "view-repository": "View Repository",
+  "lang": "en"
 }
