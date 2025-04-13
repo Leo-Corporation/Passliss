@@ -25,7 +25,7 @@ const buttonVariants = cva(
         navselect:
           "justify-start bg-slate-200 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-800",
         navselect2:
-          "justify-start bg-accent text-white hover:text-white dark:hover:bg-accent",
+          "justify-start bg-primary text-white hover:text-white dark:hover:bg-primary/90",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
