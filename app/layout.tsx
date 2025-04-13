@@ -52,15 +52,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode
-  params: { slug: string }
 }>) {
   const locale = await getLocale()
-
-  const { slug } = params
-  console.log("slug:" + slug)
 
   return (
     <html lang={locale}>

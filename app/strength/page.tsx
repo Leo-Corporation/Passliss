@@ -69,7 +69,7 @@ export default function StrengthPage() {
     setLength(password.length)
 
     // Load the suggestions panel
-    let suggestions = []
+    const suggestions = []
     if (info.lowercases < 2)
       suggestions.push(t("strength-suggestion-lowercase"))
     if (info.uppercases < 2)
