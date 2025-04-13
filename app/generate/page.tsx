@@ -285,7 +285,7 @@ export default function IndexPage() {
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
   const [presets] = useState(getPresets())
   return (
-    <div>
+    <main>
       <div className="mb-2 flex items-center space-x-2">
         <LockClosed20Regular primaryFill="#0088FF" className="text-white" />
 
@@ -779,6 +779,6 @@ export default function IndexPage() {
           )}
         </TabsContent>
       </Tabs>
-    </div>
+    </main>
   )
 }
