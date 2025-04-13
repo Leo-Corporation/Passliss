@@ -163,7 +163,7 @@ export default function Nav(props: {
               <Link
                 className={buttonVariants({
                   size: "nav",
-                  variant: page == "crypt" ? "navselect2" : "nav2",
+                  variant: page == "encryption" ? "navselect2" : "nav2",
                   className: "text-accent mx-2 my-1 w-full",
                 })}
                 href={"/encryption"}
@@ -288,7 +288,7 @@ export default function Nav(props: {
             <Link
               className={buttonVariants({
                 size: "nav",
-                variant: page == "crypt" ? "navselect2" : "nav2",
+                variant: page == "encryption" ? "navselect2" : "nav2",
                 className: "text-accent mx-2 my-1",
               })}
               href={"/encryption"}
