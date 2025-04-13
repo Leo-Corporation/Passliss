@@ -23,20 +23,21 @@ export interface DefaultPasswordConfig {
   special: boolean
 }
 
+export const defaultSettings = {
+  passwordLengthOne: 12,
+  passwordLengthTwo: 19,
+  encryptAlgo: "aes",
+  customChars: {
+    lowerCases: "abcdefghijklmnopqrstuvwxyz",
+    upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    numbers: "01234567889",
+    special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+  },
+  hidePassword: false,
+  openaiKey: "",
+}
+
 export function getSettings(): Settings {
-  const defaultSettings = {
-    passwordLengthOne: 12,
-    passwordLengthTwo: 19,
-    encryptAlgo: "aes",
-    customChars: {
-      lowerCases: "abcdefghijklmnopqrstuvwxyz",
-      upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      numbers: "01234567889",
-      special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
-    },
-    hidePassword: false,
-    openaiKey: "",
-  }
   if (typeof window !== "undefined") {
     const settings = localStorage.getItem("settings")
     if (settings) {
