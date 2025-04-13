@@ -205,8 +205,8 @@ function shuffle(str: string): string {
   return arr.join("")
 }
 
-let Numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-let SpecialCaracters: string[] = [
+const numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+const specialCaracters: string[] = [
   ";",
   ":",
   "!",
@@ -237,7 +237,7 @@ let SpecialCaracters: string[] = [
   "^",
   "¨",
 ]
-let ForbidenCaracters: string[] = [
+const forbidenCaracters: string[] = [
   "123",
   "456",
   "789",
@@ -259,7 +259,7 @@ let ForbidenCaracters: string[] = [
 ]
 
 export function getPasswordStrength(password: string): PasswordStrength {
-  let length = password.length // Length
+  const length = password.length // Length
   let pswrScore = 0 // Score
 
   if (length == 0) {
@@ -279,20 +279,20 @@ export function getPasswordStrength(password: string): PasswordStrength {
     pswrScore += 10 // Add 10
   }
 
-  for (let i = 0; i < Numbers.length; i++) {
+  for (let i = 0; i < numbers.length; i++) {
     for (let j = 0; j < length; j++) {
-      pswrScore += password[j].toString().includes(Numbers[i]) ? 1 : 0
+      pswrScore += password[j].toString().includes(numbers[i]) ? 1 : 0
     }
   }
 
-  for (let i = 0; i < SpecialCaracters.length; i++) {
+  for (let i = 0; i < specialCaracters.length; i++) {
     for (let j = 0; j < length; j++) {
-      pswrScore += password[j].toString().includes(SpecialCaracters[i]) ? 4 : 0
+      pswrScore += password[j].toString().includes(specialCaracters[i]) ? 4 : 0
     }
   }
 
-  for (let i = 0; i < ForbidenCaracters.length; i++) {
-    pswrScore -= password.includes(ForbidenCaracters[i]) ? 10 : 0
+  for (let i = 0; i < forbidenCaracters.length; i++) {
+    pswrScore -= password.includes(forbidenCaracters[i]) ? 10 : 0
   }
 
   if (containsLowerCases(password) && containsUpperCases(password)) {
@@ -300,7 +300,7 @@ export function getPasswordStrength(password: string): PasswordStrength {
   } else {
     pswrScore -= 5 // Sub 5
   }
-  let regex = /(.)\1{3,}/
+  const regex = /(.)\1{3,}/
 
   if (regex.test(password)) {
     pswrScore -= 5 // Sub 5
@@ -323,45 +323,13 @@ export function getStrengthInfo(password: string): StrengthInfo {
   let lC = 0
   let n = 0
   let sC = 0
-
-  let specialChars = [
-    ";",
-    ":",
-    "!",
-    "/",
-    "§",
-    "ù",
-    "*",
-    "$",
-    "%",
-    "µ",
-    "£",
-    ")",
-    "=",
-    "+",
-    "*",
-    "-",
-    "&",
-    "é",
-    "'",
-    "(",
-    "-",
-    "è",
-    "_",
-    "ç",
-    "<",
-    ">",
-    "?",
-    "^",
-    "¨",
-  ]
-  let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
   for (let i = 0; i < password.length; i++) {
     // Check if char is upper case
     if (
       password[i].toUpperCase() === password[i] &&
-      !specialChars.includes(password[i]) &&
+      !specialCaracters.includes(password[i]) &&
       !numbers.includes(password[i])
     ) {
       uC++
@@ -369,7 +337,7 @@ export function getStrengthInfo(password: string): StrengthInfo {
     // Check if char is lower case
     else if (
       password[i].toLowerCase() === password[i] &&
-      !specialChars.includes(password[i]) &&
+      !specialCaracters.includes(password[i]) &&
       !numbers.includes(password[i])
     ) {
       lC++
@@ -379,7 +347,7 @@ export function getStrengthInfo(password: string): StrengthInfo {
       n++
     }
     // Check if char is contained in specialChars
-    else if (specialChars.includes(password[i])) {
+    else if (specialCaracters.includes(password[i])) {
       sC++
     }
   }

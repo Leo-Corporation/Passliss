@@ -15,7 +15,6 @@ import {
   DismissCircle20Filled,
   Info16Filled,
   Info16Regular,
-  Info20Regular,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
@@ -136,7 +135,7 @@ export default function IndexPage() {
   const [randomPrompts, setRandomPrompts] = useState(getRandomPrompts(3, lang))
 
   function newBtnClicked() {
-    let pwr = generatePasswordByStrength(sliderVal, settings.customChars)
+    const pwr = generatePasswordByStrength(sliderVal, settings.customChars)
     setPasswordTxt(pwr)
     addActivity({ date: new Date(), content: pwr })
   }
@@ -173,7 +172,7 @@ export default function IndexPage() {
   function advancedNewBtnClicked() {
     if (!optionsChecked()) return
 
-    let pwr = selectedPreset
+    const pwr = selectedPreset
       ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
       : generatePassword(
           hasLower,
@@ -193,11 +192,11 @@ export default function IndexPage() {
   }
 
   function onSliderChanged(newValue: number[]) {
-    let pwr = generatePasswordByStrength(newValue[0], settings.customChars)
+    const pwr = generatePasswordByStrength(newValue[0], settings.customChars)
     setPasswordTxt(pwr)
     setSliderVal(newValue[0])
 
-    let info = getSliderUiInfo(newValue[0])
+    const info = getSliderUiInfo(newValue[0])
     setStrengthTxt(info.text)
     setStrengthIconTxt(info.icon)
     setStrengthColor(info.color)
@@ -235,8 +234,8 @@ export default function IndexPage() {
   }
 
   function getRandomLength() {
-    let min = settings.passwordLengthOne
-    let max = settings.passwordLengthTwo
+    const min = settings.passwordLengthOne
+    const max = settings.passwordLengthTwo
     setLength(Math.floor(Math.random() * (max - min)) + min)
   }
 
@@ -272,8 +271,8 @@ export default function IndexPage() {
           },
         ],
       })
-      let res = completion.choices[0].message.content
-      let obj = JSON.parse(res ?? "{}")
+      const res = completion.choices[0].message.content
+      const obj = JSON.parse(res ?? "{}")
       if (!Array.isArray(obj.passwords)) {
         setPasswords(["An error has occurred, please try again"])
         setResVis(true)
@@ -284,7 +283,7 @@ export default function IndexPage() {
     } catch {}
   }
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
-  const [presets, setPresets] = useState(getPresets())
+  const [presets] = useState(getPresets())
   return (
     <div>
       <div className="mb-2 flex items-center space-x-2">
@@ -759,7 +758,7 @@ export default function IndexPage() {
                     <ArrowClockwise12Regular className="m-0" />
                   </Button>
                   {randomPrompts.map((prp) => (
-                    <PromptItem prompt={prp} />
+                    <PromptItem key={prp} prompt={prp} />
                   ))}
                 </div>
                 <div
@@ -772,7 +771,7 @@ export default function IndexPage() {
                 </div>
                 <div id="result-items" className={resVis ? "w-full" : "hidden"}>
                   {passwords.map((password) => (
-                    <PasswordItem content={password} />
+                    <PasswordItem key={password} content={password} />
                   ))}
                 </div>
               </div>

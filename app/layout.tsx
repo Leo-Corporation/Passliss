@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 
 import { NextIntlClientProvider } from "next-intl"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale } from "next-intl/server"
 
 import Nav from "@/components/nav"
 
@@ -58,7 +58,6 @@ export default async function RootLayout({
   params: { slug: string }
 }>) {
   const locale = await getLocale()
-  const t = await getTranslations()
 
   const { slug } = params
   console.log("slug:" + slug)

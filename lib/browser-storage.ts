@@ -11,7 +11,7 @@ export interface Activities {
 
 export function getActivity() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("activity") ?? "{}") || { items: [] }
+    return JSON.parse(localStorage.getItem("activity") ?? "[]") || { items: [] }
   }
   return { items: [] }
 }
@@ -32,7 +32,7 @@ export function addActivity(activity: Activity) {
 }
 
 export function sortActivities(activities: Activities): Activity[][] {
-  let sorted: Activity[][] = [[], [], [], []]
+  const sorted: Activity[][] = [[], [], [], []]
   activities.items.forEach((element) => {
     if (new Date(element.date).toDateString() == new Date().toDateString()) {
       sorted[0].push(element)
@@ -68,7 +68,7 @@ export function savePresets(presets: PasswordPreset[]) {
 
 export function addPreset(preset: PasswordPreset) {
   if (typeof window !== "undefined") {
-    let presets = getPresets()
+    const presets = getPresets()
     presets.push(preset)
     savePresets(presets)
   }

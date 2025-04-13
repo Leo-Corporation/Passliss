@@ -1,5 +1,5 @@
 export function containsLowerCases(s: string): boolean {
-  let lowerCase = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(
+  const lowerCase = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(
     ","
   ) // Lower case
 
@@ -16,7 +16,7 @@ export function containsLowerCases(s: string): boolean {
 
 // Checks if a string contains upper cases
 export function containsUpperCases(s: string): boolean {
-  let upperCase = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(
+  const upperCase = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(
     ","
   ) // Upper case
 
