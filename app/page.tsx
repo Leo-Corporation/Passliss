@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Home20Regular, Lightbulb20Regular } from "@fluentui/react-icons"
 import { useTranslations } from "next-intl"
 
-import { generatePasswordByStrength } from "@/lib/password-gen"
+import { generatePasswordByStrength } from "@/lib/password"
 import { getSettings, Settings } from "@/lib/settings"
 import DashboardCard from "@/components/dash-card"
 import PasswordVisionText from "@/components/password-vision"
