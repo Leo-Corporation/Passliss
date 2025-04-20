@@ -14,6 +14,7 @@ import {
 } from "@fluentui/react-icons"
 import CryptoJS from "crypto-js"
 import { useTranslations } from "next-intl"
+import { toast } from "sonner"
 
 import { generatePasswordByStrength } from "@/lib/password"
 import { defaultSettings, getSettings, Settings } from "@/lib/settings"
@@ -82,62 +83,96 @@ export default function EncryptionPage() {
   const [showCryptOptions, setShowCryptOptions] = useState(true)
 
   function encrypt() {
-    switch (algo) {
-      case "aes":
-        setEncryptedText(
-          CryptoJS.AES.encrypt(textToEncrypt, encryptionKey).toString()
-        )
-        break
-      case "3des":
-        setEncryptedText(
-          CryptoJS.TripleDES.encrypt(textToEncrypt, encryptionKey).toString()
-        )
-        break
-      case "rabbit":
-        setEncryptedText(
-          CryptoJS.Rabbit.encrypt(textToEncrypt, encryptionKey).toString()
-        )
-        break
-      case "rc4":
-        setEncryptedText(
-          CryptoJS.RC4Drop.encrypt(textToEncrypt, encryptionKey).toString()
-        )
-        break
-      default:
-        break
+    if (!textToEncrypt || !encryptionKey) {
+      toast(t("missing-information"), {
+        description: t("missing-information-desc"),
+      })
+      return
+    }
+    try {
+      switch (algo) {
+        case "aes":
+          setEncryptedText(
+            CryptoJS.AES.encrypt(textToEncrypt, encryptionKey).toString()
+          )
+          break
+        case "3des":
+          setEncryptedText(
+            CryptoJS.TripleDES.encrypt(textToEncrypt, encryptionKey).toString()
+          )
+          break
+        case "rabbit":
+          setEncryptedText(
+            CryptoJS.Rabbit.encrypt(textToEncrypt, encryptionKey).toString()
+          )
+          break
+        case "rc4":
+          setEncryptedText(
+            CryptoJS.RC4Drop.encrypt(textToEncrypt, encryptionKey).toString()
+          )
+          break
+        default:
+          break
+      }
+      toast(t("text-encrypted-title"), {
+        description: t("text-encrypted-desc"),
+      })
+    } catch (error) {
+      toast(t("text-encrypted-error"), {
+        description: t("text-encrypted-error"),
+      })
     }
   }
 
   function decrypt() {
-    switch (algo) {
-      case "aes":
-        setDecryptedText(
-          hex2a(CryptoJS.AES.decrypt(textToDecrypt, decryptionKey).toString())
-        )
-        break
-      case "3des":
-        setDecryptedText(
-          hex2a(
+    if (!textToDecrypt || !decryptionKey) {
+      toast(t("missing-information"), {
+        description: t("missing-information-desc"),
+      })
+      return
+    }
+    try {
+      // Decrypt the text using the selected algorithm and key
+      let decryptedText = ""
+      switch (algo) {
+        case "aes":
+          decryptedText = hex2a(
+            CryptoJS.AES.decrypt(textToDecrypt, decryptionKey).toString()
+          )
+          break
+        case "3des":
+          decryptedText = hex2a(
             CryptoJS.TripleDES.decrypt(textToDecrypt, decryptionKey).toString()
           )
-        )
-        break
-      case "rabbit":
-        setDecryptedText(
-          hex2a(
+          break
+        case "3des":
+          decryptedText = hex2a(
+            CryptoJS.TripleDES.decrypt(textToDecrypt, decryptionKey).toString()
+          )
+
+          break
+        case "rabbit":
+          decryptedText = hex2a(
             CryptoJS.Rabbit.decrypt(textToDecrypt, decryptionKey).toString()
           )
-        )
-        break
-      case "rc4":
-        setDecryptedText(
-          hex2a(
+          break
+        case "rc4":
+          decryptedText = hex2a(
             CryptoJS.RC4Drop.decrypt(textToDecrypt, decryptionKey).toString()
           )
-        )
-        break
-      default:
-        break
+          break
+        default:
+          break
+      }
+      setDecryptedText(decryptedText)
+      if (decryptedText == "") {
+        throw new Error("")
+      }
+      toast(t("text-decrypted-title"), {
+        description: t("text-decrypted-desc"),
+      })
+    } catch (error) {
+      toast(t("text-decrypted-error"))
     }
   }
 
@@ -150,6 +185,12 @@ export default function EncryptionPage() {
   }
 
   function hashClick() {
+    if (!textToHash) {
+      toast(t("missing-information"), {
+        description: t("missing-information-desc"),
+      })
+      return
+    }
     switch (hashAlgo) {
       case "md5":
         setHashedText(CryptoJS.MD5(textToHash).toString())
@@ -176,6 +217,7 @@ export default function EncryptionPage() {
     navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+    toast(t("copied"))
   }
 
   return (
