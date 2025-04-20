@@ -174,9 +174,7 @@ export default function ActivityPage() {
         <p className="ml-2 font-bold">{t("activity")}</p>
         <Popover>
           <PopoverTrigger>
-            <Button variant="outline" className="h-auto px-2 py-1">
-              {t("filter")}
-            </Button>
+            <Button className="h-auto px-2 py-1">{t("filter")}</Button>
           </PopoverTrigger>
           <PopoverContent className="flex items-center space-x-2">
             <p>{t("filter")}</p>

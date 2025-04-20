@@ -351,33 +351,75 @@ export default function IndexPage() {
           </div>
         </TabsContent>
         <TabsContent className="border-none" value="advanced">
-          <Dialog>
-            <DialogTrigger className="hidden sm:block">
-              <Button variant="link" className="space-x-2">
-                <Add16Regular />
-                <span>{t("use-preset")}</span>
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>{t("select-preset")}</DialogTitle>
-              </DialogHeader>
-              {presets && presets.length === 0 ? (
-                <div className="flex w-full flex-col items-center justify-center text-center">
-                  <p className="icon text-7xl">{"\uFD81"}</p>
-                  <h4 className="text-xl font-bold">{t("no-activity")}</h4>
-                  <p>{t("no-presets-desc")}</p>
-                  <Link href="/presets">
-                    <Button className="m-2 h-auto" variant="outline">
-                      {t("create-preset")}
-                    </Button>
-                  </Link>
-                </div>
-              ) : (
-                <ScrollArea className="h-[350px]">
-                  <div className="w-full">
-                    {presets &&
-                      presets.map((el, i) => (
+          <div className="flex">
+            <Dialog>
+              <DialogTrigger className="hidden sm:block">
+                <Button variant="link" className="space-x-2">
+                  <Add16Regular />
+                  <span>{t("use-preset")}</span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>{t("select-preset")}</DialogTitle>
+                </DialogHeader>
+                {presets && presets.length === 0 ? (
+                  <div className="flex w-full flex-col items-center justify-center text-center">
+                    <p className="icon text-7xl">{"\uFD81"}</p>
+                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+                    <p>{t("no-presets-desc")}</p>
+                    <Link href="/presets">
+                      <Button className="m-2 h-auto" variant="outline">
+                        {t("create-preset")}
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <ScrollArea className="h-[350px]">
+                    <div className="w-full">
+                      {presets &&
+                        presets.map((el, i) => (
+                          <Close key={i} className="w-full">
+                            <Button
+                              onClick={() => setSelectedPreset(el)}
+                              className="w-full font-semibold"
+                              variant="ghost"
+                            >
+                              {el.name}
+                            </Button>
+                          </Close>
+                        ))}
+                    </div>
+                  </ScrollArea>
+                )}
+              </DialogContent>
+            </Dialog>
+            <Drawer>
+              <DrawerTrigger className="block sm:hidden">
+                <Button variant="link" className="space-x-2">
+                  <Add16Regular />
+                  <span>{t("use-preset")}</span>
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>{t("select-preset")}</DrawerTitle>
+                </DrawerHeader>
+                {presets && presets.length === 0 ? (
+                  <div className="my-10 flex w-full flex-col items-center justify-center text-center">
+                    <p className="icon text-7xl">{"\uFD81"}</p>
+                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
+                    <p>{t("no-presets-desc")}</p>
+                    <Link href="/presets">
+                      <Button className="m-2 h-auto" variant="outline">
+                        {t("create-preset")}
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <ScrollArea className="h-[350px]">
+                    <div className="w-full">
+                      {presets.map((el, i) => (
                         <Close key={i} className="w-full">
                           <Button
                             onClick={() => setSelectedPreset(el)}
@@ -388,62 +430,22 @@ export default function IndexPage() {
                           </Button>
                         </Close>
                       ))}
-                  </div>
-                </ScrollArea>
-              )}
-            </DialogContent>
-          </Dialog>
-          <Drawer>
-            <DrawerTrigger className="block sm:hidden">
-              <Button variant="link" className="space-x-2">
-                <Add16Regular />
-                <span>{t("use-preset")}</span>
+                    </div>
+                  </ScrollArea>
+                )}
+              </DrawerContent>
+            </Drawer>
+            {selectedPreset && (
+              <Button
+                onClick={() => setSelectedPreset(null)}
+                variant="link"
+                className="space-x-2 decoration-red-500"
+              >
+                <Dismiss16Regular color="#ef4444" />
+                <span className="text-red-500">{t("remove-preset")}</span>
               </Button>
-            </DrawerTrigger>
-            <DrawerContent>
-              <DrawerHeader>
-                <DrawerTitle>{t("select-preset")}</DrawerTitle>
-              </DrawerHeader>
-              {presets && presets.length === 0 ? (
-                <div className="my-10 flex w-full flex-col items-center justify-center text-center">
-                  <p className="icon text-7xl">{"\uFD81"}</p>
-                  <h4 className="text-xl font-bold">{t("no-activity")}</h4>
-                  <p>{t("no-presets-desc")}</p>
-                  <Link href="/presets">
-                    <Button className="m-2 h-auto" variant="outline">
-                      {t("create-preset")}
-                    </Button>
-                  </Link>
-                </div>
-              ) : (
-                <ScrollArea className="h-[350px]">
-                  <div className="w-full">
-                    {presets.map((el, i) => (
-                      <Close key={i} className="w-full">
-                        <Button
-                          onClick={() => setSelectedPreset(el)}
-                          className="w-full font-semibold"
-                          variant="ghost"
-                        >
-                          {el.name}
-                        </Button>
-                      </Close>
-                    ))}
-                  </div>
-                </ScrollArea>
-              )}
-            </DrawerContent>
-          </Drawer>
-          {selectedPreset && (
-            <Button
-              onClick={() => setSelectedPreset(null)}
-              variant="link"
-              className="space-x-2 decoration-red-500"
-            >
-              <Dismiss16Regular color="#ef4444" />
-              <span className="text-red-500">{t("remove-preset")}</span>
-            </Button>
-          )}
+            )}
+          </div>
           <div className="flex w-full flex-col items-center">
             <div className="max-w-full overflow-auto">
               <PasswordVisionText content={advancedPasswordTxt} />
@@ -629,7 +631,7 @@ export default function IndexPage() {
             )}
           </div>
           {selectedPreset && (
-            <div className="border-accent bg-accent/20 text-accent m-2 flex items-center space-x-2 rounded-md border p-2 dark:text-white">
+            <div className="border-primary bg-primary/20 text-primary my-2 flex items-center space-x-2 rounded-md border p-2">
               <Info16Regular />
               <p>{t("preset-selected-msg")}</p>
             </div>
@@ -727,7 +729,7 @@ export default function IndexPage() {
             <div>
               <div className="grid grid-cols-[16px_1fr] items-center space-x-2 rounded-lg border border-blue-600 bg-white p-2 text-blue-600 dark:bg-blue-950 dark:text-white">
                 <Info16Filled />
-                <p className="text-sm">{t("ai-disclaimer")}</p>
+                <p className="ml-2 text-sm">{t("ai-disclaimer")}</p>
               </div>
               <div className="flex w-full flex-col items-center">
                 <div className="m-5 flex w-full space-x-2">
