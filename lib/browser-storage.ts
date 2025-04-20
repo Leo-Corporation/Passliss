@@ -11,7 +11,12 @@ export interface Activities {
 
 export function getActivity() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("activity") ?? "[]") || { items: [] }
+    const activity = localStorage.getItem("activity")
+    if (activity) {
+      return JSON.parse(activity) || { items: [] }
+    }
+    localStorage.setItem("activity", JSON.stringify({ items: [] }))
+    return { items: [] }
   }
   return { items: [] }
 }
