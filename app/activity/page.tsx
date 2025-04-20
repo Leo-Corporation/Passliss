@@ -31,7 +31,13 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import {
   Popover,
   PopoverContent,
@@ -127,46 +133,34 @@ export default function ActivityPage() {
       </div>
       <div className="flex flex-wrap gap-2 py-2">
         <Card className="min-w-full sm:min-w-64">
-          <CardHeader className="flex flex-row items-center pb-2">
-            <CardTitle className="text-sm font-medium">{t("total")}</CardTitle>
+          <CardHeader>
+            <CardDescription>{t("total")}</CardDescription>
+            <CardTitle>{total}</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{total}</p>
-          </CardContent>
         </Card>
         <Card className="min-w-full sm:min-w-64">
-          <CardHeader className="flex flex-row items-center pb-2">
-            <CardTitle className="text-sm font-medium">{t("low")}</CardTitle>
+          <CardHeader>
+            <CardDescription>{t("low")}</CardDescription>
+            <CardTitle>{low}</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{low}</p>
-          </CardContent>
         </Card>
         <Card className="min-w-full sm:min-w-64">
-          <CardHeader className="flex flex-row items-center pb-2">
-            <CardTitle className="text-sm font-medium">{t("medium")}</CardTitle>
+          <CardHeader>
+            <CardDescription>{t("medium")}</CardDescription>
+            <CardTitle>{medium}</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{medium}</p>
-          </CardContent>
         </Card>
         <Card className="min-w-full sm:min-w-64">
-          <CardHeader className="flex flex-row items-center pb-2">
-            <CardTitle className="text-sm font-medium">{t("good")}</CardTitle>
+          <CardHeader>
+            <CardDescription>{t("good")}</CardDescription>
+            <CardTitle>{good}</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{good}</p>
-          </CardContent>
         </Card>
         <Card className="min-w-full sm:min-w-64">
-          <CardHeader className="flex flex-row items-center pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t("excellent")}
-            </CardTitle>
+          <CardHeader>
+            <CardDescription>{t("excellent")}</CardDescription>
+            <CardTitle>{excellent}</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{excellent}</p>
-          </CardContent>
         </Card>
       </div>
       <div className="mb-2 flex items-center space-x-2">
