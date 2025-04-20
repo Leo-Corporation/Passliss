@@ -70,10 +70,12 @@ export default function EncryptionPage() {
   const [encryptionKey, setEncryptionKey] = useState("")
   const [encryptedText, setEncryptedText] = useState("")
 
-  const [d_text, setD_Text] = useState("")
-  const [d_key, setD_Key] = useState("")
+  // Decrypt state
+  const [textToDecrypt, setTextToDecrypt] = useState("")
+  const [decryptionKey, setDecryptionKey] = useState("")
+  const [decryptedText, setDecryptedText] = useState("")
+
   const [h_text, setH_Text] = useState("")
-  const [d_encrypted, setD_Encrypted] = useState("")
   const [hashedText, setHashedText] = useState("")
   const [showCryptOptions, setShowCryptOptions] = useState(true)
   const [hashAlgo, setHashAlgo] = useState(settings.hashAlgo)
@@ -109,19 +111,29 @@ export default function EncryptionPage() {
   function decrypt() {
     switch (algo) {
       case "aes":
-        setD_Encrypted(hex2a(CryptoJS.AES.decrypt(d_text, d_key).toString()))
+        setDecryptedText(
+          hex2a(CryptoJS.AES.decrypt(textToDecrypt, decryptionKey).toString())
+        )
         break
       case "3des":
-        setD_Encrypted(
-          hex2a(CryptoJS.TripleDES.decrypt(d_text, d_key).toString())
+        setDecryptedText(
+          hex2a(
+            CryptoJS.TripleDES.decrypt(textToDecrypt, decryptionKey).toString()
+          )
         )
         break
       case "rabbit":
-        setD_Encrypted(hex2a(CryptoJS.Rabbit.decrypt(d_text, d_key).toString()))
+        setDecryptedText(
+          hex2a(
+            CryptoJS.Rabbit.decrypt(textToDecrypt, decryptionKey).toString()
+          )
+        )
         break
       case "rc4":
-        setD_Encrypted(
-          hex2a(CryptoJS.RC4Drop.decrypt(d_text, d_key).toString())
+        setDecryptedText(
+          hex2a(
+            CryptoJS.RC4Drop.decrypt(textToDecrypt, decryptionKey).toString()
+          )
         )
         break
       default:
@@ -135,17 +147,6 @@ export default function EncryptionPage() {
       str += String.fromCharCode(parseInt(hex.substr(i, 2), 16))
     }
     return str
-  }
-
-  function genKey() {
-    setEncryptionKey(
-      generatePasswordByStrength(2, {
-        lowerCases: "abcdefghijklmnopqrstuvwxyz",
-        upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        numbers: "01234567889",
-        special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
-      })
-    )
   }
 
   function hashClick() {
@@ -291,7 +292,16 @@ export default function EncryptionPage() {
                           variant="outline"
                           className="h-auto px-2 py-1"
                           id="GenKeyBtn"
-                          onClick={genKey}
+                          onClick={() =>
+                            setEncryptionKey(
+                              generatePasswordByStrength(2, {
+                                lowerCases: "abcdefghijklmnopqrstuvwxyz",
+                                upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                                numbers: "01234567889",
+                                special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+                              })
+                            )
+                          }
                         >
                           <Key20Regular />
                         </Button>
@@ -339,58 +349,106 @@ export default function EncryptionPage() {
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent className="border-none" value="decrypt">
-          <div className="w-full space-y-2">
-            <div className="flex items-center space-x-3">
-              <label htmlFor="DecryptKeyInput">{t("key")}</label>
-              <Input
-                type={keyVis ? "text" : "password"}
-                className="h-auto px-2 py-1"
-                id="DecryptKeyInput"
-                defaultValue={d_key}
-                onChange={() =>
-                  setD_Key(
-                    (
-                      document.getElementById(
-                        "DecryptKeyInput"
-                      ) as HTMLInputElement
-                    ).value
-                  )
-                }
-              />
-              <Button
-                className="h-auto px-2 py-1"
-                variant="outline"
-                onClick={() => setKeyVis(!keyVis)}
-              >
-                {keyVis ? <EyeOff20Regular /> : <Eye20Regular />}
-              </Button>
-              <Button
-                className="h-auto px-2 py-1"
-                id="DecryptBtn"
-                onClick={decrypt}
-              >
+        <TabsContent
+          className="justify-center border-none data-[state=active]:flex"
+          value="decrypt"
+        >
+          <Card className="w-full max-w-250">
+            <CardHeader>
+              <CardTitle>{t("decrypt")}</CardTitle>
+              <CardDescription>{t("decrypt-desc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="space-y-2">
+                <Label htmlFor="text-to-decrypt">{t("encrypted-text")}</Label>
+                <Textarea
+                  id="text-to-decrypt"
+                  placeholder={t("encrypt-text-placeholder")}
+                  value={textToDecrypt}
+                  onChange={(e) => setTextToDecrypt(e.target.value)}
+                  className="min-h-[100px]"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="decryption-key">{t("key")}</Label>
+                <div className="flex space-x-2">
+                  <Input
+                    id="decryption-key"
+                    type={keyVis ? "text" : "password"}
+                    placeholder={t("key-placeholder")}
+                    value={decryptionKey}
+                    onChange={(e) => setDecryptionKey(e.target.value)}
+                  />
+                  <Button
+                    className="h-auto px-2 py-1"
+                    variant="outline"
+                    onClick={() => setKeyVis(!keyVis)}
+                  >
+                    {keyVis ? <EyeOff20Regular /> : <Eye20Regular />}
+                  </Button>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="h-auto px-2 py-1"
+                          id="GenKeyBtn"
+                          onClick={() =>
+                            setDecryptionKey(
+                              generatePasswordByStrength(2, {
+                                lowerCases: "abcdefghijklmnopqrstuvwxyz",
+                                upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                                numbers: "01234567889",
+                                special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
+                              })
+                            )
+                          }
+                        >
+                          <Key20Regular />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{t("generate-key")}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+              </div>
+              {decryptedText && (
+                <div className="mt-4 space-y-2">
+                  <Label htmlFor="decrypted-result">
+                    {t("decrypted-text")}
+                  </Label>
+                  <div className="relative">
+                    <Textarea
+                      id="decrypted-result"
+                      value={decryptedText}
+                      readOnly
+                      className="min-h-[100px] pr-10"
+                    />
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2"
+                      onClick={() => copyToClipboard(decryptedText)}
+                    >
+                      {copied ? (
+                        <Checkmark20Regular className="h-4 w-4" />
+                      ) : (
+                        <Copy20Regular className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">{t("copy-to-clipboard")}</span>
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+            <CardFooter>
+              <Button onClick={decrypt} className="w-full">
                 {t("decrypt")}
               </Button>
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="ToDecrypt">{t("text-to-decrypt")}</label>
-              <Textarea
-                id="ToDecrypt"
-                defaultValue={d_text}
-                onChange={() =>
-                  setD_Text(
-                    (document.getElementById("ToDecrypt") as HTMLInputElement)
-                      .value
-                  )
-                }
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="Decrypted">{t("decrypted-text")}</label>
-              <Textarea readOnly={true} id="Decrypted" value={d_encrypted} />
-            </div>
-          </div>
+            </CardFooter>
+          </Card>
         </TabsContent>
         <TabsContent value="hashing" className="border-none">
           <div className="w-full space-y-2">
@@ -399,7 +457,7 @@ export default function EncryptionPage() {
               <div className="flex items-center">
                 <Textarea
                   id="ToHash"
-                  defaultValue={d_text}
+                  defaultValue={h_text}
                   onChange={() =>
                     setH_Text(
                       (document.getElementById("ToHash") as HTMLInputElement)
