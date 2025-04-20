@@ -169,5 +169,7 @@
   "encrypt-text-placeholder": "Enter text to encrypt...",
   "decrypt-text-placeholder": "Enter text to decrypt...",
   "hash-text-placeholder": "Enter text to hash...",
-  "key-placeholder": "Enter your encryption key..."
+  "key-placeholder": "Enter your encryption key...",
+  "encryption-algo": "Encryption algorithm",
+  "decryption-algo": "Decryption alogrithm"
 }

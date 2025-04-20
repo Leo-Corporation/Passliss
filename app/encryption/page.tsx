@@ -57,7 +57,7 @@ export default function EncryptionPage() {
     settings.hashAlgo = "md5"
   }
 
-  function SelectChanged(val: string) {
+  function onSelectChanged(val: string) {
     setAlgo(val)
   }
 
@@ -202,28 +202,6 @@ export default function EncryptionPage() {
             <NumberSymbol20Regular />
             <p className="font-semibold">{t("hashing")}</p>
           </TabsTrigger>
-          <Select
-            defaultValue={settings.encryptAlgo}
-            onValueChange={SelectChanged}
-          >
-            <SelectTrigger
-              className={
-                !showCryptOptions
-                  ? "hidden"
-                  : "text-foreground mx-1 h-auto px-2 py-1"
-              }
-            >
-              <SelectValue placeholder={t("algorithm")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem defaultChecked={true} value="aes">
-                AES
-              </SelectItem>
-              <SelectItem value="3des">3DES</SelectItem>
-              <SelectItem value="rabbit">Rabbit</SelectItem>
-              <SelectItem value="rc4">RC4Drop</SelectItem>
-            </SelectContent>
-          </Select>
         </TabsList>
         <TabsContent
           className="justify-center border-none data-[state=active]:flex"
@@ -289,6 +267,25 @@ export default function EncryptionPage() {
                     </Tooltip>
                   </TooltipProvider>
                 </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="hash-algorithm">{t("encryption-algo")}</Label>
+                <Select
+                  defaultValue={settings.encryptAlgo}
+                  onValueChange={onSelectChanged}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("algorithm")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem defaultChecked={true} value="aes">
+                      AES
+                    </SelectItem>
+                    <SelectItem value="3des">3DES</SelectItem>
+                    <SelectItem value="rabbit">Rabbit</SelectItem>
+                    <SelectItem value="rc4">RC4Drop</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               {encryptedText && (
                 <div className="space-y-2">
@@ -390,6 +387,25 @@ export default function EncryptionPage() {
                     </Tooltip>
                   </TooltipProvider>
                 </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="hash-algorithm">{t("decryption-algo")}</Label>
+                <Select
+                  defaultValue={settings.encryptAlgo}
+                  onValueChange={onSelectChanged}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("algorithm")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem defaultChecked={true} value="aes">
+                      AES
+                    </SelectItem>
+                    <SelectItem value="3des">3DES</SelectItem>
+                    <SelectItem value="rabbit">Rabbit</SelectItem>
+                    <SelectItem value="rc4">RC4Drop</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               {decryptedText && (
                 <div className="mt-4 space-y-2">

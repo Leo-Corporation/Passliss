@@ -169,5 +169,7 @@
   "encrypt-text-placeholder": "Entrez le texte à chiffrer...",
   "decrypt-text-placeholder": "Entrez le texte à déchiffrer...",
   "hash-text-placeholder": "Entrez le texte à hacher...",
-  "key-placeholder": "Entrez votre clé de chiffrement..."
+  "key-placeholder": "Entrez votre clé de chiffrement...",
+  "encryption-algo": "Algorithme de chiffrement",
+  "decryption-algo": "Algorithme de déchiffrement"
 }
