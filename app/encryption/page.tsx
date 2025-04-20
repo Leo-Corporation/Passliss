@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import {
-  Check20Regular,
   Checkmark20Regular,
   Copy20Regular,
   Eye20Regular,
@@ -80,7 +79,6 @@ export default function EncryptionPage() {
   // Hash state
   const [textToHash, setTextToHash] = useState("")
   const [hashedText, setHashedText] = useState("")
-  const [showCryptOptions, setShowCryptOptions] = useState(true)
 
   function encrypt() {
     if (!textToEncrypt || !encryptionKey) {
@@ -117,7 +115,7 @@ export default function EncryptionPage() {
       toast(t("text-encrypted-title"), {
         description: t("text-encrypted-desc"),
       })
-    } catch (error) {
+    } catch {
       toast(t("text-encrypted-error"), {
         description: t("text-encrypted-error"),
       })
@@ -171,7 +169,7 @@ export default function EncryptionPage() {
       toast(t("text-decrypted-title"), {
         description: t("text-decrypted-desc"),
       })
-    } catch (error) {
+    } catch {
       toast(t("text-decrypted-error"))
     }
   }
@@ -227,10 +225,7 @@ export default function EncryptionPage() {
 
         <p className="ml-2 font-bold">{t("encryption")}</p>
       </div>
-      <Tabs
-        onValueChange={(v) => setShowCryptOptions(v != "hashing")}
-        defaultValue="encrypt"
-      >
+      <Tabs defaultValue="encrypt">
         <TabsList>
           <TabsTrigger value="encrypt">
             <Password20Regular />
