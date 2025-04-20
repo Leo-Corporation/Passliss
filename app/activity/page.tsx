@@ -72,13 +72,18 @@ export default function ActivityPage() {
   let items: Activity[][] = [[]]
   let activity: Activities = getActivity()
   const [total, setTotal] = useState(activity.items.length)
-  const [low, setLow] = useState(getAmountByStrength(PasswordStrength.Low))
-  const [medium, setMedium] = useState(
-    getAmountByStrength(PasswordStrength.Medium)
+  const [veryWeak, setVeryWeak] = useState(
+    getAmountByStrength(PasswordStrength.VeryWeak)
   )
-  const [good, setGood] = useState(getAmountByStrength(PasswordStrength.Good))
-  const [excellent, setExcellent] = useState(
-    getAmountByStrength(PasswordStrength.VeryGood)
+  const [weak, setWeak] = useState(getAmountByStrength(PasswordStrength.Weak))
+  const [moderate, setModerate] = useState(
+    getAmountByStrength(PasswordStrength.Moderate)
+  )
+  const [strong, setStrong] = useState(
+    getAmountByStrength(PasswordStrength.Strong)
+  )
+  const [veryStrong, setVeryStrong] = useState(
+    getAmountByStrength(PasswordStrength.VeryStrong)
   )
 
   function getAmountByStrength(strength: PasswordStrength) {
@@ -113,10 +118,11 @@ export default function ActivityPage() {
     )
     activity = getActivity()
     setTotal(total - 1)
-    setLow(getAmountByStrength(PasswordStrength.Low))
-    setMedium(getAmountByStrength(PasswordStrength.Medium))
-    setGood(getAmountByStrength(PasswordStrength.Good))
-    setExcellent(getAmountByStrength(PasswordStrength.VeryGood))
+    setVeryWeak(getAmountByStrength(PasswordStrength.VeryWeak))
+    setWeak(getAmountByStrength(PasswordStrength.Weak))
+    setModerate(getAmountByStrength(PasswordStrength.Moderate))
+    setStrong(getAmountByStrength(PasswordStrength.Strong))
+    setVeryStrong(getAmountByStrength(PasswordStrength.VeryStrong))
   }
 
   function RemoveActivity() {
@@ -140,26 +146,32 @@ export default function ActivityPage() {
         </Card>
         <Card className="min-w-full sm:min-w-64">
           <CardHeader>
-            <CardDescription>{t("low")}</CardDescription>
-            <CardTitle>{low}</CardTitle>
+            <CardDescription>{t("very-weak")}</CardDescription>
+            <CardTitle>{veryWeak}</CardTitle>
           </CardHeader>
         </Card>
         <Card className="min-w-full sm:min-w-64">
           <CardHeader>
-            <CardDescription>{t("medium")}</CardDescription>
-            <CardTitle>{medium}</CardTitle>
+            <CardDescription>{t("weak")}</CardDescription>
+            <CardTitle>{weak}</CardTitle>
           </CardHeader>
         </Card>
         <Card className="min-w-full sm:min-w-64">
           <CardHeader>
-            <CardDescription>{t("good")}</CardDescription>
-            <CardTitle>{good}</CardTitle>
+            <CardDescription>{t("moderate")}</CardDescription>
+            <CardTitle>{moderate}</CardTitle>
           </CardHeader>
         </Card>
         <Card className="min-w-full sm:min-w-64">
           <CardHeader>
-            <CardDescription>{t("excellent")}</CardDescription>
-            <CardTitle>{excellent}</CardTitle>
+            <CardDescription>{t("strong")}</CardDescription>
+            <CardTitle>{strong}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="min-w-full sm:min-w-64">
+          <CardHeader>
+            <CardDescription>{t("very-strong")}</CardDescription>
+            <CardTitle>{veryStrong}</CardTitle>
           </CardHeader>
         </Card>
       </div>
@@ -175,15 +187,17 @@ export default function ActivityPage() {
             <Select onValueChange={setFilter}>
               <SelectTrigger defaultValue="all" className="h-auto w-[180px]">
                 <SelectValue
-                  placeholder={t(filter === "verygood" ? "excellent" : filter)}
+                  placeholder={t(
+                    filter === "verygood" ? "very-strong" : filter
+                  )}
                 />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{t("all")}</SelectItem>
-                <SelectItem value="low">{t("low")}</SelectItem>
-                <SelectItem value="medium">{t("medium")}</SelectItem>
-                <SelectItem value="good">{t("good")}</SelectItem>
-                <SelectItem value="verygood">{t("excellent")}</SelectItem>
+                <SelectItem value="weak">{t("weak")}</SelectItem>
+                <SelectItem value="moderate">{t("moderate")}</SelectItem>
+                <SelectItem value="strong">{t("strong")}</SelectItem>
+                <SelectItem value="verygood">{t("very-strong")}</SelectItem>
               </SelectContent>
             </Select>
           </PopoverContent>

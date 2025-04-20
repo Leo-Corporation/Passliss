@@ -49,14 +49,16 @@ export default function Timeline(props: TimelineProps) {
     if (props.filter === "all") return true
     const strength: PasswordStrength = getPasswordStrength(password)
     switch (strength) {
-      case PasswordStrength.VeryGood:
-        return props.filter === "verygood"
-      case PasswordStrength.Good:
-        return props.filter === "good"
-      case PasswordStrength.Medium:
-        return props.filter === "medium"
-      case PasswordStrength.Low:
-        return props.filter === "low"
+      case PasswordStrength.VeryStrong:
+        return props.filter === "verystrong"
+      case PasswordStrength.Strong:
+        return props.filter === "strong"
+      case PasswordStrength.Moderate:
+        return props.filter === "moderate"
+      case PasswordStrength.Weak:
+        return props.filter === "weak"
+      case PasswordStrength.VeryWeak:
+        return props.filter === "veryweak"
       default:
         return true
     }

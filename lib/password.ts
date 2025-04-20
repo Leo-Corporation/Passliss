@@ -1,19 +1,21 @@
 import { CustomCharacters } from "./settings"
-import { containsLowerCases, containsUpperCases } from "./string"
 
 export enum PasswordStrength {
-  Low,
-  Medium,
-  Good,
-  VeryGood,
-  Unknown,
+  VeryWeak,
+  Weak,
+  Moderate,
+  Strong,
+  VeryStrong,
+  None,
 }
 
-export interface StrengthInfo {
-  lowercases: number
-  uppercases: number
-  specialchars: number
+export interface PasswordAnalysis {
+  lowercase: number
+  uppercase: number
   numbers: number
+  special: number
+  length: number
+  score: number
 }
 
 export function generatePassword(
@@ -47,13 +49,15 @@ export function generatePasswordByStrength(
   chars: CustomCharacters
 ): string {
   switch (strength) {
-    case PasswordStrength.Low:
-      return generatePassword(true, true, false, false, 9, chars)
-    case PasswordStrength.Medium:
-      return generatePassword(true, true, true, false, 12, chars)
-    case PasswordStrength.Good:
-      return generatePassword(true, true, true, false, 19, chars)
-    case PasswordStrength.VeryGood:
+    case PasswordStrength.VeryWeak:
+      return generatePassword(true, true, false, false, 6, chars)
+    case PasswordStrength.Weak:
+      return generatePassword(true, true, true, false, 9, chars)
+    case PasswordStrength.Moderate:
+      return generatePassword(true, true, true, false, 11, chars)
+    case PasswordStrength.Strong:
+      return generatePassword(true, true, true, true, 16, chars)
+    case PasswordStrength.VeryStrong:
       return generatePassword(true, true, true, true, 20, chars)
     default:
       return generatePassword(true, true, false, false, 9, chars)
@@ -205,157 +209,62 @@ function shuffle(str: string): string {
   return arr.join("")
 }
 
-const numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-const specialCaracters: string[] = [
-  ";",
-  ":",
-  "!",
-  "/",
-  "§",
-  "ù",
-  "*",
-  "$",
-  "%",
-  "µ",
-  "£",
-  ")",
-  "=",
-  "+",
-  "*",
-  "-",
-  "&",
-  "é",
-  "'",
-  "(",
-  "-",
-  "è",
-  "_",
-  "ç",
-  "<",
-  ">",
-  "?",
-  "^",
-  "¨",
-]
-const forbidenCaracters: string[] = [
-  "123",
-  "456",
-  "789",
-  "password",
-  "mdp",
-  "pswr",
-  "000",
-  "admin",
-  "111",
-  "222",
-  "333",
-  "444",
-  "555",
-  "666",
-  "777",
-  "888",
-  "999",
-  "123456789",
-]
+export function getPasswordScore(pwd: string): number {
+  // Count character types
+  const lowercase = (pwd.match(/[a-z]/g) || []).length
+  const uppercase = (pwd.match(/[A-Z]/g) || []).length
+  const numbers = (pwd.match(/[0-9]/g) || []).length
+  const special = (pwd.match(/[^a-zA-Z0-9]/g) || []).length
+  const length = pwd.length
 
-export function getPasswordStrength(password: string): PasswordStrength {
-  const length = password.length // Length
-  let pswrScore = 0 // Score
+  // Calculate score (simple algorithm)
+  let score = 0
+  if (length > 0) {
+    // Base score from length (up to 40 points)
+    score += Math.min(length * 4, 40)
 
-  if (length == 0) {
-    return PasswordStrength.Unknown
+    // Points for character variety
+    if (lowercase > 0) score += 5
+    if (uppercase > 0) score += 10
+    if (numbers > 0) score += 10
+    if (special > 0) score += 15
+
+    // Bonus for mixed character types
+    const typesUsed = [
+      lowercase > 0,
+      uppercase > 0,
+      numbers > 0,
+      special > 0,
+    ].filter(Boolean).length
+    score += (typesUsed - 1) * 10
   }
 
-  if (length >= 0 && length <= 5) {
-    // If the length of the password is between 0 & 5
-    pswrScore += 1 // Add 1
-  } else if (length >= 6 && length <= 10) {
-    // If the length of the password is between 6 & 10
-    pswrScore += 2 // Add 2
-  } else if (length >= 11 && length <= 15) {
-    // If the length of the password is between 11 & 15
-    pswrScore += 5 // Add 5
-  } else if (length > 15) {
-    pswrScore += 10 // Add 10
-  }
-
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = 0; j < length; j++) {
-      pswrScore += password[j].toString().includes(numbers[i]) ? 1 : 0
-    }
-  }
-
-  for (let i = 0; i < specialCaracters.length; i++) {
-    for (let j = 0; j < length; j++) {
-      pswrScore += password[j].toString().includes(specialCaracters[i]) ? 4 : 0
-    }
-  }
-
-  for (let i = 0; i < forbidenCaracters.length; i++) {
-    pswrScore -= password.includes(forbidenCaracters[i]) ? 10 : 0
-  }
-
-  if (containsLowerCases(password) && containsUpperCases(password)) {
-    pswrScore += 2 // Add2
-  } else {
-    pswrScore -= 5 // Sub 5
-  }
-  const regex = /(.)\1{3,}/
-
-  if (regex.test(password)) {
-    pswrScore -= 5 // Sub 5
-  }
-
-  if (pswrScore < 3) {
-    return PasswordStrength.Low // Return low password strength
-  } else if (pswrScore >= 3 && pswrScore <= 7) {
-    return PasswordStrength.Medium // Return medium password strength
-  } else if (pswrScore >= 8 && pswrScore <= 12) {
-    return PasswordStrength.Good // Return good password strength
-  } else if (pswrScore >= 13) {
-    return PasswordStrength.VeryGood // Return excellent password strength
-  } else {
-    return PasswordStrength.Good // Return good password strength
-  }
+  // Cap at 100
+  score = Math.min(score, 100)
+  return score
 }
-export function getStrengthInfo(password: string): StrengthInfo {
-  let uC = 0
-  let lC = 0
-  let n = 0
-  let sC = 0
-  const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-  for (let i = 0; i < password.length; i++) {
-    // Check if char is upper case
-    if (
-      password[i].toUpperCase() === password[i] &&
-      !specialCaracters.includes(password[i]) &&
-      !numbers.includes(password[i])
-    ) {
-      uC++
-    }
-    // Check if char is lower case
-    else if (
-      password[i].toLowerCase() === password[i] &&
-      !specialCaracters.includes(password[i]) &&
-      !numbers.includes(password[i])
-    ) {
-      lC++
-    }
-    // Check if char is number
-    else if (numbers.includes(password[i])) {
-      n++
-    }
-    // Check if char is contained in specialChars
-    else if (specialCaracters.includes(password[i])) {
-      sC++
-    }
-  }
+export function getPasswordStrength(pwd: string): PasswordStrength {
+  const score = getPasswordScore(pwd)
+  if (score === 0) return PasswordStrength.None
+  if (score < 30) return PasswordStrength.VeryWeak
+  if (score < 50) return PasswordStrength.Weak
+  if (score < 70) return PasswordStrength.Moderate
+  if (score < 90) return PasswordStrength.Strong
+  return PasswordStrength.VeryStrong
+}
+export function getStrengthInfo(pwd: string): PasswordAnalysis {
+  const lowercase = (pwd.match(/[a-z]/g) || []).length
+  const uppercase = (pwd.match(/[A-Z]/g) || []).length
+  const numbers = (pwd.match(/[0-9]/g) || []).length
+  const special = (pwd.match(/[^a-zA-Z0-9]/g) || []).length
 
   return {
-    lowercases: lC,
-    uppercases: uC,
-    numbers: n,
-    specialchars: sC,
+    lowercase: lowercase,
+    uppercase: uppercase,
+    numbers: numbers,
+    special: special,
+    length: pwd.length,
+    score: getPasswordScore(pwd),
   }
 }

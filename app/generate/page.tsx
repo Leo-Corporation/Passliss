@@ -15,6 +15,7 @@ import {
   DismissCircle20Filled,
   Info16Filled,
   Info16Regular,
+  Info20Filled,
   Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
@@ -33,8 +34,8 @@ import {
   generatePasswordUsingPreset,
   getRandomPrompts,
   getStrengthInfo,
+  PasswordAnalysis,
   PasswordPreset,
-  StrengthInfo,
 } from "@/lib/password"
 import {
   defaultSettings,
@@ -95,7 +96,7 @@ export default function IndexPage() {
 
   const t = useTranslations()
   const lang = t("lang")
-  const [sliderVal, setSliderVal] = useState(2)
+  const [sliderVal, setSliderVal] = useState(3)
   const [hasUpper, setHasUpper] = useState(
     settings.defaultPasswordConfig?.upperCases ?? true
   )
@@ -110,7 +111,7 @@ export default function IndexPage() {
   )
   const [length, setLength] = useState(12)
 
-  const [strengthInfo, setStrengthInfo] = useState<StrengthInfo>()
+  const [strengthInfo, setStrengthInfo] = useState<PasswordAnalysis>()
 
   const [strengthTxt, setStrengthTxt] = useState(
     getSliderUiInfo(sliderVal).text
@@ -209,19 +210,34 @@ export default function IndexPage() {
   } {
     switch (val) {
       case 0:
-        return { text: t("strength-low"), icon: "\uF36E", color: "red" }
+        return {
+          text: t("strength-very-weak"),
+          icon: "\uF36E",
+          color: "#ef4444",
+        }
 
       case 1:
-        return { text: t("strength-medium"), icon: "\uF882", color: "#FF7B00" }
+        return {
+          text: t("strength-weak"),
+          icon: "\uF882",
+          color: "#f97316",
+        }
 
       case 2:
-        return { text: t("strength-good"), icon: "\uF299", color: "#68EA00" }
+        return {
+          text: t("strength-moderate"),
+          icon: "\uF4AA",
+          color: "#eab308",
+        }
 
       case 3:
+        return { text: t("strength-strong"), icon: "\uF299", color: "#22c55e" }
+
+      case 4:
         return {
-          text: t("strength-excellent"),
+          text: t("strength-very-strong"),
           icon: "\uF6EA",
-          color: "#00BF07",
+          color: "#10b981",
         }
 
       default:
@@ -328,16 +344,17 @@ export default function IndexPage() {
               id="StrengthSlider"
               onValueChange={onSliderChanged}
               defaultValue={[sliderVal]}
-              max={3}
+              max={4}
               step={1}
               className="m-5 sm:w-1/2"
             />
             <div className="w-full sm:w-1/2">
-              <div className="grid grid-cols-[1fr_1fr_1fr_auto]">
-                <DismissCircle20Filled color="red" />
-                <Warning20Filled color="#FF7B00" />
-                <CheckmarkCircle20Filled color="#68EA00" />
-                <CheckmarkStarburst20Filled color="#00BF07" />
+              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto]">
+                <DismissCircle20Filled color="#ef4444" />
+                <Warning20Filled color="#f97316" />
+                <Info20Filled color="#eab308" />
+                <CheckmarkCircle20Filled color="#22c55e" />
+                <CheckmarkStarburst20Filled color="#10b981" />
               </div>
             </div>
             <p
@@ -646,13 +663,13 @@ export default function IndexPage() {
                   {t("uppercases")}
                 </p>
                 <p className="font-semibold text-[#FF2929]" id="UppercaseTxt">
-                  {strengthInfo ? strengthInfo.uppercases : "0"}
+                  {strengthInfo ? strengthInfo.uppercase : "0"}
                 </p>
                 <p className="font-semibold text-[#3B8AFF]">
                   {t("lowercases")}
                 </p>
                 <p className="font-semibold text-[#3B8AFF]" id="LowercaseTxt">
-                  {strengthInfo ? strengthInfo.lowercases : "0"}
+                  {strengthInfo ? strengthInfo.lowercase : "0"}
                 </p>
                 <p className="font-semibold text-[#007F5F]">{t("nbrs")}</p>
                 <p className="font-semibold text-[#007F5F]" id="NumbersTxt">
@@ -662,7 +679,7 @@ export default function IndexPage() {
                   {t("specialchars")}
                 </p>
                 <p className="font-semibold text-[#9F2CF9]" id="SpecialTxt">
-                  {strengthInfo ? strengthInfo.specialchars : "0"}
+                  {strengthInfo ? strengthInfo.special : "0"}
                 </p>
               </div>
             </CardContent>

@@ -9,7 +9,11 @@ import { DialogClose } from "@radix-ui/react-dialog"
 import { useTranslations } from "next-intl"
 
 import { Activity, getActivity, sortActivities } from "@/lib/browser-storage"
-import { getPasswordStrength, getStrengthInfo } from "@/lib/password"
+import {
+  getPasswordStrength,
+  getStrengthInfo,
+  PasswordStrength,
+} from "@/lib/password"
 import StrengthCharacter from "./strength-character"
 import { Button } from "./ui/button"
 import {
@@ -77,35 +81,41 @@ export default function ActivityItem(props: ActivityProps) {
   function getStrength(password: string) {
     const strength = getPasswordStrength(password)
     switch (strength) {
-      case 0:
+      case PasswordStrength.VeryWeak:
         return (
-          <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center text-sm font-semibold text-[red]">
-            {t("low")}
+          <p className="m-1 w-auto rounded-full border border-red-500 px-2 text-center text-sm font-semibold text-red-500">
+            {t("veryweak")}
           </p>
         )
-      case 1:
+      case PasswordStrength.Weak:
         return (
-          <p className="m-1 w-auto rounded-full border border-[#FF7B00] px-2 text-sm font-semibold text-[#FF7B00]">
-            {t("medium")}
+          <p className="m-1 w-auto rounded-full border border-orange-500 px-2 text-center text-sm font-semibold text-orange-500">
+            {t("weak")}
           </p>
         )
-      case 2:
+      case PasswordStrength.Moderate:
         return (
-          <p className="m-1 w-auto rounded-full border border-[#68EA00] px-2 text-center text-sm font-semibold text-[#68EA00]">
-            {t("good")}
+          <p className="m-1 w-auto rounded-full border border-yellow-500 px-2 text-sm font-semibold text-yellow-500">
+            {t("moderate")}
           </p>
         )
-      case 3:
+      case PasswordStrength.Strong:
         return (
-          <p className="m-1 w-auto rounded-full border border-[#00BF07] px-2 text-center text-sm font-semibold text-[#00BF07]">
-            {t("excellent")}
+          <p className="m-1 w-auto rounded-full border border-green-500 px-2 text-center text-sm font-semibold text-green-500">
+            {t("strong")}
+          </p>
+        )
+      case PasswordStrength.VeryStrong:
+        return (
+          <p className="m-1 w-auto rounded-full border border-emerald-500 px-2 text-center text-sm font-semibold text-emerald-500">
+            {t("very-strong")}
           </p>
         )
 
       default:
         return (
-          <p className="text-md m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
-            {t("low")}
+          <p className="text-md m-1 w-auto rounded-full border border-red-500 px-2 text-center font-semibold text-red-500">
+            {t("weak")}
           </p>
         )
     }
@@ -161,7 +171,7 @@ export default function ActivityItem(props: ActivityProps) {
                           className="font-bold text-[#FF2929]"
                           id="UppercaseTxt"
                         >
-                          {getStrengthInfo(props.activity.content).uppercases}
+                          {getStrengthInfo(props.activity.content).uppercase}
                         </p>
                         <p className="font-bold text-[#3B8AFF]">
                           {t("lowercases")}
@@ -170,7 +180,7 @@ export default function ActivityItem(props: ActivityProps) {
                           className="font-bold text-[#3B8AFF]"
                           id="LowercaseTxt"
                         >
-                          {getStrengthInfo(props.activity.content).lowercases}
+                          {getStrengthInfo(props.activity.content).lowercase}
                         </p>
                         <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
                         <p className="font-bold text-[#007F5F]" id="NumbersTxt">
@@ -180,7 +190,7 @@ export default function ActivityItem(props: ActivityProps) {
                           {t("specialchars")}
                         </p>
                         <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
-                          {getStrengthInfo(props.activity.content).specialchars}
+                          {getStrengthInfo(props.activity.content).special}
                         </p>
                         <p className="font-bold">{t("length")}</p>
                         <p className="font-bold" id="LengthTxt">
@@ -210,7 +220,7 @@ export default function ActivityItem(props: ActivityProps) {
               </Dialog>
             </TooltipTrigger>
             <TooltipContent className="grid grid-cols-[24px_1fr] items-center">
-              {getStrengthInfo(props.activity.content).lowercases > 0 ? (
+              {getStrengthInfo(props.activity.content).lowercase > 0 ? (
                 <Checkmark16Regular />
               ) : (
                 <Dismiss16Regular />
@@ -218,7 +228,7 @@ export default function ActivityItem(props: ActivityProps) {
 
               <p>{t("lowercases")}</p>
 
-              {getStrengthInfo(props.activity.content).uppercases > 0 ? (
+              {getStrengthInfo(props.activity.content).uppercase > 0 ? (
                 <Checkmark16Regular />
               ) : (
                 <Dismiss16Regular />
@@ -234,7 +244,7 @@ export default function ActivityItem(props: ActivityProps) {
 
               <p>{t("nbrs")}</p>
 
-              {getStrengthInfo(props.activity.content).specialchars > 0 ? (
+              {getStrengthInfo(props.activity.content).special > 0 ? (
                 <Checkmark16Regular />
               ) : (
                 <Dismiss16Regular />
@@ -304,11 +314,11 @@ export default function ActivityItem(props: ActivityProps) {
               <div className="grid grid-cols-2">
                 <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
                 <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
-                  {getStrengthInfo(props.activity.content).uppercases}
+                  {getStrengthInfo(props.activity.content).uppercase}
                 </p>
                 <p className="font-bold text-[#3B8AFF]">{t("lowercases")}</p>
                 <p className="font-bold text-[#3B8AFF]" id="LowercaseTxt">
-                  {getStrengthInfo(props.activity.content).lowercases}
+                  {getStrengthInfo(props.activity.content).lowercase}
                 </p>
                 <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
                 <p className="font-bold text-[#007F5F]" id="NumbersTxt">
@@ -316,7 +326,7 @@ export default function ActivityItem(props: ActivityProps) {
                 </p>
                 <p className="font-bold text-[#9F2CF9]">{t("specialchars")}</p>
                 <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
-                  {getStrengthInfo(props.activity.content).specialchars}
+                  {getStrengthInfo(props.activity.content).special}
                 </p>
                 <p className="font-bold">{t("length")}</p>
                 <p className="font-bold" id="LengthTxt">
