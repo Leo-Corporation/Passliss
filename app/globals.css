@@ -211,3 +211,13 @@ body {
   font-family: "Hauora", sans-serif;
   min-height: 100vh;
 }
+
+.h-scroll {
+  height: var(--content-h);
+}
+
+@media (min-width: 768px) {
+  .md\:h-scroll {
+    height: var(--content-h);
+  }
+}

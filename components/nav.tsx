@@ -29,7 +29,7 @@ export default function Nav(props: {
   const pathName = usePathname()
   const page = pathName.split("/")[1] // Get the current page from the URL
 
-  function GetWelcomeMessage(): string {
+  function getWelcomeMessage(): string {
     const hour = new Date().getHours() // Get the current hour
     if (hour >= 21 || hour < 7) {
       // If between 9PM & 7AM
@@ -47,7 +47,7 @@ export default function Nav(props: {
     return t("hello") // Default value
   }
 
-  function SetHeight() {
+  function setHeight() {
     if (typeof document !== "undefined") {
       const header = document.querySelector("header")
       if (!header) return
@@ -60,11 +60,11 @@ export default function Nav(props: {
       )
     }
   }
-  SetHeight()
+  setHeight()
 
   if (typeof document !== "undefined") {
     onresize = () => {
-      SetHeight()
+      setHeight()
     }
   }
   return (
@@ -179,7 +179,7 @@ export default function Nav(props: {
         <div>
           <h1 className="text-4xl font-bold">{t("title")}</h1>
           <p className="font-bold">
-            <span>{GetWelcomeMessage()} </span>
+            <span>{getWelcomeMessage()} </span>
             <span>
               {t("hour-msg") +
                 new Date().toLocaleTimeString(locale, {
@@ -196,7 +196,7 @@ export default function Nav(props: {
           <div className="hidden border-b border-slate-200 p-4 pb-2 md:block dark:border-slate-700">
             <h1 className="text-3xl font-bold">{t("title")}</h1>
             <p className="text-sm font-semibold">
-              <span>{GetWelcomeMessage()} </span>
+              <span>{getWelcomeMessage()} </span>
               <span>
                 {t("hour-msg") +
                   new Date().toLocaleTimeString(locale, {
@@ -299,7 +299,7 @@ export default function Nav(props: {
             <InstallSection />
           </nav>
         </ScrollArea>
-        <ScrollArea className="h-scroll col-span-5 p-2 md:col-start-2">
+        <ScrollArea className="h-scroll col-span-5 overflow-scroll p-2 md:col-start-2">
           {children}
         </ScrollArea>
       </section>
