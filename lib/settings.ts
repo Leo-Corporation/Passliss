@@ -30,7 +30,7 @@ export const defaultSettings = {
   customChars: {
     lowerCases: "abcdefghijklmnopqrstuvwxyz",
     upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    numbers: "01234567889",
+    numbers: "0123456789",
     special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
   },
   hidePassword: false,
