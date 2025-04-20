@@ -5,6 +5,7 @@ import "./globals.css"
 
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale } from "next-intl/server"
+import { ThemeProvider } from "next-themes"
 
 import Nav from "@/components/nav"
 
@@ -62,9 +63,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider>
-          <Nav locale={locale}>{children}</Nav>
-        </NextIntlClientProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NextIntlClientProvider>
+            <Nav locale={locale}>{children}</Nav>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
