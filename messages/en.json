@@ -160,5 +160,14 @@
   "about-desc": "Information about the application and its development.",
   "repository": "Repository",
   "view-repository": "View Repository",
-  "lang": "en"
+  "lang": "en",
+  "encrypt-desc": "Encrypt text using a key and an algorithm.",
+  "decrypt-desc": "Decrypt encrypted text using a key and an algorithm.",
+  "hash-desc": "Hash text using a hashing algorithm.",
+  "copy-to-clipboard": "Copy to clipboard",
+  "copied": "Copied",
+  "encrypt-text-placeholder": "Enter text to encrypt...",
+  "decrypt-text-placeholder": "Enter text to decrypt...",
+  "hash-text-placeholder": "Enter text to hash...",
+  "key-placeholder": "Enter your encryption key..."
 }

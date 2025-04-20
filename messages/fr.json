@@ -160,5 +160,14 @@
   "about-desc": "Informations sur l'application et son développement.",
   "repository": "Dépôt GitHub",
   "view-repository": "Voir le Dépôt",
-  "lang": "fr"
+  "lang": "fr",
+  "encrypt-desc": "Cryptez du texte à l'aide d'une clé et d'un algorithme.",
+  "decrypt-desc": "Décryptez du texte chiffré à l'aide d'une clé et d'un algorithme.",
+  "hash-desc": "Hachez du texte à l'aide d'un algorithme de hachage.",
+  "copy-to-clipboard": "Copier dans le presse-papiers",
+  "copied": "Copié",
+  "encrypt-text-placeholder": "Entrez le texte à chiffrer...",
+  "decrypt-text-placeholder": "Entrez le texte à déchiffrer...",
+  "hash-text-placeholder": "Entrez le texte à hacher...",
+  "key-placeholder": "Entrez votre clé de chiffrement..."
 }
