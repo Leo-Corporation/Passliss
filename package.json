@@ -11,6 +11,7 @@
   "dependencies": {
     "@fluentui/react-icons": "^2.0.292",
     "@radix-ui/react-alert-dialog": "^1.1.10",
+    "@radix-ui/react-checkbox": "^1.2.2",
     "@radix-ui/react-dialog": "^1.1.7",
     "@radix-ui/react-label": "^2.1.3",
     "@radix-ui/react-popover": "^1.1.10",
