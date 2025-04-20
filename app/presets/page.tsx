@@ -67,13 +67,13 @@ export default function PresetsPage() {
   function importPresets(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return // check if files are selected
     if (event.target.files.length === 0) return // check if no files are selected
-    let file = event.target.files[0] // get the selected file
-    let reader = new FileReader() // create a FileReader object
+    const file = event.target.files[0] // get the selected file
+    const reader = new FileReader() // create a FileReader object
     reader.onload = function (event) {
-      let text: string = event.target?.result as string // get the file content as text
-      let json: PasswordPreset[] = JSON.parse(text) // parse the text as JSON
+      const text: string = event.target?.result as string // get the file content as text
+      const json: PasswordPreset[] = JSON.parse(text) // parse the text as JSON
 
-      let merge = [...presets, ...json]
+      const merge = [...presets, ...json]
       setPresets(merge)
       savePresets(merge)
     }
@@ -657,6 +657,7 @@ export default function PresetsPage() {
         {presets.map((el: PasswordPreset, i: number) => (
           <PresetItem
             id={i}
+            key={i}
             preset={el}
             delete={() => {
               presets.splice(i, 1)
@@ -664,7 +665,7 @@ export default function PresetsPage() {
               savePresets(presets)
             }}
             edit={(preset: PasswordPreset) => {
-              let p = presets
+              const p = presets
               p[i] = preset
               setPresets([...p])
               savePresets(p)

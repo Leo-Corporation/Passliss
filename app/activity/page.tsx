@@ -247,6 +247,7 @@ export default function ActivityPage() {
             (el, i) =>
               el.length > 0 && (
                 <Timeline
+                  key={i}
                   filter={filter}
                   refreshEvent={refreshItems}
                   index={i}

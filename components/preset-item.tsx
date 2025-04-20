@@ -35,10 +35,10 @@ import { Switch } from "@/components/ui/switch"
 import { Card } from "./ui/card"
 
 export interface PresetItemProps {
-  delete: Function
+  delete: () => void
   id: number
   preset: PasswordPreset
-  edit: Function
+  edit: (preset: PasswordPreset) => void
 }
 
 export default function PresetItem(props: PresetItemProps) {

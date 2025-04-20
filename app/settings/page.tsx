@@ -94,7 +94,7 @@ export default function SettingsPage() {
   }
   loadSettings()
 
-  function isSettings(object: any): object is Settings {
+  function isSettings(object: Settings): object is Settings {
     return (
       typeof object === "object" &&
       typeof object.passwordLengthOne === "number" &&
@@ -108,11 +108,11 @@ export default function SettingsPage() {
       alert("No file selected")
       return
     }
-    let file = event.target.files[0] // get the selected file
-    let reader = new FileReader() // create a FileReader object
+    const file = event.target.files[0] // get the selected file
+    const reader = new FileReader() // create a FileReader object
     reader.onload = function (event) {
-      let text: string = event.target?.result as string // get the file content as text
-      let json: Settings = JSON.parse(text) // parse the text as JSON
+      const text: string = event.target?.result as string // get the file content as text
+      const json: Settings = JSON.parse(text) // parse the text as JSON
       if (!isSettings(json)) {
         alert("Invalid file")
         return

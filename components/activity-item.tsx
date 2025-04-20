@@ -40,7 +40,7 @@ export interface ActivityProps {
   hide: boolean
   index: number
   timeline_index: number
-  deleteEvent: Function
+  deleteEvent: () => void
   advancedVision: boolean
 }
 
@@ -63,7 +63,7 @@ export default function ActivityItem(props: ActivityProps) {
   function removeActivityItem() {
     loadActivities()
     els[props.timeline_index].splice(props.index, 1)
-    let a: any[] = []
+    const a: Activity[] = []
     for (let i = 0; i < els.length; i++) {
       for (let j = 0; j < els[i].length; j++) {
         a.push(els[i][j])
@@ -73,6 +73,44 @@ export default function ActivityItem(props: ActivityProps) {
     localStorage.setItem("activity", JSON.stringify({ items: a }))
     props.deleteEvent()
   }
+
+  function getStrength(password: string) {
+    const strength = getPasswordStrength(password)
+    switch (strength) {
+      case 0:
+        return (
+          <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center text-sm font-semibold text-[red]">
+            {t("low")}
+          </p>
+        )
+      case 1:
+        return (
+          <p className="m-1 w-auto rounded-full border border-[#FF7B00] px-2 text-sm font-semibold text-[#FF7B00]">
+            {t("medium")}
+          </p>
+        )
+      case 2:
+        return (
+          <p className="m-1 w-auto rounded-full border border-[#68EA00] px-2 text-center text-sm font-semibold text-[#68EA00]">
+            {t("good")}
+          </p>
+        )
+      case 3:
+        return (
+          <p className="m-1 w-auto rounded-full border border-[#00BF07] px-2 text-center text-sm font-semibold text-[#00BF07]">
+            {t("excellent")}
+          </p>
+        )
+
+      default:
+        return (
+          <p className="text-md m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
+            {t("low")}
+          </p>
+        )
+    }
+  }
+
   return (
     <div
       onClick={Copy}
@@ -309,42 +347,4 @@ export default function ActivityItem(props: ActivityProps) {
       </div>
     </div>
   )
-}
-
-function getStrength(password: string) {
-  let strength = getPasswordStrength(password)
-  const t = useTranslations()
-  switch (strength) {
-    case 0:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center text-sm font-semibold text-[red]">
-          {t("low")}
-        </p>
-      )
-    case 1:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[#FF7B00] px-2 text-sm font-semibold text-[#FF7B00]">
-          {t("medium")}
-        </p>
-      )
-    case 2:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[#68EA00] px-2 text-center text-sm font-semibold text-[#68EA00]">
-          {t("good")}
-        </p>
-      )
-    case 3:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[#00BF07] px-2 text-center text-sm font-semibold text-[#00BF07]">
-          {t("excellent")}
-        </p>
-      )
-
-    default:
-      return (
-        <p className="text-md m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
-          {t("low")}
-        </p>
-      )
-  }
 }

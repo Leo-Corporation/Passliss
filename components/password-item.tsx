@@ -11,7 +11,7 @@ export default function PasswordItem(props: { content: string }) {
 
   const [icon, setIcon] = useState("")
   const [color, setColor] = useState("")
-  function LoadIcon() {
+  function loadIcon() {
     switch (getPasswordStrength(props.content)) {
       case 0:
         setIcon("\uF36E")
@@ -36,8 +36,8 @@ export default function PasswordItem(props: { content: string }) {
     }
   }
   useEffect(() => {
-    LoadIcon()
-  }, [LoadIcon])
+    loadIcon()
+  }, [loadIcon])
 
   return (
     <div className="my-2 grid h-auto min-w-[150px] grid-cols-[24px_1fr_24px] rounded-md border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800">

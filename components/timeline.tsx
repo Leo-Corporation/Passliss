@@ -12,7 +12,7 @@ export interface TimelineProps {
   items: Activity[]
   hide: boolean
   index: number
-  refreshEvent: Function
+  refreshEvent: () => void
   filter: string
   advancedVision: boolean
 }
@@ -40,14 +40,14 @@ export default function Timeline(props: TimelineProps) {
   }
 
   function deleteElement() {
-    let a = sortActivities(getActivity())
+    const a = sortActivities(getActivity())
     setEls(a[props.index])
     props.refreshEvent()
   }
 
   function matchFilter(password: string): boolean {
     if (props.filter === "all") return true
-    let strength: PasswordStrength = getPasswordStrength(password)
+    const strength: PasswordStrength = getPasswordStrength(password)
     switch (strength) {
       case PasswordStrength.VeryGood:
         return props.filter === "verygood"
