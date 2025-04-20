@@ -77,18 +77,18 @@ export default function Nav(props: {
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <nav>
+            <nav className="pr-4">
               <h3 className="m-2 text-xs font-bold">{t("pinned")}</h3>
               <Link
                 className={buttonVariants({
-                  size: "sm",
                   variant: page == "" ? "navselect" : "nav",
+                  size: "lg",
                   className:
                     "mx-2 my-1 h-auto w-full pr-3 pl-0 text-black dark:text-white",
                 })}
                 href={"/"}
               >
-                <div className="from-primary flex items-center rounded-lg bg-linear-to-br to-[#2153E0] p-1">
+                <div className="from-primary flex items-center rounded-lg bg-linear-to-br to-[#2153E0] p-2">
                   <Home20Filled className="text-white" />
                 </div>
                 <p className="ml-2 font-bold">{t("home")}</p>
@@ -96,14 +96,14 @@ export default function Nav(props: {
 
               <Link
                 className={buttonVariants({
-                  size: "sm",
                   variant: page == "activity" ? "navselect" : "nav",
+                  size: "lg",
                   className:
                     "mx-2 my-1 h-auto w-full pr-3 pl-0 text-black dark:text-white",
                 })}
                 href={"/activity"}
               >
-                <div className="flex items-center rounded-lg bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-1">
+                <div className="flex items-center rounded-lg bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-2">
                   <History20Filled className="text-white" />
                 </div>
                 <p className="ml-2 font-bold">{t("activity")}</p>
@@ -111,14 +111,14 @@ export default function Nav(props: {
 
               <Link
                 className={buttonVariants({
-                  size: "sm",
                   variant: page == "settings" ? "navselect" : "nav",
+                  size: "lg",
                   className:
                     "mx-2 my-1 h-auto w-full pr-3 pl-0 text-black dark:text-white",
                 })}
                 href={"/settings"}
               >
-                <div className="flex items-center rounded-lg bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-1">
+                <div className="flex items-center rounded-lg bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-2">
                   <Settings20Filled className="text-white" />
                 </div>
                 <p className="ml-2 font-bold">{t("settings")}</p>
@@ -218,7 +218,7 @@ export default function Nav(props: {
               })}
               href={"/"}
             >
-              <div className="from-primary flex items-center rounded-md bg-linear-to-br to-[#2153E0] p-[5px]">
+              <div className="from-primary flex items-center rounded-md bg-linear-to-br to-[#2153E0] p-2">
                 <Home20Filled className="text-white" />
               </div>
               <p className="ml-2 font-bold">{t("home")}</p>
@@ -232,7 +232,7 @@ export default function Nav(props: {
               })}
               href={"/activity"}
             >
-              <div className="flex items-center rounded-md bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-[5px]">
+              <div className="flex items-center rounded-md bg-linear-to-br from-[#6F00FF] to-[#9A21E0] p-2">
                 <History20Filled className="text-white" />
               </div>
               <p className="ml-2 font-bold">{t("activity")}</p>
@@ -246,7 +246,7 @@ export default function Nav(props: {
               })}
               href={"/settings"}
             >
-              <div className="flex items-center rounded-md bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-[5px]">
+              <div className="flex items-center rounded-md bg-linear-to-br from-[#B1B1B1] to-[#343C51] p-2">
                 <Settings20Filled className="text-white" />
               </div>
               <p className="ml-2 font-bold">{t("settings")}</p>

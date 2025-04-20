@@ -215,7 +215,7 @@ export default function StrengthPage() {
               {password && (
                 <div className="space-y-2">
                   <Label>{t("advanced-vision")}</Label>
-                  <div className="bg-secondary rounded-md p-3">
+                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
                     {renderColoredPassword()}
                     <div className="mt-3 flex flex-wrap gap-2 text-sm">
                       <span className="text-blue-600">{t("lowercases")}</span>
@@ -257,25 +257,25 @@ export default function StrengthPage() {
             <div className="space-y-6">
               {/* Character counts */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-secondary rounded-md p-4">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-4">
                   <div className="text-muted-foreground text-sm">
                     {t("length")}
                   </div>
                   <div className="text-2xl font-bold">{analysis.length}</div>
                 </div>
-                <div className="bg-secondary rounded-md p-4">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-4">
                   <div className="text-sm text-blue-600">{t("lowercases")}</div>
                   <div className="text-2xl font-bold">{analysis.lowercase}</div>
                 </div>
-                <div className="bg-secondary rounded-md p-4">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-4">
                   <div className="text-sm text-red-600">{t("uppercases")}</div>
                   <div className="text-2xl font-bold">{analysis.uppercase}</div>
                 </div>
-                <div className="bg-secondary rounded-md p-4">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-4">
                   <div className="text-sm text-green-600">{t("nbrs")}</div>
                   <div className="text-2xl font-bold">{analysis.numbers}</div>
                 </div>
-                <div className="bg-secondary rounded-md p-4">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-4">
                   <div className="text-sm text-purple-600">
                     {t("specialchars")}
                   </div>
