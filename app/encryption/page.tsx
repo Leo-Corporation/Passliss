@@ -57,13 +57,14 @@ export default function EncryptionPage() {
     settings.hashAlgo = "md5"
   }
 
-  const [algo, setAlgo] = useState(settings.encryptAlgo)
-
   function SelectChanged(val: string) {
     setAlgo(val)
   }
 
   const [copied, setCopied] = useState(false)
+  const [algo, setAlgo] = useState(settings.encryptAlgo)
+  const [hashAlgo, setHashAlgo] = useState(settings.hashAlgo ?? "md5")
+  const [keyVis, setKeyVis] = useState(false)
 
   // Encrypt state
   const [textToEncrypt, setTextToEncrypt] = useState("")
@@ -75,11 +76,10 @@ export default function EncryptionPage() {
   const [decryptionKey, setDecryptionKey] = useState("")
   const [decryptedText, setDecryptedText] = useState("")
 
-  const [h_text, setH_Text] = useState("")
+  // Hash state
+  const [textToHash, setTextToHash] = useState("")
   const [hashedText, setHashedText] = useState("")
   const [showCryptOptions, setShowCryptOptions] = useState(true)
-  const [hashAlgo, setHashAlgo] = useState(settings.hashAlgo)
-  const [keyVis, setKeyVis] = useState(false)
 
   function encrypt() {
     switch (algo) {
@@ -152,19 +152,19 @@ export default function EncryptionPage() {
   function hashClick() {
     switch (hashAlgo) {
       case "md5":
-        setHashedText(CryptoJS.MD5(h_text).toString())
+        setHashedText(CryptoJS.MD5(textToHash).toString())
         break
       case "sha-1":
-        setHashedText(CryptoJS.SHA1(h_text).toString())
+        setHashedText(CryptoJS.SHA1(textToHash).toString())
         break
       case "sha-256":
-        setHashedText(CryptoJS.SHA256(h_text).toString())
+        setHashedText(CryptoJS.SHA256(textToHash).toString())
         break
       case "sha-512":
-        setHashedText(CryptoJS.SHA512(h_text).toString())
+        setHashedText(CryptoJS.SHA512(textToHash).toString())
         break
       case "sha-3":
-        setHashedText(CryptoJS.SHA3(h_text).toString())
+        setHashedText(CryptoJS.SHA3(textToHash).toString())
         break
       default:
         break
@@ -222,29 +222,6 @@ export default function EncryptionPage() {
               <SelectItem value="3des">3DES</SelectItem>
               <SelectItem value="rabbit">Rabbit</SelectItem>
               <SelectItem value="rc4">RC4Drop</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select
-            onValueChange={(v: string) => setHashAlgo(v)}
-            defaultValue={hashAlgo}
-          >
-            <SelectTrigger
-              className={
-                showCryptOptions
-                  ? "hidden"
-                  : "text-foreground mx-1 h-auto px-2 py-1"
-              }
-            >
-              <SelectValue placeholder={t("hashing-algo")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem defaultChecked={true} value="md5">
-                MD5
-              </SelectItem>
-              <SelectItem value="sha-1">SHA-1</SelectItem>
-              <SelectItem value="sha-256">SHA-256</SelectItem>
-              <SelectItem value="sha-512">SHA-512</SelectItem>
-              <SelectItem value="sha-3">SHA-3</SelectItem>
             </SelectContent>
           </Select>
         </TabsList>
@@ -450,35 +427,79 @@ export default function EncryptionPage() {
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent value="hashing" className="border-none">
-          <div className="w-full space-y-2">
-            <div className="space-y-2">
-              <label htmlFor="ToHash">{t("text-hash")}</label>
-              <div className="flex items-center">
+        <TabsContent
+          value="hashing"
+          className="justify-center border-none data-[state=active]:flex"
+        >
+          <Card className="w-full max-w-250">
+            <CardHeader>
+              <CardTitle>{t("hashing")}</CardTitle>
+              <CardDescription>{t("hash-desc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="text-to-hash">{t("text-hash")}</Label>
                 <Textarea
-                  id="ToHash"
-                  defaultValue={h_text}
-                  onChange={() =>
-                    setH_Text(
-                      (document.getElementById("ToHash") as HTMLInputElement)
-                        .value
-                    )
-                  }
+                  id="text-to-hash"
+                  placeholder={t("hash-text-placeholder")}
+                  value={textToHash}
+                  onChange={(e) => setTextToHash(e.target.value)}
+                  className="min-h-[100px]"
                 />
-                <Button
-                  className="ml-4 h-auto px-2 py-1"
-                  id="HashBtn"
-                  onClick={hashClick}
-                >
-                  {t("hash")}
-                </Button>
               </div>
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="Hashed">{t("hashed-text")}</label>
-              <Textarea readOnly={true} id="Hashed" value={hashedText} />
-            </div>
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="hash-algorithm">{t("hashing-algo")}</Label>
+                <Select
+                  onValueChange={(v: string) => setHashAlgo(v)}
+                  defaultValue={hashAlgo}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("hashing-algo")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem defaultChecked={true} value="md5">
+                      MD5
+                    </SelectItem>
+                    <SelectItem value="sha-1">SHA-1</SelectItem>
+                    <SelectItem value="sha-256">SHA-256</SelectItem>
+                    <SelectItem value="sha-512">SHA-512</SelectItem>
+                    <SelectItem value="sha-3">SHA-3</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              {hashedText && (
+                <div className="mt-4 space-y-2">
+                  <Label htmlFor="hashed-result">{t("hashed-text")}</Label>
+                  <div className="relative">
+                    <Textarea
+                      id="hashed-result"
+                      value={hashedText}
+                      readOnly
+                      className="min-h-[100px] pr-10 font-mono text-sm"
+                    />
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2"
+                      onClick={() => copyToClipboard(hashedText)}
+                    >
+                      {copied ? (
+                        <Checkmark20Regular className="h-4 w-4" />
+                      ) : (
+                        <Copy20Regular className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">{t("copy-to-clipboard")}</span>
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+            <CardFooter>
+              <Button onClick={hashClick} className="w-full">
+                {t("hash")}
+              </Button>
+            </CardFooter>
+          </Card>
         </TabsContent>
       </Tabs>
     </main>
