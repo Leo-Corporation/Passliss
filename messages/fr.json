@@ -28,10 +28,10 @@
   "nbrs": "Nombres",
   "length": "Longueur",
   "customchars": "Caractères personnalisés",
-  "amount": "Nombre",
+  "amount": "Nombre de mots de passe",
   "multipasswords": "Plusieurs mots de passe",
   "multipasswords-desc": "Générer plusieurs mots de passe.",
-  "results": "Résultats",
+  "results": "Mots de passe générés",
   "enterpwrstrength": "Entrez un mot de passe pour connaître sa force",
   "password": "Mot de passe",
   "encrypt": "Encrypter",
@@ -210,5 +210,10 @@
   "characters": "caractères",
   "character-types": "Types de caractères",
   "entropy": "Entropie : {entropy} bits",
-  "estimated-time": "Temps estimé pour le craquage : {time}"
+  "estimated-time": "Temps estimé pour le craquage : {time}",
+  "copy-all": "Copier tout",
+  "copied-all": "{amount} mots de passe ont été copiés dans le presse-papiers",
+  "copied-all-title": "Tous copiés dans le presse-papiers",
+  "passwords": "Mots de passe",
+  "copy-password-index": "Mot de passe #{index} copié dans le presse-papiers"
 }

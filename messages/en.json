@@ -28,10 +28,10 @@
   "nbrs": "Numbers",
   "length": "Length",
   "customchars": "Custom characters",
-  "amount": "Amount",
+  "amount": "Number of passwords",
   "multipasswords": "Multiple passwords",
   "multipasswords-desc": "Generate multiple passwords.",
-  "results": "Results",
+  "results": "Generated passwords",
   "enterpwrstrength": "Enter a password to see its strength",
   "password": "Password",
   "encrypt": "Encrypt",
@@ -210,5 +210,10 @@
   "characters": "characters",
   "character-types": "Character Types",
   "entropy": "Entropy: {entropy} bits",
-  "estimated-time": "Estimated time to crack: {time}"
+  "estimated-time": "Estimated time to crack: {time}",
+  "copy-all": "Copy all",
+  "copied-all": "{amount} have been copied to the clipboard",
+  "copied-all-title": "All copied to clipboard",
+  "passwords": "Passwords",
+  "copy-password-index": "Password #{index} copied to clipboard"
 }

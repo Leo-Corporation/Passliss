@@ -121,6 +121,9 @@ export default function IndexPage() {
   const [includeNumbers, setIncludeNumbers] = useState(true)
   const [includeSpecial, setIncludeSpecial] = useState(true)
 
+  const [numberOfPasswords, setNumberOfPasswords] = useState(1)
+  const [generatedPasswords, setGeneratedPasswords] = useState<string[]>([])
+
   // AI generator state
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
@@ -183,6 +186,25 @@ export default function IndexPage() {
     })
   }
 
+  function copyAllPasswords() {
+    const allPasswords = generatedPasswords.join("\n")
+    navigator.clipboard.writeText(allPasswords)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+    toast(t("copied-all-title"), {
+      description: t("copied-all", { amount: generatedPasswords.length }),
+    })
+  }
+
+  function copyPasswordAtIndex(index: number) {
+    if (generatedPasswords[index]) {
+      navigator.clipboard.writeText(generatedPasswords[index])
+      toast(t("copied-title"), {
+        description: t("copy-password-index", { index: index + 1 }),
+      })
+    }
+  }
+
   function generateSimplePassword() {
     const pwr = generatePasswordByStrength(strengthLevel, settings.customChars)
     setGeneratedPassword(pwr)
@@ -219,22 +241,43 @@ export default function IndexPage() {
   function generateAdvancedPassword() {
     if (!optionsChecked()) return
 
-    const pwr = selectedPreset
-      ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
-      : generatePassword(
-          includeLowercase,
-          includeUppercase,
-          includeNumbers,
-          includeSpecial,
-          passwordLength,
-          settings.customChars
-        )
-    setGeneratedPassword(pwr)
-    setPasswordStats(getStrengthInfo(pwr))
-    addActivity({ date: new Date(), content: pwr })
-    toast(t("generated-title"), {
-      description: t("generated-desc", { length: pwr.length }),
-    })
+    if (numberOfPasswords > 1) {
+      const passwords = []
+      for (let i = 0; i < numberOfPasswords; i++) {
+        const pwr = selectedPreset
+          ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
+          : generatePassword(
+              includeLowercase,
+              includeUppercase,
+              includeNumbers,
+              includeSpecial,
+              passwordLength,
+              settings.customChars
+            )
+        passwords.push(pwr)
+        addActivity({ date: new Date(), content: pwr })
+      }
+      setGeneratedPasswords(passwords)
+      setGeneratedPassword(passwords[0] || "")
+      setPasswordStats(getStrengthInfo(passwords[0] || ""))
+    } else {
+      const pwr = selectedPreset
+        ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
+        : generatePassword(
+            includeLowercase,
+            includeUppercase,
+            includeNumbers,
+            includeSpecial,
+            passwordLength,
+            settings.customChars
+          )
+      setGeneratedPassword(pwr)
+      setPasswordStats(getStrengthInfo(pwr))
+      addActivity({ date: new Date(), content: pwr })
+      toast(t("generated-title"), {
+        description: t("generated-desc", { length: pwr.length }),
+      })
+    }
   }
 
   function getRandomLength() {
@@ -699,6 +742,31 @@ export default function IndexPage() {
                 )}
               </div>
 
+              {/* Number of Passwords */}
+              <div className="space-y-2">
+                <Label htmlFor="number-of-passwords-advanced">
+                  {t("amount")}
+                </Label>
+                <div className="flex items-center gap-2">
+                  <Input
+                    id="number-of-passwords-advanced"
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={numberOfPasswords}
+                    onChange={(e) =>
+                      setNumberOfPasswords(
+                        Math.max(
+                          1,
+                          Math.min(50, Number.parseInt(e.target.value) || 1)
+                        )
+                      )
+                    }
+                    className="w-24"
+                  />
+                </div>
+              </div>
+
               {/* Password Stats */}
               <div className="space-y-4">
                 <h3 className="font-medium">{t("strength")}</h3>
@@ -753,6 +821,54 @@ export default function IndexPage() {
                   </p>
                 </div>
               </div>
+
+              {/* Multiple Passwords Display */}
+              {numberOfPasswords > 1 && generatedPasswords.length > 1 && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label>{t("results")}</Label>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={copyAllPasswords}
+                    >
+                      {t("copy-all")}
+                    </Button>
+                  </div>
+                  <div className="max-h-60 overflow-y-auto rounded-md border">
+                    <table className="w-full">
+                      <tbody>
+                        {generatedPasswords.map((password, index) => (
+                          <tr key={index} className="border-b last:border-0">
+                            <td className="px-3 py-2 text-sm font-medium">
+                              #{index + 1}
+                            </td>
+                            <td className="max-w-[300px] truncate px-3 py-2 font-mono text-sm">
+                              {showPassword
+                                ? password
+                                : "•".repeat(password.length)}
+                            </td>
+                            <td className="px-3 py-2 text-right">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => copyPasswordAtIndex(index)}
+                              >
+                                <Copy20Regular className="h-3 w-3" />
+                                <span className="sr-only">
+                                  {t("copy-password-index", {
+                                    index: index + 1,
+                                  })}
+                                </span>
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
             </CardContent>
             <CardFooter>
               <Button
