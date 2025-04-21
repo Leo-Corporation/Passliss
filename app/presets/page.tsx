@@ -14,6 +14,7 @@ import { getPresets, savePresets } from "@/lib/browser-storage"
 import { PasswordPreset } from "@/lib/password"
 import PresetItem from "@/components/preset-item"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Dialog,
@@ -34,6 +35,7 @@ import {
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Switch } from "@/components/ui/switch"
 
 export default function PresetsPage() {
@@ -107,180 +109,194 @@ export default function PresetsPage() {
                 id="NameTxt"
               />
             </div>
-            <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="LowerChk"
-                  onCheckedChange={setHasLower}
-                  defaultChecked={hasLower}
-                />
-                <Label htmlFor="LowerChk">{t("lowercases")}</Label>
-              </div>
-              {hasLower ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() => setUseLowerRange(!useLowerRange)}
-                      id="LowerCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="LowerCaseRange">{t("use-range")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useLowerRange}
-                      defaultValue={minLower}
-                      onChange={(e) => setMinLower(parseInt(e.target.value))}
-                      value={minLower}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useLowerRange}
-                      defaultValue={maxLower}
-                      onChange={(e) => setMaxLower(parseInt(e.target.value))}
-                      value={maxLower}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
+            <Card className="space-y-2 rounded-md">
+              <CardContent>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="LowerChk"
+                    onCheckedChange={setHasLower}
+                    defaultChecked={hasLower}
+                  />
+                  <Label htmlFor="LowerChk">{t("lowercases")}</Label>
                 </div>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  onCheckedChange={setHasUpper}
-                  defaultChecked={hasUpper}
-                  id="UpperChk"
-                />
-                <Label htmlFor="UpperChk">{t("uppercases")}</Label>
-              </div>
-              {hasUpper ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() => setUseUpperRange(!useUpperRange)}
-                      id="UpperCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="UpperCaseRange">{t("use-range")}</Label>
+                {hasLower ? (
+                  <div>
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox
+                        onCheckedChange={() => setUseLowerRange(!useLowerRange)}
+                        id="LowerCaseRange"
+                      ></Checkbox>
+                      <Label htmlFor="LowerCaseRange">{t("use-range")}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Label htmlFor="">{t("min")}</Label>
+                      <Input
+                        disabled={!useLowerRange}
+                        defaultValue={minLower}
+                        onChange={(e) => setMinLower(parseInt(e.target.value))}
+                        value={minLower}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                      <Label htmlFor="">{t("max")}</Label>
+                      <Input
+                        disabled={!useLowerRange}
+                        defaultValue={maxLower}
+                        onChange={(e) => setMaxLower(parseInt(e.target.value))}
+                        value={maxLower}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useUpperRange}
-                      defaultValue={minUpper}
-                      onChange={(e) => setMinUpper(parseInt(e.target.value))}
-                      value={minUpper}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useUpperRange}
-                      defaultValue={maxUpper}
-                      onChange={(e) => setMaxUpper(parseInt(e.target.value))}
-                      value={maxUpper}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
+                ) : (
+                  <></>
+                )}
+              </CardContent>
+            </Card>
+            <Card className="rounded-md">
+              <CardContent>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    onCheckedChange={setHasUpper}
+                    defaultChecked={hasUpper}
+                    id="UpperChk"
+                  />
+                  <Label htmlFor="UpperChk">{t("uppercases")}</Label>
                 </div>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  onCheckedChange={setHasNumber}
-                  defaultChecked={hasNumber}
-                  id="NbrChk"
-                />
-                <Label htmlFor="NbrChk">{t("nbrs")}</Label>
-              </div>
-              {hasNumber ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() => setUseDigitsRange(!useDigitsRange)}
-                      id="DigitsCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="DigitsCaseRange">{t("use-range")}</Label>
+                {hasUpper ? (
+                  <div>
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox
+                        onCheckedChange={() => setUseUpperRange(!useUpperRange)}
+                        id="UpperCaseRange"
+                      ></Checkbox>
+                      <Label htmlFor="UpperCaseRange">{t("use-range")}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Label htmlFor="">{t("min")}</Label>
+                      <Input
+                        disabled={!useUpperRange}
+                        defaultValue={minUpper}
+                        onChange={(e) => setMinUpper(parseInt(e.target.value))}
+                        value={minUpper}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                      <Label htmlFor="">{t("max")}</Label>
+                      <Input
+                        disabled={!useUpperRange}
+                        defaultValue={maxUpper}
+                        onChange={(e) => setMaxUpper(parseInt(e.target.value))}
+                        value={maxUpper}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useDigitsRange}
-                      defaultValue={minDigits}
-                      onChange={(e) => setMinDigits(parseInt(e.target.value))}
-                      value={minDigits}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useDigitsRange}
-                      defaultValue={maxDigits}
-                      onChange={(e) => setMaxDigits(parseInt(e.target.value))}
-                      value={maxDigits}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
+                ) : (
+                  <></>
+                )}
+              </CardContent>
+            </Card>
+            <Card className="rounded-md">
+              <CardContent>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    onCheckedChange={setHasNumber}
+                    defaultChecked={hasNumber}
+                    id="NbrChk"
+                  />
+                  <Label htmlFor="NbrChk">{t("nbrs")}</Label>
                 </div>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="SpecialChk"
-                  onCheckedChange={setHasChars}
-                  defaultChecked={hasChars}
-                />
-                <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
-              </div>
-              {hasChars ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() =>
-                        setUseSpecialRange(!useSpecialRange)
-                      }
-                      id="SpecialCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="SpecialCaseRange">{t("use-range")}</Label>
+                {hasNumber ? (
+                  <div>
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox
+                        onCheckedChange={() =>
+                          setUseDigitsRange(!useDigitsRange)
+                        }
+                        id="DigitsCaseRange"
+                      ></Checkbox>
+                      <Label htmlFor="DigitsCaseRange">{t("use-range")}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Label htmlFor="">{t("min")}</Label>
+                      <Input
+                        disabled={!useDigitsRange}
+                        defaultValue={minDigits}
+                        onChange={(e) => setMinDigits(parseInt(e.target.value))}
+                        value={minDigits}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                      <Label htmlFor="">{t("max")}</Label>
+                      <Input
+                        disabled={!useDigitsRange}
+                        defaultValue={maxDigits}
+                        onChange={(e) => setMaxDigits(parseInt(e.target.value))}
+                        value={maxDigits}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useSpecialRange}
-                      defaultValue={minSpecial}
-                      onChange={(e) => setMinSpecial(parseInt(e.target.value))}
-                      value={minSpecial}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useSpecialRange}
-                      defaultValue={maxSpecial}
-                      onChange={(e) => setMaxSpecial(parseInt(e.target.value))}
-                      value={maxSpecial}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
+                ) : (
+                  <></>
+                )}
+              </CardContent>
+            </Card>
+            <Card className="rounded-md">
+              <CardContent>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="SpecialChk"
+                    onCheckedChange={setHasChars}
+                    defaultChecked={hasChars}
+                  />
+                  <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
                 </div>
-              ) : (
-                <></>
-              )}
-            </div>
+                {hasChars ? (
+                  <div>
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox
+                        onCheckedChange={() =>
+                          setUseSpecialRange(!useSpecialRange)
+                        }
+                        id="SpecialCaseRange"
+                      ></Checkbox>
+                      <Label htmlFor="SpecialCaseRange">{t("use-range")}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Label htmlFor="">{t("min")}</Label>
+                      <Input
+                        disabled={!useSpecialRange}
+                        defaultValue={minSpecial}
+                        onChange={(e) =>
+                          setMinSpecial(parseInt(e.target.value))
+                        }
+                        value={minSpecial}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                      <Label htmlFor="">{t("max")}</Label>
+                      <Input
+                        disabled={!useSpecialRange}
+                        defaultValue={maxSpecial}
+                        onChange={(e) =>
+                          setMaxSpecial(parseInt(e.target.value))
+                        }
+                        value={maxSpecial}
+                        type="number"
+                        className="h-auto px-2 py-1"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </CardContent>
+            </Card>
             <div className="flex items-center space-x-2">
               <Label htmlFor="LengthTxt">{t("length")}</Label>
               <Input
@@ -345,7 +361,6 @@ export default function PresetsPage() {
         </Dialog>
         <Drawer>
           <DrawerTrigger className="block sm:hidden">
-            {" "}
             <Button className="my-2 h-auto space-x-2 px-2 py-1 font-bold">
               <Add16Regular />
               <span>{t("create-preset")}</span>
@@ -365,180 +380,222 @@ export default function PresetsPage() {
                 id="NameTxt"
               />
             </div>
-            <div className="space-y-2 rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="LowerChk"
-                  onCheckedChange={setHasLower}
-                  defaultChecked={hasLower}
-                />
-                <Label htmlFor="LowerChk">{t("lowercases")}</Label>
+            <ScrollArea className="h-[350px]">
+              <div className="space-y-2">
+                <Card className="space-y-2 rounded-md">
+                  <CardContent>
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        id="LowerChk"
+                        onCheckedChange={setHasLower}
+                        defaultChecked={hasLower}
+                      />
+                      <Label htmlFor="LowerChk">{t("lowercases")}</Label>
+                    </div>
+                    {hasLower ? (
+                      <div>
+                        <div className="flex items-center space-x-2 py-2">
+                          <Checkbox
+                            onCheckedChange={() =>
+                              setUseLowerRange(!useLowerRange)
+                            }
+                            id="LowerCaseRange"
+                          ></Checkbox>
+                          <Label htmlFor="LowerCaseRange">
+                            {t("use-range")}
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Label htmlFor="">{t("min")}</Label>
+                          <Input
+                            disabled={!useLowerRange}
+                            defaultValue={minLower}
+                            onChange={(e) =>
+                              setMinLower(parseInt(e.target.value))
+                            }
+                            value={minLower}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                          <Label htmlFor="">{t("max")}</Label>
+                          <Input
+                            disabled={!useLowerRange}
+                            defaultValue={maxLower}
+                            onChange={(e) =>
+                              setMaxLower(parseInt(e.target.value))
+                            }
+                            value={maxLower}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </CardContent>
+                </Card>
+                <Card className="rounded-md">
+                  <CardContent>
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        onCheckedChange={setHasUpper}
+                        defaultChecked={hasUpper}
+                        id="UpperChk"
+                      />
+                      <Label htmlFor="UpperChk">{t("uppercases")}</Label>
+                    </div>
+                    {hasUpper ? (
+                      <div>
+                        <div className="flex items-center space-x-2 py-2">
+                          <Checkbox
+                            onCheckedChange={() =>
+                              setUseUpperRange(!useUpperRange)
+                            }
+                            id="UpperCaseRange"
+                          ></Checkbox>
+                          <Label htmlFor="UpperCaseRange">
+                            {t("use-range")}
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Label htmlFor="">{t("min")}</Label>
+                          <Input
+                            disabled={!useUpperRange}
+                            defaultValue={minUpper}
+                            onChange={(e) =>
+                              setMinUpper(parseInt(e.target.value))
+                            }
+                            value={minUpper}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                          <Label htmlFor="">{t("max")}</Label>
+                          <Input
+                            disabled={!useUpperRange}
+                            defaultValue={maxUpper}
+                            onChange={(e) =>
+                              setMaxUpper(parseInt(e.target.value))
+                            }
+                            value={maxUpper}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </CardContent>
+                </Card>
+                <Card className="rounded-md">
+                  <CardContent>
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        onCheckedChange={setHasNumber}
+                        defaultChecked={hasNumber}
+                        id="NbrChk"
+                      />
+                      <Label htmlFor="NbrChk">{t("nbrs")}</Label>
+                    </div>
+                    {hasNumber ? (
+                      <div>
+                        <div className="flex items-center space-x-2 py-2">
+                          <Checkbox
+                            onCheckedChange={() =>
+                              setUseDigitsRange(!useDigitsRange)
+                            }
+                            id="DigitsCaseRange"
+                          ></Checkbox>
+                          <Label htmlFor="DigitsCaseRange">
+                            {t("use-range")}
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Label htmlFor="">{t("min")}</Label>
+                          <Input
+                            disabled={!useDigitsRange}
+                            defaultValue={minDigits}
+                            onChange={(e) =>
+                              setMinDigits(parseInt(e.target.value))
+                            }
+                            value={minDigits}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                          <Label htmlFor="">{t("max")}</Label>
+                          <Input
+                            disabled={!useDigitsRange}
+                            defaultValue={maxDigits}
+                            onChange={(e) =>
+                              setMaxDigits(parseInt(e.target.value))
+                            }
+                            value={maxDigits}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </CardContent>
+                </Card>
+                <Card className="rounded-md">
+                  <CardContent>
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        id="SpecialChk"
+                        onCheckedChange={setHasChars}
+                        defaultChecked={hasChars}
+                      />
+                      <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                    </div>
+                    {hasChars ? (
+                      <div>
+                        <div className="flex items-center space-x-2 py-2">
+                          <Checkbox
+                            onCheckedChange={() =>
+                              setUseSpecialRange(!useSpecialRange)
+                            }
+                            id="SpecialCaseRange"
+                          ></Checkbox>
+                          <Label htmlFor="SpecialCaseRange">
+                            {t("use-range")}
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Label htmlFor="">{t("min")}</Label>
+                          <Input
+                            disabled={!useSpecialRange}
+                            defaultValue={minSpecial}
+                            onChange={(e) =>
+                              setMinSpecial(parseInt(e.target.value))
+                            }
+                            value={minSpecial}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                          <Label htmlFor="">{t("max")}</Label>
+                          <Input
+                            disabled={!useSpecialRange}
+                            defaultValue={maxSpecial}
+                            onChange={(e) =>
+                              setMaxSpecial(parseInt(e.target.value))
+                            }
+                            value={maxSpecial}
+                            type="number"
+                            className="h-auto px-2 py-1"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </CardContent>
+                </Card>
               </div>
-              {hasLower ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() => setUseLowerRange(!useLowerRange)}
-                      id="LowerCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="LowerCaseRange">{t("use-range")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useLowerRange}
-                      defaultValue={minLower}
-                      onChange={(e) => setMinLower(parseInt(e.target.value))}
-                      value={minLower}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useLowerRange}
-                      defaultValue={maxLower}
-                      onChange={(e) => setMaxLower(parseInt(e.target.value))}
-                      value={maxLower}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  onCheckedChange={setHasUpper}
-                  defaultChecked={hasUpper}
-                  id="UpperChk"
-                />
-                <Label htmlFor="UpperChk">{t("uppercases")}</Label>
-              </div>
-              {hasUpper ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() => setUseUpperRange(!useUpperRange)}
-                      id="UpperCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="UpperCaseRange">{t("use-range")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useUpperRange}
-                      defaultValue={minUpper}
-                      onChange={(e) => setMinUpper(parseInt(e.target.value))}
-                      value={minUpper}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useUpperRange}
-                      defaultValue={maxUpper}
-                      onChange={(e) => setMaxUpper(parseInt(e.target.value))}
-                      value={maxUpper}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  onCheckedChange={setHasNumber}
-                  defaultChecked={hasNumber}
-                  id="NbrChk"
-                />
-                <Label htmlFor="NbrChk">{t("nbrs")}</Label>
-              </div>
-              {hasNumber ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() => setUseDigitsRange(!useDigitsRange)}
-                      id="DigitsCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="DigitsCaseRange">{t("use-range")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useDigitsRange}
-                      defaultValue={minDigits}
-                      onChange={(e) => setMinDigits(parseInt(e.target.value))}
-                      value={minDigits}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useDigitsRange}
-                      defaultValue={maxDigits}
-                      onChange={(e) => setMaxDigits(parseInt(e.target.value))}
-                      value={maxDigits}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="rounded-md border border-slate-300 bg-slate-100 p-2 dark:border-slate-700 dark:bg-slate-800">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="SpecialChk"
-                  onCheckedChange={setHasChars}
-                  defaultChecked={hasChars}
-                />
-                <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
-              </div>
-              {hasChars ? (
-                <div>
-                  <div className="flex items-center space-x-2 py-2">
-                    <Checkbox
-                      onCheckedChange={() =>
-                        setUseSpecialRange(!useSpecialRange)
-                      }
-                      id="SpecialCaseRange"
-                    ></Checkbox>
-                    <Label htmlFor="SpecialCaseRange">{t("use-range")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Label htmlFor="">{t("min")}</Label>
-                    <Input
-                      disabled={!useSpecialRange}
-                      defaultValue={minSpecial}
-                      onChange={(e) => setMinSpecial(parseInt(e.target.value))}
-                      value={minSpecial}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                    <Label htmlFor="">{t("max")}</Label>
-                    <Input
-                      disabled={!useSpecialRange}
-                      defaultValue={maxSpecial}
-                      onChange={(e) => setMaxSpecial(parseInt(e.target.value))}
-                      value={maxSpecial}
-                      type="number"
-                      className="h-auto px-2 py-1"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
+            </ScrollArea>
             <div className="flex items-center space-x-2">
               <Label htmlFor="LengthTxt">{t("length")}</Label>
               <Input
