@@ -16,6 +16,7 @@ export interface PasswordAnalysis {
   special: number
   length: number
   score: number
+  entropy: number
 }
 
 export function generatePassword(
@@ -48,20 +49,16 @@ export function generatePasswordByStrength(
   strength: PasswordStrength,
   chars: CustomCharacters
 ): string {
-  switch (strength) {
-    case PasswordStrength.VeryWeak:
-      return generatePassword(true, true, false, false, 6, chars)
-    case PasswordStrength.Weak:
-      return generatePassword(true, true, true, false, 9, chars)
-    case PasswordStrength.Moderate:
-      return generatePassword(true, true, true, false, 11, chars)
-    case PasswordStrength.Strong:
-      return generatePassword(true, true, true, true, 16, chars)
-    case PasswordStrength.VeryStrong:
-      return generatePassword(true, true, true, true, 20, chars)
-    default:
-      return generatePassword(true, true, false, false, 9, chars)
-  }
+  const lengths = [8, 12, 16, 20, 24]
+
+  return generatePassword(
+    true,
+    strength >= 1,
+    strength >= 2,
+    strength >= 3,
+    lengths[strength],
+    chars
+  )
 }
 
 export function getRandomPrompts(numPrompts: number, lng: string): string[] {
@@ -253,11 +250,21 @@ export function getPasswordStrength(pwd: string): PasswordStrength {
   if (score < 90) return PasswordStrength.Strong
   return PasswordStrength.VeryStrong
 }
+
 export function getStrengthInfo(pwd: string): PasswordAnalysis {
   const lowercase = (pwd.match(/[a-z]/g) || []).length
   const uppercase = (pwd.match(/[A-Z]/g) || []).length
   const numbers = (pwd.match(/[0-9]/g) || []).length
   const special = (pwd.match(/[^a-zA-Z0-9]/g) || []).length
+
+  // Calculate entropy (bits)
+  let poolSize = 0
+  if (lowercase > 0) poolSize += 26
+  if (uppercase > 0) poolSize += 26
+  if (numbers > 0) poolSize += 10
+  if (special > 0) poolSize += 33 // Approximate for special chars
+
+  const entropy = Math.round(Math.log2(Math.pow(poolSize, pwd.length)))
 
   return {
     lowercase: lowercase,
@@ -266,5 +273,6 @@ export function getStrengthInfo(pwd: string): PasswordAnalysis {
     special: special,
     length: pwd.length,
     score: getPasswordScore(pwd),
+    entropy: entropy,
   }
 }
