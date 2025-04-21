@@ -61,7 +61,7 @@ export function generatePasswordByStrength(
   )
 }
 
-export function getRandomPrompts(numPrompts: number, lng: string): string[] {
+export function getRandomPrompt(lng: string): string {
   const prompts =
     lng === "fr"
       ? [
@@ -88,13 +88,8 @@ export function getRandomPrompts(numPrompts: number, lng: string): string[] {
           "Password with symbols but easy to remember",
           "Easy to remember related to sports",
         ]
-  const randomPrompts = []
-  for (let i = 0; i < numPrompts; i++) {
-    const randomIndex = Math.floor(Math.random() * prompts.length)
-    randomPrompts.push(prompts[randomIndex])
-    prompts.splice(randomIndex, 1)
-  }
-  return randomPrompts
+  const randomIndex = Math.floor(Math.random() * prompts.length)
+  return prompts[randomIndex]
 }
 
 export interface PasswordPreset {

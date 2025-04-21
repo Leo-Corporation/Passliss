@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import {
   Add16Regular,
-  ArrowClockwise12Regular,
   ArrowClockwise20Regular,
   ArrowDownload16Regular,
   ArrowDownload20Regular,
@@ -15,11 +14,11 @@ import {
   Dismiss16Regular,
   Eye20Regular,
   EyeOff20Regular,
-  Info16Filled,
   Info16Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
   Settings20Regular,
+  Sparkle20Regular,
 } from "@fluentui/react-icons"
 import { Close, DialogClose } from "@radix-ui/react-dialog"
 import { useTranslations } from "next-intl"
@@ -31,7 +30,7 @@ import {
   generatePassword,
   generatePasswordByStrength,
   generatePasswordUsingPreset,
-  getRandomPrompts,
+  getRandomPrompt,
   getStrengthInfo,
   PasswordPreset,
 } from "@/lib/password"
@@ -41,8 +40,6 @@ import {
   setSettings,
   Settings,
 } from "@/lib/settings"
-import PasswordItem from "@/components/password-item"
-import PromptItem from "@/components/prompt-item"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -134,9 +131,10 @@ export default function GeneratePage() {
   const [generatedPasswords, setGeneratedPasswords] = useState<string[]>([])
 
   // AI generator state
-  const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
-  const [randomPrompts, setRandomPrompts] = useState(getRandomPrompts(3, lang))
+  const [promptText, setPromptText] = useState("")
+  const [aiPasswords, setAiPasswords] = useState<string[]>([])
+  const [isGeneratingAi, setIsGeneratingAi] = useState(false)
 
   const [csvSeparator, setCsvSeparator] = useState("colon")
 
@@ -297,7 +295,6 @@ export default function GeneratePage() {
     setPasswordLength(Math.floor(Math.random() * (max - min)) + min)
   }
 
-  const [passwords, setPasswords] = useState<string[]>([])
   const [showAI, setShowAI] = useState(
     !(
       settings.openaiKey == null ||
@@ -305,14 +302,13 @@ export default function GeneratePage() {
       settings.openaiKey == ""
     )
   )
-  const [resVis, setResVis] = useState(true)
 
   async function generateAiPassword() {
+    setIsGeneratingAi(true)
     const openai = new OpenAI({
       apiKey: settings.openaiKey,
       dangerouslyAllowBrowser: true,
     })
-    setResVis(false)
     try {
       const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
@@ -325,23 +321,27 @@ export default function GeneratePage() {
           },
           {
             role: "user",
-            content: aiPrompt,
+            content: promptText,
           },
         ],
       })
       const res = completion.choices[0].message.content
       const obj = JSON.parse(res ?? "{}")
       if (!Array.isArray(obj.passwords)) {
-        setPasswords(["An error has occurred, please try again"])
-        setResVis(true)
+        setAiPasswords(["An error has occurred, please try again"])
         return
       }
-      setPasswords(obj.passwords)
-      setResVis(true)
+      setAiPasswords(obj.passwords)
+      setGeneratedPassword(obj.passwords[0])
+      setPasswordStats(getStrengthInfo(obj.passwords[0]))
+      addActivity({
+        date: new Date(),
+        content: obj.passwords[0],
+      })
     } catch (err: Error | any) {
-      setPasswords([err.message])
-      setResVis(true)
+      setAiPasswords([err.message])
     }
+    setIsGeneratingAi(false)
   }
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
   const [presets] = useState(getPresets())
@@ -796,7 +796,7 @@ export default function GeneratePage() {
                 <h3 className="font-medium">{t("strength")}</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                    <div className="text-sm text-green-600">
+                    <div className="text-sm text-blue-600">
                       {t("lowercases")}
                     </div>
                     <div className="text-xl font-bold">
@@ -812,7 +812,7 @@ export default function GeneratePage() {
                     </div>
                   </div>
                   <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                    <div className="text-sm text-blue-600">{t("nbrs")}</div>
+                    <div className="text-sm text-green-600">{t("nbrs")}</div>
                     <div className="text-xl font-bold">
                       {passwordStats.numbers}
                     </div>
@@ -968,7 +968,7 @@ export default function GeneratePage() {
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent className="border-none" value="ai">
+        <TabsContent className="flex justify-center border-none" value="ai">
           {settings.openaiKey == null ||
           settings.openaiKey == undefined ||
           (settings.openaiKey == "" && !showAI) ? (
@@ -1026,58 +1026,192 @@ export default function GeneratePage() {
               </Dialog>
             </div>
           ) : (
-            <div>
-              <div className="grid grid-cols-[16px_1fr] items-center space-x-2 rounded-lg border border-blue-600 bg-white p-2 text-blue-600 dark:bg-blue-950 dark:text-white">
-                <Info16Filled />
-                <p className="ml-2 text-sm">{t("ai-disclaimer")}</p>
-              </div>
-              <div className="flex w-full flex-col items-center">
-                <div className="m-5 flex w-full space-x-2">
-                  <Input
-                    type="text"
-                    id="prompt-txt"
-                    placeholder={t("enter-prompt")}
-                    value={aiPrompt}
-                    onChange={(e) => setAiPrompt(e.target.value)}
-                    className="h-auto min-w-[150px] border-0 bg-white px-2 py-1 shadow-md dark:bg-slate-800"
-                  />
-                  <Button
-                    className="h-auto px-2 py-1"
-                    onClick={generateAiPassword}
-                  >
-                    {t("generate")}
-                  </Button>
-                </div>
-                <div
-                  id="suggestions"
-                  className="flex w-full flex-wrap items-center"
-                >
-                  <Button
-                    variant="ghost"
-                    onClick={() => setRandomPrompts(getRandomPrompts(3, lang))}
-                    className="my-2 mr-2 h-[30px] cursor-pointer rounded-lg border border-blue-600 bg-white text-sm text-blue-600 shadow-xs transition-all hover:translate-y-[-4px] dark:bg-blue-950 dark:text-white"
-                  >
-                    <ArrowClockwise12Regular className="m-0" />
-                  </Button>
-                  {randomPrompts.map((prp) => (
-                    <PromptItem key={prp} prompt={prp} />
-                  ))}
-                </div>
-                <div
-                  className={resVis ? "hidden" : "flex flex-col items-center"}
-                >
-                  <p className="icon my-2 mr-2 animate-spin text-6xl font-normal select-none">
-                    {"\uF709"}
+            <Card className="w-full max-w-250 sm:min-w-150 xl:min-w-200">
+              <CardHeader>
+                <CardTitle>{t("ai")}</CardTitle>
+                <CardDescription>{t("generate-ai-desc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Prompt Input */}
+                <div className="space-y-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipContent>{t("ai-prompt-tooltip")}</TooltipContent>
+                      <TooltipTrigger>
+                        <Label
+                          onClick={() => setPromptText(getRandomPrompt(lang))}
+                          htmlFor="prompt-text"
+                          className="decoration-foreground/50 cursor-pointer underline decoration-dotted underline-offset-2"
+                        >
+                          {t("enter-prompt")}
+                        </Label>
+                      </TooltipTrigger>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <div className="flex gap-2">
+                    <Input
+                      id="prompt-text"
+                      placeholder={t("ai-prompt-placeholder")}
+                      value={promptText}
+                      onChange={(e) => setPromptText(e.target.value)}
+                      className="flex-1"
+                    />
+                    <Button
+                      onClick={generateAiPassword}
+                      disabled={isGeneratingAi || !promptText.trim()}
+                      className="flex-shrink-0"
+                    >
+                      {isGeneratingAi ? (
+                        <>
+                          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                          {t("ai-loading")}
+                        </>
+                      ) : (
+                        <>
+                          <Sparkle20Regular className="mr-2 h-4 w-4" />
+                          {t("generate")}
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                    {t("ai-prompt-desc")}
                   </p>
-                  <p className="text-center font-bold">{t("ai-loading")}</p>
                 </div>
-                <div id="result-items" className={resVis ? "w-full" : "hidden"}>
-                  {passwords.map((password) => (
-                    <PasswordItem key={password} content={password} />
-                  ))}
-                </div>
-              </div>
-            </div>
+
+                {/* Generated Password Display */}
+                {aiPasswords.length > 0 && (
+                  <div className="space-y-4">
+                    <h3 className="font-medium">{t("ai-suggestions")}</h3>
+                    <div className="space-y-3">
+                      {aiPasswords.map((password, index) => (
+                        <div
+                          key={index}
+                          className="bg-secondary dark:bg-primary-foreground flex items-center justify-between rounded-md p-3"
+                        >
+                          <div className="space-y-1">
+                            <div className="font-mono text-lg">
+                              {showPassword
+                                ? password
+                                : "•".repeat(password.length)}
+                            </div>
+                            <div className="text-muted-foreground text-sm">
+                              {t("suggestion-index", {
+                                index: index + 1,
+                              })}
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                setGeneratedPassword(password)
+                                setPasswordStats(getStrengthInfo(password))
+                              }}
+                            >
+                              {t("select")}
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                navigator.clipboard.writeText(password)
+                                toast(t("copied"))
+                              }}
+                            >
+                              <Copy20Regular className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Selected Password Analysis */}
+                {aiPasswords.length > 0 && (
+                  <div className="space-y-4">
+                    <h3 className="font-medium">
+                      {t("selected-password-analysis")}
+                    </h3>
+
+                    {/* Password Preview */}
+                    {showPassword && (
+                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                        {renderColoredPassword()}
+                        <div className="mt-3 flex flex-wrap gap-2 text-sm">
+                          <span className="text-blue-600">
+                            {t("lowercases")}
+                          </span>
+                          <span className="text-red-600">
+                            {t("uppercases")}
+                          </span>
+                          <span className="text-green-600">{t("nbrs")}</span>
+                          <span className="text-purple-600">
+                            {t("specialchars")}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Password Stats */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                        <div className="text-sm text-blue-600">
+                          {t("lowercases")}
+                        </div>
+                        <div className="text-xl font-bold">
+                          {passwordStats.lowercase}
+                        </div>
+                      </div>
+                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                        <div className="text-sm text-red-600">
+                          {t("uppercases")}
+                        </div>
+                        <div className="text-xl font-bold">
+                          {passwordStats.uppercase}
+                        </div>
+                      </div>
+                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                        <div className="text-sm text-green-600">
+                          {t("nbrs")}
+                        </div>
+                        <div className="text-xl font-bold">
+                          {passwordStats.numbers}
+                        </div>
+                      </div>
+                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                        <div className="text-sm text-purple-600">
+                          {t("specialchars")}
+                        </div>
+                        <div className="text-xl font-bold">
+                          {passwordStats.special}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <Label>
+                          {t("entropy", { entropy: passwordStats.entropy })}
+                        </Label>
+                        <span>{getStrengthLabel(passwordStats.entropy)}</span>
+                      </div>
+                      <Progress
+                        value={Math.min(passwordStats.entropy, 128) / 1.28}
+                        bg={getStrengthColor(passwordStats.entropy)}
+                      />
+                      <p className="text-muted-foreground text-sm">
+                        {t("estimated-time", {
+                          time: getTimeToCrack(passwordStats.entropy),
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           )}
         </TabsContent>
       </Tabs>
