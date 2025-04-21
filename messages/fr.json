@@ -30,7 +30,7 @@
   "customchars": "Caractères personnalisés",
   "amount": "Nombre de mots de passe",
   "multipasswords": "Plusieurs mots de passe",
-  "multipasswords-desc": "Générer plusieurs mots de passe.",
+  "multipasswords-desc": "Générer jusqu'à 50 mots de passe en même temps.",
   "results": "Mots de passe générés",
   "enterpwrstrength": "Entrez un mot de passe pour connaître sa force",
   "password": "Mot de passe",
@@ -215,5 +215,6 @@
   "copied-all": "{amount} mots de passe ont été copiés dans le presse-papiers",
   "copied-all-title": "Tous copiés dans le presse-papiers",
   "passwords": "Mots de passe",
-  "copy-password-index": "Mot de passe #{index} copié dans le presse-papiers"
+  "copy-password-index": "Mot de passe #{index} copié dans le presse-papiers",
+  "random-length": "Cliquez pour générer une longueur aléatoire"
 }

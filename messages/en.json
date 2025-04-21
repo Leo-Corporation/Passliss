@@ -30,7 +30,7 @@
   "customchars": "Custom characters",
   "amount": "Number of passwords",
   "multipasswords": "Multiple passwords",
-  "multipasswords-desc": "Generate multiple passwords.",
+  "multipasswords-desc": "Generate up to 50 passwords at once.",
   "results": "Generated passwords",
   "enterpwrstrength": "Enter a password to see its strength",
   "password": "Password",
@@ -215,5 +215,6 @@
   "copied-all": "{amount} have been copied to the clipboard",
   "copied-all-title": "All copied to clipboard",
   "passwords": "Passwords",
-  "copy-password-index": "Password #{index} copied to clipboard"
+  "copy-password-index": "Password #{index} copied to clipboard",
+  "random-length": "Click to generate a random length"
 }

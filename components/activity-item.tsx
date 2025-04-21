@@ -84,7 +84,7 @@ export default function ActivityItem(props: ActivityProps) {
       case PasswordStrength.VeryWeak:
         return (
           <p className="m-1 w-auto rounded-full border border-red-500 px-2 text-center text-sm font-semibold text-red-500">
-            {t("veryweak")}
+            {t("very-weak")}
           </p>
         )
       case PasswordStrength.Weak:

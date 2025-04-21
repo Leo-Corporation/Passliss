@@ -6,6 +6,8 @@ import {
   Add16Regular,
   ArrowClockwise12Regular,
   ArrowClockwise20Regular,
+  ArrowDownload16Regular,
+  ArrowDownload20Regular,
   BrainCircuit20Regular,
   Checkmark20Regular,
   CheckmarkCircle20Regular,
@@ -68,10 +70,17 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function IndexPage() {
   let settings: Settings = defaultSettings
@@ -128,6 +137,8 @@ export default function IndexPage() {
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
   const [randomPrompts, setRandomPrompts] = useState(getRandomPrompts(3, lang))
+
+  const [csvSeparator, setCsvSeparator] = useState("colon")
 
   // Get color based on score
   function getStrengthColor(score: number) {
@@ -556,12 +567,19 @@ export default function IndexPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <Label>{t("length")}</Label>
-                    <span
-                      onClick={getRandomLength}
-                      className="decoration-foreground/50 cursor-pointer font-medium underline decoration-dotted underline-offset-2"
-                    >
-                      {passwordLength} {" " + t("characters")}
-                    </span>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <span
+                            onClick={getRandomLength}
+                            className="decoration-foreground/50 cursor-pointer font-medium underline decoration-dotted underline-offset-2"
+                          >
+                            {passwordLength} {" " + t("characters")}
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent>{t("random-length")}</TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </div>
                   <Slider
                     value={[passwordLength]}
@@ -764,6 +782,9 @@ export default function IndexPage() {
                     }
                     className="w-24"
                   />
+                  <span className="text-muted-foreground text-sm">
+                    {t("multipasswords-desc")}
+                  </span>
                 </div>
               </div>
 
@@ -827,13 +848,76 @@ export default function IndexPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Label>{t("results")}</Label>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={copyAllPasswords}
-                    >
-                      {t("copy-all")}
-                    </Button>
+
+                    <div className="flex space-x-2">
+                      <Dialog>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <DialogTrigger>
+                                <Button variant="outline" size="sm">
+                                  <ArrowDownload20Regular />
+                                </Button>
+                              </DialogTrigger>
+                            </TooltipTrigger>
+                            <TooltipContent>{t("export-csv")}</TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>{t("export-csv")}</DialogTitle>
+                            <DialogDescription>
+                              {t("export-csv-desc")}
+                            </DialogDescription>
+                          </DialogHeader>
+                          <p>{t("separator")}</p>
+                          <RadioGroup
+                            defaultValue={csvSeparator}
+                            onValueChange={(v) => setCsvSeparator(v)}
+                          >
+                            <div className="flex items-center space-x-2">
+                              <RadioGroupItem value="colon" id="colon" />
+                              <Label htmlFor="colon">&quot;,&quot;</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <RadioGroupItem
+                                value="semicolon"
+                                id="semicolon"
+                              />
+                              <Label htmlFor="semicolon">&quot;;&quot;</Label>
+                            </div>
+                          </RadioGroup>
+                          <Link
+                            className="flex items-center justify-center"
+                            download="passwords.csv"
+                            href={
+                              "data:text/plain;charset=utf-8," +
+                              encodeURIComponent(
+                                generatedPasswords.join(
+                                  csvSeparator === "colon" ? "," : ";"
+                                )
+                              )
+                            }
+                          >
+                            <Button
+                              variant="outline"
+                              className="m-2 flex space-x-1"
+                            >
+                              <ArrowDownload16Regular />
+                              <span>{t("export")}</span>
+                            </Button>
+                          </Link>
+                        </DialogContent>
+                      </Dialog>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={copyAllPasswords}
+                      >
+                        {t("copy-all")}
+                      </Button>
+                    </div>
                   </div>
                   <div className="max-h-60 overflow-y-auto rounded-md border">
                     <table className="w-full">
