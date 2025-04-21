@@ -8,6 +8,7 @@
   "activity": "Activité",
   "settings": "Paramètres",
   "generate": "Générer",
+  "generate-new-password": "Générer un nouveau mot de passe",
   "strength": "Force",
   "encryption": "Chiffrage",
   "pinned": "Épinglé",
@@ -192,5 +193,11 @@
   "enter-password": "Saisissez votre mot de passe",
   "password-analysis": "Analyse du mot de passe",
   "password-analysis-desc": "Détails de la composition de votre mot de passe",
-  "password-desc": "Nous analyserons votre mot de passe et vous fournirons des commentaires pour améliorer sa sécurité"
+  "password-desc": "Nous analyserons votre mot de passe et vous fournirons des commentaires pour améliorer sa sécurité",
+  "copied-to-clipboard": "Le mot de passe a été copié dans le presse-papiers",
+  "copied-title": "Copié dans le presse-papiers",
+  "simple-desc": "Générez un mot de passe sécurisé en un seul clic. Ajustez le niveau de complexité selon vos besoins.",
+  "advanced-desc": "Personnalisez la génération de votre mot de passe à l'aide d'options avancées. Choisissez la longueur, les types de caractères, etc.",
+  "generated-title": "Mot de passe généré",
+  "generated-desc": "Un nouveau mot de passe de {length} caractères a été créé."
 }

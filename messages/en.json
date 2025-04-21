@@ -8,6 +8,7 @@
   "activity": "Activity",
   "settings": "Settings",
   "generate": "Generate",
+  "generate-new-password": "Generate a new password",
   "strength": "Strength",
   "encryption": "Encryption",
   "pinned": "Pinned",
@@ -192,5 +193,11 @@
   "enter-password": "Enter your password",
   "password-analysis": "Password Analysis",
   "password-analysis-desc": "Detailed breakdown of your password composition",
-  "password-desc": "We'll analyze your password and provide feedback to improve its strength"
+  "password-desc": "We'll analyze your password and provide feedback to improve its strength",
+  "copied-to-clipboard": "The password has been copied to the clipboard",
+  "copied-title": "Copied to clipboard",
+  "simple-desc": "Generate a secure password with a single click. Adjust the strength level as needed.",
+  "advanced-desc": "Customize your password generation with advanced options. Choose the length, character types, and more.",
+  "generated-title": "Password generated",
+  "generated-desc": "A new {length}-character password has been created."
 }
