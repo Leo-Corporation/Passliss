@@ -338,8 +338,8 @@ export default function GeneratePage() {
         date: new Date(),
         content: obj.passwords[0],
       })
-    } catch (err: Error | any) {
-      setAiPasswords([err.message])
+    } catch (err) {
+      setAiPasswords([(err as Error).message])
     }
     setIsGeneratingAi(false)
   }
