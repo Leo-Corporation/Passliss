@@ -51,7 +51,6 @@ export const metadata: Metadata = {
     ],
   },
 }
-
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -61,6 +60,20 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/images/icon-512x512.png" />
+        <meta
+          name="theme-color"
+          content="#ffffff"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#000014"
+          media="(prefers-color-scheme: dark)"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
