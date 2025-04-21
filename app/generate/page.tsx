@@ -1,21 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import {
+  Add16Regular,
   ArrowClockwise12Regular,
   ArrowClockwise20Regular,
   BrainCircuit20Regular,
   Checkmark20Regular,
   CheckmarkCircle20Regular,
   Copy20Regular,
+  Dismiss16Regular,
   Eye20Regular,
   EyeOff20Regular,
   Info16Filled,
+  Info16Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
   Settings20Regular,
 } from "@fluentui/react-icons"
-import { DialogClose } from "@radix-ui/react-dialog"
+import { Close, DialogClose } from "@radix-ui/react-dialog"
 import { useTranslations } from "next-intl"
 import OpenAI from "openai"
 import { toast } from "sonner"
@@ -54,9 +58,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
+import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function IndexPage() {
@@ -83,7 +97,9 @@ export default function IndexPage() {
 
   const t = useTranslations()
   const lang = t("lang")
-  const [generatedPassword, setGeneratedPassword] = useState("")
+  const [generatedPassword, setGeneratedPassword] = useState(
+    generatePasswordByStrength(2, settings.customChars)
+  )
   const [showPassword, setShowPassword] = useState(true)
   const [copied, setCopied] = useState(false)
   const [passwordStats, setPasswordStats] = useState({
@@ -104,10 +120,6 @@ export default function IndexPage() {
   const [includeUppercase, setIncludeUppercase] = useState(true)
   const [includeNumbers, setIncludeNumbers] = useState(true)
   const [includeSpecial, setIncludeSpecial] = useState(true)
-
-  const [advancedPasswordTxt, setAdvancedPasswordTxt] = useState(
-    generatePasswordByStrength(2, settings.customChars)
-  )
 
   // AI generator state
   const [aiPrompt, setAiPrompt] = useState("")
@@ -181,13 +193,30 @@ export default function IndexPage() {
     })
   }
 
+  // Get time to crack estimate
+  function getTimeToCrack(entropy: number) {
+    // Assuming 10 billion guesses per second (modern hardware)
+    const guessesPerSecond = 10000000000
+    const seconds = Math.pow(2, entropy) / guessesPerSecond
+
+    if (seconds < 60) return t("instantly")
+    if (seconds < 3600) return `${Math.round(seconds / 60)} ${t("minutes")}`
+    if (seconds < 86400) return `${Math.round(seconds / 3600)} ${t("hours")}`
+    if (seconds < 31536000) return `${Math.round(seconds / 86400)} ${t("days")}`
+    if (seconds < 31536000 * 100)
+      return `${Math.round(seconds / 31536000)} ${t("years")}`
+    if (seconds < 31536000 * 1000)
+      return `${Math.round(seconds / 31536000 / 100)} ${t("centuries")}`
+    return t("millions-of-years")
+  }
+
   function optionsChecked() {
     return (
       includeLowercase || includeUppercase || includeNumbers || includeSpecial
     )
   }
 
-  function advancedNewBtnClicked() {
+  function generateAdvancedPassword() {
     if (!optionsChecked()) return
 
     const pwr = selectedPreset
@@ -200,8 +229,12 @@ export default function IndexPage() {
           passwordLength,
           settings.customChars
         )
-    setAdvancedPasswordTxt(pwr)
+    setGeneratedPassword(pwr)
+    setPasswordStats(getStrengthInfo(pwr))
     addActivity({ date: new Date(), content: pwr })
+    toast(t("generated-title"), {
+      description: t("generated-desc", { length: pwr.length }),
+    })
   }
 
   function getRandomLength() {
@@ -366,7 +399,7 @@ export default function IndexPage() {
 
               {/* Password Preview */}
               {showPassword && (
-                <div className="rounded-md bg-gray-50 p-3">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
                   {renderColoredPassword()}
                   <div className="mt-3 flex flex-wrap gap-2 text-sm">
                     <span className="text-blue-600">{t("lowercases")}</span>
@@ -379,15 +412,15 @@ export default function IndexPage() {
 
               {/* Password Stats */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-md bg-gray-50 p-3">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
                   <div className="text-muted-foreground text-sm">
                     {t("length")}
                   </div>
                   <div className="text-xl font-bold">
-                    {passwordStats.length} characters
+                    {passwordStats.length} {" " + t("characters")}
                   </div>
                 </div>
-                <div className="rounded-md bg-gray-50 p-3">
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
                   <div className="text-muted-foreground text-sm">
                     {t("strength")}
                   </div>
@@ -408,184 +441,329 @@ export default function IndexPage() {
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent className="border-none" value="advanced">
-          {/* <div className="flex">
-            <Dialog>
-              <DialogTrigger className="hidden sm:block">
-                <Button variant="link" className="space-x-2">
-                  <Add16Regular />
-                  <span>{t("use-preset")}</span>
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>{t("select-preset")}</DialogTitle>
-                </DialogHeader>
-                {presets && presets.length === 0 ? (
-                  <div className="flex w-full flex-col items-center justify-center text-center">
-                    <p className="icon text-7xl">{"\uFD81"}</p>
-                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
-                    <p>{t("no-presets-desc")}</p>
-                    <Link href="/presets">
-                      <Button className="m-2 h-auto" variant="outline">
-                        {t("create-preset")}
-                      </Button>
-                    </Link>
-                  </div>
-                ) : (
-                  <ScrollArea className="h-[350px]">
-                    <div className="w-full">
-                      {presets &&
-                        presets.map((el, i) => (
-                          <Close key={i} className="w-full">
-                            <Button
-                              onClick={() => setSelectedPreset(el)}
-                              className="w-full font-semibold"
-                              variant="ghost"
-                            >
-                              {el.name}
-                            </Button>
-                          </Close>
-                        ))}
-                    </div>
-                  </ScrollArea>
-                )}
-              </DialogContent>
-            </Dialog>
-            <Drawer>
-              <DrawerTrigger className="block sm:hidden">
-                <Button variant="link" className="space-x-2">
-                  <Add16Regular />
-                  <span>{t("use-preset")}</span>
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>{t("select-preset")}</DrawerTitle>
-                </DrawerHeader>
-                {presets && presets.length === 0 ? (
-                  <div className="my-10 flex w-full flex-col items-center justify-center text-center">
-                    <p className="icon text-7xl">{"\uFD81"}</p>
-                    <h4 className="text-xl font-bold">{t("no-activity")}</h4>
-                    <p>{t("no-presets-desc")}</p>
-                    <Link href="/presets">
-                      <Button className="m-2 h-auto" variant="outline">
-                        {t("create-preset")}
-                      </Button>
-                    </Link>
-                  </div>
-                ) : (
-                  <ScrollArea className="h-[350px]">
-                    <div className="w-full">
-                      {presets.map((el, i) => (
-                        <Close key={i} className="w-full">
-                          <Button
-                            onClick={() => setSelectedPreset(el)}
-                            className="w-full font-semibold"
-                            variant="ghost"
-                          >
-                            {el.name}
-                          </Button>
-                        </Close>
-                      ))}
-                    </div>
-                  </ScrollArea>
-                )}
-              </DrawerContent>
-            </Drawer>
-            {selectedPreset && (
-              <Button
-                onClick={() => setSelectedPreset(null)}
-                variant="link"
-                className="space-x-2 decoration-red-500"
-              >
-                <Dismiss16Regular color="#ef4444" />
-                <span className="text-red-500">{t("remove-preset")}</span>
-              </Button>
-            )}
-          </div>
-          <div className="flex w-full flex-col items-center">
-            <div className="max-w-full overflow-auto">
-              <PasswordVisionText content={advancedPasswordTxt} />
-            </div>
-            <div className="flex space-x-2">
-              <Button
-                className="h-auto px-2 py-1"
-                onClick={advancedNewBtnClicked}
-              >
-                {t("new")}
-              </Button>
-              <Button
-                className="h-auto px-2 py-1"
-                variant="outline"
-                onClick={copyAdvancedBtnClicked}
-              >
-                {t("copy")}
-              </Button>
-            </div>
-            {!selectedPreset && (
-              <div className="m-5 grid grid-rows-4 md:grid-cols-2">
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    id="LowerChk"
-                    onCheckedChange={setIncludeLowercase}
-                    defaultChecked={includeLowercase}
-                  />
-                  <Label htmlFor="LowerChk">{t("lowercases")}</Label>
-                </div>
-                <div className="col-start-2 flex items-center space-x-2">
-                  <Label htmlFor="LengthTxt">{t("length")}</Label>
+        <TabsContent
+          className="flex justify-center border-none"
+          value="advanced"
+        >
+          <Card className="w-full max-w-250 sm:min-w-150 xl:min-w-200">
+            <CardHeader>
+              <CardTitle>{t("advanced")}</CardTitle>
+              <CardDescription>{t("advanced-desc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Generated Password Display */}
+              <div className="space-y-2">
+                <Label htmlFor="advanced-password">{t("password")}</Label>
+                <div className="relative">
                   <Input
-                    defaultValue={passwordLength}
-                    onChange={(e) =>
-                      setPasswordLength(parseInt(e.target.value))
-                    }
-                    value={passwordLength}
-                    type="number"
-                    className="h-auto px-2 py-1"
-                    id="LengthTxt"
+                    id="advanced-password"
+                    type={showPassword ? "text" : "password"}
+                    value={generatedPassword}
+                    readOnly
+                    className="pr-20 font-mono"
                   />
-                  <Button
-                    onClick={getRandomLength}
-                    className="h-auto px-2 py-1"
-                    variant="outline"
-                  >
-                    <Lightbulb20Regular className="m-0 p-0" />
-                  </Button>
-                </div>
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    onCheckedChange={setIncludeUppercase}
-                    defaultChecked={includeUppercase}
-                    id="UpperChk"
-                  />
-                  <Label htmlFor="UpperChk">{t("uppercases")}</Label>
-                </div>
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    onCheckedChange={setHasNumber}
-                    defaultChecked={hasNumber}
-                    id="NbrChk"
-                  />
-                  <Label htmlFor="NbrChk">{t("nbrs")}</Label>
-                </div>
-                <div className="col-end-1 flex items-center space-x-2">
-                  <Switch
-                    id="SpecialChk"
-                    onCheckedChange={setHasChars}
-                    defaultChecked={hasChars}
-                  />
-                  <Label htmlFor="SpecialChk">{t("specialchars")}</Label>
+                  <div className="absolute top-0 right-0 flex h-full">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="h-full"
+                    >
+                      {showPassword ? (
+                        <EyeOff20Regular className="h-4 w-4" />
+                      ) : (
+                        <Eye20Regular className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">
+                        Toggle password visibility
+                      </span>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={copyToClipboard}
+                      className="h-full"
+                    >
+                      {copied ? (
+                        <Checkmark20Regular className="h-4 w-4" />
+                      ) : (
+                        <Copy20Regular className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">Copy to clipboard</span>
+                    </Button>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
-          {selectedPreset && (
-            <div className="border-primary bg-primary/20 text-primary my-2 flex items-center space-x-2 rounded-md border p-2">
-              <Info16Regular />
-              <p>{t("preset-selected-msg")}</p>
-            </div>
-          )} */}
+
+              {/* Password Preview */}
+              {showPassword && (
+                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                  {renderColoredPassword()}
+                  <div className="mt-3 flex flex-wrap gap-2 text-sm">
+                    <span className="text-blue-600">{t("lowercases")}</span>
+                    <span className="text-red-600">{t("uppercases")}</span>
+                    <span className="text-green-600">{t("nbrs")}</span>
+                    <span className="text-purple-600">{t("specialchars")}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Password Length */}
+              {!selectedPreset && (
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <Label>{t("length")}</Label>
+                    <span
+                      onClick={getRandomLength}
+                      className="decoration-foreground/50 cursor-pointer font-medium underline decoration-dotted underline-offset-2"
+                    >
+                      {passwordLength} {" " + t("characters")}
+                    </span>
+                  </div>
+                  <Slider
+                    value={[passwordLength]}
+                    min={4}
+                    max={64}
+                    step={1}
+                    onValueChange={(value) => setPasswordLength(value[0])}
+                    className="py-4"
+                  />
+                  <div className="grid grid-cols-3 text-xs">
+                    <div>4</div>
+                    <div className="text-center">32</div>
+                    <div className="text-right">64</div>
+                  </div>
+                </div>
+              )}
+
+              {/* Character Types */}
+              {!selectedPreset ? (
+                <div className="space-y-4">
+                  <h3 className="font-medium">{t("character-types")}</h3>
+                  <div className="grid gap-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-blue-600">abc</span>
+                        <Label htmlFor="include-lowercase">
+                          {t("lowercases")}
+                        </Label>
+                      </div>
+                      <Switch
+                        id="include-lowercase"
+                        checked={includeLowercase}
+                        onCheckedChange={setIncludeLowercase}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-red-600">ABC</span>
+                        <Label htmlFor="include-uppercase">
+                          {t("uppercases")}
+                        </Label>
+                      </div>
+                      <Switch
+                        id="include-uppercase"
+                        checked={includeUppercase}
+                        onCheckedChange={setIncludeUppercase}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-green-600">123</span>
+                        <Label htmlFor="include-numbers">{t("nbrs")}</Label>
+                      </div>
+                      <Switch
+                        id="include-numbers"
+                        checked={includeNumbers}
+                        onCheckedChange={setIncludeNumbers}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-purple-600">!@#</span>
+                        <Label htmlFor="include-special">
+                          {t("specialchars")}
+                        </Label>
+                      </div>
+                      <Switch
+                        id="include-special"
+                        checked={includeSpecial}
+                        onCheckedChange={setIncludeSpecial}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="border-primary bg-primary/20 text-primary my-2 flex items-center space-x-2 rounded-md border p-2">
+                  <Info16Regular />
+                  <p>{t("preset-selected-msg")}</p>
+                </div>
+              )}
+              <div className="flex">
+                <Dialog>
+                  <DialogTrigger className="hidden sm:block">
+                    <Button variant="link" className="space-x-2">
+                      <Add16Regular />
+                      <span>{t("use-preset")}</span>
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>{t("select-preset")}</DialogTitle>
+                    </DialogHeader>
+                    {presets && presets.length === 0 ? (
+                      <div className="flex w-full flex-col items-center justify-center text-center">
+                        <p className="icon text-7xl">{"\uFD81"}</p>
+                        <h4 className="text-xl font-bold">
+                          {t("no-activity")}
+                        </h4>
+                        <p>{t("no-presets-desc")}</p>
+                        <Link href="/presets">
+                          <Button className="m-2 h-auto" variant="outline">
+                            {t("create-preset")}
+                          </Button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <ScrollArea className="h-[350px]">
+                        <div className="w-full">
+                          {presets &&
+                            presets.map((el, i) => (
+                              <Close key={i} className="w-full">
+                                <Button
+                                  onClick={() => setSelectedPreset(el)}
+                                  className="w-full font-semibold"
+                                  variant="ghost"
+                                >
+                                  {el.name}
+                                </Button>
+                              </Close>
+                            ))}
+                        </div>
+                      </ScrollArea>
+                    )}
+                  </DialogContent>
+                </Dialog>
+                <Drawer>
+                  <DrawerTrigger className="block sm:hidden">
+                    <Button variant="link" className="space-x-2">
+                      <Add16Regular />
+                      <span>{t("use-preset")}</span>
+                    </Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>{t("select-preset")}</DrawerTitle>
+                    </DrawerHeader>
+                    {presets && presets.length === 0 ? (
+                      <div className="my-10 flex w-full flex-col items-center justify-center text-center">
+                        <p className="icon text-7xl">{"\uFD81"}</p>
+                        <h4 className="text-xl font-bold">
+                          {t("no-activity")}
+                        </h4>
+                        <p>{t("no-presets-desc")}</p>
+                        <Link href="/presets">
+                          <Button className="m-2 h-auto" variant="outline">
+                            {t("create-preset")}
+                          </Button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <ScrollArea className="h-[350px]">
+                        <div className="w-full">
+                          {presets.map((el, i) => (
+                            <Close key={i} className="w-full">
+                              <Button
+                                onClick={() => setSelectedPreset(el)}
+                                className="w-full font-semibold"
+                                variant="ghost"
+                              >
+                                {el.name}
+                              </Button>
+                            </Close>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    )}
+                  </DrawerContent>
+                </Drawer>
+                {selectedPreset && (
+                  <Button
+                    onClick={() => setSelectedPreset(null)}
+                    variant="link"
+                    className="space-x-2 decoration-red-500"
+                  >
+                    <Dismiss16Regular color="#ef4444" />
+                    <span className="text-red-500">{t("remove-preset")}</span>
+                  </Button>
+                )}
+              </div>
+
+              {/* Password Stats */}
+              <div className="space-y-4">
+                <h3 className="font-medium">{t("strength")}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                    <div className="text-sm text-green-600">
+                      {t("lowercases")}
+                    </div>
+                    <div className="text-xl font-bold">
+                      {passwordStats.lowercase}
+                    </div>
+                  </div>
+                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                    <div className="text-sm text-red-600">
+                      {t("uppercases")}
+                    </div>
+                    <div className="text-xl font-bold">
+                      {passwordStats.uppercase}
+                    </div>
+                  </div>
+                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                    <div className="text-sm text-blue-600">{t("nbrs")}</div>
+                    <div className="text-xl font-bold">
+                      {passwordStats.numbers}
+                    </div>
+                  </div>
+                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
+                    <div className="text-sm text-purple-600">
+                      {t("specialchars")}
+                    </div>
+                    <div className="text-xl font-bold">
+                      {passwordStats.special}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <Label>
+                      {t("entropy", { entropy: passwordStats.entropy })}
+                    </Label>
+                    <span>{getStrengthLabel(passwordStats.entropy)}</span>
+                  </div>
+                  <Progress
+                    value={Math.min(passwordStats.entropy, 128) / 1.28}
+                    bg={getStrengthColor(passwordStats.entropy)}
+                  />
+                  <p className="text-muted-foreground text-sm">
+                    {t("estimated-time", {
+                      time: getTimeToCrack(passwordStats.entropy),
+                    })}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                onClick={generateAdvancedPassword}
+                className="flex w-full items-center gap-2"
+              >
+                <ArrowClockwise20Regular className="h-4 w-4" />
+                {t("generate-new-password")}
+              </Button>
+            </CardFooter>
+          </Card>
         </TabsContent>
         <TabsContent className="border-none" value="ai">
           {settings.openaiKey == null ||

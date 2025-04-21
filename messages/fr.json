@@ -199,5 +199,16 @@
   "simple-desc": "Générez un mot de passe sécurisé en un seul clic. Ajustez le niveau de complexité selon vos besoins.",
   "advanced-desc": "Personnalisez la génération de votre mot de passe à l'aide d'options avancées. Choisissez la longueur, les types de caractères, etc.",
   "generated-title": "Mot de passe généré",
-  "generated-desc": "Un nouveau mot de passe de {length} caractères a été créé."
+  "generated-desc": "Un nouveau mot de passe de {length} caractères a été créé.",
+  "instantly": "Instantanément",
+  "minutes": "minutes",
+  "hours": "heures",
+  "days": "jours",
+  "years": "années",
+  "centuries": "siècles",
+  "millions-of-years": "Plusieurs millions d'années",
+  "characters": "caractères",
+  "character-types": "Types de caractères",
+  "entropy": "Entropie : {entropy} bits",
+  "estimated-time": "Temps estimé pour le craquage : {time}"
 }

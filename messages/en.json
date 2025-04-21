@@ -199,5 +199,16 @@
   "simple-desc": "Generate a secure password with a single click. Adjust the strength level as needed.",
   "advanced-desc": "Customize your password generation with advanced options. Choose the length, character types, and more.",
   "generated-title": "Password generated",
-  "generated-desc": "A new {length}-character password has been created."
+  "generated-desc": "A new {length}-character password has been created.",
+  "instantly": "Instantly",
+  "minutes": "minutes",
+  "hours": "hours",
+  "days": "days",
+  "years": "years",
+  "centuries": "centuries",
+  "millions-of-years": "Millions of years",
+  "characters": "characters",
+  "character-types": "Character Types",
+  "entropy": "Entropy: {entropy} bits",
+  "estimated-time": "Estimated time to crack: {time}"
 }
