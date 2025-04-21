@@ -1,0 +1,29 @@
+{
+  "name": "Passliss Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "GitHub.vscode-pull-request-github"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "postCreateCommand": "npm install --legacy-peer-deps",
+  "forwardPorts": [3000],
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.npmrc,target=/home/node/.npmrc,type=bind,consistency=cached"
+  ]
+}
