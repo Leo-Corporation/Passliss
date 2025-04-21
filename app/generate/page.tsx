@@ -82,7 +82,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-export default function IndexPage() {
+export default function GeneratePage() {
   let settings: Settings = defaultSettings
   function loadSettings() {
     settings = getSettings()
@@ -315,7 +315,7 @@ export default function IndexPage() {
     setResVis(false)
     try {
       const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo-1106",
+        model: "gpt-4o-mini",
         response_format: { type: "json_object" },
         messages: [
           {
@@ -338,7 +338,10 @@ export default function IndexPage() {
       }
       setPasswords(obj.passwords)
       setResVis(true)
-    } catch {}
+    } catch (err: Error | any) {
+      setPasswords([err.message])
+      setResVis(true)
+    }
   }
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
   const [presets] = useState(getPresets())
