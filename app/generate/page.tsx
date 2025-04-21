@@ -1,31 +1,24 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import {
-  Add16Regular,
   ArrowClockwise12Regular,
-  ArrowDownload16Regular,
-  ArrowDownload20Regular,
+  ArrowClockwise20Regular,
   BrainCircuit20Regular,
-  CheckmarkCircle20Filled,
+  Checkmark20Regular,
   CheckmarkCircle20Regular,
-  CheckmarkStarburst20Filled,
-  Dismiss16Regular,
-  DismissCircle20Filled,
+  Copy20Regular,
+  Eye20Regular,
+  EyeOff20Regular,
   Info16Filled,
-  Info16Regular,
-  Info20Filled,
-  Lightbulb20Regular,
   LightbulbFilament48Regular,
   LockClosed20Regular,
-  Password20Regular,
   Settings20Regular,
-  Warning20Filled,
 } from "@fluentui/react-icons"
-import { Close, DialogClose } from "@radix-ui/react-dialog"
+import { DialogClose } from "@radix-ui/react-dialog"
 import { useTranslations } from "next-intl"
 import OpenAI from "openai"
+import { toast } from "sonner"
 
 import { addActivity, getPresets } from "@/lib/browser-storage"
 import {
@@ -34,7 +27,6 @@ import {
   generatePasswordUsingPreset,
   getRandomPrompts,
   getStrengthInfo,
-  PasswordAnalysis,
   PasswordPreset,
 } from "@/lib/password"
 import {
@@ -44,10 +36,16 @@ import {
   Settings,
 } from "@/lib/settings"
 import PasswordItem from "@/components/password-item"
-import PasswordVisionText from "@/components/password-vision"
 import PromptItem from "@/components/prompt-item"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -56,21 +54,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Slider } from "@/components/ui/slider"
-import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
 
 export default function IndexPage() {
   let settings: Settings = defaultSettings
@@ -96,78 +83,108 @@ export default function IndexPage() {
 
   const t = useTranslations()
   const lang = t("lang")
-  const [sliderVal, setSliderVal] = useState(3)
-  const [hasUpper, setHasUpper] = useState(
-    settings.defaultPasswordConfig?.upperCases ?? true
-  )
-  const [hasLower, setHasLower] = useState(
-    settings.defaultPasswordConfig?.lowerCases ?? true
-  )
-  const [hasNumber, setHasNumber] = useState(
-    settings.defaultPasswordConfig?.numbers ?? true
-  )
-  const [hasChars, setHasChars] = useState(
-    settings.defaultPasswordConfig?.special ?? false
-  )
-  const [length, setLength] = useState(12)
+  const [generatedPassword, setGeneratedPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(true)
+  const [copied, setCopied] = useState(false)
+  const [passwordStats, setPasswordStats] = useState({
+    lowercase: 0,
+    uppercase: 0,
+    numbers: 0,
+    special: 0,
+    length: 0,
+    entropy: 0,
+  })
 
-  const [strengthInfo, setStrengthInfo] = useState<PasswordAnalysis>()
+  // Simple generator state
+  const [strengthLevel, setStrengthLevel] = useState(2) // 0-4
 
-  const [strengthTxt, setStrengthTxt] = useState(
-    getSliderUiInfo(sliderVal).text
-  )
-  const [strengthIconTxt, setStrengthIconTxt] = useState(
-    getSliderUiInfo(sliderVal).icon
-  )
-  const [strengthColor, setStrengthColor] = useState(
-    getSliderUiInfo(sliderVal).color
-  )
-  const [passwordTxt, setPasswordTxt] = useState(
-    generatePasswordByStrength(2, settings.customChars)
-  )
+  // Advanced generator state
+  const [passwordLength, setPasswordLength] = useState(16)
+  const [includeLowercase, setIncludeLowercase] = useState(true)
+  const [includeUppercase, setIncludeUppercase] = useState(true)
+  const [includeNumbers, setIncludeNumbers] = useState(true)
+  const [includeSpecial, setIncludeSpecial] = useState(true)
+
   const [advancedPasswordTxt, setAdvancedPasswordTxt] = useState(
     generatePasswordByStrength(2, settings.customChars)
   )
-  const [passwordAmount, setPasswordAmount] = useState(10)
-  const [multiplePasswordsTxt, setMultiplePasswordsTxt] = useState("")
+
+  // AI generator state
   const [aiPrompt, setAiPrompt] = useState("")
   const [apiKey, setApiKey] = useState("")
-  const [csvSeparator, setCsvSeparator] = useState("colon")
   const [randomPrompts, setRandomPrompts] = useState(getRandomPrompts(3, lang))
 
-  function newBtnClicked() {
-    const pwr = generatePasswordByStrength(sliderVal, settings.customChars)
-    setPasswordTxt(pwr)
-    addActivity({ date: new Date(), content: pwr })
+  // Get color based on score
+  function getStrengthColor(score: number) {
+    if (score === 0) return "bg-gray-200"
+    if (score < 30) return "bg-red-500"
+    if (score < 50) return "bg-orange-500"
+    if (score < 70) return "bg-yellow-500"
+    if (score < 90) return "bg-green-500"
+    return "bg-emerald-500"
   }
 
-  function copyBtnClicked() {
-    navigator.clipboard.writeText(passwordTxt)
+  // Render password with colored characters
+  function renderColoredPassword() {
+    if (!generatedPassword) return null
+
+    return (
+      <div className="mt-2 font-mono text-lg break-all">
+        {generatedPassword.split("").map((char, index) => {
+          let className = ""
+
+          if (/[a-z]/.test(char)) {
+            className = "text-blue-600" // Lowercase
+          } else if (/[A-Z]/.test(char)) {
+            className = "text-red-600" // Uppercase
+          } else if (/[0-9]/.test(char)) {
+            className = "text-green-600" // Numbers
+          } else {
+            className = "text-purple-600" // Special
+          }
+
+          return (
+            <span key={index} className={className}>
+              {char}
+            </span>
+          )
+        })}
+      </div>
+    )
+  }
+
+  function getStrengthLabel(score: number) {
+    if (score === 0) return t("unknown")
+    if (score < 30) return t("very-weak")
+    if (score < 50) return t("weak")
+    if (score < 70) return t("moderate")
+    if (score < 90) return t("strong")
+    return t("very-strong")
+  }
+
+  function copyToClipboard() {
+    navigator.clipboard.writeText(generatedPassword)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+    toast(t("copied-title"), {
+      description: t("copied-to-clipboard"),
+    })
+  }
+
+  function generateSimplePassword() {
+    const pwr = generatePasswordByStrength(strengthLevel, settings.customChars)
+    setGeneratedPassword(pwr)
+    setPasswordStats(getStrengthInfo(pwr))
+    addActivity({ date: new Date(), content: pwr })
+    toast(t("generated-title"), {
+      description: t("generated-desc", { length: pwr.length }),
+    })
   }
 
   function optionsChecked() {
-    return hasLower || hasUpper || hasNumber || hasChars
-  }
-
-  function MultiplePasswordClick() {
-    if (!optionsChecked()) return
-
-    let value = ""
-
-    for (let i = 0; i < passwordAmount; i++) {
-      value += selectedPreset
-        ? generatePasswordUsingPreset(selectedPreset, settings.customChars) +
-          "\n"
-        : generatePassword(
-            hasLower,
-            hasUpper,
-            hasNumber,
-            hasChars,
-            +length,
-            settings.customChars
-          ) + "\n"
-    }
-    setMultiplePasswordsTxt(value)
+    return (
+      includeLowercase || includeUppercase || includeNumbers || includeSpecial
+    )
   }
 
   function advancedNewBtnClicked() {
@@ -176,83 +193,21 @@ export default function IndexPage() {
     const pwr = selectedPreset
       ? generatePasswordUsingPreset(selectedPreset, settings.customChars)
       : generatePassword(
-          hasLower,
-          hasUpper,
-          hasNumber,
-          hasChars,
-          +length,
+          includeLowercase,
+          includeUppercase,
+          includeNumbers,
+          includeSpecial,
+          passwordLength,
           settings.customChars
         )
     setAdvancedPasswordTxt(pwr)
     addActivity({ date: new Date(), content: pwr })
-    setStrengthInfo(getStrengthInfo(pwr))
-  }
-
-  function copyAdvancedBtnClicked() {
-    navigator.clipboard.writeText(advancedPasswordTxt)
-  }
-
-  function onSliderChanged(newValue: number[]) {
-    const pwr = generatePasswordByStrength(newValue[0], settings.customChars)
-    setPasswordTxt(pwr)
-    setSliderVal(newValue[0])
-
-    const info = getSliderUiInfo(newValue[0])
-    setStrengthTxt(info.text)
-    setStrengthIconTxt(info.icon)
-    setStrengthColor(info.color)
-  }
-
-  function getSliderUiInfo(val: number): {
-    text: string
-    icon: string
-    color: string
-  } {
-    switch (val) {
-      case 0:
-        return {
-          text: t("strength-very-weak"),
-          icon: "\uF36E",
-          color: "#ef4444",
-        }
-
-      case 1:
-        return {
-          text: t("strength-weak"),
-          icon: "\uF882",
-          color: "#f97316",
-        }
-
-      case 2:
-        return {
-          text: t("strength-moderate"),
-          icon: "\uF4AA",
-          color: "#eab308",
-        }
-
-      case 3:
-        return { text: t("strength-strong"), icon: "\uF299", color: "#22c55e" }
-
-      case 4:
-        return {
-          text: t("strength-very-strong"),
-          icon: "\uF6EA",
-          color: "#10b981",
-        }
-
-      default:
-        return {
-          text: t("enterpwrstrength"),
-          icon: "\uF4AB",
-          color: "#FFFFFFA0",
-        }
-    }
   }
 
   function getRandomLength() {
     const min = settings.passwordLengthOne
     const max = settings.passwordLengthTwo
-    setLength(Math.floor(Math.random() * (max - min)) + min)
+    setPasswordLength(Math.floor(Math.random() * (max - min)) + min)
   }
 
   const [passwords, setPasswords] = useState<string[]>([])
@@ -326,49 +281,135 @@ export default function IndexPage() {
           className="justify-center border-none data-[state=active]:flex"
           value="simple"
         >
-          <div className="flex w-full flex-col items-center">
-            <PasswordVisionText content={passwordTxt} />
-            <div className="flex space-x-2">
-              <Button className="h-auto px-2 py-1" onClick={newBtnClicked}>
-                {t("new")}
-              </Button>
-              <Button
-                className="h-auto px-2 py-1"
-                variant="outline"
-                onClick={copyBtnClicked}
-              >
-                {t("copy")}
-              </Button>
-            </div>
-            <Slider
-              id="StrengthSlider"
-              onValueChange={onSliderChanged}
-              defaultValue={[sliderVal]}
-              max={4}
-              step={1}
-              className="m-5 sm:w-1/2"
-            />
-            <div className="w-full sm:w-1/2">
-              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto]">
-                <DismissCircle20Filled color="#ef4444" />
-                <Warning20Filled color="#f97316" />
-                <Info20Filled color="#eab308" />
-                <CheckmarkCircle20Filled color="#22c55e" />
-                <CheckmarkStarburst20Filled color="#10b981" />
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("simple")}</CardTitle>
+              <CardDescription>{t("simple-desc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="w-full max-w-250 space-y-6 sm:min-w-150 xl:min-w-200">
+              {/* Generated Password Display */}
+              <div className="space-y-2">
+                <Label htmlFor="generated-password">{t("password")}</Label>
+                <div className="relative">
+                  <Input
+                    id="generated-password"
+                    type={showPassword ? "text" : "password"}
+                    value={generatedPassword}
+                    readOnly
+                    className="pr-20 font-mono"
+                  />
+                  <div className="absolute top-0 right-0 flex h-full">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="h-full"
+                    >
+                      {showPassword ? (
+                        <EyeOff20Regular className="h-4 w-4" />
+                      ) : (
+                        <Eye20Regular className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">
+                        Toggle password visibility
+                      </span>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={copyToClipboard}
+                      className="h-full"
+                    >
+                      {copied ? (
+                        <Checkmark20Regular className="h-4 w-4" />
+                      ) : (
+                        <Copy20Regular className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">Copy to clipboard</span>
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <p
-              className="icon-f m-2 text-6xl"
-              style={{ color: strengthColor }}
-              id="StrengthIconTxt"
-            >
-              {strengthIconTxt}
-            </p>
-            <p id="StrengthTxt">{strengthTxt}</p>
-          </div>
+
+              {/* Strength Level Slider */}
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <Label>{t("strength")}</Label>
+                  <span className="font-medium">
+                    {
+                      [
+                        t("very-weak"),
+                        t("weak"),
+                        t("moderate"),
+                        t("strong"),
+                        t("very-strong"),
+                      ][strengthLevel]
+                    }
+                  </span>
+                </div>
+                <Slider
+                  value={[strengthLevel]}
+                  min={0}
+                  max={4}
+                  step={1}
+                  onValueChange={(value) => setStrengthLevel(value[0])}
+                  className="py-4"
+                />
+                <div className="grid grid-cols-5 text-center text-xs">
+                  <div>{t("very-weak")}</div>
+                  <div>{t("weak")}</div>
+                  <div>{t("moderate")}</div>
+                  <div>{t("strong")}</div>
+                  <div>{t("very-strong")}</div>
+                </div>
+              </div>
+
+              {/* Password Preview */}
+              {showPassword && (
+                <div className="rounded-md bg-gray-50 p-3">
+                  {renderColoredPassword()}
+                  <div className="mt-3 flex flex-wrap gap-2 text-sm">
+                    <span className="text-blue-600">{t("lowercases")}</span>
+                    <span className="text-red-600">{t("uppercases")}</span>
+                    <span className="text-green-600">{t("nbrs")}</span>
+                    <span className="text-purple-600">{t("specialchars")}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Password Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-md bg-gray-50 p-3">
+                  <div className="text-muted-foreground text-sm">
+                    {t("length")}
+                  </div>
+                  <div className="text-xl font-bold">
+                    {passwordStats.length} characters
+                  </div>
+                </div>
+                <div className="rounded-md bg-gray-50 p-3">
+                  <div className="text-muted-foreground text-sm">
+                    {t("strength")}
+                  </div>
+                  <div className="text-xl font-bold">
+                    {getStrengthLabel(passwordStats.entropy)}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                onClick={generateSimplePassword}
+                className="flex w-full items-center gap-2"
+              >
+                <ArrowClockwise20Regular className="h-4 w-4" />
+                {t("generate-new-password")}
+              </Button>
+            </CardFooter>
+          </Card>
         </TabsContent>
         <TabsContent className="border-none" value="advanced">
-          <div className="flex">
+          {/* <div className="flex">
             <Dialog>
               <DialogTrigger className="hidden sm:block">
                 <Button variant="link" className="space-x-2">
@@ -481,133 +522,25 @@ export default function IndexPage() {
               >
                 {t("copy")}
               </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button className="h-auto px-2 py-1" variant="outline">
-                    <Password20Regular className="m-0 p-0" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>{t("multipasswords")}</DialogTitle>
-                    <DialogDescription>
-                      {t("multipasswords-desc")}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="pt-4">
-                    <div className="flex items-center space-x-2">
-                      <Label htmlFor="AmountTxt">{t("amount")}</Label>
-                      <Input
-                        defaultValue={passwordAmount}
-                        type="number"
-                        onChange={(e) =>
-                          setPasswordAmount(parseInt(e.target.value))
-                        }
-                        className="h-auto px-2 py-1"
-                        id="AmountTxt"
-                      />
-                      <Button
-                        className="h-auto px-2 py-1"
-                        onClick={MultiplePasswordClick}
-                      >
-                        {t("generate")}
-                      </Button>
-                    </div>
-                    <div className="my-2 flex flex-col">
-                      <Label htmlFor="TextArea">{t("results")}</Label>
-                      <Textarea
-                        className="mt-2 px-2 py-1"
-                        value={multiplePasswordsTxt}
-                        id="TextArea"
-                      />
-                    </div>
-                    <div className="m-2 mb-0 flex flex-row justify-center space-x-2">
-                      <Button
-                        className="h-auto px-2 py-1"
-                        onClick={() =>
-                          navigator.clipboard.writeText(multiplePasswordsTxt)
-                        }
-                      >
-                        {t("copy")}
-                      </Button>
-
-                      <Dialog>
-                        <DialogTrigger>
-                          <Button
-                            variant="outline"
-                            className="h-auto px-2 py-1"
-                          >
-                            <ArrowDownload20Regular />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>{t("export-csv")}</DialogTitle>
-                            <DialogDescription>
-                              {t("export-csv-desc")}
-                            </DialogDescription>
-                          </DialogHeader>
-                          <p>{t("separator")}</p>
-                          <RadioGroup
-                            defaultValue={csvSeparator}
-                            onValueChange={(v) => setCsvSeparator(v)}
-                          >
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="colon" id="colon" />
-                              <Label htmlFor="colon">&quot;,&quot;</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem
-                                value="semicolon"
-                                id="semicolon"
-                              />
-                              <Label htmlFor="semicolon">&quot;;&quot;</Label>
-                            </div>
-                          </RadioGroup>
-                          <Link
-                            className="flex items-center justify-center"
-                            download="passwords.csv"
-                            href={
-                              "data:text/plain;charset=utf-8," +
-                              encodeURIComponent(
-                                multiplePasswordsTxt.replaceAll(
-                                  "\n",
-                                  csvSeparator === "colon" ? "," : ";"
-                                )
-                              )
-                            }
-                          >
-                            <Button
-                              variant="outline"
-                              className="m-2 flex space-x-2"
-                            >
-                              <ArrowDownload16Regular />
-                              <span>{t("export")}</span>
-                            </Button>
-                          </Link>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
             </div>
             {!selectedPreset && (
               <div className="m-5 grid grid-rows-4 md:grid-cols-2">
                 <div className="col-end-1 flex items-center space-x-2">
                   <Switch
                     id="LowerChk"
-                    onCheckedChange={setHasLower}
-                    defaultChecked={hasLower}
+                    onCheckedChange={setIncludeLowercase}
+                    defaultChecked={includeLowercase}
                   />
                   <Label htmlFor="LowerChk">{t("lowercases")}</Label>
                 </div>
                 <div className="col-start-2 flex items-center space-x-2">
                   <Label htmlFor="LengthTxt">{t("length")}</Label>
                   <Input
-                    defaultValue={length}
-                    onChange={(e) => setLength(parseInt(e.target.value))}
-                    value={length}
+                    defaultValue={passwordLength}
+                    onChange={(e) =>
+                      setPasswordLength(parseInt(e.target.value))
+                    }
+                    value={passwordLength}
                     type="number"
                     className="h-auto px-2 py-1"
                     id="LengthTxt"
@@ -622,8 +555,8 @@ export default function IndexPage() {
                 </div>
                 <div className="col-end-1 flex items-center space-x-2">
                   <Switch
-                    onCheckedChange={setHasUpper}
-                    defaultChecked={hasUpper}
+                    onCheckedChange={setIncludeUppercase}
+                    defaultChecked={includeUppercase}
                     id="UpperChk"
                   />
                   <Label htmlFor="UpperChk">{t("uppercases")}</Label>
@@ -652,38 +585,7 @@ export default function IndexPage() {
               <Info16Regular />
               <p>{t("preset-selected-msg")}</p>
             </div>
-          )}
-          <Card className="gap-0">
-            <CardHeader>
-              <CardTitle>{t("details")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-[1fr_auto] sm:grid-cols-2">
-                <p className="font-semibold text-[#FF2929]">
-                  {t("uppercases")}
-                </p>
-                <p className="font-semibold text-[#FF2929]" id="UppercaseTxt">
-                  {strengthInfo ? strengthInfo.uppercase : "0"}
-                </p>
-                <p className="font-semibold text-[#3B8AFF]">
-                  {t("lowercases")}
-                </p>
-                <p className="font-semibold text-[#3B8AFF]" id="LowercaseTxt">
-                  {strengthInfo ? strengthInfo.lowercase : "0"}
-                </p>
-                <p className="font-semibold text-[#007F5F]">{t("nbrs")}</p>
-                <p className="font-semibold text-[#007F5F]" id="NumbersTxt">
-                  {strengthInfo ? strengthInfo.numbers : "0"}
-                </p>
-                <p className="font-semibold text-[#9F2CF9]">
-                  {t("specialchars")}
-                </p>
-                <p className="font-semibold text-[#9F2CF9]" id="SpecialTxt">
-                  {strengthInfo ? strengthInfo.special : "0"}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          )} */}
         </TabsContent>
         <TabsContent className="border-none" value="ai">
           {settings.openaiKey == null ||
