@@ -188,7 +188,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="flex flex-col space-y-2">
                 <Label htmlFor="language" className="font-semibold">
                   {t("language")}
                 </Label>
@@ -431,7 +431,7 @@ export default function SettingsPage() {
                   id="hide_pwr"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="flex flex-col space-y-2">
                 <Label htmlFor="hashing"> {t("default-hashing-algo")}</Label>
                 <Select
                   defaultValue={settings.hashAlgo}
@@ -457,7 +457,7 @@ export default function SettingsPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="space-y-2">
+              <div className="flex flex-col space-y-2">
                 <Label htmlFor="encryption">
                   {t("default-encryption-algo")}
                 </Label>
