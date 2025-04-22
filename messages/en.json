@@ -4,6 +4,10 @@
   "evening": "Good evening.",
   "night": "Good night.",
   "title": "Passliss",
+  "title-desc": "Your all-in-one solution for password generation, strength analysis, and encryption tools",
+  "quick-password-gen": "Quick Password Generator",
+  "quick-password-gen-desc": "Generate a secure password in seconds.",
+  "explore": "Explore Our Features",
   "home": "Home",
   "activity": "Activity",
   "settings": "Settings",
@@ -157,7 +161,8 @@
   "total": "Total",
   "general": "General",
   "security": "Security",
-  "about": "About",
+  "about": "About Passliss",
+  "about-home-desc": "Passliss is a comprehensive password management and encryption toolkit designed to help you create, analyze, and secure your digital credentials. Our tools are built with security and ease of use in mind.",
   "general-desc": "Customize the app's appearance and language.",
   "security-desc": "Configure default hashing and encryption algorithms.",
   "ai-desc": "Configure your OpenAI API key for advanced features.",
@@ -224,5 +229,8 @@
   "suggesion-index": "Suggestion #{index}",
   "select": "Select",
   "selected-password-analysis": "Selected Password Analysis",
-  "ai-prompt-tooltip": "Click here to generate a random prompt"
+  "ai-prompt-tooltip": "Click here to generate a random prompt",
+  "learn-more": "Learn more",
+  "get-started": "Get started",
+  "go-to": "Go to {page}"
 }

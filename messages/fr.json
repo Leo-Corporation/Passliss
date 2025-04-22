@@ -4,6 +4,10 @@
   "evening": "Bonsoir.",
   "night": "Bonne nuit",
   "title": "Passliss",
+  "title-desc": "Votre solution tout-en-un pour la génération de mots de passe, l'analyse de la force et les outils de chiffrement",
+  "quick-password-gen": "Générateur de mots de passe rapide",
+  "quick-password-gen-desc": "Générez un mot de passe sécurisé en quelques secondes.",
+  "explore": "Explorez nos fonctionnalités",
   "home": "Accueil",
   "activity": "Activité",
   "settings": "Paramètres",
@@ -158,6 +162,7 @@
   "general": "Général",
   "security": "Sécurité",
   "about": "A propos",
+  "about-home-desc": "Passliss est une boîte à outils complète de gestion des mots de passe et de chiffrement conçue pour vous aider à créer, analyser et sécuriser vos informations d'identification numériques. Nos outils sont construits avec la sécurité et la facilité d'utilisation à l'esprit.",
   "general-desc": "Personnaliser l'apparence et la langue de l'application.",
   "security-desc": "Configurer les algorithmes de hachage et de cryptage par défaut.",
   "ai-desc": "Configurez votre clé API OpenAI pour des fonctionnalités avancées.",
@@ -224,5 +229,8 @@
   "suggestion-index": "Suggestion #{index}",
   "select": "Sélectionner",
   "selected-password-analysis": "Analyse du mot de passe sélectionné",
-  "ai-prompt-tooltip": "Cliquez ici pour générer une invite aléatoire"
+  "ai-prompt-tooltip": "Cliquez ici pour générer une invite aléatoire",
+  "learn-more": "En savoir plus",
+  "get-started": "Commencer",
+  "go-to": "Allez sur {page}"
 }

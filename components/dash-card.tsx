@@ -1,26 +1,42 @@
-import { ChevronRight20Regular } from "@fluentui/react-icons"
+import Link from "next/link"
+import { ArrowRight20Regular } from "@fluentui/react-icons"
+
+import { Button } from "./ui/button"
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card"
 
 export interface CardProps {
   title: string
   icon: string
   description: string
+  goto: string
   link: string
 }
 
 export default function DashboardCard(props: CardProps) {
   return (
-    <a
-      href={props.link}
-      className="group border-primary shadow-primary-trans hover:shadow-primary-trans m-3 grid w-[350px] grid-cols-[auto_1fr_24px] items-center space-x-2 rounded-lg border bg-white p-5 text-black shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-slate-900 dark:text-white"
-    >
-      <p className="icon-f text-primary text-4xl">{props.icon}</p>
-      <div>
-        <h3 className="text-xl font-bold">{props.title}</h3>
-        <p className="text-sm">{props.description}</p>
-      </div>
-      <p className="transition-all group-hover:translate-x-1">
-        <ChevronRight20Regular color="#0088FF" />
-      </p>
-    </a>
+    <Card key={props.title} className="flex h-full flex-col">
+      <CardHeader>
+        <div className="icon-f text-primary mb-4">{props.icon}</div>
+        <CardTitle>{props.title}</CardTitle>
+        <CardDescription>{props.description}</CardDescription>
+      </CardHeader>
+      <CardFooter className="mt-auto">
+        <Button asChild className="w-full">
+          <Link
+            href={props.link}
+            className="flex items-center justify-center gap-2"
+          >
+            {props.goto}
+            <ArrowRight20Regular className="h-4 w-4" />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
   )
 }
