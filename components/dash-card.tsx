@@ -22,7 +22,7 @@ export default function DashboardCard(props: CardProps) {
   return (
     <Card key={props.title} className="flex h-full flex-col">
       <CardHeader>
-        <div className="icon-f text-primary mb-4">{props.icon}</div>
+        <div className="icon-f text-primary mb-2 text-3xl">{props.icon}</div>
         <CardTitle>{props.title}</CardTitle>
         <CardDescription>{props.description}</CardDescription>
       </CardHeader>
