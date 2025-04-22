@@ -40,6 +40,8 @@ import {
   setSettings,
   Settings,
 } from "@/lib/settings"
+import PasswordAnalysis from "@/components/password-analysis"
+import PasswordStats from "@/components/password-stats"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -108,14 +110,9 @@ export default function GeneratePage() {
   )
   const [showPassword, setShowPassword] = useState(true)
   const [copied, setCopied] = useState(false)
-  const [passwordStats, setPasswordStats] = useState({
-    lowercase: 0,
-    uppercase: 0,
-    numbers: 0,
-    special: 0,
-    length: 0,
-    entropy: 0,
-  })
+  const [passwordStats, setPasswordStats] = useState(
+    getStrengthInfo(generatedPassword)
+  )
 
   // Simple generator state
   const [strengthLevel, setStrengthLevel] = useState(2) // 0-4
@@ -146,35 +143,6 @@ export default function GeneratePage() {
     if (score < 70) return "bg-yellow-500"
     if (score < 90) return "bg-green-500"
     return "bg-emerald-500"
-  }
-
-  // Render password with colored characters
-  function renderColoredPassword() {
-    if (!generatedPassword) return null
-
-    return (
-      <div className="mt-2 font-mono text-lg break-all">
-        {generatedPassword.split("").map((char, index) => {
-          let className = ""
-
-          if (/[a-z]/.test(char)) {
-            className = "text-blue-600" // Lowercase
-          } else if (/[A-Z]/.test(char)) {
-            className = "text-red-600" // Uppercase
-          } else if (/[0-9]/.test(char)) {
-            className = "text-green-600" // Numbers
-          } else {
-            className = "text-purple-600" // Special
-          }
-
-          return (
-            <span key={index} className={className}>
-              {char}
-            </span>
-          )
-        })}
-      </div>
-    )
   }
 
   function getStrengthLabel(score: number) {
@@ -456,15 +424,7 @@ export default function GeneratePage() {
 
               {/* Password Preview */}
               {showPassword && (
-                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                  {renderColoredPassword()}
-                  <div className="mt-3 flex flex-wrap gap-2 text-sm">
-                    <span className="text-blue-600">{t("lowercases")}</span>
-                    <span className="text-red-600">{t("uppercases")}</span>
-                    <span className="text-green-600">{t("nbrs")}</span>
-                    <span className="text-purple-600">{t("specialchars")}</span>
-                  </div>
-                </div>
+                <PasswordAnalysis generatedPassword={generatedPassword} />
               )}
 
               {/* Password Stats */}
@@ -554,15 +514,7 @@ export default function GeneratePage() {
 
               {/* Password Preview */}
               {showPassword && (
-                <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                  {renderColoredPassword()}
-                  <div className="mt-3 flex flex-wrap gap-2 text-sm">
-                    <span className="text-blue-600">{t("lowercases")}</span>
-                    <span className="text-red-600">{t("uppercases")}</span>
-                    <span className="text-green-600">{t("nbrs")}</span>
-                    <span className="text-purple-600">{t("specialchars")}</span>
-                  </div>
-                </div>
+                <PasswordAnalysis generatedPassword={generatedPassword} />
               )}
 
               {/* Password Length */}
@@ -794,38 +746,7 @@ export default function GeneratePage() {
               {/* Password Stats */}
               <div className="space-y-4">
                 <h3 className="font-medium">{t("strength")}</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                    <div className="text-sm text-blue-600">
-                      {t("lowercases")}
-                    </div>
-                    <div className="text-xl font-bold">
-                      {passwordStats.lowercase}
-                    </div>
-                  </div>
-                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                    <div className="text-sm text-red-600">
-                      {t("uppercases")}
-                    </div>
-                    <div className="text-xl font-bold">
-                      {passwordStats.uppercase}
-                    </div>
-                  </div>
-                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                    <div className="text-sm text-green-600">{t("nbrs")}</div>
-                    <div className="text-xl font-bold">
-                      {passwordStats.numbers}
-                    </div>
-                  </div>
-                  <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                    <div className="text-sm text-purple-600">
-                      {t("specialchars")}
-                    </div>
-                    <div className="text-xl font-bold">
-                      {passwordStats.special}
-                    </div>
-                  </div>
-                </div>
+                <PasswordStats passwordAnalysis={passwordStats} />
 
                 <div className="space-y-2">
                   <div className="flex justify-between">
@@ -1138,58 +1059,11 @@ export default function GeneratePage() {
 
                     {/* Password Preview */}
                     {showPassword && (
-                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                        {renderColoredPassword()}
-                        <div className="mt-3 flex flex-wrap gap-2 text-sm">
-                          <span className="text-blue-600">
-                            {t("lowercases")}
-                          </span>
-                          <span className="text-red-600">
-                            {t("uppercases")}
-                          </span>
-                          <span className="text-green-600">{t("nbrs")}</span>
-                          <span className="text-purple-600">
-                            {t("specialchars")}
-                          </span>
-                        </div>
-                      </div>
+                      <PasswordAnalysis generatedPassword={generatedPassword} />
                     )}
 
                     {/* Password Stats */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                        <div className="text-sm text-blue-600">
-                          {t("lowercases")}
-                        </div>
-                        <div className="text-xl font-bold">
-                          {passwordStats.lowercase}
-                        </div>
-                      </div>
-                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                        <div className="text-sm text-red-600">
-                          {t("uppercases")}
-                        </div>
-                        <div className="text-xl font-bold">
-                          {passwordStats.uppercase}
-                        </div>
-                      </div>
-                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                        <div className="text-sm text-green-600">
-                          {t("nbrs")}
-                        </div>
-                        <div className="text-xl font-bold">
-                          {passwordStats.numbers}
-                        </div>
-                      </div>
-                      <div className="bg-secondary dark:bg-primary-foreground rounded-md p-3">
-                        <div className="text-sm text-purple-600">
-                          {t("specialchars")}
-                        </div>
-                        <div className="text-xl font-bold">
-                          {passwordStats.special}
-                        </div>
-                      </div>
-                    </div>
+                    <PasswordStats passwordAnalysis={passwordStats} />
 
                     <div className="space-y-2">
                       <div className="flex justify-between">
