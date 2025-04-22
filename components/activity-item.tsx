@@ -14,6 +14,8 @@ import {
   getStrengthInfo,
   PasswordStrength,
 } from "@/lib/password"
+import PasswordAnalysis from "./password-analysis"
+import PasswordStats from "./password-stats"
 import StrengthCharacter from "./strength-character"
 import { Button } from "./ui/button"
 import {
@@ -49,11 +51,12 @@ export interface ActivityProps {
 }
 
 export default function ActivityItem(props: ActivityProps) {
+  const passwordStats = getStrengthInfo(props.activity.content)
   function Copy() {
     navigator.clipboard.writeText(props.activity.content)
   }
   const t = useTranslations()
-  function GetHiddenPassword(password: string): string {
+  function getHiddenPassword(password: string): string {
     let final: string = ""
     for (let i = 0; i < password.length; i++) {
       final += "•"
@@ -135,7 +138,7 @@ export default function ActivityItem(props: ActivityProps) {
               ))}
             </>
           ) : props.hide ? (
-            GetHiddenPassword(props.activity.content)
+            getHiddenPassword(props.activity.content)
           ) : (
             props.activity.content
           )}
@@ -155,48 +158,14 @@ export default function ActivityItem(props: ActivityProps) {
                       </span>
                     </DialogTitle>
                     <div>
-                      <p
-                        className="text-center text-xl font-bold"
-                        id="PasswordContainer"
-                      >
-                        {props.activity.content.split("").map((el, i) => (
-                          <StrengthCharacter char={el} key={i} />
-                        ))}
-                      </p>
-                      <div className="grid grid-cols-2">
-                        <p className="font-bold text-red-600">
-                          {t("uppercases")}
-                        </p>
-                        <p className="font-bold text-red-600" id="UppercaseTxt">
-                          {getStrengthInfo(props.activity.content).uppercase}
-                        </p>
-                        <p className="font-bold text-blue-600">
-                          {t("lowercases")}
-                        </p>
-                        <p
-                          className="font-bold text-blue-600"
-                          id="LowercaseTxt"
-                        >
-                          {getStrengthInfo(props.activity.content).lowercase}
-                        </p>
-                        <p className="font-bold text-green-600">{t("nbrs")}</p>
-                        <p className="font-bold text-green-600" id="NumbersTxt">
-                          {getStrengthInfo(props.activity.content).numbers}
-                        </p>
-                        <p className="font-bold text-purple-600">
-                          {t("specialchars")}
-                        </p>
-                        <p
-                          className="font-bold text-purple-600"
-                          id="SpecialTxt"
-                        >
-                          {getStrengthInfo(props.activity.content).special}
-                        </p>
-                        <p className="font-bold">{t("length")}</p>
-                        <p className="font-bold" id="LengthTxt">
-                          {props.activity.content.length}
-                        </p>
-                      </div>
+                      <PasswordAnalysis
+                        generatedPassword={props.activity.content}
+                      />
+                      <PasswordStats
+                        showLength
+                        className="mt-4"
+                        passwordAnalysis={passwordStats}
+                      />
                       <div className="mt-4 flex items-center justify-center space-x-2">
                         <Button
                           onClick={Copy}
@@ -303,36 +272,12 @@ export default function ActivityItem(props: ActivityProps) {
               </DrawerTitle>
             </DrawerHeader>
             <div className="p-5">
-              <p
-                className="text-center text-xl font-bold"
-                id="PasswordContainer"
-              >
-                {props.activity.content.split("").map((el, i) => (
-                  <StrengthCharacter char={el} key={i} />
-                ))}
-              </p>
-              <div className="grid grid-cols-2">
-                <p className="font-bold text-red-600">{t("uppercases")}</p>
-                <p className="font-bold text-red-600" id="UppercaseTxt">
-                  {getStrengthInfo(props.activity.content).uppercase}
-                </p>
-                <p className="font-bold text-blue-600">{t("lowercases")}</p>
-                <p className="font-bold text-blue-600" id="LowercaseTxt">
-                  {getStrengthInfo(props.activity.content).lowercase}
-                </p>
-                <p className="font-bold text-green-600">{t("nbrs")}</p>
-                <p className="font-bold text-green-600" id="NumbersTxt">
-                  {getStrengthInfo(props.activity.content).numbers}
-                </p>
-                <p className="font-bold text-purple-600">{t("specialchars")}</p>
-                <p className="font-bold text-purple-600" id="SpecialTxt">
-                  {getStrengthInfo(props.activity.content).special}
-                </p>
-                <p className="font-bold">{t("length")}</p>
-                <p className="font-bold" id="LengthTxt">
-                  {props.activity.content.length}
-                </p>
-              </div>
+              <PasswordAnalysis generatedPassword={props.activity.content} />
+              <PasswordStats
+                showLength
+                className="mt-4"
+                passwordAnalysis={passwordStats}
+              />
             </div>
             <DrawerFooter>
               <Button onClick={Copy}>{t("copy")}</Button>
