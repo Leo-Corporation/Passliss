@@ -12,11 +12,11 @@ import {
   Shield20Regular,
   Translate20Regular,
 } from "@fluentui/react-icons"
-import { ScrollArea } from "@radix-ui/react-scroll-area"
 import { useTranslations } from "next-intl"
 
 import InstallSection from "./install-app"
 import { Button, buttonVariants } from "./ui/button"
+import { ScrollArea } from "./ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 
 export default function Nav(props: {
@@ -299,7 +299,7 @@ export default function Nav(props: {
             <InstallSection />
           </nav>
         </ScrollArea>
-        <ScrollArea className="h-scroll col-span-5 overflow-scroll p-2 md:col-start-2">
+        <ScrollArea className="h-scroll col-span-5 p-2 md:col-start-2">
           {children}
         </ScrollArea>
       </section>
