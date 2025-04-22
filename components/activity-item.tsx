@@ -83,7 +83,7 @@ export default function ActivityItem(props: ActivityProps) {
     switch (strength) {
       case PasswordStrength.VeryWeak:
         return (
-          <p className="m-1 w-auto rounded-full border border-red-500 px-2 text-center text-sm font-semibold text-red-500">
+          <p className="m-1 w-auto rounded-full border border-red-500 px-2 text-center text-sm font-semibold text-red-600">
             {t("very-weak")}
           </p>
         )
@@ -101,7 +101,7 @@ export default function ActivityItem(props: ActivityProps) {
         )
       case PasswordStrength.Strong:
         return (
-          <p className="m-1 w-auto rounded-full border border-green-500 px-2 text-center text-sm font-semibold text-green-500">
+          <p className="m-1 w-auto rounded-full border border-green-500 px-2 text-center text-sm font-semibold text-green-600">
             {t("strong")}
           </p>
         )
@@ -114,7 +114,7 @@ export default function ActivityItem(props: ActivityProps) {
 
       default:
         return (
-          <p className="text-md m-1 w-auto rounded-full border border-red-500 px-2 text-center font-semibold text-red-500">
+          <p className="text-md m-1 w-auto rounded-full border border-red-500 px-2 text-center font-semibold text-red-600">
             {t("weak")}
           </p>
         )
@@ -164,32 +164,32 @@ export default function ActivityItem(props: ActivityProps) {
                         ))}
                       </p>
                       <div className="grid grid-cols-2">
-                        <p className="font-bold text-[#FF2929]">
+                        <p className="font-bold text-red-600">
                           {t("uppercases")}
                         </p>
-                        <p
-                          className="font-bold text-[#FF2929]"
-                          id="UppercaseTxt"
-                        >
+                        <p className="font-bold text-red-600" id="UppercaseTxt">
                           {getStrengthInfo(props.activity.content).uppercase}
                         </p>
-                        <p className="font-bold text-[#3B8AFF]">
+                        <p className="font-bold text-blue-600">
                           {t("lowercases")}
                         </p>
                         <p
-                          className="font-bold text-[#3B8AFF]"
+                          className="font-bold text-blue-600"
                           id="LowercaseTxt"
                         >
                           {getStrengthInfo(props.activity.content).lowercase}
                         </p>
-                        <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
-                        <p className="font-bold text-[#007F5F]" id="NumbersTxt">
+                        <p className="font-bold text-green-600">{t("nbrs")}</p>
+                        <p className="font-bold text-green-600" id="NumbersTxt">
                           {getStrengthInfo(props.activity.content).numbers}
                         </p>
-                        <p className="font-bold text-[#9F2CF9]">
+                        <p className="font-bold text-purple-600">
                           {t("specialchars")}
                         </p>
-                        <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
+                        <p
+                          className="font-bold text-purple-600"
+                          id="SpecialTxt"
+                        >
                           {getStrengthInfo(props.activity.content).special}
                         </p>
                         <p className="font-bold">{t("length")}</p>
@@ -312,20 +312,20 @@ export default function ActivityItem(props: ActivityProps) {
                 ))}
               </p>
               <div className="grid grid-cols-2">
-                <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
-                <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
+                <p className="font-bold text-red-600">{t("uppercases")}</p>
+                <p className="font-bold text-red-600" id="UppercaseTxt">
                   {getStrengthInfo(props.activity.content).uppercase}
                 </p>
-                <p className="font-bold text-[#3B8AFF]">{t("lowercases")}</p>
-                <p className="font-bold text-[#3B8AFF]" id="LowercaseTxt">
+                <p className="font-bold text-blue-600">{t("lowercases")}</p>
+                <p className="font-bold text-blue-600" id="LowercaseTxt">
                   {getStrengthInfo(props.activity.content).lowercase}
                 </p>
-                <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
-                <p className="font-bold text-[#007F5F]" id="NumbersTxt">
+                <p className="font-bold text-green-600">{t("nbrs")}</p>
+                <p className="font-bold text-green-600" id="NumbersTxt">
                   {getStrengthInfo(props.activity.content).numbers}
                 </p>
-                <p className="font-bold text-[#9F2CF9]">{t("specialchars")}</p>
-                <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
+                <p className="font-bold text-purple-600">{t("specialchars")}</p>
+                <p className="font-bold text-purple-600" id="SpecialTxt">
                   {getStrengthInfo(props.activity.content).special}
                 </p>
                 <p className="font-bold">{t("length")}</p>

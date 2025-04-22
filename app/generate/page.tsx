@@ -758,7 +758,7 @@ export default function GeneratePage() {
                     className="space-x-2 decoration-red-500"
                   >
                     <Dismiss16Regular color="#ef4444" />
-                    <span className="text-red-500">{t("remove-preset")}</span>
+                    <span className="text-red-600">{t("remove-preset")}</span>
                   </Button>
                 )}
               </div>

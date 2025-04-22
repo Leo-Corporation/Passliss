@@ -679,7 +679,7 @@ export default function PresetItem(props: PresetItemProps) {
       </div>
       <div className="h-full text-sm">
         {hasUpper && (
-          <p className="space-x-2 text-[#FF2929]">
+          <p className="space-x-2 text-red-600">
             <Checkmark16Regular />
             <span>
               {t("uppercases")} {useUpperRange && `(${minUpper}-${maxUpper})`}
@@ -687,7 +687,7 @@ export default function PresetItem(props: PresetItemProps) {
           </p>
         )}
         {hasLower && (
-          <p className="space-x-2 text-[#3B8AFF]">
+          <p className="space-x-2 text-blue-600">
             <Checkmark16Regular />
             <span>
               {t("lowercases")} {useLowerRange && `(${minLower}-${maxLower})`}
@@ -695,7 +695,7 @@ export default function PresetItem(props: PresetItemProps) {
           </p>
         )}
         {hasNumber && (
-          <p className="space-x-2 text-[#007F5F]">
+          <p className="space-x-2 text-green-600">
             <Checkmark16Regular />
             <span>
               {t("nbrs")} {useDigitsRange && `(${minDigits}-${maxDigits})`}
@@ -703,7 +703,7 @@ export default function PresetItem(props: PresetItemProps) {
           </p>
         )}
         {hasChars && (
-          <p className="space-x-2 text-[#9F2CF9]">
+          <p className="space-x-2 text-purple-600">
             <Checkmark16Regular />
             <span>
               {t("specialchars")}{" "}

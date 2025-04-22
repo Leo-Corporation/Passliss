@@ -290,7 +290,7 @@ export default function StrengthPage() {
                   <ul className="space-y-2">
                     {suggestions.map((suggestion, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Dismiss20Regular className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-500" />
+                        <Dismiss20Regular className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600" />
                         <span>{suggestion}</span>
                       </li>
                     ))}
