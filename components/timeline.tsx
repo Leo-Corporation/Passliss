@@ -1,10 +1,10 @@
-import { useState } from "react"
-import useTranslation from "next-translate/useTranslation"
+"use client"
 
-import { Activity } from "@/types/activity"
-import { GetActivity, SortActivities } from "@/lib/browser-storage"
-import { PasswordStrength } from "@/lib/password-gen"
-import { GetPasswordStrength } from "@/lib/password-strength"
+import { useState } from "react"
+import { useTranslations } from "next-intl"
+
+import { Activity, getActivity, sortActivities } from "@/lib/browser-storage"
+import { getPasswordStrength, PasswordStrength } from "@/lib/password"
 import ActivityItem from "./activity-item"
 
 export interface TimelineProps {
@@ -12,13 +12,13 @@ export interface TimelineProps {
   items: Activity[]
   hide: boolean
   index: number
-  refreshEvent: Function
+  refreshEvent: () => void
   filter: string
   advancedVision: boolean
 }
 
 export default function Timeline(props: TimelineProps) {
-  const { t } = useTranslation("common")
+  const t = useTranslations()
   const [els, setEls] = useState(props.items)
   let title = ""
   switch (props.date) {
@@ -40,23 +40,25 @@ export default function Timeline(props: TimelineProps) {
   }
 
   function deleteElement() {
-    let a = SortActivities(GetActivity())
+    const a = sortActivities(getActivity())
     setEls(a[props.index])
     props.refreshEvent()
   }
 
   function matchFilter(password: string): boolean {
     if (props.filter === "all") return true
-    let strength: PasswordStrength = GetPasswordStrength(password)
+    const strength: PasswordStrength = getPasswordStrength(password)
     switch (strength) {
-      case PasswordStrength.VeryGood:
-        return props.filter === "verygood"
-      case PasswordStrength.Good:
-        return props.filter === "good"
-      case PasswordStrength.Medium:
-        return props.filter === "medium"
-      case PasswordStrength.Low:
-        return props.filter === "low"
+      case PasswordStrength.VeryStrong:
+        return props.filter === "verystrong"
+      case PasswordStrength.Strong:
+        return props.filter === "strong"
+      case PasswordStrength.Moderate:
+        return props.filter === "moderate"
+      case PasswordStrength.Weak:
+        return props.filter === "weak"
+      case PasswordStrength.VeryWeak:
+        return props.filter === "veryweak"
       default:
         return true
     }

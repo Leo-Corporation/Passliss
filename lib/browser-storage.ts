@@ -1,16 +1,28 @@
-import { Activities, Activity } from "@/types/activity"
-import { Settings } from "@/types/settings"
-import { PasswordPreset } from "./password-preset"
+import { PasswordPreset } from "./password"
 
-export function GetActivity() {
+export interface Activity {
+  date: Date
+  content: string
+}
+
+export interface Activities {
+  items: Activity[]
+}
+
+export function getActivity() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("activity")) || { items: [] }
+    const activity = localStorage.getItem("activity")
+    if (activity) {
+      return JSON.parse(activity) || { items: [] }
+    }
+    localStorage.setItem("activity", JSON.stringify({ items: [] }))
+    return { items: [] }
   }
   return { items: [] }
 }
 
-export function AddActivity(activity: Activity) {
-  let a: Activities = GetActivity()
+export function addActivity(activity: Activity) {
+  let a: Activities = getActivity()
   if (!a) {
     a = {
       items: [activity],
@@ -24,8 +36,8 @@ export function AddActivity(activity: Activity) {
   localStorage.setItem("activity", JSON.stringify(a))
 }
 
-export function SortActivities(activities: Activities): Activity[][] {
-  let sorted: Activity[][] = [[], [], [], []]
+export function sortActivities(activities: Activities): Activity[][] {
+  const sorted: Activity[][] = [[], [], [], []]
   activities.items.forEach((element) => {
     if (new Date(element.date).toDateString() == new Date().toDateString()) {
       sorted[0].push(element)
@@ -46,64 +58,23 @@ export function SortActivities(activities: Activities): Activity[][] {
   return sorted
 }
 
-export function GetSettings(): Settings {
+export function getPresets(): PasswordPreset[] {
   if (typeof window !== "undefined") {
-    return (
-      JSON.parse(localStorage.getItem("settings")) || {
-        // default object
-        passwordLengthOne: 12,
-        passwordLengthTwo: 19,
-        encryptAlgo: "aes",
-        customChars: {
-          lowerCases: "abcdefghijklmnopqrstuvwxyz",
-          upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-          numbers: "01234567889",
-          special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
-        },
-        hidePassword: false,
-        openaiKey: "",
-      }
-    )
-  }
-  return {
-    // default object
-    passwordLengthOne: 12,
-    passwordLengthTwo: 19,
-    encryptAlgo: "aes",
-    customChars: {
-      lowerCases: "abcdefghijklmnopqrstuvwxyz",
-      upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      numbers: "01234567889",
-      special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
-    },
-    hidePassword: false,
-    openaiKey: "",
-  }
-}
-
-export function SetSettings(settings: Settings) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("settings", JSON.stringify(settings))
-  }
-}
-
-export function GetPresets(): PasswordPreset[] {
-  if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("passliss-presets")) || []
+    return JSON.parse(localStorage.getItem("passliss-presets") ?? "[]") || []
   }
   return []
 }
 
-export function SavePresets(presets: PasswordPreset[]) {
+export function savePresets(presets: PasswordPreset[]) {
   if (typeof window !== "undefined") {
     localStorage.setItem("passliss-presets", JSON.stringify(presets))
   }
 }
 
-export function AddPreset(preset: PasswordPreset) {
+export function addPreset(preset: PasswordPreset) {
   if (typeof window !== "undefined") {
-    let presets = GetPresets()
+    const presets = getPresets()
     presets.push(preset)
-    SavePresets(presets)
+    savePresets(presets)
   }
 }
