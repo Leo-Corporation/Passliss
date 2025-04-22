@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react"
-import useTranslation from "next-translate/useTranslation"
+"use client"
 
+import React, { useEffect, useState } from "react"
+import { useTranslations } from "next-intl"
+
+import { BeforeInstallPromptEvent } from "@/lib/before-install"
 import { Button } from "./ui/button"
 
 export default function InstallSection() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null)
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null)
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (e) => {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault()
       // Save the event so it can be triggered later.
-      setDeferredPrompt(e)
+      setDeferredPrompt(e as BeforeInstallPromptEvent)
     })
 
-    window.addEventListener("appinstalled", (e) => {
+    window.addEventListener("appinstalled", () => {
       // Log install to analytics
       console.log("PWA installed")
     })
@@ -22,6 +26,7 @@ export default function InstallSection() {
 
   const handleClick = () => {
     // Show the install prompt
+    if (!deferredPrompt) return
     deferredPrompt.prompt()
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
@@ -34,7 +39,7 @@ export default function InstallSection() {
       setDeferredPrompt(null)
     })
   }
-  const { t } = useTranslation("common") // default namespace (optional)
+  const t = useTranslations()
 
   return (
     <div>

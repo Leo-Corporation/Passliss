@@ -28,49 +28,83 @@
 
 ## What is it?
 
-![Banner](https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Images/Passliss%20Banner.png)
+![Banner](.github/images/banner.png)
 
-Introducing Passliss for the Web - the next major evolution of Passliss, a simple yet modern password generator. Passliss for the Web is built using NextJS React Framework and TypeScript, making it one of the most powerful password generators on the market. With a sleek and modern design, this app is perfect for those who need to generate secure passwords quickly and easily.
+Passliss is a modern and secure web application for generating, analyzing, and managing passwords. It provides a clean interface, AI-powered tools, encryption utilities, and full customization to help users stay safe online.
 
-One of the best features of Passliss for the Web is the Home Dashboard. This dashboard allows you to generate passwords quickly, and explore different recommended features. These recommended features are displayed as cards, with an icon, a title, and a short description, making it easy for you to find the perfect feature for your needs.
+Built with **Next.js**, **React**, and **TypeScript**, Passliss delivers speed, reliability, and a powerful set of features for both casual and advanced users.
 
-In addition to the Home Dashboard, Passliss for the Web has an Activity page that allows you to see your recently generated passwords and their strength. The Generate page is also packed with features, including the ability to customize password characters, choose the length of the password, and generate multiple passwords at once.
-
-For those who want to know the strength of their passwords, Passliss for the Web has a Strength page that allows you to enter a password and get its strength. The Encryption page also allows you to encrypt and decrypt strings using different encryption algorithms.
-
-Finally, the Settings page allows you to customize the app to your liking, including setting the theme, language, and default encryption algorithm. With the ability to export and import settings, Passliss for the Web is the perfect password generator for those who want total control over their passwords.
-
-Passliss for the Web is also available as a Progressive Web Application, making it accessible on desktop and mobile devices. With a responsive UI, Passliss for the Web is perfect for anyone who needs to generate secure passwords quickly and easily.
-
-In conclusion, Passliss for the Web is more than just a password generator. It is also a password strength checker, a string encryption tool. It is a web application that you can access from any device, anywhere. It is a product that will make your online security easier and more convenient. Don’t miss this opportunity to get Passliss for the Web today and enjoy its amazing features. Click the button below and start generating secure passwords now!
-
-[Launch »](https://passliss.leocorporation.dev)
+[**Launch »**](https://passliss.leocorporation.dev)
 
 ## Features
 
-**Top Features of Passliss Web:**
+Passliss offers a wide range of security-focused features:
 
-1. **AI password generation:** You can use Artificial Intelligence to create unique, strong and secure passwords from a prompt.
+### Password Generator
 
-2. **Recommended features:** You can explore different features that are displayed as cards, with an icon, a title, and a short description.
+![Password Generator](.github/images/1.png)
 
-3. **Activity:** You can see your recently generated passwords and their strength.
+The Generate page offers complete flexibility for creating random passwords:
 
-4. **Generate page:** You can customize your password characters, choose the length of the password, and generate multiple passwords at once.
+- Choose the exact length
+- Include or exclude symbols, numbers, uppercase or lowercase characters
+- Generate multiple passwords in one click
+- Export results as a CSV for secure storage or transfer
 
-5. **Strength page:** You can enter a password and get its strength, with a detailed view and a reminder message.
+It also includes a simplified mode for quick generation and an advanced mode for fine-tuning every detail.
 
-6. **Encryption page:** You can encrypt and decrypt strings using different encryption algorithms. (AES or Triple-DES)
+Passliss also integrates OpenAI’s GPT-4o-mini to let you generate secure passwords from natural language prompts. Whether you want a password that's "12 characters, includes symbols and is easy to remember" or "a banking-grade passphrase," the AI adapts to your needs and delivers strong, context-aware results.
 
-7. **Settings page:** You can set the theme, language, default random length, default encryption algorithm, and more. You can also export and import settings or reset them to default.
+### Strength Analysis
 
-8. **User Interface:** You have a big title with the name of the app at the top, a description text with a greeting message to the user, and a navigation panel on the left side. The UI is responsive for mobile devices.
+![Password Strength](.github/images/2.png)
 
-9. **Progressive Web Application:** You can access Passliss for the Web from any device, online or offline. You can also install it on your desktop or mobile device as an app.
+Easily evaluate the security of any password. The Strength page provides:
 
-10. **NextJS React Framework and TypeScript:** Passliss for the Web is built using these technologies, making it one of the most powerful password generators on the market. It is fast, secure, and reliable.
+- A real-time strength score
 
-_And more..._
+- Detailed suggestions for improvement
+
+- Visual indicators and contextual tips This helps users better understand how to avoid weak or easily guessable passwords.
+
+### Encryption & Decryption
+
+![Encryption](.github/images/3.png)
+
+Secure strings using trusted algorithms like AES and Triple-DES. Hashing support is also included.
+
+### Customization
+
+You can modify default settings, themes, and presets via the Settings page in the app. Presets are pre-defined configurations for the password generator, allowing you to quickly select a set of options that suit your needs.
+
+## Running locally - Getting Started
+
+### Prerequisites
+
+- Node.js (v20 or newer)
+
+### Installation
+
+```bash
+git clone https://github.com/Leo-Corporation/Passliss.git
+cd Passliss
+npm install --legacy-peer-deps # required for react@19
+npm run dev
+```
+
+Then open `http://localhost:3000` in your browser.
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [shadcn/ui](https://ui.shadcn.com/) for UI components
+- [OpenAI API](https://platform.openai.com/) for AI password generation
+
+## Localization
+
+Passliss supports multiple languages and includes a locale switcher in the Settings page. You can add or modify translations in the `messages/` directory.
 
 ## Contribute
 
@@ -94,9 +128,3 @@ This Git repo has always two branches:
 ## License
 
 This project is under the [MIT License](https://github.com/Leo-Corporation/Passliss/blob/main/LICENSE).
-
-## Translations Credits
-
-Special thanks to:
-
-- [@wcxu21](https://github.com/wcxu21) for Simplified Chinese

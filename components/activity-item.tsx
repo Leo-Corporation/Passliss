@@ -6,11 +6,16 @@ import {
   MoreHorizontal16Regular,
 } from "@fluentui/react-icons"
 import { DialogClose } from "@radix-ui/react-dialog"
-import useTranslation from "next-translate/useTranslation"
+import { useTranslations } from "next-intl"
 
-import { Activity } from "@/types/activity"
-import { GetActivity, SortActivities } from "@/lib/browser-storage"
-import { GetPasswordStrength, getStrengthInfo } from "@/lib/password-strength"
+import { Activity, getActivity, sortActivities } from "@/lib/browser-storage"
+import {
+  getPasswordStrength,
+  getStrengthInfo,
+  PasswordStrength,
+} from "@/lib/password"
+import PasswordAnalysis from "./password-analysis"
+import PasswordStats from "./password-stats"
 import StrengthCharacter from "./strength-character"
 import { Button } from "./ui/button"
 import {
@@ -24,18 +29,11 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
@@ -48,16 +46,17 @@ export interface ActivityProps {
   hide: boolean
   index: number
   timeline_index: number
-  deleteEvent: Function
+  deleteEvent: () => void
   advancedVision: boolean
 }
 
 export default function ActivityItem(props: ActivityProps) {
+  const passwordStats = getStrengthInfo(props.activity.content)
   function Copy() {
     navigator.clipboard.writeText(props.activity.content)
   }
-  const { t } = useTranslation("common") // default namespace (optional)
-  function GetHiddenPassword(password: string): string {
+  const t = useTranslations()
+  function getHiddenPassword(password: string): string {
     let final: string = ""
     for (let i = 0; i < password.length; i++) {
       final += "•"
@@ -65,13 +64,13 @@ export default function ActivityItem(props: ActivityProps) {
     return final
   }
   let els: Activity[][] = [[]]
-  function LoadActivities() {
-    els = SortActivities(GetActivity())
+  function loadActivities() {
+    els = sortActivities(getActivity())
   }
   function removeActivityItem() {
-    LoadActivities()
+    loadActivities()
     els[props.timeline_index].splice(props.index, 1)
-    let a: any[] = []
+    const a: Activity[] = []
     for (let i = 0; i < els.length; i++) {
       for (let j = 0; j < els[i].length; j++) {
         a.push(els[i][j])
@@ -81,6 +80,50 @@ export default function ActivityItem(props: ActivityProps) {
     localStorage.setItem("activity", JSON.stringify({ items: a }))
     props.deleteEvent()
   }
+
+  function getStrength(password: string) {
+    const strength = getPasswordStrength(password)
+    switch (strength) {
+      case PasswordStrength.VeryWeak:
+        return (
+          <p className="m-1 w-auto rounded-full border border-red-500 px-2 text-center text-sm font-semibold text-red-600">
+            {t("very-weak")}
+          </p>
+        )
+      case PasswordStrength.Weak:
+        return (
+          <p className="m-1 w-auto rounded-full border border-orange-500 px-2 text-center text-sm font-semibold text-orange-500">
+            {t("weak")}
+          </p>
+        )
+      case PasswordStrength.Moderate:
+        return (
+          <p className="m-1 w-auto rounded-full border border-yellow-500 px-2 text-sm font-semibold text-yellow-500">
+            {t("moderate")}
+          </p>
+        )
+      case PasswordStrength.Strong:
+        return (
+          <p className="m-1 w-auto rounded-full border border-green-500 px-2 text-center text-sm font-semibold text-green-600">
+            {t("strong")}
+          </p>
+        )
+      case PasswordStrength.VeryStrong:
+        return (
+          <p className="m-1 w-auto rounded-full border border-emerald-500 px-2 text-center text-sm font-semibold text-emerald-500">
+            {t("very-strong")}
+          </p>
+        )
+
+      default:
+        return (
+          <p className="text-md m-1 w-auto rounded-full border border-red-500 px-2 text-center font-semibold text-red-600">
+            {t("weak")}
+          </p>
+        )
+    }
+  }
+
   return (
     <div
       onClick={Copy}
@@ -95,7 +138,7 @@ export default function ActivityItem(props: ActivityProps) {
               ))}
             </>
           ) : props.hide ? (
-            GetHiddenPassword(props.activity.content)
+            getHiddenPassword(props.activity.content)
           ) : (
             props.activity.content
           )}
@@ -105,58 +148,24 @@ export default function ActivityItem(props: ActivityProps) {
             <TooltipTrigger className="hidden sm:block">
               <Dialog>
                 <DialogTrigger>
-                  {GetStrength(props.activity.content)}
+                  {getStrength(props.activity.content)}
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>
                       <span className="flex">
-                        {GetStrength(props.activity.content)}
+                        {getStrength(props.activity.content)}
                       </span>
                     </DialogTitle>
                     <div>
-                      <p
-                        className="text-center text-xl font-bold"
-                        id="PasswordContainer"
-                      >
-                        {props.activity.content.split("").map((el, i) => (
-                          <StrengthCharacter char={el} key={i} />
-                        ))}
-                      </p>
-                      <div className="grid grid-cols-2">
-                        <p className="font-bold text-[#FF2929]">
-                          {t("uppercases")}
-                        </p>
-                        <p
-                          className="font-bold text-[#FF2929]"
-                          id="UppercaseTxt"
-                        >
-                          {getStrengthInfo(props.activity.content).uppercases}
-                        </p>
-                        <p className="font-bold text-[#3B8AFF]">
-                          {t("lowercases")}
-                        </p>
-                        <p
-                          className="font-bold text-[#3B8AFF]"
-                          id="LowercaseTxt"
-                        >
-                          {getStrengthInfo(props.activity.content).lowercases}
-                        </p>
-                        <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
-                        <p className="font-bold text-[#007F5F]" id="NumbersTxt">
-                          {getStrengthInfo(props.activity.content).numbers}
-                        </p>
-                        <p className="font-bold text-[#9F2CF9]">
-                          {t("specialchars")}
-                        </p>
-                        <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
-                          {getStrengthInfo(props.activity.content).specialchars}
-                        </p>
-                        <p className="font-bold">{t("length")}</p>
-                        <p className="font-bold" id="LengthTxt">
-                          {props.activity.content.length}
-                        </p>
-                      </div>
+                      <PasswordAnalysis
+                        generatedPassword={props.activity.content}
+                      />
+                      <PasswordStats
+                        showLength
+                        className="mt-4"
+                        passwordAnalysis={passwordStats}
+                      />
                       <div className="mt-4 flex items-center justify-center space-x-2">
                         <Button
                           onClick={Copy}
@@ -180,7 +189,7 @@ export default function ActivityItem(props: ActivityProps) {
               </Dialog>
             </TooltipTrigger>
             <TooltipContent className="grid grid-cols-[24px_1fr] items-center">
-              {getStrengthInfo(props.activity.content).lowercases > 0 ? (
+              {getStrengthInfo(props.activity.content).lowercase > 0 ? (
                 <Checkmark16Regular />
               ) : (
                 <Dismiss16Regular />
@@ -188,7 +197,7 @@ export default function ActivityItem(props: ActivityProps) {
 
               <p>{t("lowercases")}</p>
 
-              {getStrengthInfo(props.activity.content).uppercases > 0 ? (
+              {getStrengthInfo(props.activity.content).uppercase > 0 ? (
                 <Checkmark16Regular />
               ) : (
                 <Dismiss16Regular />
@@ -204,7 +213,7 @@ export default function ActivityItem(props: ActivityProps) {
 
               <p>{t("nbrs")}</p>
 
-              {getStrengthInfo(props.activity.content).specialchars > 0 ? (
+              {getStrengthInfo(props.activity.content).special > 0 ? (
                 <Checkmark16Regular />
               ) : (
                 <Dismiss16Regular />
@@ -221,7 +230,7 @@ export default function ActivityItem(props: ActivityProps) {
             <TooltipTrigger asChild>
               <Button
                 variant="outline"
-                className="hidden w-[48px] sm:block"
+                className="hidden w-[48px] items-center justify-center sm:flex"
                 onClick={Copy}
               >
                 <Copy16Regular />
@@ -238,7 +247,7 @@ export default function ActivityItem(props: ActivityProps) {
               <Button
                 onClick={removeActivityItem}
                 variant="outline"
-                className="hidden w-[48px] sm:block"
+                className="hidden w-[48px] items-center justify-center sm:flex"
               >
                 <Delete16Regular />
               </Button>
@@ -258,41 +267,17 @@ export default function ActivityItem(props: ActivityProps) {
             <DrawerHeader>
               <DrawerTitle>
                 <span className="flex justify-center">
-                  {GetStrength(props.activity.content)}
+                  {getStrength(props.activity.content)}
                 </span>
               </DrawerTitle>
             </DrawerHeader>
             <div className="p-5">
-              <p
-                className="text-center text-xl font-bold"
-                id="PasswordContainer"
-              >
-                {props.activity.content.split("").map((el, i) => (
-                  <StrengthCharacter char={el} key={i} />
-                ))}
-              </p>
-              <div className="grid grid-cols-2">
-                <p className="font-bold text-[#FF2929]">{t("uppercases")}</p>
-                <p className="font-bold text-[#FF2929]" id="UppercaseTxt">
-                  {getStrengthInfo(props.activity.content).uppercases}
-                </p>
-                <p className="font-bold text-[#3B8AFF]">{t("lowercases")}</p>
-                <p className="font-bold text-[#3B8AFF]" id="LowercaseTxt">
-                  {getStrengthInfo(props.activity.content).lowercases}
-                </p>
-                <p className="font-bold text-[#007F5F]">{t("nbrs")}</p>
-                <p className="font-bold text-[#007F5F]" id="NumbersTxt">
-                  {getStrengthInfo(props.activity.content).numbers}
-                </p>
-                <p className="font-bold text-[#9F2CF9]">{t("specialchars")}</p>
-                <p className="font-bold text-[#9F2CF9]" id="SpecialTxt">
-                  {getStrengthInfo(props.activity.content).specialchars}
-                </p>
-                <p className="font-bold">{t("length")}</p>
-                <p className="font-bold" id="LengthTxt">
-                  {props.activity.content.length}
-                </p>
-              </div>
+              <PasswordAnalysis generatedPassword={props.activity.content} />
+              <PasswordStats
+                showLength
+                className="mt-4"
+                passwordAnalysis={passwordStats}
+              />
             </div>
             <DrawerFooter>
               <Button onClick={Copy}>{t("copy")}</Button>
@@ -317,42 +302,4 @@ export default function ActivityItem(props: ActivityProps) {
       </div>
     </div>
   )
-}
-
-function GetStrength(password) {
-  let strength = GetPasswordStrength(password)
-  const { t } = useTranslation("common")
-  switch (strength) {
-    case 0:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[red] px-2 text-center text-sm font-semibold text-[red]">
-          {t("low")}
-        </p>
-      )
-    case 1:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[#FF7B00] px-2 text-sm font-semibold text-[#FF7B00]">
-          {t("medium")}
-        </p>
-      )
-    case 2:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[#68EA00] px-2 text-center text-sm font-semibold text-[#68EA00]">
-          {t("good")}
-        </p>
-      )
-    case 3:
-      return (
-        <p className="m-1 w-auto rounded-full border border-[#00BF07] px-2 text-center text-sm font-semibold text-[#00BF07]">
-          {t("excellent")}
-        </p>
-      )
-
-    default:
-      return (
-        <p className="text-md m-1 w-auto rounded-full border border-[red] px-2 text-center font-semibold text-[red]">
-          {t("low")}
-        </p>
-      )
-  }
 }
