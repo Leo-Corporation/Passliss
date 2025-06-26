@@ -62,9 +62,7 @@ Passliss also integrates OpenAI’s GPT-4o-mini to let you generate secure passw
 Easily evaluate the security of any password. The Strength page provides:
 
 - A real-time strength score
-
 - Detailed suggestions for improvement
-
 - Visual indicators and contextual tips This helps users better understand how to avoid weak or easily guessable passwords.
 
 ### Encryption & Decryption
