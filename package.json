@@ -46,7 +46,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@tailwindcss/postcss": "^4",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^22",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
