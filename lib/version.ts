@@ -1,1 +1,4 @@
-export const version = "5.0.1.2505"
+// @ts-ignore
+import packageJson from "../package.json"
+
+export const version = packageJson.version
