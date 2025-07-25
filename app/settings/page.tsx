@@ -129,7 +129,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <Settings20Regular primaryFill="#0088FF" className="text-white" />
         <p className="ml-2 font-bold">{t("settings")}</p>
@@ -652,6 +652,6 @@ export default function SettingsPage() {
           </Card>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

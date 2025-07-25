@@ -314,7 +314,7 @@ export default function GeneratePage() {
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
   const [presets] = useState(getPresets())
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <LockClosed20Regular primaryFill="#0088FF" className="text-white" />
 
@@ -1089,6 +1089,6 @@ export default function GeneratePage() {
           )}
         </TabsContent>
       </Tabs>
-    </main>
+    </div>
   )
 }

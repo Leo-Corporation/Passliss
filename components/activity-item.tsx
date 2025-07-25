@@ -1,3 +1,4 @@
+import { useIsMobile } from "@/hooks/use-mobile"
 import {
   Checkmark16Regular,
   Copy16Regular,
@@ -52,6 +53,7 @@ export interface ActivityProps {
 
 export default function ActivityItem(props: ActivityProps) {
   const passwordStats = getStrengthInfo(props.activity.content)
+  const isMobile = useIsMobile()
   function Copy() {
     navigator.clipboard.writeText(props.activity.content)
   }
@@ -127,7 +129,7 @@ export default function ActivityItem(props: ActivityProps) {
   return (
     <div
       onClick={Copy}
-      className="m-3 grid cursor-pointer grid-cols-2 rounded-lg border border-slate-200 p-3 shadow-xs hover:bg-slate-100 sm:cursor-default dark:border-slate-600 dark:hover:bg-slate-900"
+      className="hover:bg-accent m-3 grid cursor-pointer grid-cols-2 rounded-lg border p-3 shadow-xs sm:cursor-default"
     >
       <div className="grid grid-cols-[1fr_auto] items-center justify-items-start">
         <p className="font-bold">
@@ -143,86 +145,88 @@ export default function ActivityItem(props: ActivityProps) {
             props.activity.content
           )}
         </p>
-        <TooltipProvider delayDuration={0}>
-          <Tooltip>
-            <TooltipTrigger className="hidden sm:block">
-              <Dialog>
-                <DialogTrigger>
-                  {getStrength(props.activity.content)}
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>
-                      <span className="flex">
-                        {getStrength(props.activity.content)}
-                      </span>
-                    </DialogTitle>
-                    <div>
-                      <PasswordAnalysis
-                        generatedPassword={props.activity.content}
-                      />
-                      <PasswordStats
-                        showLength
-                        className="mt-4"
-                        passwordAnalysis={passwordStats}
-                      />
-                      <div className="mt-4 flex items-center justify-center space-x-2">
-                        <Button
-                          onClick={Copy}
-                          className="h-auto px-2 py-1"
-                          variant="default"
-                        >
-                          {t("copy")}
-                        </Button>
-                        <DialogClose>
+        {!isMobile && (
+          <TooltipProvider delayDuration={0}>
+            <Tooltip>
+              <TooltipTrigger>
+                <Dialog>
+                  <DialogTrigger>
+                    {getStrength(props.activity.content)}
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>
+                        <span className="flex">
+                          {getStrength(props.activity.content)}
+                        </span>
+                      </DialogTitle>
+                      <div>
+                        <PasswordAnalysis
+                          generatedPassword={props.activity.content}
+                        />
+                        <PasswordStats
+                          showLength
+                          className="mt-4"
+                          passwordAnalysis={passwordStats}
+                        />
+                        <div className="mt-4 flex items-center justify-center space-x-2">
                           <Button
+                            onClick={Copy}
                             className="h-auto px-2 py-1"
-                            variant="outline"
+                            variant="default"
                           >
-                            {t("close")}
+                            {t("copy")}
                           </Button>
-                        </DialogClose>
+                          <DialogClose>
+                            <Button
+                              className="h-auto px-2 py-1"
+                              variant="outline"
+                            >
+                              {t("close")}
+                            </Button>
+                          </DialogClose>
+                        </div>
                       </div>
-                    </div>
-                  </DialogHeader>
-                </DialogContent>
-              </Dialog>
-            </TooltipTrigger>
-            <TooltipContent className="grid grid-cols-[24px_1fr] items-center">
-              {getStrengthInfo(props.activity.content).lowercase > 0 ? (
-                <Checkmark16Regular />
-              ) : (
-                <Dismiss16Regular />
-              )}
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </TooltipTrigger>
+              <TooltipContent className="grid grid-cols-[24px_1fr] items-center">
+                {getStrengthInfo(props.activity.content).lowercase > 0 ? (
+                  <Checkmark16Regular />
+                ) : (
+                  <Dismiss16Regular />
+                )}
 
-              <p>{t("lowercases")}</p>
+                <p>{t("lowercases")}</p>
 
-              {getStrengthInfo(props.activity.content).uppercase > 0 ? (
-                <Checkmark16Regular />
-              ) : (
-                <Dismiss16Regular />
-              )}
+                {getStrengthInfo(props.activity.content).uppercase > 0 ? (
+                  <Checkmark16Regular />
+                ) : (
+                  <Dismiss16Regular />
+                )}
 
-              <p>{t("uppercases")}</p>
+                <p>{t("uppercases")}</p>
 
-              {getStrengthInfo(props.activity.content).numbers > 0 ? (
-                <Checkmark16Regular />
-              ) : (
-                <Dismiss16Regular />
-              )}
+                {getStrengthInfo(props.activity.content).numbers > 0 ? (
+                  <Checkmark16Regular />
+                ) : (
+                  <Dismiss16Regular />
+                )}
 
-              <p>{t("nbrs")}</p>
+                <p>{t("nbrs")}</p>
 
-              {getStrengthInfo(props.activity.content).special > 0 ? (
-                <Checkmark16Regular />
-              ) : (
-                <Dismiss16Regular />
-              )}
+                {getStrengthInfo(props.activity.content).special > 0 ? (
+                  <Checkmark16Regular />
+                ) : (
+                  <Dismiss16Regular />
+                )}
 
-              <p>{t("specialchars")}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+                <p>{t("specialchars")}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
       </div>
       <div className="flex justify-end space-x-1">
         <TooltipProvider delayDuration={0}>
@@ -257,48 +261,50 @@ export default function ActivityItem(props: ActivityProps) {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <Drawer>
-          <DrawerTrigger>
-            <Button variant="outline" className="block w-[48px] sm:hidden">
-              <MoreHorizontal16Regular />
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>
-                <span className="flex justify-center">
-                  {getStrength(props.activity.content)}
-                </span>
-              </DrawerTitle>
-            </DrawerHeader>
-            <div className="p-5">
-              <PasswordAnalysis generatedPassword={props.activity.content} />
-              <PasswordStats
-                showLength
-                className="mt-4"
-                passwordAnalysis={passwordStats}
-              />
-            </div>
-            <DrawerFooter>
-              <Button onClick={Copy}>{t("copy")}</Button>
-              <div className="grid grid-cols-[1fr_auto] space-x-2">
-                <DrawerClose>
-                  <Button className="w-full" variant="outline">
-                    {t("close")}
-                  </Button>
-                </DrawerClose>
-                <DrawerClose>
-                  <Button
-                    variant="outline"
-                    onClick={() => removeActivityItem()}
-                  >
-                    <Delete16Regular />
-                  </Button>
-                </DrawerClose>
+        {isMobile && (
+          <Drawer>
+            <DrawerTrigger>
+              <Button variant="outline" className="w-[48px]">
+                <MoreHorizontal16Regular />
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>
+                  <span className="flex justify-center">
+                    {getStrength(props.activity.content)}
+                  </span>
+                </DrawerTitle>
+              </DrawerHeader>
+              <div className="p-5">
+                <PasswordAnalysis generatedPassword={props.activity.content} />
+                <PasswordStats
+                  showLength
+                  className="mt-4"
+                  passwordAnalysis={passwordStats}
+                />
               </div>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
+              <DrawerFooter>
+                <Button onClick={Copy}>{t("copy")}</Button>
+                <div className="grid grid-cols-[1fr_auto] space-x-2">
+                  <DrawerClose>
+                    <Button className="w-full" variant="outline">
+                      {t("close")}
+                    </Button>
+                  </DrawerClose>
+                  <DrawerClose>
+                    <Button
+                      variant="outline"
+                      onClick={() => removeActivityItem()}
+                    >
+                      <Delete16Regular />
+                    </Button>
+                  </DrawerClose>
+                </div>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        )}
       </div>
     </div>
   )

@@ -81,7 +81,7 @@ export default function Home() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold md:text-5xl">{t("title")}</h1>
@@ -189,6 +189,6 @@ export default function Home() {
           </Button>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

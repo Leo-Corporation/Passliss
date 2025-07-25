@@ -219,7 +219,7 @@ export default function EncryptionPage() {
   }
 
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <Translate20Regular primaryFill="#0088FF" className="text-white" />
 
@@ -555,6 +555,6 @@ export default function EncryptionPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </main>
+    </div>
   )
 }

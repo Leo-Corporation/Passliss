@@ -91,7 +91,7 @@ export default async function RootLayout({
                 <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
                   <SidebarTrigger className="-ml-1" />
                 </header>
-                <main className="p-5">{children}</main>
+                <div className="p-5">{children}</div>
               </SidebarInset>
             </SidebarProvider>
             <Toaster />

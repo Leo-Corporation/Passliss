@@ -131,7 +131,7 @@ export default function ActivityPage() {
     Router.prototype.reload()
   }
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <Info16Regular primaryFill="#0088FF" className="text-white" />
         <p className="ml-2 font-bold">{t("overview")}</p>
@@ -276,6 +276,6 @@ export default function ActivityPage() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   )
 }
