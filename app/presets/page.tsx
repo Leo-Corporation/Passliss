@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { usePresets } from "@/hooks/use-presets"
 import {
   Add16Regular,
   List20Regular,
@@ -11,7 +12,6 @@ import {
 import { Close } from "@radix-ui/react-dialog"
 import { useTranslations } from "next-intl"
 
-import { getPresets, savePresets } from "@/lib/browser-storage"
 import { PasswordPreset } from "@/lib/password"
 import PresetItem from "@/components/preset-item"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -66,7 +66,7 @@ export default function PresetsPage() {
 
   const [presetName, setPresetName] = useState("My preset")
 
-  const [presets, setPresets] = useState(getPresets())
+  const { presets, setPresets } = usePresets()
 
   function importPresets(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return // check if files are selected
@@ -79,7 +79,6 @@ export default function PresetsPage() {
 
       const merge = [...presets, ...json]
       setPresets(merge)
-      savePresets(merge)
     }
     reader.readAsText(file) // read the file as text
   }
@@ -370,7 +369,6 @@ export default function PresetsPage() {
                         },
                       ]
                       setPresets(newPresets)
-                      savePresets(newPresets)
                     }}
                   >
                     {t("create")}
@@ -673,7 +671,6 @@ export default function PresetsPage() {
                           },
                         ]
                         setPresets(newPresets)
-                        savePresets(newPresets)
                       }}
                     >
                       {t("create")}
@@ -746,13 +743,11 @@ export default function PresetsPage() {
             delete={() => {
               presets.splice(i, 1)
               setPresets([...presets])
-              savePresets(presets)
             }}
             edit={(preset: PasswordPreset) => {
               const p = presets
               p[i] = preset
               setPresets([...p])
-              savePresets(p)
             }}
           />
         ))}

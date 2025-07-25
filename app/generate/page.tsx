@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePresets } from "@/hooks/use-presets"
 import { useSettings } from "@/hooks/use-settings"
 import {
   Add16Regular,
@@ -26,7 +27,7 @@ import { useTranslations } from "next-intl"
 import OpenAI from "openai"
 import { toast } from "sonner"
 
-import { addActivity, getPresets } from "@/lib/browser-storage"
+import { addActivity } from "@/lib/browser-storage"
 import {
   generatePassword,
   generatePasswordByStrength,
@@ -288,7 +289,7 @@ export default function GeneratePage() {
     setIsGeneratingAi(false)
   }
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
-  const [presets] = useState(getPresets())
+  const { presets } = usePresets()
   return (
     <div>
       <div className="mb-2 flex items-center space-x-2">

@@ -57,24 +57,3 @@ export function sortActivities(activities: Activities): Activity[][] {
   })
   return sorted
 }
-
-export function getPresets(): PasswordPreset[] {
-  if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("passliss-presets") ?? "[]") || []
-  }
-  return []
-}
-
-export function savePresets(presets: PasswordPreset[]) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("passliss-presets", JSON.stringify(presets))
-  }
-}
-
-export function addPreset(preset: PasswordPreset) {
-  if (typeof window !== "undefined") {
-    const presets = getPresets()
-    presets.push(preset)
-    savePresets(presets)
-  }
-}
