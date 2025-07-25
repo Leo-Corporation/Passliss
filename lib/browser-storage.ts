@@ -1,5 +1,3 @@
-import { PasswordPreset } from "./password"
-
 export interface Activity {
   date: Date
   content: string

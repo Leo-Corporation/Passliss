@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Settings, useSettings } from "@/hooks/use-settings"
+import { useSettings } from "@/hooks/use-settings"
 import { ArrowClockwise20Regular } from "@fluentui/react-icons"
 import { Check, Copy, Eye, EyeOff } from "lucide-react"
 import { useTranslations } from "next-intl"
