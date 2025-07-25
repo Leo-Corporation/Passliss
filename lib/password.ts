@@ -1,4 +1,4 @@
-import { CustomCharacters } from "./settings"
+import { CustomCharacters } from "@/hooks/use-settings"
 
 export enum PasswordStrength {
   VeryWeak,

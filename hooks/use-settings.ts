@@ -1,3 +1,5 @@
+import { useLocalStorage } from "./use-localStorage"
+
 export interface Settings {
   passwordLengthOne: number
   passwordLengthTwo: number
@@ -37,21 +39,14 @@ export const defaultSettings = {
   openaiKey: "",
 }
 
-export function getSettings(): Settings {
-  if (typeof window !== "undefined") {
-    const settings = localStorage.getItem("settings")
-    if (settings) {
-      return JSON.parse(settings) || defaultSettings
-    } else {
-      localStorage.setItem("settings", JSON.stringify(defaultSettings))
-      return defaultSettings
-    }
-  }
-  return defaultSettings
-}
+export function useSettings() {
+  const [settings, setSettings] = useLocalStorage<Settings>(
+    "settings",
+    defaultSettings
+  )
 
-export function setSettings(settings: Settings) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("settings", JSON.stringify(settings))
+  return {
+    settings,
+    setSettings,
   }
 }

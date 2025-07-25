@@ -2,13 +2,13 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useSettings } from "@/hooks/use-settings"
 import { ArrowClockwise20Regular } from "@fluentui/react-icons"
 import { Check, Copy, Eye, EyeOff } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 
 import { generatePasswordByStrength } from "@/lib/password"
-import { getSettings, Settings } from "@/lib/settings"
 import DashboardCard from "@/components/dash-card"
 import PasswordAnalysis from "@/components/password-analysis"
 import { Button } from "@/components/ui/button"
@@ -26,23 +26,7 @@ import { Label } from "@/components/ui/label"
 export default function Home() {
   const t = useTranslations()
 
-  let settings: Settings = {
-    passwordLengthOne: 12,
-    passwordLengthTwo: 19,
-    encryptAlgo: "aes",
-    customChars: {
-      lowerCases: "abcdefghijklmnopqrstuvwxyz",
-      upperCases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      numbers: "01234567889",
-      special: ";:!/§ù*$%µ£)=(+*-&é'(-è_ç<>?^¨",
-    },
-    hidePassword: false,
-    openaiKey: "",
-  }
-  function loadSettings() {
-    settings = getSettings()
-  }
-  loadSettings()
+  const { settings } = useSettings()
 
   const [password, setPassword] = useState(
     generatePasswordByStrength(2, settings.customChars)
@@ -81,7 +65,7 @@ export default function Home() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold md:text-5xl">{t("title")}</h1>
@@ -189,6 +173,6 @@ export default function Home() {
           </Button>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

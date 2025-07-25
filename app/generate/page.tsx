@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePresets } from "@/hooks/use-presets"
+import { useSettings } from "@/hooks/use-settings"
 import {
   Add16Regular,
   ArrowClockwise20Regular,
@@ -25,7 +27,7 @@ import { useTranslations } from "next-intl"
 import OpenAI from "openai"
 import { toast } from "sonner"
 
-import { addActivity, getPresets } from "@/lib/browser-storage"
+import { addActivity } from "@/lib/browser-storage"
 import {
   generatePassword,
   generatePasswordByStrength,
@@ -34,12 +36,6 @@ import {
   getStrengthInfo,
   PasswordPreset,
 } from "@/lib/password"
-import {
-  defaultSettings,
-  getSettings,
-  setSettings,
-  Settings,
-} from "@/lib/settings"
 import PasswordAnalysis from "@/components/password-analysis"
 import PasswordStats from "@/components/password-stats"
 import { Button } from "@/components/ui/button"
@@ -82,26 +78,7 @@ import {
 } from "@/components/ui/tooltip"
 
 export default function GeneratePage() {
-  let settings: Settings = defaultSettings
-  function loadSettings() {
-    settings = getSettings()
-    if (settings.hidePassword == null || settings.hidePassword == undefined) {
-      settings.hidePassword = false
-    }
-
-    if (
-      settings.defaultPasswordConfig == null ||
-      settings.defaultPasswordConfig == undefined
-    ) {
-      settings.defaultPasswordConfig = {
-        upperCases: true,
-        lowerCases: true,
-        numbers: true,
-        special: false,
-      }
-    }
-  }
-  loadSettings()
+  const { settings, setSettings } = useSettings()
 
   const t = useTranslations()
   const lang = t("lang")
@@ -312,9 +289,9 @@ export default function GeneratePage() {
     setIsGeneratingAi(false)
   }
   const [selectedPreset, setSelectedPreset] = useState<PasswordPreset | null>()
-  const [presets] = useState(getPresets())
+  const { presets } = usePresets()
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <LockClosed20Regular primaryFill="#0088FF" className="text-white" />
 
@@ -1089,6 +1066,6 @@ export default function GeneratePage() {
           )}
         </TabsContent>
       </Tabs>
-    </main>
+    </div>
   )
 }

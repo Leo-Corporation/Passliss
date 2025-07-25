@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Router } from "next/dist/client/router"
+import { useSettings } from "@/hooks/use-settings"
 import {
   Eye16Regular,
   EyeOff16Regular,
@@ -17,7 +18,6 @@ import {
   sortActivities,
 } from "@/lib/browser-storage"
 import { getPasswordStrength, PasswordStrength } from "@/lib/password"
-import { defaultSettings, getSettings, Settings } from "@/lib/settings"
 import Timeline from "@/components/timeline"
 import {
   AlertDialog,
@@ -57,19 +57,15 @@ import {
 } from "@/components/ui/tooltip"
 
 export default function ActivityPage() {
+  const t = useTranslations()
+  const { settings } = useSettings()
+
   const [filter, setFilter] = useState("all")
   const [visionToggle, setVisionToggle] = useState(false)
-  let settings: Settings = defaultSettings
-  function loadSettings() {
-    settings = getSettings()
-    if (settings.hidePassword == null || settings.hidePassword == undefined) {
-      settings.hidePassword = false
-    }
-  }
-  loadSettings()
-  const t = useTranslations()
+
   let items: Activity[][] = [[]]
   let activity: Activities = getActivity()
+
   const [total, setTotal] = useState(activity.items.length)
   const [veryWeak, setVeryWeak] = useState(
     getAmountByStrength(PasswordStrength.VeryWeak)
@@ -131,7 +127,7 @@ export default function ActivityPage() {
     Router.prototype.reload()
   }
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <Info16Regular primaryFill="#0088FF" className="text-white" />
         <p className="ml-2 font-bold">{t("overview")}</p>
@@ -276,6 +272,6 @@ export default function ActivityPage() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useSettings } from "@/hooks/use-settings"
 import {
   Checkmark20Regular,
   Copy20Regular,
@@ -16,7 +17,6 @@ import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 
 import { generatePasswordByStrength } from "@/lib/password"
-import { defaultSettings, getSettings, Settings } from "@/lib/settings"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -46,15 +46,11 @@ import {
 
 export default function EncryptionPage() {
   const t = useTranslations() // default namespace (optional)
-
-  let settings: Settings = defaultSettings
-  function loadSettings() {
-    settings = getSettings()
-  }
-  loadSettings()
+  const { settings, setSettings } = useSettings()
 
   if (settings.hashAlgo == null || settings.hashAlgo == undefined) {
     settings.hashAlgo = "md5"
+    setSettings(settings)
   }
 
   function onSelectChanged(val: string) {
@@ -219,7 +215,7 @@ export default function EncryptionPage() {
   }
 
   return (
-    <main>
+    <div>
       <div className="mb-2 flex items-center space-x-2">
         <Translate20Regular primaryFill="#0088FF" className="text-white" />
 
@@ -555,6 +551,6 @@ export default function EncryptionPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </main>
+    </div>
   )
 }
