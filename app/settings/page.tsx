@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { Settings, useSettings } from "@/hooks/use-settings"
 import { Locale } from "@/i18n/config"
 import { setUserLocale } from "@/services/locale"
 import {
@@ -16,12 +17,6 @@ import { ExternalLink, Github } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
 
-import {
-  defaultSettings,
-  getSettings,
-  setSettings,
-  Settings,
-} from "@/lib/settings"
 import { version } from "@/lib/version"
 import {
   AlertDialog,
@@ -56,43 +51,16 @@ import { Switch } from "@/components/ui/switch"
 export default function SettingsPage() {
   const t = useTranslations() // default namespace (optional)
   const { setTheme, theme } = useTheme()
+  const { settings, setSettings } = useSettings()
   const [keyVis, setKeyVis] = useState(false)
   const [isPending, startTransition] = useTransition()
 
-  let settings: Settings = defaultSettings
-  function loadSettings() {
-    settings = getSettings()
-    if (settings.hidePassword == null || settings.hidePassword == undefined) {
-      settings.hidePassword = false
-    }
-
-    if (settings.openaiKey == null || settings.openaiKey == undefined) {
-      settings.openaiKey = ""
-    }
-
-    if (settings.hashAlgo == null || settings.hashAlgo == undefined) {
-      settings.hashAlgo = "md5"
-    }
-
-    if (
-      settings.defaultPasswordConfig == null ||
-      settings.defaultPasswordConfig == undefined
-    ) {
-      settings.defaultPasswordConfig = {
-        upperCases: true,
-        lowerCases: true,
-        numbers: true,
-        special: false,
-      }
-    }
-  }
   function languageChanged(value: string) {
     const locale = value as Locale
     startTransition(() => {
       setUserLocale(locale)
     })
   }
-  loadSettings()
 
   function isSettings(object: Settings): object is Settings {
     return (
