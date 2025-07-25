@@ -7,7 +7,12 @@ import { NextIntlClientProvider } from "next-intl"
 import { getLocale } from "next-intl/server"
 import { ThemeProvider } from "next-themes"
 
-import Nav from "@/components/nav"
+import { AppSidebar } from "@/components/nav"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
@@ -79,7 +84,16 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider>
-            <Nav locale={locale}>{children}</Nav>
+            <SidebarProvider>
+              <AppSidebar />
+
+              <SidebarInset>
+                <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+                  <SidebarTrigger className="-ml-1" />
+                </header>
+                <main className="p-5">{children}</main>
+              </SidebarInset>
+            </SidebarProvider>
             <Toaster />
           </NextIntlClientProvider>
         </ThemeProvider>
