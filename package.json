@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@ianvs/prettier-plugin-sort-imports": "^4.6.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.6.2",
     "@tailwindcss/postcss": "^4",
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^24",
