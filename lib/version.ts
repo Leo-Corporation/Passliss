@@ -1,3 +1,3 @@
 import packageJson from "../package.json"
 
-export const version = packageJson.version + ".2507"
+export const version = packageJson.version + ".2510"
