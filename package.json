@@ -37,7 +37,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3",
+    "eslint-config-next": "16.0.4",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4",
     "typescript": "^5"
