@@ -40,7 +40,7 @@
     "eslint-config-next": "16.1.6",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^6"
   },
     "optionalDependencies": {
     "@tailwindcss/oxide-linux-arm64-gnu": "^4.1.18",
