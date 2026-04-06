@@ -13,7 +13,7 @@ export default function PasswordStats({
   passwordAnalysis,
   showLength = false,
   className = "",
-}: PasswordStatsProps) {
+}: Readonly<PasswordStatsProps>) {
   const t = useTranslations()
   return (
     <div className={clsx("grid grid-cols-2 gap-4", className)}>

@@ -17,7 +17,7 @@ export interface TimelineProps {
   advancedVision: boolean
 }
 
-export default function Timeline(props: TimelineProps) {
+export default function Timeline(props: Readonly<TimelineProps>) {
   const t = useTranslations()
   const [els, setEls] = useState(props.items)
   let title = ""

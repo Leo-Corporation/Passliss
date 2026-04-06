@@ -604,7 +604,7 @@ export default function GeneratePage() {
                     <DialogHeader>
                       <DialogTitle>{t("select-preset")}</DialogTitle>
                     </DialogHeader>
-                    {presets && presets.length === 0 ? (
+                    {presets?.length === 0 ? (
                       <div className="flex w-full flex-col items-center justify-center text-center">
                         <p className="icon text-7xl">{"\uFD81"}</p>
                         <h4 className="text-xl font-bold">
@@ -620,18 +620,17 @@ export default function GeneratePage() {
                     ) : (
                       <ScrollArea className="h-[350px]">
                         <div className="w-full">
-                          {presets &&
-                            presets.map((el, i) => (
-                              <Close key={i} className="w-full">
-                                <Button
-                                  onClick={() => setSelectedPreset(el)}
-                                  className="w-full font-semibold"
-                                  variant="ghost"
-                                >
-                                  {el.name}
-                                </Button>
-                              </Close>
-                            ))}
+                          {presets?.map((el, i) => (
+                            <Close key={i} className="w-full">
+                              <Button
+                                onClick={() => setSelectedPreset(el)}
+                                className="w-full font-semibold"
+                                variant="ghost"
+                              >
+                                {el.name}
+                              </Button>
+                            </Close>
+                          ))}
                         </div>
                       </ScrollArea>
                     )}

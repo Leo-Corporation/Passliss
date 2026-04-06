@@ -24,13 +24,13 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
     try {
       const item = window.localStorage.getItem(key)
-      if (item !== null) {
-        const value = JSON.parse(item)
-        setStoredValue(value)
-      } else {
+      if (item === null) {
         // Si la clé n'existe pas, initialiser avec la valeur par défaut
         window.localStorage.setItem(key, JSON.stringify(initialValue))
         setStoredValue(initialValue)
+      } else {
+        const value = JSON.parse(item)
+        setStoredValue(value)
       }
     } catch (error) {
       console.error("Error reading from localStorage:", error)

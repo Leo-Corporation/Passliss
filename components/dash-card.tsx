@@ -18,7 +18,7 @@ export interface CardProps {
   link: string
 }
 
-export default function DashboardCard(props: CardProps) {
+export default function DashboardCard(props: Readonly<CardProps>) {
   return (
     <Card key={props.title} className="flex h-full flex-col">
       <CardHeader>

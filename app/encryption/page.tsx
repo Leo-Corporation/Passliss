@@ -139,12 +139,6 @@ export default function EncryptionPage() {
             CryptoJS.TripleDES.decrypt(textToDecrypt, decryptionKey).toString()
           )
           break
-        case "3des":
-          decryptedText = hex2a(
-            CryptoJS.TripleDES.decrypt(textToDecrypt, decryptionKey).toString()
-          )
-
-          break
         case "rabbit":
           decryptedText = hex2a(
             CryptoJS.Rabbit.decrypt(textToDecrypt, decryptionKey).toString()
@@ -173,7 +167,7 @@ export default function EncryptionPage() {
   function hex2a(hex: string): string {
     let str = ""
     for (let i = 0; i < hex.length; i += 2) {
-      str += String.fromCharCode(parseInt(hex.substr(i, 2), 16))
+      str += String.fromCodePoint(Number.parseInt(hex.substr(i, 2), 16))
     }
     return str
   }

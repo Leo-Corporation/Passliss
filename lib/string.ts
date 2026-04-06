@@ -3,9 +3,9 @@ export function containsLowerCases(s: string): boolean {
     ","
   ) // Lower case
 
-  for (let i = 0; i < lowerCase.length; i++) {
+  for (const element of lowerCase) {
     for (let j = 0; j < s.length; j++) {
-      if (s[j].includes(lowerCase[i])) {
+      if (s[j].includes(element)) {
         return true // Return
       }
     }
@@ -20,9 +20,9 @@ export function containsUpperCases(s: string): boolean {
     ","
   ) // Upper case
 
-  for (let i = 0; i < upperCase.length; i++) {
+  for (const element of upperCase) {
     for (let j = 0; j < s.length; j++) {
-      if (s[j].includes(upperCase[i])) {
+      if (s[j].includes(element)) {
         return true // Return
       }
     }

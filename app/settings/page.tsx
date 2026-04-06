@@ -13,7 +13,7 @@ import {
   Settings20Regular,
 } from "@fluentui/react-icons"
 import clsx from "clsx"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
 
@@ -192,13 +192,11 @@ export default function SettingsPage() {
                 <Switch
                   id="LowerChk"
                   onCheckedChange={() => {
-                    if (settings.defaultPasswordConfig == null) {
-                      settings.defaultPasswordConfig = {
-                        upperCases: true,
-                        lowerCases: true,
-                        numbers: true,
-                        special: false,
-                      }
+                    settings.defaultPasswordConfig ??= {
+                      upperCases: true,
+                      lowerCases: true,
+                      numbers: true,
+                      special: false,
                     }
                     settings.defaultPasswordConfig.lowerCases =
                       !settings.defaultPasswordConfig.lowerCases
@@ -215,13 +213,11 @@ export default function SettingsPage() {
               <div className="col-end-1 mb-2 flex items-center space-x-2">
                 <Switch
                   onCheckedChange={() => {
-                    if (settings.defaultPasswordConfig == null) {
-                      settings.defaultPasswordConfig = {
-                        upperCases: true,
-                        lowerCases: true,
-                        numbers: true,
-                        special: false,
-                      }
+                    settings.defaultPasswordConfig ??= {
+                      upperCases: true,
+                      lowerCases: true,
+                      numbers: true,
+                      special: false,
                     }
                     settings.defaultPasswordConfig.upperCases =
                       !settings.defaultPasswordConfig.upperCases
@@ -239,13 +235,11 @@ export default function SettingsPage() {
               <div className="col-end-1 mb-2 flex items-center space-x-2">
                 <Switch
                   onCheckedChange={() => {
-                    if (settings.defaultPasswordConfig == null) {
-                      settings.defaultPasswordConfig = {
-                        upperCases: true,
-                        lowerCases: true,
-                        numbers: true,
-                        special: false,
-                      }
+                    settings.defaultPasswordConfig ??= {
+                      upperCases: true,
+                      lowerCases: true,
+                      numbers: true,
+                      special: false,
                     }
                     settings.defaultPasswordConfig.numbers =
                       !settings.defaultPasswordConfig.numbers
@@ -264,13 +258,11 @@ export default function SettingsPage() {
                 <Switch
                   id="SpecialChk"
                   onCheckedChange={() => {
-                    if (settings.defaultPasswordConfig == null) {
-                      settings.defaultPasswordConfig = {
-                        upperCases: true,
-                        lowerCases: true,
-                        numbers: true,
-                        special: false,
-                      }
+                    settings.defaultPasswordConfig ??= {
+                      upperCases: true,
+                      lowerCases: true,
+                      numbers: true,
+                      special: false,
                     }
                     settings.defaultPasswordConfig.special =
                       !settings.defaultPasswordConfig.special
@@ -301,7 +293,7 @@ export default function SettingsPage() {
                   className="h-auto w-14 px-2 py-1"
                   id="Num1Txt"
                   onChange={() => {
-                    settings.passwordLengthOne = parseInt(
+                    settings.passwordLengthOne = Number.parseInt(
                       (document.getElementById("Num1Txt") as HTMLInputElement)
                         .value
                     )
@@ -315,7 +307,7 @@ export default function SettingsPage() {
                   className="h-auto w-14 px-2 py-1"
                   id="Num2Txt"
                   onChange={() => {
-                    settings.passwordLengthTwo = parseInt(
+                    settings.passwordLengthTwo = Number.parseInt(
                       (document.getElementById("Num2Txt") as HTMLInputElement)
                         .value
                     )
@@ -389,12 +381,7 @@ export default function SettingsPage() {
                 <Label htmlFor="hide_pwr">{t("hide-password")}</Label>
                 <Switch
                   onClick={switchClick}
-                  defaultChecked={
-                    settings.hidePassword != null &&
-                    settings.hidePassword != undefined
-                      ? settings.hidePassword
-                      : false
-                  }
+                  defaultChecked={settings.hidePassword ?? false}
                   className="sm:justify-self-end"
                   id="hide_pwr"
                 />
@@ -504,7 +491,6 @@ export default function SettingsPage() {
                   rel="noopener noreferrer"
                   className="text-primary flex items-center hover:underline"
                 >
-                  <Github className="mr-2 size-4" />
                   {t("view-repository")}
                   <ExternalLink className="ml-2 size-4" />
                 </a>
@@ -521,8 +507,8 @@ export default function SettingsPage() {
                   Fluent System Icons - MIT License - © 2020 Microsoft
                   Corporation
                   <br></br>
-                  Passliss - MIT License - © 2021-{new Date().getFullYear()}{" "}
-                  Léo Corporation
+                  Passliss - MIT License - © 2021-{new Date().getFullYear()} Léo
+                  Corporation
                 </p>
               </div>
             </CardContent>
@@ -543,9 +529,9 @@ export default function SettingsPage() {
                   href={
                     "data:text/plain;charset=UTF-8," +
                     encodeURIComponent(
-                      typeof window !== "undefined"
-                        ? (localStorage.getItem("settings") ?? "")
-                        : "{msg: 'an error occurred'}"
+                      typeof window === "undefined"
+                        ? "{msg: 'an error occurred'}"
+                        : (localStorage.getItem("settings") ?? "")
                     )
                   }
                   download={"settings.json"}

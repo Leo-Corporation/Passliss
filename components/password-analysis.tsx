@@ -6,7 +6,9 @@ export interface PasswordAnalysisProps {
   generatedPassword: string
 }
 
-export default function PasswordAnalysis(props: PasswordAnalysisProps) {
+export default function PasswordAnalysis(
+  props: Readonly<PasswordAnalysisProps>
+) {
   const t = useTranslations()
   const { generatedPassword } = props
   // Render password with colored characters
