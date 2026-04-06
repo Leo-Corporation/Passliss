@@ -83,8 +83,8 @@ export default function ActivityPage() {
 
   function getAmountByStrength(strength: PasswordStrength) {
     let amount = 0
-    for (let i = 0; i < activity.items.length; i++) {
-      if (getPasswordStrength(activity.items[i].content) === strength) {
+    for (const element of activity.items) {
+      if (getPasswordStrength(element.content) === strength) {
         amount++
       }
     }
@@ -255,12 +255,7 @@ export default function ActivityPage() {
                   date={i}
                   items={el}
                   advancedVision={visionToggle}
-                  hide={
-                    settings.hidePassword != null &&
-                    settings.hidePassword != undefined
-                      ? settings.hidePassword
-                      : false
-                  }
+                  hide={settings.hidePassword ?? false}
                 />
               )
           )

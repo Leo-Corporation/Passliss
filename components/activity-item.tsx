@@ -51,7 +51,7 @@ export interface ActivityProps {
   advancedVision: boolean
 }
 
-export default function ActivityItem(props: ActivityProps) {
+export default function ActivityItem(props: Readonly<ActivityProps>) {
   const passwordStats = getStrengthInfo(props.activity.content)
   const isMobile = useIsMobile()
   function Copy() {
@@ -60,7 +60,7 @@ export default function ActivityItem(props: ActivityProps) {
   const t = useTranslations()
   function getHiddenPassword(password: string): string {
     let final: string = ""
-    for (let i = 0; i < password.length; i++) {
+    for (const element of password) {
       final += "•"
     }
     return final
@@ -73,9 +73,9 @@ export default function ActivityItem(props: ActivityProps) {
     loadActivities()
     els[props.timeline_index].splice(props.index, 1)
     const a: Activity[] = []
-    for (let i = 0; i < els.length; i++) {
-      for (let j = 0; j < els[i].length; j++) {
-        a.push(els[i][j])
+    for (const element of els) {
+      for (let j = 0; j < element.length; j++) {
+        a.push(element[j])
       }
     }
     console.log(a)
